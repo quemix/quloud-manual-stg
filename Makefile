@@ -37,8 +37,17 @@ generate:
 test:
 	$(PYTHON) -m unittest discover -s tools/tests -t . -v
 
-# 公開物を更新する。strict ビルドが通ったときだけ反映する。
-publish: strict
+# 公開物を更新する。
+#
+# 必ず clean してから strict ビルドする。sphinx.ext.githubpages は
+# html_baseurl が未設定のとき出力先の CNAME を削除する実装で
+# (sphinx/ext/githubpages.py の create_nojekyll_and_cname)、CNAME を
+# 戻すのは html_extra_path のコピーだけ。ソース無変更の再ビルドでは
+# 戻らないので、増分ビルドの結果を rsync --delete で反映すると
+# docs/CNAME が消えて独自ドメインが落ちる。
+publish:
+	$(MAKE) clean
+	$(MAKE) strict
 	rsync -a --delete "$(BUILDDIR)/" "$(PUBLISHDIR)/"
 
 clean:
