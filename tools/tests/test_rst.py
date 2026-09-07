@@ -75,16 +75,19 @@ class TestHeaderComment(unittest.TestCase):
 
 
 class TestSection(unittest.TestCase):
-    def test_underline_matches_display_width(self):
-        # 日本語は幅2として数える。下線が短いと Sphinx が警告を出す。
+    def test_rule_matches_display_width(self):
+        # 日本語は幅2として数える。罫線が短いと Sphinx が警告を出す。
         out = rst.section("入力項目", "=")
-        title, underline = out.strip().splitlines()
+        over, title, under = out.strip().splitlines()
         self.assertEqual(title, "入力項目")
-        self.assertEqual(underline, "=" * 8)
+        self.assertEqual(over, "=" * 8)
+        self.assertEqual(under, "=" * 8)
 
-    def test_ascii_title(self):
+    def test_has_overline(self):
+        # 上線が無いと、章へ include したときに既存の見出し書式と衝突して
+        # "Title level inconsistent" でビルドが落ちる。
         out = rst.section("QE", "-")
-        self.assertEqual(out.strip().splitlines()[1], "--")
+        self.assertEqual(out, "--\nQE\n--\n")
 
 
 if __name__ == "__main__":

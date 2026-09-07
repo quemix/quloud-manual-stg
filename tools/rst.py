@@ -27,8 +27,17 @@ def display_width(text: str) -> int:
 
 
 def section(title: str, char: str) -> str:
-    """見出しを作る。下線は表示幅に合わせる（短いと Sphinx が警告を出す）。"""
-    return f"{title}\n{char * display_width(title)}\n"
+    """見出しを作る。上線と下線の両方を付ける。
+
+    罫線は表示幅に合わせる（短いと Sphinx が警告を出す）。
+
+    **上線を付けるのは必須。** このリポジトリの章はすべて上線＋下線の書式で
+    書かれており、RST は「同じ文字でも上線の有無が違えば別の書式」として扱う。
+    下線だけの見出しを章へ include すると、その文字に割り当て済みのレベルと
+    衝突して "Title level inconsistent" で落ちる。
+    """
+    rule = char * display_width(title)
+    return f"{rule}\n{title}\n{rule}\n"
 
 
 def list_table(headers: list[str], rows: list[list[str]], widths: list[int] | None = None) -> str:

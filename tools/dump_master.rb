@@ -33,9 +33,22 @@ data = {
     { code: c.code, name_ja: c.name_ja, name_en: c.name_en,
       description_ja: c.description_ja, description_en: c.description_en }
   },
+  # ステップも落とす。「ジョブ作成」の選択ダイアログに出るのはテンプレート名
+  # （name_ja）ではなく、代表 capability の名称と、ステップが使うエンジンの名称。
+  # ステップが無いとダイアログの表示を再現できない。
   workflow_templates: WorkflowTemplate.order(:sort_order).map { |t|
     { key: t.key, capability: t.capability&.code, name_ja: t.name_ja,
-      name_en: t.name_en, enabled: t.enabled }
+      name_en: t.name_en, enabled: t.enabled,
+      # role が付いているステップは計算ではなく入力の選択（既存 Job や構造を
+      # 選ばせるタブ）。create2.vue の computeSteps がこれを除いてから
+      # 「計算ソフト」の見出しを組み立てるので、同じ判定ができるように落とす。
+      steps: t.workflow_steps.map { |s|
+        ib = s.input_binding_json
+        { step_no: s.step_no,
+          engine: s.engine_capability.simulation_engine.code,
+          capability: s.engine_capability.capability.code,
+          role: ib.is_a?(Hash) ? (ib['role'] || ib[:role]) : nil }
+      } }
   },
   engine_capabilities: engine_capabilities.map { |ec|
     {

@@ -1,160 +1,210 @@
 .. これは tools/gen_master_tables.py が生成したファイルです。手で編集しないでください。
-.. 生成元コミット: 789272e8ff4737a6a8aaf0d461f6b71abb84fb54 (dev_v700_ji)
-.. マスタ取得日時（dump 実行）: 2026-09-07T07:21:28Z
-.. マスタ同期日時: 2026-09-07T06:19:19Z
+.. 生成元コミット: 6042191ba82c4be3056bf116bdfb49f2ea1ff9ab (dev_v700_ji)
+.. マスタ取得日時（dump 実行）: 2026-09-07T21:34:15Z
+.. マスタ同期日時: 2026-09-07T16:54:23Z
 .. 再生成: make dump && make generate
 
 .. list-table::
    :header-rows: 1
-   :widths: 40 40 20
+   :widths: 20 24 16 40
 
-   * - 名称
-     - 英語表記
+   * - 計算ソフト
+     - 計算機能
      - 機能コード
-   * - 自己無撞着電子状態計算（QE）
-     - Self-consistent Electronic Structure Calculation (QE)
+     - 実行されるステップ
+   * - Quantum ESPRESSO
+     - 自己無撞着電子状態計算（SCF）
      - ``scf``
-   * - 構造最適化（QE）
-     - Geometry Optimization (QE)
+     - 自己無撞着電子状態計算（SCF）
+   * - Quantum ESPRESSO
+     - 構造最適化
      - ``geometry_opt``
-   * - 格子定数最適化（QE）
-     - Lattice Optimization (QE)
+     - 構造最適化
+   * - Quantum ESPRESSO
+     - 格子定数最適化
      - ``lattice_opt``
-   * - 固定ポテンシャル電子状態計算（QE）
-     - Fixed-Potential Electronic Structure (QE)
+     - 格子定数最適化
+   * - Quantum ESPRESSO
+     - 固定ポテンシャル電子状態計算
      - ``nscf``
-   * - 電子バンド
-     - Electronic Band Structure
+     - 自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算
+   * - Quantum ESPRESSO
+     - 電子バンド構造
      - ``band_structure``
-   * - NEB（QE）
-     - NEB (QE)
+     - 自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算（バンド） → 電子バンド構造
+   * - Quantum ESPRESSO
+     - NEB（Nudged Elastic Band）
      - ``neb``
-   * - DFT-1/2 擬ポテンシャル生成（QE）
-     - DFT-1/2 Pseudopotential Generation (QE)
+     - NEB（Nudged Elastic Band）
+   * - DFT-1/2
+     - DFT-1/2 擬ポテンシャル生成（UPF）
      - ``dft12_upf``
-   * - 電子状態密度
-     - Electronic Density of States
+     - DFT-1/2 擬ポテンシャル生成（UPF）
+   * - Quantum ESPRESSO
+     - 状態密度計算（DOS）
      - ``dos``
-   * - 投影状態密度
-     - Projected Density of States
+     - 自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算 → 状態密度計算（DOS）
+   * - Quantum ESPRESSO
+     - 投影状態密度（PDOS）
      - ``projected_dos``
-   * - フォノンバンド
-     - Phonon Band Structure
+     - 自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算 → 投影状態密度（PDOS）
+   * - Quantum ESPRESSO
+     - フォノンバンド分散（matdyn）
      - ``matdyn_disp``
-   * - フォノン状態密度
-     - Phonon Density of States
+     - 構造最適化 → フォノン計算 → 力定数計算（q2r） → フォノンバンド分散（matdyn）
+   * - Quantum ESPRESSO
+     - フォノン状態密度（matdyn）
      - ``matdyn_dos``
-   * - X線吸収スペクトル
-     - X-ray Absorption Spectrum
+     - 構造最適化 → フォノン計算 → 力定数計算（q2r） → フォノン状態密度（matdyn）
+   * - Quantum ESPRESSO
+     - X線吸収スペクトル（XSpectra）
      - ``xspectra``
-   * - 自己無撞着電子状態計算（OpenMX）
-     - Self-consistent Electronic Structure Calculation (OpenMX)
+     - X線吸収スペクトル用 SCF → X線吸収スペクトル（XSpectra）
+   * - OpenMX
+     - 自己無撞着電子状態計算（SCF）
      - ``scf``
-   * - 構造最適化（OpenMX）
-     - Geometry Optimization (OpenMX)
+     - 自己無撞着電子状態計算（SCF）
+   * - OpenMX
+     - 構造最適化
      - ``geometry_opt``
-   * - 格子定数最適化（OpenMX）
-     - Lattice Optimization (OpenMX)
+     - 構造最適化
+   * - OpenMX
+     - 格子定数最適化
      - ``lattice_opt``
-   * - バンド計算（OpenMX）
-     - Band Structure (OpenMX)
+     - 格子定数最適化
+   * - OpenMX
+     - 電子バンド構造
      - ``band_structure``
-   * - 状態密度計算（OpenMX）
-     - Density of States (OpenMX)
+     - 電子バンド構造
+   * - OpenMX
+     - 状態密度計算（DOS）
      - ``dos``
-   * - 第一原理分子動力学（OpenMX）
-     - First-Principles MD (OpenMX)
+     - 状態密度計算（DOS）
+   * - OpenMX
+     - 第一原理分子動力学
      - ``fp_md``
-   * - NEB（OpenMX）
-     - NEB (OpenMX)
+     - 分子動力学
+   * - OpenMX
+     - NEB（Nudged Elastic Band）
      - ``neb``
-   * - 交換結合定数（OpenMX）
-     - Exchange Coupling Constants
+     - NEB（Nudged Elastic Band）
+   * - OpenMX
+     - 交換結合パラメータ
      - ``exchange_coupling``
-   * - 自己無撞着電子状態計算（RSDFT）
-     - Self-consistent Electronic Structure Calculation (RSDFT)
+     - 自己無撞着電子状態計算（SCF） → 交換結合パラメータ
+   * - RSDFT
+     - 自己無撞着電子状態計算（SCF）
      - ``scf``
-   * - 構造最適化（RSDFT）
-     - Geometry Optimization (RSDFT)
+     - 自己無撞着電子状態計算（SCF）
+   * - RSDFT
+     - 構造最適化
      - ``geometry_opt``
-   * - 格子定数最適化（RSDFT）
-     - Lattice Optimization (RSDFT)
+     - 構造最適化
+   * - RSDFT
+     - 格子定数最適化
      - ``lattice_opt``
-   * - バンド計算（RSDFT）
-     - Band Structure (RSDFT)
+     - 格子定数最適化
+   * - RSDFT
+     - 電子バンド構造
      - ``band_structure``
-   * - 状態密度計算（RSDFT）
-     - Density of States (RSDFT)
+     - 電子バンド構造
+   * - RSDFT
+     - 状態密度計算（DOS）
      - ``dos``
-   * - 第一原理分子動力学（RSDFT）
-     - First-Principles MD (RSDFT)
+     - 状態密度計算（DOS）
+   * - RSDFT
+     - 第一原理分子動力学
      - ``fp_md``
-   * - 構造最適化（ASE-MD）
-     - Geometry Optimization (ASE-MD)
+     - 分子動力学
+   * - ASE-MD
+     - 構造最適化
      - ``geometry_opt``
-   * - 格子最適化（ASE-MD）
-     - Lattice Optimization (ASE-MD)
+     - 構造最適化
+   * - ASE-MD
+     - 格子定数最適化
      - ``lattice_opt``
-   * - 機械学習ポテンシャル MD（ASE-MD）
-     - Machine-Learning Potential MD (ASE-MD)
+     - 格子定数最適化
+   * - ASE-MD
+     - 機械学習ポテンシャル MD
      - ``ml_md``
-   * - NEB（ASE-MD）
-     - NEB (ASE-MD)
+     - 機械学習ポテンシャル MD
+   * - ASE-MD
+     - NEB（Nudged Elastic Band）
      - ``neb``
-   * - 古典分子動力学（LAMMPS）
-     - Classical MD (LAMMPS)
+     - NEB（Nudged Elastic Band）
+   * - LAMMPS
+     - 古典分子動力学
      - ``classical_md``
-   * - 構造最適化（LAMMPS）
-     - Geometry Optimization (LAMMPS)
+     - 古典分子動力学
+   * - LAMMPS
+     - 構造最適化
      - ``geometry_opt``
-   * - On-the-fly 機械学習ポテンシャル生成（FLARE）
-     - On-the-fly Machine-Learning Potential Generation (FLARE)
+     - 構造最適化
+   * - FLARE + Quantum ESPRESSO
+     - On-the-fly 機械学習ポテンシャル生成
      - ``ml_ff``
-   * - LLG ダイナミクス（Quloud-Mag）
-     - LLG Dynamics (Quloud-Mag)
+     - 機械学習ポテンシャル MD → 自己無撞着電子状態計算（SCF）
+   * - Quloud-Mag
+     - LLG ダイナミクス
      - ``llg_dynamics``
-   * - モンテカルロ磁性計算（Quloud-Mag）
-     - Magnetic Monte Carlo (Quloud-Mag)
+     - LLG ダイナミクス
+   * - Quloud-Mag
+     - モンテカルロ磁性計算
      - ``monte_carlo_mag``
-   * - 自己無撞着電子状態計算（SPRKKR）
-     - Self-consistent Electronic Structure Calculation (SPRKKR)
+     - モンテカルロ磁性計算
+   * - SPRKKR
+     - 自己無撞着電子状態計算（SCF）
      - ``scf``
-   * - 交換結合パラメータ（SPRKKR）
-     - Exchange Coupling Parameters (SPRKKR)
+     - 自己無撞着電子状態計算（SCF）
+   * - SPRKKR
+     - 交換結合パラメータ
      - ``exchange_coupling``
-   * - エネルギー最小化（GROMACS）
-     - Energy Minimization (GROMACS)
+     - 交換結合パラメータ
+   * - GROMACS
+     - 構造最適化
      - ``geometry_opt``
-   * - 古典分子動力学（GROMACS）
-     - Classical Molecular Dynamics (GROMACS)
+     - 構造最適化
+   * - GROMACS
+     - 古典分子動力学
      - ``classical_md``
+     - 古典分子動力学
    * - HybMD
-     - HybMD
+     - 機械学習ポテンシャル MD
      - ``ml_md``
-   * - 高分子密度計算（RadonPy）
-     - Polymer Density Calculation (RadonPy)
+     - 機械学習ポテンシャル MD → 自己無撞着電子状態計算（SCF）
+   * - RadonPy
+     - 高分子密度
      - ``polymer_density``
-   * - 高分子溶解度パラメータ（RadonPy）
-     - Polymer Solubility Parameter (RadonPy)
+     - QM構造最適化 / RESP電荷 → 高分子平衡化MD
+   * - RadonPy
+     - 溶解度パラメータ
      - ``polymer_sp``
-   * - 高分子ガラス転移温度（RadonPy）
-     - Polymer Glass Transition Temperature (RadonPy)
+     - QM構造最適化 / RESP電荷 → 高分子平衡化MD → 溶解度パラメータ
+   * - RadonPy
+     - ガラス転移温度
      - ``polymer_tg``
-   * - 高分子熱伝導率（RadonPy）
-     - Polymer Thermal Conductivity (RadonPy)
+     - QM構造最適化 / RESP電荷 → 高分子平衡化MD → ガラス転移温度
+   * - RadonPy
+     - 熱伝導率
      - ``polymer_tc``
-   * - 高分子ヤング率（RadonPy）
-     - Polymer Young's Modulus (RadonPy)
+     - QM構造最適化 / RESP電荷 → 高分子平衡化MD → 熱伝導率
+   * - RadonPy
+     - ヤング率（機械特性）
      - ``polymer_elong``
-   * - 高分子複素誘電率（RadonPy）
-     - Polymer Complex Dielectric Constant (RadonPy)
+     - QM構造最適化 / RESP電荷 → 高分子平衡化MD → ヤング率（機械特性）
+   * - RadonPy
+     - 複素誘電率
      - ``polymer_dielectric``
-   * - 単一点エネルギー計算（Psi4）
-     - Single-Point Energy Calculation (Psi4)
+     - QM構造最適化 / RESP電荷 → 高分子平衡化MD → 複素誘電率
+   * - Psi4
+     - 自己無撞着電子状態計算（SCF）
      - ``scf``
-   * - 構造最適化（Psi4）
-     - Geometry Optimization (Psi4)
+     - 自己無撞着電子状態計算（SCF）
+   * - Psi4
+     - 構造最適化
      - ``geometry_opt``
-   * - 振動数解析（Psi4）
-     - Frequency Analysis (Psi4)
+     - 構造最適化
+   * - Psi4
+     - 分子振動解析
      - ``frequency``
+     - 構造最適化 → 分子振動解析

@@ -42,7 +42,6 @@ INPUT_TYPE_JA = {
     "text": "文字列",
 }
 
-SECTION_JA = {"basic": "基本", "advanced": "詳細"}
 
 
 # --- 値の整形 -------------------------------------------------------------
@@ -151,13 +150,26 @@ def _param_rows(params: list, params_by_key: dict) -> list[list[str]]:
             format_validation(p.get("validation_rules")),
             format_options(p.get("options")),
             format_condition(p.get("condition"), params_by_key),
-            SECTION_JA.get(p.get("section"), rst.escape(p.get("section"))),
         ])
     return rows
 
 
-PARAM_HEADERS = ["項目名", "キー", "型", "単位", "既定値", "範囲・制約", "選択肢", "表示条件", "区分"]
-PARAM_WIDTHS = [16, 14, 8, 6, 10, 14, 20, 20, 6]
+# capability_parameter.section（basic / advanced）は列に出さない。
+# 「ジョブ作成」フォーム（nuxt/components/job/capability-param-form.vue）は
+# section を一切参照しておらず、項目の出し分けにも並び順にも使っていない。
+# 画面が使うのは param_group の方。マスタに値はあるが画面に効かないものを
+# 表に出すと、読者が画面上で対応を探せない。
+PARAM_HEADERS = ["項目名", "キー", "型", "単位", "既定値", "範囲・制約", "選択肢", "表示条件"]
+PARAM_WIDTHS = [18, 16, 8, 6, 12, 16, 22, 22]
+
+# 「ジョブ作成」フォームが項目をまとめる見出し。フォームは
+# job.parameters.physicalModel と job.parameters.groups.<param_group> を使う。
+# 文言は nuxt/locals/ja/job.ts 由来で、マスタには入っていないのでここに置く。
+PHYSICAL_GROUP_JA = "物理モデル"
+PARAM_GROUP_JA = {
+    "experimental": "実験パラメータ",
+    "instrument": "装置パラメータ",
+}
 
 
 def render_engine_matrix(dump: dict) -> str:
@@ -187,43 +199,120 @@ def render_engine_matrix(dump: dict) -> str:
     )
 
 
+def _compute_steps(template: dict) -> list:
+    """計算のステップだけを返す。
+
+    role が付いているステップは計算ではなく入力の選択（既存 Job や構造を選ばせる
+    タブ）。create2.vue の computeSteps と同じ判定にする。全ステップが選択用の
+    場合は元のリストを返す（create2.vue も同じフォールバックをしている）。
+    """
+    steps = [s for s in template.get("steps", []) if not s.get("role")]
+    return steps or template.get("steps", [])
+
+
 def render_calc_list(dump: dict) -> str:
+    """「ジョブ作成」の選択ダイアログに出る組み合わせの一覧。
+
+    ダイアログが見せるのはテンプレート名（name_ja）ではなく、
+    「計算ソフト」＝ステップが使うエンジンの表示名、
+    「計算機能」＝テンプレートの代表 capability の名称。
+    テンプレート名で表を作ると画面と一致しないので、ダイアログと同じ組み立てにする。
+    """
+    engines = {e["code"]: e.get("name") or e["code"] for e in dump.get("engines", [])}
+    caps = {c["code"]: c.get("name_ja") or c["code"] for c in dump.get("capabilities", [])}
+
     rows = []
     for t in dump.get("workflow_templates", []):
         if not t.get("enabled"):
             continue
+        steps = _compute_steps(t)
+        engine_label = " + ".join(dict.fromkeys(engines.get(s["engine"], s["engine"]) for s in steps))
+        cap_code = t.get("capability")
+        step_label = " → ".join(caps.get(s["capability"], s["capability"]) for s in steps)
         rows.append([
-            rst.escape(t.get("name_ja")),
-            rst.escape(t.get("name_en")),
-            f"``{t.get('capability')}``" if t.get("capability") else "-",
+            rst.escape(engine_label),
+            rst.escape(caps.get(cap_code, cap_code or "-")),
+            f"``{cap_code}``" if cap_code else "-",
+            rst.escape(step_label),
         ])
     return (
         rst.header_comment(dump, SCRIPT)
-        + rst.list_table(["名称", "英語表記", "機能コード"], rows, widths=[40, 40, 20])
+        + rst.list_table(
+            ["計算ソフト", "計算機能", "機能コード", "実行されるステップ"],
+            rows,
+            widths=[20, 24, 16, 40],
+        )
     )
 
 
-def render_params(ec: dict, dump: dict) -> str:
+def _params_body(ec: dict) -> str:
+    """入力項目の表だけを返す（ヘッダコメントを含まない）。
+
+    表は「ジョブ作成」フォームと同じまとまりで分ける。フォームは
+    物理モデル（physical_model_parameters）を先に出し、そのあとに
+    capability parameter を param_group ごとにまとめて出す。
+    1 つの大きな表にすると、読者が画面のどのまとまりの項目かを追えない。
+    """
     params = ec.get("parameters") or []
     physical = ec.get("physical_model_parameters") or []
     params_by_key = {p["key"]: p for p in [*params, *physical]}
 
-    out = [rst.header_comment(dump, SCRIPT)]
     if not params and not physical:
-        out.append(
-            "この計算には、Create Job ダイアログで入力する項目はありません。\n"
-        )
-        return "".join(out)
+        return "この計算には、「ジョブ作成」で入力する項目はありません。\n"
 
-    if params:
-        out.append(rst.list_table(PARAM_HEADERS, _param_rows(params, params_by_key),
+    out = []
+
+    def table(title: str, items: list) -> None:
+        out.append(rst.section(rst.escape(title), "~"))
+        out.append("\n")
+        out.append(rst.list_table(PARAM_HEADERS, _param_rows(items, params_by_key),
                                   widths=PARAM_WIDTHS))
+        out.append("\n")
+
     if physical:
+        table(PHYSICAL_GROUP_JA, physical)
+
+    # param_group の出現順を保つ（フォームも visibleParams の出現順で並べる）。
+    for group in dict.fromkeys(p.get("param_group") for p in
+                               sorted(params, key=lambda x: x.get("sort_order") or 0)):
+        items = [p for p in params if p.get("param_group") == group]
+        table(PARAM_GROUP_JA.get(group, group or "その他"), items)
+
+    return "".join(out)
+
+
+def render_params(ec: dict, dump: dict) -> str:
+    return rst.header_comment(dump, SCRIPT) + _params_body(ec)
+
+
+def render_params_all(dump: dict) -> str:
+    """全 engine x capability の入力項目を、見出し付きで 1 ファイルにまとめる。
+
+    章から include するのはこのファイルだけにする。params/<engine>_<cap>.rst を
+    章ごとに手で並べると、マスタにエンジンや機能が増えたときに漏れる。
+    実際、生成した 112 ファイルのうち 110 がどの章からも include されておらず、
+    Sphinx に一度もパースされない状態だった（CLAUDE.md §3）。
+
+    見出しの深さはこのリポジトリの階層に合わせる。
+    小節（####）= 計算ソフト、小々節（++++）= 機能、その下に render_params が
+    出す「~」の見出しが入る。include する側の節（----）の下に置くこと。
+    """
+    engine_names = {e["code"]: e.get("name") or e["code"] for e in dump.get("engines", [])}
+    cap_names = {c["code"]: c.get("name_ja") or c["code"] for c in dump.get("capabilities", [])}
+
+    out = [rst.header_comment(dump, SCRIPT)]
+    for engine_code in dict.fromkeys(ec["engine"] for ec in dump["engine_capabilities"]):
         out.append("\n")
-        out.append(rst.section("物理モデルパラメータ", "~"))
+        out.append(rst.section(rst.escape(engine_names.get(engine_code, engine_code)), "#"))
         out.append("\n")
-        out.append(rst.list_table(PARAM_HEADERS, _param_rows(physical, params_by_key),
-                                  widths=PARAM_WIDTHS))
+        for ec in dump["engine_capabilities"]:
+            if ec["engine"] != engine_code:
+                continue
+            cap = ec["capability"]
+            out.append(rst.section(rst.escape(cap_names.get(cap, cap)), "+"))
+            out.append("\n")
+            out.append(_params_body(ec))
+            out.append("\n")
     return "".join(out)
 
 
@@ -269,6 +358,7 @@ def generate(dump: dict, out_dir: Path) -> list[Path]:
 
     write("engine_matrix.rst", render_engine_matrix(dump))
     write("calc_list.rst", render_calc_list(dump))
+    write("params_all.rst", render_params_all(dump))
     for ec in dump["engine_capabilities"]:
         slug = f"{ec['engine']}_{ec['capability']}"
         write(f"params/{slug}.rst", render_params(ec, dump))

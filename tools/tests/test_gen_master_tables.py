@@ -25,13 +25,36 @@ def _dump(**kw):
     base = {
         "source_commit": "abc1234", "source_branch": "dev_v700_ji",
         "generated_at": "2026-09-07T06:00:00Z",
-        "engines": [{"code": "qe", "name": "Quantum ESPRESSO", "description": "", "active": True}],
-        "capabilities": [{"code": "scf", "name_ja": "電子状態 SCF", "name_en": "Single-Point SCF",
-                          "description_ja": "", "description_en": ""}],
+        "engines": [
+            {"code": "qe", "name": "Quantum ESPRESSO", "description": "", "active": True},
+            {"code": "openmx", "name": "OpenMX", "description": "", "active": True},
+        ],
+        "capabilities": [
+            {"code": "scf", "name_ja": "電子状態 SCF", "name_en": "Single-Point SCF",
+             "description_ja": "", "description_en": ""},
+            {"code": "neb", "name_ja": "NEB（Nudged Elastic Band）", "name_en": "NEB",
+             "description_ja": "", "description_en": ""},
+        ],
         "workflow_templates": [
             {"key": "qe_scf", "capability": "scf", "name_ja": "自己無撞着電子状態計算（QE）",
-             "name_en": "Self-consistent Electronic Structure Calculation (QE)", "enabled": True},
-            {"key": "qe_old", "capability": "scf", "name_ja": "旧", "name_en": "Old", "enabled": False},
+             "name_en": "Self-consistent Electronic Structure Calculation (QE)", "enabled": True,
+             "steps": [{"step_no": 1, "engine": "qe", "capability": "scf", "role": None}]},
+            # 入力の選択ステップ（role 付き）は計算ソフトの見出しにもステップ欄にも出さない。
+            {"key": "qe_neb", "capability": "neb", "name_ja": "NEB（QE）",
+             "name_en": "NEB (QE)", "enabled": True,
+             "steps": [
+                 {"step_no": 1, "engine": "qe", "capability": "neb", "role": "select_structure"},
+                 {"step_no": 2, "engine": "qe", "capability": "neb", "role": None},
+             ]},
+            # 複数のエンジンにまたがるテンプレート。
+            {"key": "combo", "capability": "scf", "name_ja": "組み合わせ",
+             "name_en": "Combo", "enabled": True,
+             "steps": [
+                 {"step_no": 1, "engine": "openmx", "capability": "scf", "role": None},
+                 {"step_no": 2, "engine": "qe", "capability": "scf", "role": None},
+             ]},
+            {"key": "qe_old", "capability": "scf", "name_ja": "旧", "name_en": "Old", "enabled": False,
+             "steps": [{"step_no": 1, "engine": "qe", "capability": "scf", "role": None}]},
         ],
         "engine_capabilities": [{
             "engine": "qe", "capability": "scf", "visible": True, "recommended": False,
@@ -198,19 +221,77 @@ class TestRenderEngineMatrix(unittest.TestCase):
 class TestRenderCalcList(unittest.TestCase):
     def test_only_enabled_templates(self):
         out = g.render_calc_list(_dump())
-        self.assertIn("自己無撞着電子状態計算（QE）", out)
         self.assertNotIn("旧", out)
+
+    def test_columns_match_the_selection_dialog(self):
+        # ダイアログが見せるのはテンプレート名ではなく、計算ソフト（エンジンの
+        # 表示名）と計算機能（代表 capability の名称）。
+        out = g.render_calc_list(_dump())
+        self.assertIn("計算ソフト", out)
+        self.assertIn("計算機能", out)
+        self.assertIn("実行されるステップ", out)
+        self.assertIn("Quantum ESPRESSO", out)
+        self.assertIn("電子状態 SCF", out)
+        # テンプレート名は出さない
+        self.assertNotIn("自己無撞着電子状態計算（QE）", out)
+
+    def test_selection_steps_are_excluded(self):
+        out = g.render_calc_list(_dump())
+        # NEB は 2 ステップのうち 1 つが構造選択なので、実行されるステップは 1 つ。
+        # 「→」で連結されていないことで確かめる。
+        rows = out.split("   * - ")
+        neb = [r for r in rows if "``neb``" in r]
+        self.assertEqual(len(neb), 1, "NEB の行が 1 件でない")
+        self.assertNotIn("→", neb[0])
+
+    def test_multi_engine_template_joins_engine_names(self):
+        out = g.render_calc_list(_dump())
+        self.assertIn("OpenMX + Quantum ESPRESSO", out)
+
+    def test_all_selection_steps_falls_back_to_all(self):
+        # 全ステップが選択用ならフォールバックして全部を使う（create2.vue と同じ）。
+        template = {"steps": [{"step_no": 1, "engine": "qe", "capability": "neb",
+                               "role": "select_structure"}]}
+        self.assertEqual(len(g._compute_steps(template)), 1)
 
 
 class TestRenderParams(unittest.TestCase):
     def test_table_has_all_columns(self):
         ec = _dump()["engine_capabilities"][0]
         out = g.render_params(ec, _dump())
-        for col in ["項目名", "キー", "型", "単位", "既定値", "範囲・制約", "選択肢", "表示条件", "区分"]:
+        for col in ["項目名", "キー", "型", "単位", "既定値", "範囲・制約", "選択肢", "表示条件"]:
             self.assertIn(col, out)
         self.assertIn("SCF 最大反復回数", out)
         self.assertIn("``scf_max_iter``", out)
         self.assertIn("1 以上 1000 以下", out)
+
+    def test_section_column_is_not_emitted(self):
+        # capability_parameter.section（basic/advanced）は「ジョブ作成」フォームが
+        # 一切参照していない。画面に効かない値を表に出すと読者が対応を探せない。
+        out = g.render_params(_dump()["engine_capabilities"][0], _dump())
+        self.assertNotIn("区分", out)
+        self.assertNotIn("基本", out)
+
+    def test_tables_are_split_by_form_group(self):
+        # フォームは param_group ごとに項目をまとめる。表も同じまとまりにする。
+        d = _dump()
+        d["engine_capabilities"][0]["parameters"] = [
+            _param(key="scf_max_iter", label_ja="SCF 最大反復回数", param_group="experimental"),
+            _param(key="mpi", label_ja="MPI プロセス数", param_group="instrument", sort_order=90),
+        ]
+        out = g.render_params(d["engine_capabilities"][0], d)
+        self.assertIn("実験パラメータ", out)
+        self.assertIn("装置パラメータ", out)
+        self.assertEqual(out.count(".. list-table::"), 2)
+
+    def test_unknown_param_group_falls_back_to_the_key(self):
+        d = _dump()
+        d["engine_capabilities"][0]["parameters"] = [
+            _param(key="x", label_ja="X", param_group="brand_new")
+        ]
+        out = g.render_params(d["engine_capabilities"][0], d)
+        # 見出しも rst.escape を通す（アンダースコアは RST の参照記号）。
+        self.assertIn(r"brand\_new", out)
 
     def test_no_parameters_emits_note_not_empty_table(self):
         # qe/band_structure、qe/dos、radonpy/polymer_sp は入力項目が0件。
@@ -229,8 +310,11 @@ class TestRenderParams(unittest.TestCase):
         ]
         ec = d["engine_capabilities"][0]
         out = g.render_params(ec, d)
-        self.assertIn("物理モデルパラメータ", out)
+        # 見出しはフォームの表示（job.parameters.physicalModel）に合わせる。
+        self.assertIn("物理モデル", out)
         self.assertIn("温度", out)
+        # 物理モデルが先、そのあとに capability parameter のまとまり。
+        self.assertLess(out.index("物理モデル"), out.index("実験パラメータ"))
 
 
 class TestRenderArtifacts(unittest.TestCase):
