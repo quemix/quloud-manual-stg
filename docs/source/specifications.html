@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-09-07T16:58:17+09:00" />
+    <meta property="article:modified_time" content="2026-09-07T19:38:07+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>14. 仕様</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -77,6 +77,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#lammps">14.3.3.4. LAMMPS に関する注意事項</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ase">14.3.3.5. ASE に関する注意事項</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flare">14.3.3.6. FLARE に関する注意事項</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sprkkr">14.3.3.7. SPRKKR に関する注意事項</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">14.3.4. モデリングに関する注意事項</a></li>
@@ -862,6 +863,14 @@
 <section id="flare">
 <h4><span class="section-number">14.3.3.6. </span>FLARE に関する注意事項<a class="headerlink" href="#flare" title="Link to this heading"></a></h4>
 <p><strong>On-the-Fly MD では、Site property settings の spin 項目での各原子の初期スピンの設定、および constraint 項目での各原子の拘束条件の設定が無効となりますので、ご注意ください。</strong></p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="sprkkr">
+<h4><span class="section-number">14.3.3.7. </span>SPRKKR に関する注意事項<a class="headerlink" href="#sprkkr" title="Link to this heading"></a></h4>
+<p><strong>SPRKKR では、Conventional Cell での計算を想定していないため、結晶構造の対称性情報の読み込みでエラーが出てしまう場合がありますので、モデリングの際にはなるべく Primitive Cell を使用してください。</strong></p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>

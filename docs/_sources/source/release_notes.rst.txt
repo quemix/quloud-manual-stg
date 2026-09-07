@@ -11,16 +11,7 @@
 |
 |
 
-**Ver.7.0**
-
-|
-
-.. note::
-
-   Ver.7.0 の変更内容は整理中です。確定した項目から追記します。
-   候補と採否の判定は ``meta/changelog_candidates.csv`` で管理しています。
-
-|
+.. include:: _generated/release_notes_v70.rst
 
 **Ver.6.1.2（2026.4.20）**
 
