@@ -1,0 +1,12 @@
+# Sphinx のビルド出力（公開物は docs/ に make publish で反映する）
+_build/
+
+# Python 仮想環境
+.venv/
+
+# 実装作業の管理ディレクトリ
+.superpowers/
+
+# Python のキャッシュ
+tools/__pycache__/
+tools/tests/__pycache__/

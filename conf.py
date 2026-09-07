@@ -6,8 +6,8 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Quloud Ver.6.1.2 Manual'
-copyright = '2026, Quemix Inc.　Last updated on Apr. 20, 2026'
+project = 'Quloud Ver.7.0 Manual'
+copyright = '2026, Quemix Inc.'
 author = 'Quemix inc'
 version = '2026.4.20'
 
@@ -18,7 +18,10 @@ extensions = ['sphinx.ext.mathjax', 'sphinx.ext.githubpages', 'sphinx_last_updat
 # extensions = ['sphinx.ext.mathjax', 'sphinx_rtd_theme']
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'docs', 'Thumbs.db', '.DS_Store', '.venv']
+exclude_patterns = [
+    '_build', 'docs', 'Thumbs.db', '.DS_Store', '.venv',
+    'source/_generated', 'meta', 'tools', 'README.md',
+]
 
 language = 'ja'
 
