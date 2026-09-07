@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-09-08T00:17:23+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T06:04:09+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 新規ユーザーの招待</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -55,8 +55,14 @@
 <li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">4. 新規ユーザーの招待</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. 新規ユーザーの招待方法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">4.2. 招待された新規ユーザーのサインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. テナントのユーザーを確認する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.2. 新規ユーザーを招待する</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.2.1. 招待するメールアドレスを登録する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.2.2. 招待メールを送信する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">4.2.3. 一覧に表示される招待</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4.3. 招待された新規ユーザーの登録</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
@@ -99,56 +105,140 @@
              
   <section id="id1">
 <h1><span class="section-number">4. </span>新規ユーザーの招待<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>Quloud には「Tenant」という単位があり、すべてのユーザーはいずれかの Tenant に所属することになります。
-管理ユーザー（Owner）は、新規ユーザーを自分が所属する Tenant に招待して、モデリングや材料シミュレーションを共同で行ったり、結果を共有したりすることができます。</p>
-<p>トップ画面で、ヘッダー部の歯車のアイコンをクリックし、「Users」をクリックします。</p>
-<img alt="../_images/screenshot_0171.png" src="../_images/screenshot_0171.png" />
-<p>すると、次のような画面に移ります。</p>
-<img alt="../_images/screenshot_0172.png" src="../_images/screenshot_0172.png" />
-<p>サインアップ（２章参照）、サインイン（３章参照）完了直後は、所属する Tenant のユーザーは本人のみとなっています。
-ここに新規ユーザーを追加するための方法を以下で説明します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
+<p>すべてのユーザーはいずれかのテナントに所属します。管理ユーザー（Owner）は、新規ユーザーを
+自分が所属するテナントに招待して、モデリングや材料シミュレーションを共同で行ったり、
+結果を共有したりすることができます。テナントとロールについては <a class="reference internal" href="introduction.html"><span class="doc">はじめに</span></a> の章の
+「用語」をご参照ください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>新規ユーザーの招待方法<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>トップ画面で、ヘッダー部の歯車のアイコンをクリックし、「Invitation」をクリックします。</p>
-<img alt="../_images/screenshot_0168.png" src="../_images/screenshot_0168.png" />
-<p>すると、下図のような画面が表示されます。</p>
-<img alt="../_images/screenshot_0037.png" src="../_images/screenshot_0037.png" />
-<p>ここで、管理ユーザーは新たなユーザーを Tenant のメンバーとして招待することができます。
-右上の手紙のアイコンをクリックすると、招待したいユーザーのメールアドレス入力欄が表示されます。</p>
-<img alt="../_images/screenshot_0021.png" src="../_images/screenshot_0021.png" />
-<p>上図で招待したいユーザーのメールアドレスを入力し「Submit」を押すと、追加したいメンバーのメールアドレスを登録することができます。</p>
-<img alt="../_images/screenshot_0169.png" src="../_images/screenshot_0169.png" />
-<p>登録後「Approve」ボタンを押したタイミングで、実際に招待メールが登録したアドレスに送付されます。</p>
-<img alt="../_images/screenshot_0170.png" src="../_images/screenshot_0170.png" />
-<p>「Resend」ボタンを押すと、招待メールがもう一度送付されます。</p>
+<h2><span class="section-number">4.1. </span>テナントのユーザーを確認する<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>ヘッダーの歯車のアイコン（「設定」）を押し、「ユーザー」を選びます。</p>
+<figure class="align-default" id="id8">
+<img alt="ユーザー一覧画面。氏名、メールアドレス、権限、最終ログイン日時、作成日時、更新日時の列があり、各行に「ユーザーを表示」「ユーザーを編集」「ユーザーを削除」のボタンが並んでいる。" src="../_images/invitation_users_list.png" />
+<figcaption>
+<p><span class="caption-number">図 4.1 </span><span class="caption-text">ユーザー一覧</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>テナントに所属するユーザーが一覧で表示されます。「権限」の列には「Owner」または
+「Member」が表示されます。</p>
+<p>各行のボタンでできることは次のとおりです。「ユーザーを編集」と「ユーザーを削除」は
+管理ユーザーにのみ表示されます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 74.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ボタン</p></th>
+<th class="head"><p>できること</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ユーザーを表示</p></td>
+<td><p>氏名・カナ・メールアドレス・権限を確認します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ユーザーを編集</p></td>
+<td><p>権限（Owner / Member）を変更します。</p></td>
+</tr>
+<tr class="row-even"><td><p>ユーザーを削除</p></td>
+<td><p>ユーザーを削除します。自分自身と、権限が Owner のユーザーは削除できません。</p></td>
+</tr>
+</tbody>
+</table>
+<p>利用申込（<a class="reference internal" href="signup.html"><span class="doc">サインアップ</span></a> の章）とサインイン（<a class="reference internal" href="signin.html"><span class="doc">サインイン・サインアウト</span></a> の章）を終えた直後は、
+テナントのユーザーは本人のみです。ここに新規ユーザーを追加する方法を以下で説明します。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>招待された新規ユーザーのサインアップ<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<p>次に、招待メールを受信したユーザーが Tenant に加入するための方法を説明します。
-招待メールの中身は下図の通りです。</p>
-<img alt="../_images/screenshot_0173.png" src="../_images/screenshot_0173.png" />
-<p>メール本文の URL をクリックすると、次のようなページに移ります。</p>
-<img alt="../_images/screenshot_0174.png" src="../_images/screenshot_0174.png" />
-<p>ここで、新規ユーザーのサインアップを行います。名前とパスワード（新たに設定）をフォームに入力します。</p>
-<img alt="../_images/screenshot_0175.png" src="../_images/screenshot_0175.png" />
-<p>「登録」ボタンを押すと、３章で説明したサインイン画面に移ります。</p>
-<img alt="../_images/screenshot_0176.png" src="../_images/screenshot_0176.png" />
-<p>ここにメールアドレスと、先ほど設定したパスワードを入力します。</p>
-<img alt="../_images/screenshot_0177.png" src="../_images/screenshot_0177.png" />
-<p>「Sign In」ボタンを押すと、Quloud のトップ画面に移ります。</p>
-<img alt="../_images/screenshot_0178.png" src="../_images/screenshot_0178.png" />
-<p>ヘッダー部の歯車のアイコンをクリックし、「Users」をクリックします。</p>
-<img alt="../_images/screenshot_0179.png" src="../_images/screenshot_0179.png" />
-<p>すると、Tenant に新規ユーザーが加入していることが分かります。</p>
-<img alt="../_images/screenshot_0180.png" src="../_images/screenshot_0180.png" />
+<h2><span class="section-number">4.2. </span>新規ユーザーを招待する<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>ヘッダーの歯車のアイコン（「設定」）を押し、「招待」を選びます。</p>
+<figure class="align-default" id="id9">
+<img alt="招待一覧画面。メールアドレス、招待者、招待送信日時、作成日時、ステータスの列があり、ステータスが Pending の行には「承認」「却下」ボタン、Approved の行には「再送信」ボタンが表示されている。" src="../_images/invitation_list_initial.png" />
+<figcaption>
+<p><span class="caption-number">図 4.2 </span><span class="caption-text">招待一覧</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>招待の一覧が表示されます。右上の封筒のアイコンから新しい招待を登録し、各行のボタンで
+招待を進めます。これらの操作は管理ユーザーにのみ表示されます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id4">
+<h3><span class="section-number">4.2.1. </span>招待するメールアドレスを登録する<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>一覧の右上にある封筒のアイコンを押すと、「メンバーを招待」ダイアログが開きます。</p>
+<figure class="align-default" id="id10">
+<img alt="「メンバーを招待」ダイアログ。メールアドレスの入力欄と、「キャンセル」「登録」ボタンがある。" src="../_images/invitation_invite_dialog.png" />
+<figcaption>
+<p><span class="caption-number">図 4.3 </span><span class="caption-text">「メンバーを招待」ダイアログ</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>招待したいユーザーのメールアドレスを入力して「登録」ボタンを押すと、招待が一覧に
+追加されます。このときのステータスは「Pending」で、<strong>招待メールはまだ送信されません。</strong></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">4.2.2. </span>招待メールを送信する<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>ステータスが「Pending」の招待には「承認」と「却下」のボタンが表示されます。</p>
+<ul class="simple">
+<li><p>「承認」を押すと、登録したメールアドレスに招待メールが送信され、ステータスが
+「Approved」になります。</p></li>
+<li><p>「却下」を押すと、その招待は削除されます。削除できるのはステータスが「Pending」の
+ときだけです。</p></li>
+</ul>
+<p>ステータスが「Approved」の招待には「再送信」ボタンが表示されます。押すと招待メールが
+もう一度送信されます。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><strong>「再送信」を行うと、以前の招待メールに記載された URL は使えなくなります。</strong>
+再送信のたびに新しい URL が発行されるためです。</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id6">
+<h3><span class="section-number">4.2.3. </span>一覧に表示される招待<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>招待一覧は、初期状態ではステータスが「Pending」と「Approved」の招待だけを表示します。
+登録が完了した招待（ステータス「Invited」）は表示されません。右上の虫めがねのアイコンから
+検索条件のステータスを変更すると表示できます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">4.3. </span>招待された新規ユーザーの登録<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>ここからは、招待メールを受信したユーザー側の手順です。</p>
+<p>招待メールに記載された URL を開くと、登録画面が表示されます。画面には招待元のテナント名と
+招待されたメールアドレスが表示され、次の項目を入力します。</p>
+<ul class="simple">
+<li><p>姓、名（必須）</p></li>
+<li><p>姓カナ、名カナ（必須。カタカナまたは英字）</p></li>
+<li><p>新しいパスワード、新しいパスワード（確認）（必須）</p></li>
+</ul>
+<p>「登録」ボタンを押すと、<a class="reference internal" href="signin.html"><span class="doc">サインイン・サインアウト</span></a> の章で説明したサインイン画面に移ります。
+登録したメールアドレスと、いま設定したパスワードでサインインしてください。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><strong>招待メールの URL は、メールが送信されてから 7 日間だけ有効です。</strong> 期限を過ぎた
+場合は、テナントの管理ユーザーに「再送信」を依頼してください。</p>
+</div>
+<p>登録が完了すると、招待のステータスは「Invited」になり、ユーザー一覧に新しいユーザーが
+追加されます。権限は「Member」です。管理ユーザーは、必要に応じてユーザー一覧の
+「ユーザーを編集」から権限を「Owner」に変更できます。</p>
 </section>
 </section>
 

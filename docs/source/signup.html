@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2025-11-20T15:15:18+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T06:04:09+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. サインアップ</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -52,7 +52,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. はじめに</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. サインアップ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. サインアップ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 利用申込</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 入力内容の確認と申込</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
@@ -95,14 +99,73 @@
              
   <section id="id1">
 <h1><span class="section-number">2. </span>サインアップ<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>Quloud の利用を開始するには、まずサインアップを行う必要があります。以下の URL にアクセスしてください。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
+<p>Quloud の利用を開始するには、まず利用申込を行います。以下の URL にアクセスしてください。</p>
 <p><a class="reference external" href="https://2g.quloud-platform.com/applicant">https://2g.quloud-platform.com/applicant</a></p>
-<p>すると、以下の画面に移ります。</p>
-<img alt="../_images/screenshot_0039.png" src="../_images/screenshot_0039.png" />
-<img alt="../_images/screenshot_0040.png" src="../_images/screenshot_0040.png" />
-<p>必須項目を入力し、「確認」ボタンを押すと、確認画面に進みます。</p>
-<img alt="../_images/screenshot_0041.png" src="../_images/screenshot_0041.png" />
-<p>入力内容を確認し、「申込」ボタンを押せば完了です。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<section id="id2">
+<h2><span class="section-number">2.1. </span>利用申込<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>次の申込フォームが表示されます。</p>
+<figure class="align-default" id="id4">
+<img alt="「Quloudサービス申込」の入力フォーム。姓、名、姓カナ、名カナ、メールアドレス、役職、所属団体種別、所属団体郵便番号、所属団体住所、所属団体、所属団体（部・研究室）、利用期間、開始希望日、特記事項、利用規約への同意が縦に並んでいる。" src="../_images/signup_applicant_form.png" />
+<figcaption>
+<p><span class="caption-number">図 2.1 </span><span class="caption-text">利用申込フォーム</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>項目名の右に赤い <code class="docutils literal notranslate"><span class="pre">*</span></code> が付いている項目は必須です。</p>
+<ul class="simple">
+<li><p>「姓カナ」「名カナ」はカタカナまたは英字で入力します。</p></li>
+<li><p>「所属団体種別」は「一般」と「アカデミア」から選びます。</p></li>
+<li><p>「利用期間」は「12ヶ月」「6ヶ月」「3ヶ月」「トライアル」から選びます。初期値は
+「トライアル」です。</p></li>
+<li><p>「開始希望日」はカレンダーから選びます。</p></li>
+<li><p>「利用規約」のリンクから利用規約をご確認のうえ、「同意する」にチェックを入れてください。</p></li>
+</ul>
+<figure class="align-default" id="id5">
+<img alt="入力を終えた利用申込フォーム。各項目に値が入り、利用規約の「同意する」にチェックが入っている。" src="../_images/signup_applicant_filled.png" />
+<figcaption>
+<p><span class="caption-number">図 2.2 </span><span class="caption-text">入力を終えた利用申込フォーム</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.2. </span>入力内容の確認と申込<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>「確認」ボタンを押すと、入力内容の確認画面に移ります。</p>
+<figure class="align-default" id="id6">
+<img alt="利用申込の確認画面。入力した内容が項目名と値の一覧で表示され、下部に「戻る」「申込」ボタンがある。" src="../_images/signup_applicant_confirm.png" />
+<figcaption>
+<p><span class="caption-number">図 2.3 </span><span class="caption-text">入力内容の確認画面</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>内容を確認し、「申込」ボタンを押すと申込が完了します。修正する場合は「戻る」ボタンで
+入力画面に戻ります。</p>
+<figure class="align-default" id="id7">
+<img alt="申込の完了画面。「Quloudのお申し込みが完了しました。」と表示されている。" src="../_images/signup_applicant_complete.png" />
+<figcaption>
+<p><span class="caption-number">図 2.4 </span><span class="caption-text">申込の完了画面</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>すでに Quloud を利用しているテナントに参加する場合は、この申込ではなく、
+そのテナントの管理ユーザーから招待を受けます。手順は <a class="reference internal" href="invitation.html"><span class="doc">新規ユーザーの招待</span></a> の章を
+ご参照ください。</p>
+</div>
+</section>
 </section>
 
 
@@ -117,7 +180,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 11月 20, 2025
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 

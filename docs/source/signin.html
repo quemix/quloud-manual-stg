@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-09-08T00:17:23+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T06:04:09+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. サインイン・サインアウト</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -101,18 +101,35 @@
              
   <section id="id1">
 <h1><span class="section-number">3. </span>サインイン・サインアウト<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>サインアップ（２章参照）したアカウントでサインインするには、まず以下の URL にアクセスしてください。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
+<p>サインインするには、以下の URL にアクセスしてください。</p>
 <p><a class="reference external" href="https://2g.quloud-platform.com/sign_in">https://2g.quloud-platform.com/sign_in</a></p>
-<p>すると、以下の画面に移ります。</p>
-<img alt="../_images/screenshot_0028.png" src="../_images/screenshot_0028.png" />
+<p>次のサインイン画面が表示されます。</p>
+<figure class="align-default" id="id6">
+<img alt="サインイン画面。Quloud のロゴの下にメールアドレスとパスワードの入力欄、「サインイン」ボタン、「パスワードをお忘れですか？」と「お問い合わせ」のリンクがある。" src="../_images/signin_form_initial.png" />
+<figcaption>
+<p><span class="caption-number">図 3.1 </span><span class="caption-text">サインイン画面</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="id2">
 <h2><span class="section-number">3.1. </span>サインイン<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>上図の画面で、登録したメールアドレス、設定したパスワードを入力し、「Sign In」をクリックすると、トップ画面に移ります。</p>
-<img alt="../_images/screenshot_0001.png" src="../_images/screenshot_0001.png" />
+<p>登録したメールアドレスと設定したパスワードを入力し、「サインイン」ボタンを押します。
+パスワード入力欄の右端にある目のアイコンを押すと、入力したパスワードを表示して確認できます。</p>
+<p>サインインすると、ダッシュボードに移ります。</p>
+<figure class="align-default" id="id7">
+<img alt="サインイン直後のダッシュボード。プロジェクト、マテリアル、ジョブ、プロパティの 4 つのタブがあり、プロジェクトタブが選択されてプロジェクトの一覧が表示されている。" src="../_images/signin_dashboard_after_signin.png" />
+<figcaption>
+<p><span class="caption-number">図 3.2 </span><span class="caption-text">サインイン直後のダッシュボード</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>ダッシュボードの詳細は <a class="reference internal" href="dashboard.html"><span class="doc">ダッシュボード（トップ画面）</span></a> の章をご参照ください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -120,10 +137,23 @@
 </section>
 <section id="id3">
 <h2><span class="section-number">3.2. </span>パスワードを忘れたときは<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<p>サインイン画面下部にある「Forgot password?」をクリックすると、パスワード再設定申請画面に移ります。
-ここに、登録済みのメールアドレスを入力し、「送信」ボタンを押すと、メールアドレス宛に再設定フォームが送信されます。
-リンクをクリックして、パスワード再設定を行ってください。</p>
-<img alt="../_images/screenshot_0030.png" src="../_images/screenshot_0030.png" />
+<p>サインイン画面下部の「パスワードをお忘れですか？」を押すと、<strong>別のタブ</strong>でパスワード
+再設定申請画面が開きます。</p>
+<figure class="align-default" id="id8">
+<img alt="パスワード再設定申請画面。メールアドレスの入力欄と「送信」ボタンがある。" src="../_images/signin_reset_password_request.png" />
+<figcaption>
+<p><span class="caption-number">図 3.3 </span><span class="caption-text">パスワード再設定申請画面</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>登録済みのメールアドレスを入力して「送信」ボタンを押すと、そのアドレスにパスワード
+再設定用のメールが送信されます。</p>
+<figure class="align-default" id="id9">
+<img alt="パスワード再設定申請の送信後の画面。「パスワード再設定メールを送信しました。届いたメールURLからパスワードの再設定をお願いします。」と表示されている。" src="../_images/signin_reset_password_sent.png" />
+<figcaption>
+<p><span class="caption-number">図 3.4 </span><span class="caption-text">申請の送信後の画面</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>届いたメールに記載された URL を開き、新しいパスワードを設定してください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -131,12 +161,11 @@
 </section>
 <section id="id4">
 <h2><span class="section-number">3.3. </span>お問い合わせ<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>サインイン画面下部にある「Contact us」をクリックすると、お問い合わせフォームに移ります。
-名前、メールアドレス、電話番号などを入力し、お問い合わせ内容を記入して「送信」ボタンを押せば完了です。
-<strong>サインイン後のお問い合わせフォーム（１４章参照）とは異なり、確認画面はなく、いきなり送信されますのでご注意ください。</strong></p>
-<img alt="../_images/screenshot_0031.png" src="../_images/screenshot_0031.png" />
-<img alt="../_images/screenshot_0032.png" src="../_images/screenshot_0032.png" />
-<img alt="../_images/screenshot_0033.png" src="../_images/screenshot_0033.png" />
+<p>サインイン画面下部の「お問い合わせ」を押すと、<strong>別のタブで弊社ウェブサイトの
+お問い合わせページ</strong>が開きます。サインインしなくても利用できます。</p>
+<p>サインイン後は、アプリケーション内のお問い合わせフォームを使えます。カテゴリを選んで
+タイトルと内容を記入し、確認画面を経て送信する形式で、サインイン画面からのものとは
+別のものです。手順は <a class="reference internal" href="header.html"><span class="doc">ヘッダーメニュー（各種管理）</span></a> の章をご参照ください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -144,8 +173,17 @@
 </section>
 <section id="id5">
 <h2><span class="section-number">3.4. </span>サインアウト<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>トップ画面で、ヘッダー部のユーザーのアイコンをクリックし、「Sign Out」をクリックしてください。</p>
-<img alt="../_images/screenshot_0036.png" src="../_images/screenshot_0036.png" />
+<p>ヘッダー右端のアカウントのアイコンを押すとメニューが開きます。「サインアウト」を
+押してください。</p>
+<figure class="align-default" id="id10">
+<img alt="ヘッダー右端のアカウントアイコンを押して開いたメニュー。氏名とテナント名が表示され、その下に「プロフィール」と「サインアウト」の項目がある。" src="../_images/signin_account_menu_signout.png" />
+<figcaption>
+<p><span class="caption-number">図 3.5 </span><span class="caption-text">アカウントメニュー</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>このメニューには、サインインしているユーザーの氏名と所属テナント名も表示されます。
+「プロフィール」からは氏名・役職・表示言語などを確認・変更できます
+（<a class="reference internal" href="header.html"><span class="doc">ヘッダーメニュー（各種管理）</span></a> の章を参照）。</p>
 </section>
 </section>
 
