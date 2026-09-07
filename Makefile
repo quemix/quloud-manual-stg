@@ -12,7 +12,7 @@ SOURCEDIR   = .
 BUILDDIR    = _build/html
 PUBLISHDIR  = docs
 
-.PHONY: venv html strict dump generate checkgen test publish clean help
+.PHONY: venv html strict dump generate checkgen test release-notes publish clean help
 
 venv:
 	python3.13 -m venv $(VENV)
@@ -43,6 +43,12 @@ checkgen:
 test:
 	$(PYTHON) -m unittest discover -s tools/tests -t . -v
 
+# 判定済みの候補一覧（meta/changelog_candidates.csv, meta/changelog_manual_entries.csv）
+# から source/_generated/release_notes_v70.rst を生成する。
+# generate とは入力が違う（master_dump.json ではなく triage の CSV）ので分けている。
+release-notes:
+	$(PYTHON) tools/gen_release_notes_v70.py
+
 # 公開物を更新する。
 #
 # 必ず clean してから strict ビルドする。sphinx.ext.githubpages は
@@ -60,12 +66,13 @@ clean:
 	rm -rf "$(BUILDDIR)"
 
 help:
-	@echo "venv     : .venv を作り requirements.txt を導入する"
-	@echo "html     : _build/html にビルドする"
-	@echo "strict   : 警告をエラーとしてビルドする"
-	@echo "dump     : ~/v6.0 のマスタデータを meta/master_dump.json に落とす"
-	@echo "generate : dump から source/_generated/**.rst を生成する"
-	@echo "checkgen : source/_generated/ 配下の全ファイルが RST として読めるか検査する"
-	@echo "test     : tools/ のテストを走らせる"
-	@echo "publish  : strict ビルドの結果を docs/ に反映する"
-	@echo "clean    : _build/html を消す"
+	@echo "venv          : .venv を作り requirements.txt を導入する"
+	@echo "html          : _build/html にビルドする"
+	@echo "strict        : 警告をエラーとしてビルドする"
+	@echo "dump          : ~/v6.0 のマスタデータを meta/master_dump.json に落とす"
+	@echo "generate      : dump から source/_generated/**.rst を生成する"
+	@echo "checkgen      : source/_generated/ 配下の全ファイルが RST として読めるか検査する"
+	@echo "test          : tools/ のテストを走らせる"
+	@echo "release-notes : 判定済みの候補一覧から source/_generated/release_notes_v70.rst を生成する"
+	@echo "publish       : strict ビルドの結果を docs/ に反映する"
+	@echo "clean         : _build/html を消す"
