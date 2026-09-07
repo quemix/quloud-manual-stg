@@ -14,6 +14,10 @@ import csv
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import rst  # noqa: E402
+
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_CANDIDATES = REPO / "meta" / "changelog_candidates.csv"
 DEFAULT_MANUAL = REPO / "meta" / "changelog_manual_entries.csv"
@@ -69,6 +73,19 @@ def _series_key(series: str) -> int:
 
 
 def render(rows: list[dict]) -> str:
+    """判定済みの行から Ver.7.0 の項を組み立てる。
+
+    見出し・掲載文は判定済み行から読み取った利用者向けの生の文章であり、
+    RST のインライン記法（* ` | _ \\）を含みうる。rst.escape() を必ず
+    通してから出力する。escape() は空文字/None を "-" にしてしまうため、
+    「載せる」なのに見出し/掲載文が空という不備は escape の手前で
+    validate() により必ず弾く。main() 経由でも直接呼び出しでも、
+    ここで検証してから組み立てるので抜け道はない。
+    """
+    errors = validate(rows)
+    if errors:
+        raise ValueError("載せると判定した行に不足があります: " + "; ".join(errors))
+
     marked = [r for r in rows if r.get("判定") == "載せる"]
     grouped: dict[str, list[dict]] = {}
     for row in marked:
@@ -76,10 +93,10 @@ def render(rows: list[dict]) -> str:
 
     lines = ["**Ver.7.0**", "", "|", ""]
     for group in sorted(grouped, key=_group_key):
-        lines.append(f"-   {group}")
+        lines.append(f"-   {rst.escape(group)}")
         lines.append("")
         for row in sorted(grouped[group], key=lambda r: _series_key(r.get("系統", ""))):
-            lines.append(f"    -   {row['掲載文']}")
+            lines.append(f"    -   {rst.escape(row['掲載文'])}")
         lines.append("")
         lines.append("    |")
         lines.append("")
