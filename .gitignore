@@ -10,3 +10,8 @@ _build/
 # Python のキャッシュ
 tools/__pycache__/
 tools/tests/__pycache__/
+
+# 内部データ（設計・実装計画・issue 判定・マスタ dump）は非公開リポジトリで管理する。
+# quemix/quloud-manual-meta を meta/ にクローンして使う。
+# このリポジトリは公開なので、非公開リポジトリ由来の情報をここに置かない。
+meta/
