@@ -24,6 +24,7 @@ Index
   source/files
   source/header
   source/history
-  
+  source/release_notes
+
 
 
