@@ -161,6 +161,13 @@ PARAM_WIDTHS = [16, 14, 8, 6, 10, 14, 20, 20, 6]
 
 
 def render_engine_matrix(dump: dict) -> str:
+    # engine_capability.visible は列に出さない。マスタでは「UI 表示フラグ」だが、
+    # Ver.7.0 の画面でこのフラグを見ているのは /api/capabilities（Job 検索の
+    # ソフトウェア絞り込みリスト）だけで、「ジョブ作成」で選べるかどうかとは
+    # 対応していない。実測では visible=false の matdyn_disp / matdyn_dos が
+    # 選択できるテンプレート「フォノンバンド」「フォノン状態密度」の代表
+    # capability であり、逆に visible=true の bands は単独では選べない。
+    # ○/× を出すと読者に「使えない機能」と読まれるので列自体を落とす。
     rows = []
     for ec in dump["engine_capabilities"]:
         rows.append([
@@ -169,14 +176,13 @@ def render_engine_matrix(dump: dict) -> str:
             rst.escape(_capability_name(dump, ec["capability"])),
             f"``{ec['capability']}``",
             rst.escape(ec.get("ui_group_label_ja")),
-            "○" if ec.get("visible") else "×",
         ])
     return (
         rst.header_comment(dump, SCRIPT)
         + rst.list_table(
-            ["計算エンジン", "エンジンコード", "機能", "機能コード", "区分", "画面表示"],
+            ["計算エンジン", "エンジンコード", "機能", "機能コード", "区分"],
             rows,
-            widths=[20, 12, 24, 16, 14, 8],
+            widths=[22, 14, 28, 20, 16],
         )
     )
 

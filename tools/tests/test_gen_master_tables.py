@@ -186,6 +186,14 @@ class TestRenderEngineMatrix(unittest.TestCase):
         self.assertIn("第一原理計算", out)
         self.assertIn(".. list-table::", out)
 
+    def test_has_no_visible_column(self):
+        # visible は Ver.7.0 の画面で選択可否を表さないので列に出さない。
+        # ○/× を出すと読者に「使えない機能」と誤読される。
+        out = g.render_engine_matrix(_dump())
+        self.assertNotIn("画面表示", out)
+        self.assertNotIn("○", out)
+        self.assertNotIn("×", out)
+
 
 class TestRenderCalcList(unittest.TestCase):
     def test_only_enabled_templates(self):
