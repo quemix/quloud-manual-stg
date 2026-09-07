@@ -41,11 +41,27 @@ INFRA_LABELS = {"DevOps", "infra", "maintenance"}
 # v7.0 開発中に作り込まれて v7.0 開発中に直ったもの。
 TEST_CAMPAIGN_START = "2026-08-22"
 
+# 本番（v6.1.2）で実際に踏んだ不具合の報告に付くタグ。issue 報告者自身が
+# 「これは本番で起きた」と書いたものなので、ラベルやタイトルのエンジン名、
+# 起票日よりも「本番 v6.1.2 に存在したか」という一点に対する証拠として強い。
+# だからラベル判定・エンジン判定・日付判定より先に、無条件でこれを見る。
+# こうしないと、同じ本番不具合でもタイトルの書き方次第で
+# 要判断(それ以前) と 新機能の一部(新5エンジン) のように別バケツに散ってしまう
+# （#975 と #994 が実例）。地の文で「本番」と言及するだけの [stg] issue と
+# 区別するため、角括弧付きの表記だけを見る（"本番" 単体では拾わない）。
+HONBAN_TAG = "[本番]"
+HONBAN_CLASS = "要判断(本番報告)"
+
+# 直近の取得結果に issue が含まれなかった行に付ける印。
+MISSING_CLASS = "issue が見つからない"
+
 
 def classify(issue: dict) -> str:
     labels = {label["name"] for label in issue.get("labels", [])}
     title = issue.get("title", "")
 
+    if HONBAN_TAG in title:
+        return HONBAN_CLASS
     if labels & FEATURE_LABELS:
         return "新機能・変更候補"
     if title.startswith("[stg]") or (labels & INFRA_LABELS):
@@ -65,8 +81,8 @@ def load_existing(path: Path) -> dict[str, dict]:
 
 
 def build_rows(issues: list, existing: dict[str, dict]) -> list[dict]:
-    rows = []
-    for issue in sorted(issues, key=lambda i: i["number"], reverse=True):
+    rows_by_number: dict[str, dict] = {}
+    for issue in issues:
         number = str(issue["number"])
         prev = existing.get(number, {})
         row = {
@@ -80,8 +96,21 @@ def build_rows(issues: list, existing: dict[str, dict]) -> list[dict]:
         }
         for column in MANUAL_COLUMNS:
             row[column] = prev.get(column, "")
-        rows.append(row)
-    return rows
+        rows_by_number[number] = row
+
+    # 取得した issue に含まれない番号は、マイルストーンから外れた
+    # （reopen で closed.json から消えた等）ということ。人手の判定を
+    # 黙って失うと Task 7 の作業がやり直しになるので、既存の値をすべて
+    # そのまま残し、auto_class だけ「見つからない」に付け替えて可視化する。
+    for number, prev in existing.items():
+        if number in rows_by_number:
+            continue
+        row = {column: prev.get(column, "") for column in COLUMNS}
+        row["number"] = number
+        row["auto_class"] = MISSING_CLASS
+        rows_by_number[number] = row
+
+    return sorted(rows_by_number.values(), key=lambda r: int(r["number"]), reverse=True)
 
 
 def main() -> int:

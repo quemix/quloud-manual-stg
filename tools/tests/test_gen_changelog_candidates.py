@@ -66,6 +66,33 @@ class TestClassify(unittest.TestCase):
             g.classify(_issue(title="x", created="2026-08-21T23:59:59Z")),
             "要判断(それ以前)")
 
+    def test_honban_tag_wins_over_labels_and_engine(self):
+        # [本番] タグは報告者自身が「本番で起きた」と書いた最強の証拠。
+        # ラベルやエンジン名がどうであれ無条件で 要判断(本番報告) にする。
+        self.assertEqual(
+            g.classify(_issue(title="[本番] 障害", labels=["enhancement"])),
+            "要判断(本番報告)")
+        self.assertEqual(
+            g.classify(_issue(title="[本番] 障害", labels=["maintenance"])),
+            "要判断(本番報告)")
+        self.assertEqual(
+            g.classify(_issue(title="[本番] ASE-MD の Job でエラー")),
+            "要判断(本番報告)")
+
+    def test_honban_word_without_tag_in_stg_title_stays_infra(self):
+        # "本番" という語が地の文に出るだけの [stg] issue は、タグではないので
+        # 従来どおり載せない(インフラ/保守) のまま。
+        self.assertEqual(
+            g.classify(_issue(title="[stg] 本番postsetupがintel(GPU)ノードへタスクスクリプトを配らず")),
+            "載せない(インフラ/保守)")
+
+    def test_honban_tag_wins_over_test_campaign_date(self):
+        # [本番] タグは日付判定より先に見る。テスト仕様書実施期以降に
+        # 起票されていても 要判断(本番報告) のまま（テスト仕様書実施期には落とさない）。
+        self.assertEqual(
+            g.classify(_issue(title="[本番] 固有値パース失敗", created="2026-08-25T00:00:00Z")),
+            "要判断(本番報告)")
+
 
 class TestBuildRows(unittest.TestCase):
     def test_row_has_all_columns(self):
@@ -102,6 +129,32 @@ class TestBuildRows(unittest.TestCase):
         rows = g.build_rows([_issue(number=42, title="いまのタイトル")], existing)
         self.assertEqual(rows[0]["title"], "いまのタイトル")
 
+    def test_issue_missing_from_fetch_is_preserved_with_marker(self):
+        # issue がマイルストーンから外れた（reopen で closed.json から消えた等）場合、
+        # 人手の判定を黙って失ってはいけない。auto_class は「見つからない」と明示する。
+        existing = {"42": {"number": "42", "title": "旧タイトル", "labels": "bug",
+                           "created_at": "2026-07-01", "closed_at": "2026-07-02",
+                           "url": "https://example.invalid/42",
+                           "auto_class": "要判断(それ以前)",
+                           "判定": "載せる", "系統": "不具合修正", "見出し": "招待画面",
+                           "掲載文": "招待画面の検索結果が正しくなるよう修正",
+                           "備考": "本番で再現"}}
+        rows = g.build_rows([], existing)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["number"], "42")
+        self.assertEqual(rows[0]["title"], "旧タイトル")
+        self.assertEqual(rows[0]["auto_class"], "issue が見つからない")
+        self.assertEqual(rows[0]["判定"], "載せる")
+        self.assertEqual(rows[0]["系統"], "不具合修正")
+        self.assertEqual(rows[0]["見出し"], "招待画面")
+        self.assertEqual(rows[0]["掲載文"], "招待画面の検索結果が正しくなるよう修正")
+        self.assertEqual(rows[0]["備考"], "本番で再現")
+
+    def test_missing_issue_is_merged_into_sort_order(self):
+        existing = {"5": {"number": "5", "判定": "載せる"}}
+        rows = g.build_rows([_issue(number=10), _issue(number=1)], existing)
+        self.assertEqual([r["number"] for r in rows], ["10", "5", "1"])
+
 
 class TestLoadExisting(unittest.TestCase):
     def test_missing_file_returns_empty(self):
@@ -119,6 +172,24 @@ class TestLoadExisting(unittest.TestCase):
                 w.writerows(rows)
             existing = g.load_existing(path)
             self.assertEqual(existing["7"]["判定"], "載せない")
+
+
+class TestCsvSpecialCharacters(unittest.TestCase):
+    def test_comma_quote_and_newline_survive_round_trip(self):
+        # 備考 や 掲載文 には issue のタイトルや人手のメモがそのまま入るので、
+        # カンマ・二重引用符・改行が壊れずに往復できないと Task 7 の作業が
+        # 静かに壊れる。
+        tricky = 'a,b "c"\nsecond line'
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "c.csv"
+            rows = g.build_rows([_issue(number=1)], {})
+            rows[0]["備考"] = tricky
+            with path.open("w", encoding="utf-8", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=g.COLUMNS)
+                w.writeheader()
+                w.writerows(rows)
+            existing = g.load_existing(path)
+            self.assertEqual(existing["1"]["備考"], tricky)
 
 
 if __name__ == "__main__":
