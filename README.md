@@ -1,7 +1,16 @@
-# Quloud オンラインマニュアル
+# Quloud オンラインマニュアル（Ver.7.0 ステージング）
 
-[manual.quloud-platform.quemix.com](https://manual.quloud-platform.quemix.com/) で公開している
-Quloud のオンラインマニュアルの原稿とビルド環境。
+Quloud **Ver.7.0** のオンラインマニュアルの原稿とビルド環境。
+[quemix.github.io/quloud-manual-stg](https://quemix.github.io/quloud-manual-stg/) で公開している。
+
+本番（Ver.6.1.2）のマニュアルは別リポジトリ **[quemix/quloud-manual](https://github.com/quemix/quloud-manual)** が
+[manual.quloud-platform.quemix.com](https://manual.quloud-platform.quemix.com/) で公開している。
+このリポジトリの `main` はそこから派生しているので、Ver.7.0 のリリース時は
+**stg の `main` を quloud-manual の `main` へマージするだけ**でよい。
+
+マージ時に衝突するのは `CNAME` と `conf.py` の `html_extra_path` の 2 箇所だけである。
+本番は `CNAME`（独自ドメイン）、stg は `robots.txt`（検索除外）を配っており、
+リポジトリごとに恒久的に異なる。マージでは必ず**本番側**を採ること。
 
 ## 構成
 

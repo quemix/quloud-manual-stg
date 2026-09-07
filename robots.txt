@@ -1,0 +1,5 @@
+# quloud-manual-stg は Ver.7.0 のステージング用サイト。
+# 本番マニュアルは https://manual.quloud-platform.quemix.com/ にある。
+# 未リリース版の内容が検索結果に出ると利用者が混乱するため、全面的に除外する。
+User-agent: *
+Disallow: /
