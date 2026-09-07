@@ -17,6 +17,15 @@ engine_capabilities = EngineCapability
 
 data = {
   generated_at: Time.now.utc.iso8601,
+  # DB 側の鮮度シグナル: ここに挙げたマスタテーブルの updated_at の最大値。
+  # dump はコンテナの DB を読むだけなので、マスタ YAML を編集しても
+  # rake quloud:sync_master_data を流さない限りここは更新されない。
+  # source_commit と乖離していれば、マスタが未同期であることに気づける。
+  master_synced_at: [
+    SimulationEngine, Capability, EngineCapability, CapabilityParameter,
+    EngineCapabilityParameterMapping, EngineCapabilityPhysicalParameterMapping,
+    EngineCapabilityArtifactSpec, EngineCapabilityPropertyMapping, WorkflowTemplate
+  ].filter_map { |model| model.maximum(:updated_at) }.max&.utc&.iso8601,
   engines: SimulationEngine.order(:code).map { |e|
     { code: e.code, name: e.name, description: e.description, active: e.active? }
   },
@@ -54,6 +63,11 @@ data = {
     }
   }
 }
+
+raise 'engine_capabilities が空。マスタが DB に入っていない可能性がある（rake quloud:sync_master_data 未実行？）' if data[:engine_capabilities].empty?
+
+param_total = data[:engine_capabilities].sum { |ec| ec[:parameters].size + ec[:physical_model_parameters].size }
+raise "パラメータが0件。mapping の取得が壊れている可能性がある（ec=#{data[:engine_capabilities].size}）" if param_total.zero?
 
 File.write('/app/tmp_master_dump.json', JSON.pretty_generate(data))
 warn "wrote /app/tmp_master_dump.json  ec=#{data[:engine_capabilities].size}"

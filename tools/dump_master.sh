@@ -3,6 +3,14 @@
 #
 # 前提: ~/v6.0 で docker compose の rails / db が起動していること。
 #   cd ~/v6.0 && docker compose ps
+#
+# 注意（鮮度）: この dump はコンテナの DB を読むだけで、~/v6.0 の git コミットは
+# 見ていない（source_commit / source_branch はあくまで「このホストの ~/v6.0 の
+# チェックアウトが何だったか」の記録）。マスタデータの YAML を編集しても
+# rake quloud:sync_master_data を流して DB に反映しない限り、dump の中身は
+# 古いままになる。その場合、新しいコミット SHA に古いマスタが紐づいて記録される
+# ことになるので、出力の master_synced_at と source_commit の対応がおかしくないか
+# 確認すること。
 set -euo pipefail
 
 MANUAL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -16,6 +24,10 @@ trap cleanup EXIT
 
 echo "code dir : $CODE_DIR"
 cp "$MANUAL_DIR/tools/dump_master.rb" "$RUNNER_TMP"
+
+echo "注意: dump はコンテナの DB から取る。マスタ YAML を変更した場合は、先に"
+echo "      docker compose exec rails bundle exec rake quloud:sync_master_data"
+echo "      を流さないと、古いマスタが新しいコミット SHA で記録される。"
 
 ( cd "$CODE_DIR" && docker compose exec -T -e RAILS_ENV=development rails \
     bundle exec rails runner /app/tmp_dump_master.rb )
@@ -36,5 +48,6 @@ merged.update(data)
 with open(dst, "w", encoding="utf-8") as f:
     json.dump(merged, f, ensure_ascii=False, indent=2)
     f.write("\n")
-print(f"wrote {dst}  ec={len(merged['engine_capabilities'])}  commit={commit[:8]} ({branch})")
+print(f"wrote {dst}  ec={len(merged['engine_capabilities'])}  commit={commit[:8]} ({branch})  "
+      f"master_synced_at={merged.get('master_synced_at')}")
 PY
