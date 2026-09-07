@@ -12,7 +12,8 @@ SOURCEDIR   = .
 BUILDDIR    = _build/html
 PUBLISHDIR  = docs
 
-.PHONY: venv html strict dump generate checkgen test release-notes publish clean help
+.PHONY: venv html strict dump generate checkgen test release-notes \
+        shots-install shots shots-ledger shots-check publish clean help
 
 .DEFAULT_GOAL := help
 
@@ -51,6 +52,29 @@ test:
 release-notes:
 	$(PYTHON) tools/gen_release_notes_v70.py
 
+# 画面キャプチャ。撮影対象はローカル Docker の Nuxt（http://localhost:3000）で、
+# 保存先は source/images/v70/。撮影直前に meta/shots_redactions.json で識別情報を
+# 置換し、置換漏れがあれば撮影を失敗させる（素の画面が公開物に混ざらないようにする）。
+#
+#   QULOUD_SHOTS_EMAIL=... QULOUD_SHOTS_PASSWORD=... make shots
+#
+# 資格情報は非公開リポジトリ meta/ の README を参照。ここに既定値は置かない。
+shots-install:
+	cd shots && npm install
+
+shots: shots-install
+	cd shots && npx playwright test $(SHOTSOPTS)
+	$(MAKE) shots-ledger
+	$(MAKE) shots-check
+
+# 撮影記録（shots/.out/*.json）を meta/images_assets.csv に取り込む。
+shots-ledger:
+	$(PYTHON) tools/shots_ledger.py build
+
+# 画像・画像台帳・掲載箇所台帳の整合を検査する。
+shots-check:
+	$(PYTHON) tools/shots_ledger.py check
+
 # 公開物を更新する。
 #
 # 必ず clean してから strict ビルドする。sphinx.ext.githubpages は
@@ -76,5 +100,8 @@ help:
 	@echo "checkgen      : source/_generated/ 配下の全ファイルが RST として読めるか検査する"
 	@echo "test          : tools/ のテストを走らせる"
 	@echo "release-notes : 判定済みの候補一覧から source/_generated/release_notes_v70.rst を生成する"
+	@echo "shots         : 画面キャプチャを撮り直し、台帳を更新して検査する"
+	@echo "shots-ledger  : 撮影記録を meta/images_assets.csv に取り込む"
+	@echo "shots-check   : 画像と台帳の整合を検査する"
 	@echo "publish       : clean してから strict ビルドし、結果を docs/ に反映する"
 	@echo "clean         : _build/html を消す"

@@ -1,0 +1,11 @@
+{
+  "name": "quloud-manual-shots",
+  "private": true,
+  "description": "オンラインマニュアル用の画面キャプチャを撮る。詳細は README.md",
+  "scripts": {
+    "shots": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0-alpha-2026-08-05"
+  }
+}

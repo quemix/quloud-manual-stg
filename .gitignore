@@ -15,3 +15,11 @@ tools/tests/__pycache__/
 # quemix/quloud-manual-meta を meta/ にクローンして使う。
 # このリポジトリは公開なので、非公開リポジトリ由来の情報をここに置かない。
 meta/
+
+# 撮影ハーネスの作業物。node_modules と資格情報つきの storageState、
+# 撮影記録の中間ファイルは公開リポジトリに入れない。
+shots/node_modules/
+shots/.auth/
+shots/.out/
+shots/playwright-report/
+shots/test-results/
