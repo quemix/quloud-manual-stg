@@ -32,7 +32,7 @@
      - -
      - ``SGP_Wrapper``
      - 必須
-     - Sparse GP（SGP_Wrapper）（``SGP_Wrapper``） / Full GP（GaussianProcess）（``GaussianProcess``）
+     - Sparse GP（SGP\_Wrapper）（``SGP_Wrapper``） / Full GP（GaussianProcess）（``GaussianProcess``）
      - -
      - 詳細
    * - MD エンジン
@@ -302,7 +302,7 @@
      - -
      - ``threshold``
      - 必須
-     - threshold（閾値以上を追加）（``threshold``） / add_n（最大N個追加）（``add_n``）
+     - threshold（閾値以上を追加）（``threshold``） / add\_n（最大N個追加）（``add_n``）
      - -
      - 詳細
    * - 原子追加閾値

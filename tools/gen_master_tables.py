@@ -82,7 +82,9 @@ def _option_label(option: dict) -> str:
 def format_options(options) -> str:
     if not options:
         return "-"
-    return " / ".join(f"{_option_label(o)}（``{o.get('value')}``）" for o in options)
+    return " / ".join(
+        f"{rst.escape(_option_label(o))}（``{o.get('value')}``）" for o in options
+    )
 
 
 def format_condition(condition, params_by_key: dict) -> str:
@@ -109,14 +111,15 @@ def format_condition(condition, params_by_key: dict) -> str:
                 break
         if value_label is None:
             value_label = {"true": "有効", "false": "無効"}.get(raw, raw)
+        key_label = rst.escape(key_label)
         if op == "===":
-            rendered.append(f"「{key_label}」が「{value_label}」")
+            rendered.append(f"「{key_label}」が「{rst.escape(value_label)}」")
         elif value_label == "有効":
             rendered.append(f"「{key_label}」が「無効」")
         elif value_label == "無効":
             rendered.append(f"「{key_label}」が「有効」")
         else:
-            rendered.append(f"「{key_label}」が「{value_label}」以外")
+            rendered.append(f"「{key_label}」が「{rst.escape(value_label)}」以外")
     return "、かつ".join(rendered) + "のとき"
 
 

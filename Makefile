@@ -12,7 +12,7 @@ SOURCEDIR   = .
 BUILDDIR    = _build/html
 PUBLISHDIR  = docs
 
-.PHONY: venv html strict dump generate test publish clean help
+.PHONY: venv html strict dump generate checkgen test publish clean help
 
 venv:
 	python3.13 -m venv $(VENV)
@@ -33,6 +33,12 @@ dump:
 # dump から source/_generated/**.rst を生成する
 generate:
 	$(PYTHON) tools/gen_master_tables.py
+
+# source/_generated/ 配下の全ファイルが RST として読めるかを検査する。
+# conf.py が source/_generated を toctree から外しているため、章から
+# include されていないファイルは make strict では検査されない。
+checkgen:
+	tools/checkgen.sh
 
 test:
 	$(PYTHON) -m unittest discover -s tools/tests -t . -v
@@ -59,6 +65,7 @@ help:
 	@echo "strict   : 警告をエラーとしてビルドする"
 	@echo "dump     : ~/v6.0 のマスタデータを meta/master_dump.json に落とす"
 	@echo "generate : dump から source/_generated/**.rst を生成する"
+	@echo "checkgen : source/_generated/ 配下の全ファイルが RST として読めるか検査する"
 	@echo "test     : tools/ のテストを走らせる"
 	@echo "publish  : strict ビルドの結果を docs/ に反映する"
 	@echo "clean    : _build/html を消す"

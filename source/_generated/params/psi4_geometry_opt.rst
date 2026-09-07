@@ -23,7 +23,7 @@
      - -
      - ``QCHEM``
      - 必須
-     - QCHEM（デフォルト）（``QCHEM``） / GAU（``GAU``） / GAU_LOOSE（緩い）（``GAU_LOOSE``） / GAU_TIGHT（厳しい）（``GAU_TIGHT``） / GAU_VERYTIGHT（非常に厳しい）（``GAU_VERYTIGHT``） / TURBOMOLE（``TURBOMOLE``） / CFOUR（``CFOUR``） / MOLPRO（``MOLPRO``） / NWCHEM_LOOSE（緩い）（``NWCHEM_LOOSE``） / INTERFRAG_TIGHT（分子間、厳しい）（``INTERFRAG_TIGHT``）
+     - QCHEM（デフォルト）（``QCHEM``） / GAU（``GAU``） / GAU\_LOOSE（緩い）（``GAU_LOOSE``） / GAU\_TIGHT（厳しい）（``GAU_TIGHT``） / GAU\_VERYTIGHT（非常に厳しい）（``GAU_VERYTIGHT``） / TURBOMOLE（``TURBOMOLE``） / CFOUR（``CFOUR``） / MOLPRO（``MOLPRO``） / NWCHEM\_LOOSE（緩い）（``NWCHEM_LOOSE``） / INTERFRAG\_TIGHT（分子間、厳しい）（``INTERFRAG_TIGHT``）
      - -
      - 詳細
    * - 最大反復回数 (GEOM\_MAXITER)

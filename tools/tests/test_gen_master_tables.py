@@ -110,6 +110,12 @@ class TestFormatOptions(unittest.TestCase):
         out = g.format_options([{"value": "a", "label_ja": "A"}, {"value": "b", "label_ja": "B"}])
         self.assertEqual(out, "A（``a``） / B（``b``）")
 
+    def test_label_with_rst_metacharacter_is_escaped(self):
+        # ラベルに "|" があると、そのままでは RST の置換参照として
+        # 解釈されてしまう（Undefined substitution referenced エラー）。
+        out = g.format_options([{"value": "OptC4", "label_ja": "|a1|=|a2|≠|a3|・最急降下"}])
+        self.assertEqual(out, r"\|a1\|=\|a2\|≠\|a3\|・最急降下（``OptC4``）")
+
 
 class TestFormatCondition(unittest.TestCase):
     def setUp(self):
@@ -160,6 +166,16 @@ class TestFormatCondition(unittest.TestCase):
             "params.ensemble === 'NPT' && params.henkelman !== true", self.params)
         self.assertEqual(
             out, "「アンサンブル」が「NPT（定圧定温）」、かつ「Henkelman 補正」が「無効」のとき")
+
+    def test_metacharacter_in_label_is_escaped(self):
+        # key_label・value_label のどちらに RST のメタ文字（"|" など）が
+        # 含まれていても、そのまま出すと置換参照として誤解釈される。
+        params = {
+            "opt_method": _param(key="opt_method", label_ja="最適化手法|種別", input_type="select",
+                                 options=[{"value": "OptC4", "label_ja": "|a1|=|a2|"}]),
+        }
+        out = g.format_condition("params.opt_method === 'OptC4'", params)
+        self.assertEqual(out, r"「最適化手法\|種別」が「\|a1\|=\|a2\|」のとき")
 
 
 class TestRenderEngineMatrix(unittest.TestCase):

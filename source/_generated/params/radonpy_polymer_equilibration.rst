@@ -85,7 +85,7 @@
      - -
      - ``GAFF2``
      - 必須
-     - GAFF2（推奨）（``GAFF2``） / GAFF2_mod（``GAFF2_mod``） / GAFF（``GAFF``） / Dreiding（``Dreiding``）
+     - GAFF2（推奨）（``GAFF2``） / GAFF2\_mod（``GAFF2_mod``） / GAFF（``GAFF``） / Dreiding（``Dreiding``）
      - -
      - 基本
    * - 高分子鎖数
