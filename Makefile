@@ -14,6 +14,8 @@ PUBLISHDIR  = docs
 
 .PHONY: venv html strict dump generate checkgen test release-notes publish clean help
 
+.DEFAULT_GOAL := help
+
 venv:
 	python3.13 -m venv $(VENV)
 	$(VENV)/bin/pip install --upgrade pip
@@ -74,5 +76,5 @@ help:
 	@echo "checkgen      : source/_generated/ 配下の全ファイルが RST として読めるか検査する"
 	@echo "test          : tools/ のテストを走らせる"
 	@echo "release-notes : 判定済みの候補一覧から source/_generated/release_notes_v70.rst を生成する"
-	@echo "publish       : strict ビルドの結果を docs/ に反映する"
+	@echo "publish       : clean してから strict ビルドし、結果を docs/ に反映する"
 	@echo "clean         : _build/html を消す"
