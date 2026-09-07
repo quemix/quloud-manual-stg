@@ -11,6 +11,9 @@
 # 古いままになる。その場合、新しいコミット SHA に古いマスタが紐づいて記録される
 # ことになるので、出力の master_synced_at と source_commit の対応がおかしくないか
 # 確認すること。
+#
+# sync はこのスクリプトからも手でも流さない。~/v6.0 は他人の作業環境で、開発 DB は
+# 読み取り専用として扱う（CLAUDE.md §6）。dump が古いと分かったら担当者へ依頼する。
 set -euo pipefail
 
 MANUAL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -25,9 +28,10 @@ trap cleanup EXIT
 echo "code dir : $CODE_DIR"
 cp "$MANUAL_DIR/tools/dump_master.rb" "$RUNNER_TMP"
 
-echo "注意: dump はコンテナの DB から取る。マスタ YAML を変更した場合は、先に"
-echo "      docker compose exec rails bundle exec rake quloud:sync_master_data"
-echo "      を流さないと、古いマスタが新しいコミット SHA で記録される。"
+echo "注意: dump はコンテナの DB から取る。マスタ YAML が変わっているのに sync"
+echo "      (rake quloud:sync_master_data) が流れていないと、古いマスタが新しい"
+echo "      コミット SHA で記録される。出力の master_synced_at で判別できる。"
+echo "      sync はこちらから流さない（開発 DB は読み取り専用）。必要なら担当者へ依頼する。"
 
 ( cd "$CODE_DIR" && docker compose exec -T -e RAILS_ENV=development rails \
     bundle exec rails runner /app/tmp_dump_master.rb )
