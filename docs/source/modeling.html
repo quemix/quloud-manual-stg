@@ -5,7 +5,7 @@
 
     <meta property="article:modified_time" content="2026-04-20T19:32:29+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7. Material のモデリング</title>
+  <title>8. Material のモデリング</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="8. 計算 Job の登録" href="calculation.html" />
-    <link rel="prev" title="6. Material 詳細画面" href="jobdetail.html" /> 
+    <link rel="next" title="9. 計算 Job の登録" href="calculation.html" />
+    <link rel="prev" title="7. Material 詳細画面" href="jobdetail.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,39 +51,40 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="signup.html">1. サインアップ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signin.html">2. サインイン・サインアウト</a></li>
-<li class="toctree-l1"><a class="reference internal" href="invitation.html">3. 新規ユーザーの招待</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">4. ダッシュボード（トップ画面）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">5. Material の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">6. Material 詳細画面</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Material のモデリング</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">7.1. 基本的な操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">7.2. モデリングのやり直しと中止</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">7.3. 操作パネル</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lattice-parameters">7.4. Lattice Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#supercell">7.5. Supercell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#atomic-coordinates">7.6. Atomic Coordinates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cell-transform">7.7. Cell Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#relative-atomic-position">7.8. Relative Atomic Position</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#surface">7.9. Surface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">7.10. フッターメニュー</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interface">7.11. Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-molecule">7.12. Add Molecule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#packmol">7.13. Packmol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-cell">7.14. Add Cell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">7.15. パネル上部アイコン</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">7.16. モデルの保存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Material のモデリング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">8.1. 基本的な操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.2. モデリングのやり直しと中止</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.3. 操作パネル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lattice-parameters">8.4. Lattice Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supercell">8.5. Supercell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#atomic-coordinates">8.6. Atomic Coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cell-transform">8.7. Cell Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relative-atomic-position">8.8. Relative Atomic Position</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface">8.9. Surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.10. フッターメニュー</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interface">8.11. Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-molecule">8.12. Add Molecule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packmol">8.13. Packmol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-cell">8.14. Add Cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">8.15. パネル上部アイコン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">8.16. モデルの保存</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="calculation.html">8. 計算 Job の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="runjob.html">9. 計算 Job の実行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="property.html">10. Property の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">11. 計算結果の可視化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="files.html">12. 入出力ファイルとログ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="header.html">13. ヘッダーメニュー（各種管理）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifications.html">14. 仕様</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_notes.html">15. 変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculation.html">9. 計算 Job の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runjob.html">10. 計算 Job の実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="property.html">11. Property の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="header.html">14. ヘッダーメニュー（各種管理）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">15. 仕様</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">16. 変更履歴</a></li>
 </ul>
 
         </div>
@@ -100,7 +101,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">7. </span>Material のモデリング</li>
+      <li class="breadcrumb-item active"><span class="section-number">8. </span>Material のモデリング</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/modeling.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="material">
-<span id="modeling-section"></span><h1><span class="section-number">7. </span>Material のモデリング<a class="headerlink" href="#material" title="Link to this heading"></a></h1>
+<span id="modeling-section"></span><h1><span class="section-number">8. </span>Material のモデリング<a class="headerlink" href="#material" title="Link to this heading"></a></h1>
 <img alt="../_images/screenshot_0011.png" src="../_images/screenshot_0011.png" />
 <p>上図の<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>の上部にある「Modeling」ボタンをクリックすると、
 下図のようなモデリング専用の画面がブラウザの別タブとして開きます。
@@ -122,7 +123,7 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 <div class="line"><br /></div>
 </div>
 <section id="id1">
-<h2><span class="section-number">7.1. </span>基本的な操作<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.1. </span>基本的な操作<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>モデリング画面では、以下のマウス操作で原子モデルの回転および拡大・縮小ができます。</p>
 <ul class="simple">
 <li><p>回転：　ドラッグ</p></li>
@@ -159,7 +160,7 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">7.2. </span>モデリングのやり直しと中止<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.2. </span>モデリングのやり直しと中止<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>ブラウザのリロードを行うと、全ての操作はリセットされ、モデリング開始時点の状態に戻ります。
 また、モデリングのタブを閉じると、モデリングそのものを中止して、元の Quloud の利用に戻る事ができます。</p>
 <div class="line-block">
@@ -167,7 +168,7 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">7.3. </span>操作パネル<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.3. </span>操作パネル<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>モデリングの主な操作は右側パネルのメニューから行います。
 また、もう1つの別の Material を組み合わせてモデリングを行う場合の補助的な役割を、
 フッターメニューが担います。</p>
@@ -177,7 +178,7 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 <p>まずは Material が結晶の場合のモデリングについて説明します。</p>
 </section>
 <section id="lattice-parameters">
-<h2><span class="section-number">7.4. </span>Lattice Parameters<a class="headerlink" href="#lattice-parameters" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.4. </span>Lattice Parameters<a class="headerlink" href="#lattice-parameters" title="Link to this heading"></a></h2>
 <p>Lattice Parameters メニューを開くと、現在表示されている Material の格子の長さと角度の値を変更するフォームが現れます。
 設定したい値を入力し、最後に「Apply Cell Parameter Change」ボタンをクリックすると、例えば下図のような構造が得られます。</p>
 <img alt="../_images/screenshot_0197.png" src="../_images/screenshot_0197.png" />
@@ -191,13 +192,13 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 </div>
 </section>
 <section id="supercell">
-<h2><span class="section-number">7.5. </span>Supercell<a class="headerlink" href="#supercell" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.5. </span>Supercell<a class="headerlink" href="#supercell" title="Link to this heading"></a></h2>
 <p>Supercell メニューを開くと、3つの整数値を入力するフォームが現れます。
 値を設定し、「Apply Supercell」ボタンをクリックすると、下図のようなスーパーセルが作られます。</p>
 <img alt="../_images/screenshot_0199.png" src="../_images/screenshot_0199.png" />
 </section>
 <section id="atomic-coordinates">
-<h2><span class="section-number">7.6. </span>Atomic Coordinates<a class="headerlink" href="#atomic-coordinates" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.6. </span>Atomic Coordinates<a class="headerlink" href="#atomic-coordinates" title="Link to this heading"></a></h2>
 <p>Atomic Coordinates メニューを開くと、個々の原子の座標を入力できるフォームが現れます。
 値を設定し、「Apply Coordinates Change」ボタンをクリックすると、設定した座標に対応した位置に原子が移動します。</p>
 <img alt="../_images/screenshot_0200.png" src="../_images/screenshot_0200.png" />
@@ -205,7 +206,7 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 <img alt="../_images/screenshot_0201.png" src="../_images/screenshot_0201.png" />
 </section>
 <section id="cell-transform">
-<h2><span class="section-number">7.7. </span>Cell Transform<a class="headerlink" href="#cell-transform" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.7. </span>Cell Transform<a class="headerlink" href="#cell-transform" title="Link to this heading"></a></h2>
 <p>Cell Transform メニューを開くと、「Primitive」「Conventional」のボタンがあります。
 クリックすると（系の対称性が上手く読み取れれば）、
 その系の最小単位胞（Primitive Cell）あるいは慣用単位胞（Conventional Cell）を作る事ができます
@@ -218,14 +219,14 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 <img alt="../_images/screenshot_0205.png" src="../_images/screenshot_0205.png" />
 </section>
 <section id="relative-atomic-position">
-<h2><span class="section-number">7.8. </span>Relative Atomic Position<a class="headerlink" href="#relative-atomic-position" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.8. </span>Relative Atomic Position<a class="headerlink" href="#relative-atomic-position" title="Link to this heading"></a></h2>
 <p>Relative Atomic Positoin のメニューを開くと、3つの数字を入力するフォームが現れます。
 この数字に応じて、系内の原子全体が（対応する格子ベクトルの方向に）平行移動します。
 取り得る範囲は -1 ～ +1 です（格子ベクトルの長さ分だけ ± 方向に移動できる）。</p>
 <img alt="../_images/screenshot_0206.png" src="../_images/screenshot_0206.png" />
 </section>
 <section id="surface">
-<h2><span class="section-number">7.9. </span>Surface<a class="headerlink" href="#surface" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.9. </span>Surface<a class="headerlink" href="#surface" title="Link to this heading"></a></h2>
 <p>Surface メニューには、表面スラブと呼ばれる下図のような原子構造を作成するための設定フォームがあります。</p>
 <img alt="../_images/screenshot_0018.png" src="../_images/screenshot_0018.png" />
 <p>設定パラメータは以下の通りです。</p>
@@ -373,7 +374,7 @@ Select Property で、例えば原子構造最適化ジョブの結果などが�
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">7.10. </span>フッターメニュー<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.10. </span>フッターメニュー<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>フッターメニューにある「Add Crystal」ボタンをクリックすると、Quloud に登録されている（同じ Project 内にある）
 別の Material（結晶）の一覧が表示されます。</p>
 <img alt="../_images/screenshot_0207.png" src="../_images/screenshot_0207.png" />
@@ -395,7 +396,7 @@ Material（分子）の一覧が表示されます。</p>
 </div>
 </section>
 <section id="interface">
-<h2><span class="section-number">7.11. </span>Interface<a class="headerlink" href="#interface" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.11. </span>Interface<a class="headerlink" href="#interface" title="Link to this heading"></a></h2>
 <p>「Add Crystal」でフッターに登録された結晶の一つが選択状態になると、右サイドパネルに Interface というメニューが現れます。</p>
 <img alt="../_images/screenshot_0211.png" src="../_images/screenshot_0211.png" />
 <p>Interface メニュ－では、現在モデリング中の結晶が基板（Substrate）、フッターで選択された結晶をフィルム（Film）として、
@@ -422,7 +423,7 @@ Material（分子）の一覧が表示されます。</p>
 </div>
 </section>
 <section id="add-molecule">
-<h2><span class="section-number">7.12. </span>Add Molecule<a class="headerlink" href="#add-molecule" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.12. </span>Add Molecule<a class="headerlink" href="#add-molecule" title="Link to this heading"></a></h2>
 <p>フッターの「Add Molecule」ボタンをクリックして登録された分子の一つが選択状態になると、
 右サイドパネルに Add Molecule および Packmol というメニューが現れます。
 ここでは、バルクやスラブといった周期構造に孤立分子を挿入したモデルを作成するための Add Molecule について説明します。</p>
@@ -444,7 +445,7 @@ Material（分子）の一覧が表示されます。</p>
 </div>
 </section>
 <section id="packmol">
-<h2><span class="section-number">7.13. </span>Packmol<a class="headerlink" href="#packmol" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.13. </span>Packmol<a class="headerlink" href="#packmol" title="Link to this heading"></a></h2>
 <p>ここでは、フッターの「Add Molecule」ボタンをクリックして登録された分子の一つが選択状態になったときに現れる
 Packmol というメニューについて説明します。Packmol は、<a class="reference external" href="https://m3g.github.io/packmol/">https://m3g.github.io/packmol/</a> で保守されているソフトウェアで、
 指定した密度で分子をある領域に詰め込む（Packing）モデリングを行うものです。
@@ -468,7 +469,7 @@ Quloudでは、下図のように真空領域を持つモデルの、真空領�
 </div>
 </section>
 <section id="add-cell">
-<h2><span class="section-number">7.14. </span>Add Cell<a class="headerlink" href="#add-cell" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.14. </span>Add Cell<a class="headerlink" href="#add-cell" title="Link to this heading"></a></h2>
 <p>これは、モデリングを開始した Material が Molecule の場合にだけ現れるメニューです。
 通常、孤立分子の原子座標データ（例えば xyz 形式）は、ユニットセルの情報を持たないため、
 これにユニットセルの情報を追加してスーパーセルモデルを作成し、周期境界条件が課されるタイプの計算ソフトで扱えるようにするための機能です。</p>
@@ -483,7 +484,7 @@ Quloudでは、下図のように真空領域を持つモデルの、真空領�
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">7.15. </span>パネル上部アイコン<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.15. </span>パネル上部アイコン<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p>モデリング画面右側の操作パネル上部に「Save」「Undo」「Redo」「Settings」の4つのアイコンがあります。
 このうち、Undo / Redo については、モデリングの操作を一つ前に戻す、あるいは進める、
 というもので、改めてご説明する必要もないと思われます。
@@ -492,7 +493,7 @@ Settings は、原子のサイズや、元素名のラベルを表示させる�
 <img alt="../_images/screenshot_0222.png" src="../_images/screenshot_0222.png" />
 </section>
 <section id="id6">
-<h2><span class="section-number">7.16. </span>モデルの保存<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<h2><span class="section-number">8.16. </span>モデルの保存<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p>操作パネル上部の4つのアイコンのうち、一番左にあるのが「Save」で、こちらから
 作成したモデルを Material として保存（Quloudに登録）する事ができます。
 クリックすると、次のようなメニューが開きます。</p>
@@ -513,8 +514,8 @@ Overwrite はできないようになっています。</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="jobdetail.html" class="btn btn-neutral float-left" title="6. Material 詳細画面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="calculation.html" class="btn btn-neutral float-right" title="8. 計算 Job の登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="jobdetail.html" class="btn btn-neutral float-left" title="7. Material 詳細画面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="calculation.html" class="btn btn-neutral float-right" title="9. 計算 Job の登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

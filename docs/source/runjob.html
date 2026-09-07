@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-16T17:41:22+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T00:17:23+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. 計算 Job の実行</title>
+  <title>10. 計算 Job の実行</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="10. Property の登録" href="property.html" />
-    <link rel="prev" title="8. 計算 Job の登録" href="calculation.html" /> 
+    <link rel="next" title="11. Property の登録" href="property.html" />
+    <link rel="prev" title="9. 計算 Job の登録" href="calculation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,25 +51,26 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="signup.html">1. サインアップ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signin.html">2. サインイン・サインアウト</a></li>
-<li class="toctree-l1"><a class="reference internal" href="invitation.html">3. 新規ユーザーの招待</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">4. ダッシュボード（トップ画面）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">5. Material の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">6. Material 詳細画面</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modeling.html">7. Material のモデリング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculation.html">8. 計算 Job の登録</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 計算 Job の実行</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">9.1. Job の実行とキャンセル</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">9.2. Job の実行によるポイント消費</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">8. Material のモデリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculation.html">9. 計算 Job の登録</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. 計算 Job の実行</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">10.1. Job の実行とキャンセル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">10.2. Job の実行によるポイント消費</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="property.html">10. Property の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">11. 計算結果の可視化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="files.html">12. 入出力ファイルとログ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="header.html">13. ヘッダーメニュー（各種管理）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifications.html">14. 仕様</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_notes.html">15. 変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="property.html">11. Property の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="header.html">14. ヘッダーメニュー（各種管理）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">15. 仕様</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">16. 変更履歴</a></li>
 </ul>
 
         </div>
@@ -86,7 +87,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">9. </span>計算 Job の実行</li>
+      <li class="breadcrumb-item active"><span class="section-number">10. </span>計算 Job の実行</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/runjob.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,14 +98,14 @@
            <div itemprop="articleBody">
              
   <section id="job">
-<span id="runjob-section"></span><h1><span class="section-number">9. </span>計算 Job の実行<a class="headerlink" href="#job" title="Link to this heading"></a></h1>
-<p>ここでは、計算 Job を登録（８章参照）した後、Job を実行・キャンセルするための方法と、Job 実行によるポイント消費量の確認方法を説明します。計算結果の確認については次章で説明します。</p>
+<span id="runjob-section"></span><h1><span class="section-number">10. </span>計算 Job の実行<a class="headerlink" href="#job" title="Link to this heading"></a></h1>
+<p>ここでは、計算 Job を登録（９章参照）した後、Job を実行・キャンセルするための方法と、Job 実行によるポイント消費量の確認方法を説明します。計算結果の確認については次章で説明します。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="id1">
-<h2><span class="section-number">9.1. </span>Job の実行とキャンセル<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><span class="section-number">10.1. </span>Job の実行とキャンセル<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>前章で説明した方法で Job の登録を行うと、当該 Job が TOP 画面の Job 一覧に追加されます。</p>
 <img alt="../_images/screenshot_0146.png" src="../_images/screenshot_0146.png" />
 <p>登録直後は、Job の Status は Registered となっています。
@@ -134,7 +135,7 @@ Job のデータが計算サーバに伝達されると、Status が「Submitted
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">9.2. </span>Job の実行によるポイント消費<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><span class="section-number">10.2. </span>Job の実行によるポイント消費<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>Job の実行では、以下の計算式に従ってポイントが消費されます。</p>
 <p><strong>「消費ポイント」＝「Required VCPUs / Node」×「Nodes」×「計算時間 (h)」× 20</strong></p>
 <p>「Required VCPUs / Node」と「Nodes」は、「Run Job」ボタンをクリックした後に表示されるダイアログで確認できます。</p>
@@ -154,15 +155,15 @@ Job 情報を計算サーバに伝達したり、計算結果をサーバから�
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="calculation.html" class="btn btn-neutral float-left" title="8. 計算 Job の登録" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="property.html" class="btn btn-neutral float-right" title="10. Property の登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="calculation.html" class="btn btn-neutral float-left" title="9. 計算 Job の登録" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="property.html" class="btn btn-neutral float-right" title="11. Property の登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 3月 16, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 

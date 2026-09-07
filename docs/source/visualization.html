@@ -5,7 +5,7 @@
 
     <meta property="article:modified_time" content="2026-04-20T19:32:29+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11. 計算結果の可視化</title>
+  <title>12. 計算結果の可視化</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="12. 入出力ファイルとログ" href="files.html" />
-    <link rel="prev" title="10. Property の登録" href="property.html" /> 
+    <link rel="next" title="13. 入出力ファイルとログ" href="files.html" />
+    <link rel="prev" title="11. Property の登録" href="property.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,31 +51,32 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="signup.html">1. サインアップ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signin.html">2. サインイン・サインアウト</a></li>
-<li class="toctree-l1"><a class="reference internal" href="invitation.html">3. 新規ユーザーの招待</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">4. ダッシュボード（トップ画面）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">5. Material の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">6. Material 詳細画面</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modeling.html">7. Material のモデリング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculation.html">8. 計算 Job の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="runjob.html">9. 計算 Job の実行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="property.html">10. Property の登録</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11. 計算結果の可視化</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#quantum-espresso">11.1. Quantum ESPRESSO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#openmx">11.2. OpenMX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rsdft">11.3. RSDFT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lammps">11.4. LAMMPS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#flare">11.5. FLARE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ase">11.6. ASE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sprkkr">11.7. SPRKKR</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#quloud-mag">11.8. Quloud-Mag</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">8. Material のモデリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculation.html">9. 計算 Job の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runjob.html">10. 計算 Job の実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="property.html">11. Property の登録</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12. 計算結果の可視化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quantum-espresso">12.1. Quantum ESPRESSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openmx">12.2. OpenMX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsdft">12.3. RSDFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lammps">12.4. LAMMPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flare">12.5. FLARE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ase">12.6. ASE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sprkkr">12.7. SPRKKR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quloud-mag">12.8. Quloud-Mag</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="files.html">12. 入出力ファイルとログ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="header.html">13. ヘッダーメニュー（各種管理）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifications.html">14. 仕様</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_notes.html">15. 変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="header.html">14. ヘッダーメニュー（各種管理）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">15. 仕様</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">16. 変更履歴</a></li>
 </ul>
 
         </div>
@@ -92,7 +93,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">11. </span>計算結果の可視化</li>
+      <li class="breadcrumb-item active"><span class="section-number">12. </span>計算結果の可視化</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/visualization.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,7 +104,7 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">11. </span>計算結果の可視化<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<h1><span class="section-number">12. </span>計算結果の可視化<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>計算結果は<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>から確認できます。</p>
 <img alt="../_images/screenshot_0192.png" src="../_images/screenshot_0192.png" />
 <p>画面左上の Select Property タブから、この Material の <a class="reference internal" href="property.html#property-section"><span class="std std-ref">Property</span></a> として登録されているもを一つ選択します（ここでは rdf を選択）。</p>
@@ -118,7 +119,7 @@
 <div class="line"><br /></div>
 </div>
 <section id="quantum-espresso">
-<h2><span class="section-number">11.1. </span>Quantum ESPRESSO<a class="headerlink" href="#quantum-espresso" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.1. </span>Quantum ESPRESSO<a class="headerlink" href="#quantum-espresso" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Single-Point SCF</p>
 <ul class="simple">
@@ -214,7 +215,7 @@
 </div>
 </section>
 <section id="openmx">
-<h2><span class="section-number">11.2. </span>OpenMX<a class="headerlink" href="#openmx" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.2. </span>OpenMX<a class="headerlink" href="#openmx" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Single-Point SCF</p>
 <ul class="simple">
@@ -320,7 +321,7 @@
 </div>
 </section>
 <section id="rsdft">
-<h2><span class="section-number">11.3. </span>RSDFT<a class="headerlink" href="#rsdft" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.3. </span>RSDFT<a class="headerlink" href="#rsdft" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Single-Point SCF</p>
 <ul class="simple">
@@ -414,7 +415,7 @@
 </div>
 </section>
 <section id="lammps">
-<h2><span class="section-number">11.4. </span>LAMMPS<a class="headerlink" href="#lammps" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.4. </span>LAMMPS<a class="headerlink" href="#lammps" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Atomic Structure Opt.</p>
 <ul class="simple">
@@ -452,7 +453,7 @@
 </div>
 </section>
 <section id="flare">
-<h2><span class="section-number">11.5. </span>FLARE<a class="headerlink" href="#flare" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.5. </span>FLARE<a class="headerlink" href="#flare" title="Link to this heading"></a></h2>
 <ul>
 <li><p>On-the-Fly MD</p>
 <ul>
@@ -479,7 +480,7 @@
 </div>
 </section>
 <section id="ase">
-<h2><span class="section-number">11.6. </span>ASE<a class="headerlink" href="#ase" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.6. </span>ASE<a class="headerlink" href="#ase" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Atomic Structure Opt.</p>
 <ul class="simple">
@@ -529,7 +530,7 @@
 </div>
 </section>
 <section id="sprkkr">
-<h2><span class="section-number">11.7. </span>SPRKKR<a class="headerlink" href="#sprkkr" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.7. </span>SPRKKR<a class="headerlink" href="#sprkkr" title="Link to this heading"></a></h2>
 <ul>
 <li><p>First-Principles SCF</p>
 <ul class="simple">
@@ -554,7 +555,7 @@
 </div>
 </section>
 <section id="quloud-mag">
-<h2><span class="section-number">11.8. </span>Quloud-Mag<a class="headerlink" href="#quloud-mag" title="Link to this heading"></a></h2>
+<h2><span class="section-number">12.8. </span>Quloud-Mag<a class="headerlink" href="#quloud-mag" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Monte Carlo</p>
 <ul class="simple">
@@ -578,8 +579,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="property.html" class="btn btn-neutral float-left" title="10. Property の登録" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="files.html" class="btn btn-neutral float-right" title="12. 入出力ファイルとログ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="property.html" class="btn btn-neutral float-left" title="11. Property の登録" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="files.html" class="btn btn-neutral float-right" title="13. 入出力ファイルとログ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

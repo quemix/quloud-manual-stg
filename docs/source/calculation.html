@@ -5,7 +5,7 @@
 
     <meta property="article:modified_time" content="2026-04-20T19:32:29+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. 計算 Job の登録</title>
+  <title>9. 計算 Job の登録</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -25,8 +25,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="9. 計算 Job の実行" href="runjob.html" />
-    <link rel="prev" title="7. Material のモデリング" href="modeling.html" /> 
+    <link rel="next" title="10. 計算 Job の実行" href="runjob.html" />
+    <link rel="prev" title="8. Material のモデリング" href="modeling.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,58 +52,59 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="signup.html">1. サインアップ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signin.html">2. サインイン・サインアウト</a></li>
-<li class="toctree-l1"><a class="reference internal" href="invitation.html">3. 新規ユーザーの招待</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">4. ダッシュボード（トップ画面）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">5. Material の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">6. Material 詳細画面</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modeling.html">7. Material のモデリング</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. 計算 Job の登録</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">8.1. 計算ジョブの選択</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#first-principles-calculation">8.2. First-Principles Calculation（第一原理計算）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#single-point-scf-scf-atomic-structure-opt-lattice-opt">8.2.1. Single-Point SCF（電子状態 SCF）、Atomic Structure Opt.（原子構造最適化）、Lattice Opt.（格子定数最適化）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#site-property-settings">8.2.2. Site property settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electron-band-structure">8.2.3. Electron Band Structure（電子バンド計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#electron-dos">8.2.4. Electron DOS（電子状態密度計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#energy-barrier-neb-neb">8.2.5. Energy Barrier (NEB)（NEB 法によるエネルギー障壁計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#molecular-dynamics">8.2.6. Molecular Dynamics（分子動力学計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exchange-coupling-parameters">8.2.7. Exchange Coupling Parameters（交換結合パラメータ）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#phonon-ph-x">8.2.8. Phonon (ph.x)（フォノン計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#x-spectra">8.2.9. X-Spectra（試験的運用）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">8. Material のモデリング</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. 計算 Job の登録</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">9.1. 計算ジョブの選択</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#first-principles-calculation">9.2. First-Principles Calculation（第一原理計算）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-point-scf-scf-atomic-structure-opt-lattice-opt">9.2.1. Single-Point SCF（電子状態 SCF）、Atomic Structure Opt.（原子構造最適化）、Lattice Opt.（格子定数最適化）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#site-property-settings">9.2.2. Site property settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electron-band-structure">9.2.3. Electron Band Structure（電子バンド計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electron-dos">9.2.4. Electron DOS（電子状態密度計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#energy-barrier-neb-neb">9.2.5. Energy Barrier (NEB)（NEB 法によるエネルギー障壁計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#molecular-dynamics">9.2.6. Molecular Dynamics（分子動力学計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exchange-coupling-parameters">9.2.7. Exchange Coupling Parameters（交換結合パラメータ）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phonon-ph-x">9.2.8. Phonon (ph.x)（フォノン計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#x-spectra">9.2.9. X-Spectra（試験的運用）</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#classical-molecular-dynamics-simulation">8.3. Classical Molecular Dynamics Simulation（古典分子動力学法）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#atomic-structure-opt">8.3.1. Atomic Structure Opt.（原子構造最適化）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">8.3.2. Molecular Dynamics（分子動力学法）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classical-molecular-dynamics-simulation">9.3. Classical Molecular Dynamics Simulation（古典分子動力学法）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atomic-structure-opt">9.3.1. Atomic Structure Opt.（原子構造最適化）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">9.3.2. Molecular Dynamics（分子動力学法）</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#machine-learning-md-md">8.4. Machine-Learning MD（機械学習 MD）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ase-atom-opt-lattice-opt-neb-md">8.4.1. ASE（Atom Opt.，Lattice Opt.，NEB，MD）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#on-the-fly-md-flare">8.4.2. On-The-Fly MD (FLARE)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#machine-learning-setting-otf-md">8.4.2.1. Machine Learning Setting（OTF 機械学習および MD 計算の設定）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#calculation-engine-setting">8.4.2.2. Calculation Engine Setting（第一原理計算部分の設定）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#machine-learning-md-md">9.4. Machine-Learning MD（機械学習 MD）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ase-atom-opt-lattice-opt-neb-md">9.4.1. ASE（Atom Opt.，Lattice Opt.，NEB，MD）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#on-the-fly-md-flare">9.4.2. On-The-Fly MD (FLARE)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#machine-learning-setting-otf-md">9.4.2.1. Machine Learning Setting（OTF 機械学習および MD 計算の設定）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculation-engine-setting">9.4.2.2. Calculation Engine Setting（第一原理計算部分の設定）</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#quloud-mag">8.5. Quloud-Mag（第一原理磁性材料シミュレーション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sprkkr-first-principles-scf-scf">8.5.1. SPRKKR (First-Principles SCF)（第一原理 SCF 計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sprkkr-exchange-coupling-parameters">8.5.2. SPRKKR (Exchange Coupling Parameters)（磁気交換相互作用の第一原理計算）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#monte-carlo-quloud-mag">8.5.3. Monte Carlo (Quloud-Mag)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#micro-magnetic-simulation-quloud-mag-llg">8.5.4. Micro-Magnetic Simulation (Quloud-Mag-LLG)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quloud-mag">9.5. Quloud-Mag（第一原理磁性材料シミュレーション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sprkkr-first-principles-scf-scf">9.5.1. SPRKKR (First-Principles SCF)（第一原理 SCF 計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sprkkr-exchange-coupling-parameters">9.5.2. SPRKKR (Exchange Coupling Parameters)（磁気交換相互作用の第一原理計算）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monte-carlo-quloud-mag">9.5.3. Monte Carlo (Quloud-Mag)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#micro-magnetic-simulation-quloud-mag-llg">9.5.4. Micro-Magnetic Simulation (Quloud-Mag-LLG)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">8.6. 入力ファイルの直接アップロードによる計算 Job の登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">9.6. 入力ファイルの直接アップロードによる計算 Job の登録</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="runjob.html">9. 計算 Job の実行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="property.html">10. Property の登録</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">11. 計算結果の可視化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="files.html">12. 入出力ファイルとログ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="header.html">13. ヘッダーメニュー（各種管理）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifications.html">14. 仕様</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_notes.html">15. 変更履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runjob.html">10. 計算 Job の実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="property.html">11. Property の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="header.html">14. ヘッダーメニュー（各種管理）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">15. 仕様</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">16. 変更履歴</a></li>
 </ul>
 
         </div>
@@ -120,7 +121,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">8. </span>計算 Job の登録</li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>計算 Job の登録</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/calculation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -131,7 +132,7 @@
            <div itemprop="articleBody">
              
   <section id="job">
-<span id="job-section"></span><h1><span class="section-number">8. </span>計算 Job の登録<a class="headerlink" href="#job" title="Link to this heading"></a></h1>
+<span id="job-section"></span><h1><span class="section-number">9. </span>計算 Job の登録<a class="headerlink" href="#job" title="Link to this heading"></a></h1>
 <p>材料計算のジョブは、必ず <a class="reference internal" href="jobs_and_models_atom.html#material-create"><span class="std std-ref">Material</span></a> か、Material が有する <a class="reference internal" href="property.html#property-section"><span class="std std-ref">Property</span></a>
 を介して作成するようになっています。いずれの場合も<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>が起点となります。
 ここでは計算 Job の登録方法を、計算カテゴリー（Types）ごとに説明します。<a class="reference internal" href="runjob.html#runjob-section"><span class="std std-ref">計算 Job の実行</span></a>については章を改めて説明することにします。</p>
@@ -140,7 +141,7 @@
 <div class="line"><br /></div>
 </div>
 <section id="id1">
-<h2><span class="section-number">8.1. </span>計算ジョブの選択<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><span class="section-number">9.1. </span>計算ジョブの選択<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p><a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>のトップページ（左サイドメニューの「Property」が選択された状態のページ）にある「Create Job」をクリックすると、下図のようなジョブ選択のメニューが現れます。</p>
 <img alt="../_images/screenshot_0223.png" src="../_images/screenshot_0223.png" />
 <p>このメニューで、計算に使用するソフト（Software）と、計算したい内容（Workflows）を選びます。（Types は、Software と Workflows を絞り込むための補助的なものです。）
@@ -154,7 +155,7 @@
 </div>
 </section>
 <section id="first-principles-calculation">
-<h2><span class="section-number">8.2. </span>First-Principles Calculation（第一原理計算）<a class="headerlink" href="#first-principles-calculation" title="Link to this heading"></a></h2>
+<h2><span class="section-number">9.2. </span>First-Principles Calculation（第一原理計算）<a class="headerlink" href="#first-principles-calculation" title="Link to this heading"></a></h2>
 <p>第一原理計算（First-Principles Calculation）のカテゴリに入るソフトウェアとして、現在4本が選択可能です。</p>
 <img alt="../_images/screenshot_0225.png" src="../_images/screenshot_0225.png" />
 <p>このうち SPRKKR については、磁性材料シミュレータ（Quloud-Mag）の一部として利用することが多いため、そちらで改めてご説明します。ここでは Quantum ESPRESSO、OpenMX、RSDFT で利用可能な計算ジョブ（Workflows）の説明を行います。
@@ -163,7 +164,7 @@
 <div class="line"><br /></div>
 </div>
 <section id="single-point-scf-scf-atomic-structure-opt-lattice-opt">
-<h3><span class="section-number">8.2.1. </span>Single-Point SCF（電子状態 SCF）、Atomic Structure Opt.（原子構造最適化）、Lattice Opt.（格子定数最適化）<a class="headerlink" href="#single-point-scf-scf-atomic-structure-opt-lattice-opt" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.1. </span>Single-Point SCF（電子状態 SCF）、Atomic Structure Opt.（原子構造最適化）、Lattice Opt.（格子定数最適化）<a class="headerlink" href="#single-point-scf-scf-atomic-structure-opt-lattice-opt" title="Link to this heading"></a></h3>
 <p>これらの Job は、第一原理計算の最も基本的な機能である系の基底状態の全エネルギーを計算する Job です。
 これらの Workflows で利用可能な第一原理計算ソフトを選択すると、下図のようなウィンドウが現れます。</p>
 <img alt="../_images/screenshot_0047.png" src="../_images/screenshot_0047.png" />
@@ -178,7 +179,7 @@
 </div>
 </section>
 <section id="site-property-settings">
-<h3><span class="section-number">8.2.2. </span>Site property settings<a class="headerlink" href="#site-property-settings" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.2. </span>Site property settings<a class="headerlink" href="#site-property-settings" title="Link to this heading"></a></h3>
 <p>計算ジョブの設定メニューの Site property settings の行にある「Setting」ボタンを押すと、下図のような画面が別タブとして開きます。</p>
 <img alt="../_images/screenshot_0048b.png" src="../_images/screenshot_0048b.png" />
 <p>ここでは、各原子サイトごと、あるいは元素種ごとに、初期スピンの値や、運動の拘束（構造最適化時に原子を固定するなど）の設定を行う事ができます。</p>
@@ -194,7 +195,7 @@
 </div>
 </section>
 <section id="electron-band-structure">
-<h3><span class="section-number">8.2.3. </span>Electron Band Structure（電子バンド計算）<a class="headerlink" href="#electron-band-structure" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.3. </span>Electron Band Structure（電子バンド計算）<a class="headerlink" href="#electron-band-structure" title="Link to this heading"></a></h3>
 <p>下図は電子バンド計算 Job の設定画面の一例です。</p>
 <img alt="../_images/screenshot_0049.png" src="../_images/screenshot_0049.png" />
 <p>電子状態 SCF 計算等の Job とほぼ同じですが、バンドを描く Brillouin zone 内の経路の指定が必要になります。
@@ -208,7 +209,7 @@
 </div>
 </section>
 <section id="electron-dos">
-<h3><span class="section-number">8.2.4. </span>Electron DOS（電子状態密度計算）<a class="headerlink" href="#electron-dos" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.4. </span>Electron DOS（電子状態密度計算）<a class="headerlink" href="#electron-dos" title="Link to this heading"></a></h3>
 <p>これまでの Job 設定の説明と特段変わった部分はありません。
 綺麗な状態密度を描くにはサンプル k 点を多く取る事が必要ですが、
 大規模系で Γ 点一点サンプルのような計算を行う場合には、
@@ -218,7 +219,7 @@
 </div>
 </section>
 <section id="energy-barrier-neb-neb">
-<h3><span class="section-number">8.2.5. </span>Energy Barrier (NEB)（NEB 法によるエネルギー障壁計算）<a class="headerlink" href="#energy-barrier-neb-neb" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.5. </span>Energy Barrier (NEB)（NEB 法によるエネルギー障壁計算）<a class="headerlink" href="#energy-barrier-neb-neb" title="Link to this heading"></a></h3>
 <p>２つの（準）安定構造間を結ぶ経路でのエネルギープロファイルを計算します。この機能は OpenMX と Quantum ESPRESSO のみで利用可能となっています。
 この設定メニューでは、Initial と Final の原子構造を選択する必要があります（Pick initial/final material）。OpneMX の場合は下図のような設定メニューになります。</p>
 <img alt="../_images/screenshot_0050.png" src="../_images/screenshot_0050.png" />
@@ -231,7 +232,7 @@
 </div>
 </section>
 <section id="molecular-dynamics">
-<h3><span class="section-number">8.2.6. </span>Molecular Dynamics（分子動力学計算）<a class="headerlink" href="#molecular-dynamics" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.6. </span>Molecular Dynamics（分子動力学計算）<a class="headerlink" href="#molecular-dynamics" title="Link to this heading"></a></h3>
 <p>原子に働く力を第一原理計算で求めながら分子動力学計算を行う Job です。この機能は RSDFT および OpenMX のみで利用可能となっています。
 現在 Born-Oppenheimer（BOMD）法と
 Car-Parrinello（CPMD）法（RSDFT のみ）の２つの手法が選択可能です。
@@ -243,7 +244,7 @@ CPMD では電子系の温度制御も行えるようになっています。</p
 </div>
 </section>
 <section id="exchange-coupling-parameters">
-<h3><span class="section-number">8.2.7. </span>Exchange Coupling Parameters（交換結合パラメータ）<a class="headerlink" href="#exchange-coupling-parameters" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.7. </span>Exchange Coupling Parameters（交換結合パラメータ）<a class="headerlink" href="#exchange-coupling-parameters" title="Link to this heading"></a></h3>
 <p>SCF 計算等の Job とほぼ同じですが、以下のパラメータを追加で設定します。</p>
 <ul class="simple">
 <li><p>計算式に現れるフェルミ関数の有限極近似に対する極の数（# of Poles）</p></li>
@@ -256,7 +257,7 @@ CPMD では電子系の温度制御も行えるようになっています。</p
 </div>
 </section>
 <section id="phonon-ph-x">
-<h3><span class="section-number">8.2.8. </span>Phonon (ph.x)（フォノン計算）<a class="headerlink" href="#phonon-ph-x" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.8. </span>Phonon (ph.x)（フォノン計算）<a class="headerlink" href="#phonon-ph-x" title="Link to this heading"></a></h3>
 <p>Quantum ESPRESSO のみの機能で、フォノンのバンド分散とフォノンの状態密度の計算を行うことができます。設定メニューは下図のようになります。</p>
 <img alt="../_images/screenshot_0226.png" src="../_images/screenshot_0226.png" />
 <p>入力ファイルが4つ（pw.in, ph.in, q2r.in, matdyn_disp.in または matdyn_dos.in）に分かれるため、設定メニューもタブで4つを切り替える形式になっています。pw.in は、SCF 計算等で設定する入力ファイルと同じものです。ph.in がフォノン計算のメイン（ph.x）の入力で、フォノン計算を行う波数の密度（Brillouin Zone 内の分割）を指定します（nq1/nq2/nq3）。状態密度の計算を行う場合は、matdyn_dos.in に対しても同様の設定を行います。フォノンのバンド分散の計算では、電子バンドのときと同様に、Brillouin Zone 内での経路を指定する必要があり、下図のような設定メニューで行います。</p>
@@ -268,7 +269,7 @@ q-point 1, q-point 2, <span class="math notranslate nohighlight">\(\cdots\)</spa
 </div>
 </section>
 <section id="x-spectra">
-<h3><span class="section-number">8.2.9. </span>X-Spectra（試験的運用）<a class="headerlink" href="#x-spectra" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.2.9. </span>X-Spectra（試験的運用）<a class="headerlink" href="#x-spectra" title="Link to this heading"></a></h3>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>擬ポテンシャルの組み合わせによって計算が走らないケースがあるため、当面は試験的な運用とさせていただきます。</p>
@@ -285,7 +286,7 @@ q-point 1, q-point 2, <span class="math notranslate nohighlight">\(\cdots\)</spa
 </section>
 </section>
 <section id="classical-molecular-dynamics-simulation">
-<h2><span class="section-number">8.3. </span>Classical Molecular Dynamics Simulation（古典分子動力学法）<a class="headerlink" href="#classical-molecular-dynamics-simulation" title="Link to this heading"></a></h2>
+<h2><span class="section-number">9.3. </span>Classical Molecular Dynamics Simulation（古典分子動力学法）<a class="headerlink" href="#classical-molecular-dynamics-simulation" title="Link to this heading"></a></h2>
 <p>古典分子動力学計算ソフトは現在 LAMMPS のみが利用可能となっています。
 「Create Job」をクリックし、「Classical Molecular Dynamics Simulation」を選択すると、 現在実行可能な Classical MD のメニューが現れます。</p>
 <img alt="../_images/screenshot_0158.png" src="../_images/screenshot_0158.png" />
@@ -294,7 +295,7 @@ q-point 1, q-point 2, <span class="math notranslate nohighlight">\(\cdots\)</spa
 <div class="line"><br /></div>
 </div>
 <section id="atomic-structure-opt">
-<h3><span class="section-number">8.3.1. </span>Atomic Structure Opt.（原子構造最適化）<a class="headerlink" href="#atomic-structure-opt" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.3.1. </span>Atomic Structure Opt.（原子構造最適化）<a class="headerlink" href="#atomic-structure-opt" title="Link to this heading"></a></h3>
 <p>LAMMPS では原子構造の最適化も行うことができます。8.1.1 で述べた第一原理計算による構造最適化よりも計算が軽く、計算時間が節約できます。
 構造最適化は LAMMPS で行い、第一原理計算は電子状態計算にだけ用いるという方法もあります。</p>
 <img alt="../_images/screenshot_0159.png" src="../_images/screenshot_0159.png" />
@@ -319,7 +320,7 @@ q-point 1, q-point 2, <span class="math notranslate nohighlight">\(\cdots\)</spa
 </div>
 </section>
 <section id="id2">
-<h3><span class="section-number">8.3.2. </span>Molecular Dynamics（分子動力学法）<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.3.2. </span>Molecular Dynamics（分子動力学法）<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <img alt="../_images/screenshot_0160.png" src="../_images/screenshot_0160.png" />
 <p>設定メニューは Atomic Structure Opt. と概ね同じです。各項目は次のようになっています。</p>
 <ul class="simple">
@@ -339,7 +340,7 @@ q-point 1, q-point 2, <span class="math notranslate nohighlight">\(\cdots\)</spa
 </section>
 </section>
 <section id="machine-learning-md-md">
-<h2><span class="section-number">8.4. </span>Machine-Learning MD（機械学習 MD）<a class="headerlink" href="#machine-learning-md-md" title="Link to this heading"></a></h2>
+<h2><span class="section-number">9.4. </span>Machine-Learning MD（機械学習 MD）<a class="headerlink" href="#machine-learning-md-md" title="Link to this heading"></a></h2>
 <p>このカテゴリのソフトウェアとして、広範な系に対して汎用的に利用可能な、大規模データ学習済の機械学習モデルを扱う ASE、および
 On-The-Fly で MD を実行しながら、原子間ポテンシャルの機械学習モデルを更新できる FLARE が利用可能です。</p>
 <img alt="../_images/screenshot_0161a.png" src="../_images/screenshot_0161a.png" />
@@ -347,7 +348,7 @@ On-The-Fly で MD を実行しながら、原子間ポテンシャルの機械�
 <div class="line"><br /></div>
 </div>
 <section id="ase-atom-opt-lattice-opt-neb-md">
-<h3><span class="section-number">8.4.1. </span>ASE（Atom Opt.，Lattice Opt.，NEB，MD）<a class="headerlink" href="#ase-atom-opt-lattice-opt-neb-md" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.4.1. </span>ASE（Atom Opt.，Lattice Opt.，NEB，MD）<a class="headerlink" href="#ase-atom-opt-lattice-opt-neb-md" title="Link to this heading"></a></h3>
 <p>事前に機械学習されたポテンシャルを利用して、原子構造構造最適化、NEB 計算、および MD シミュレーション等を行います。
 これらは全て ASE（Atomic Structure Environment）の機能を用いて計算されます。</p>
 <img alt="../_images/screenshot_0191.png" src="../_images/screenshot_0191.png" />
@@ -383,7 +384,7 @@ On-The-Fly で MD を実行しながら、原子間ポテンシャルの機械�
 </div>
 </section>
 <section id="on-the-fly-md-flare">
-<h3><span class="section-number">8.4.2. </span>On-The-Fly MD (FLARE)<a class="headerlink" href="#on-the-fly-md-flare" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.4.2. </span>On-The-Fly MD (FLARE)<a class="headerlink" href="#on-the-fly-md-flare" title="Link to this heading"></a></h3>
 <p>本カテゴリのソフトウェアとして、現在 FLARE が利用できます。
 Quloud では FLARE を利用した On-the-fly（OTF）学習が可能です。
 OTF は、MD 計算を実行しながら機械学習ポテンシャルの誤差評価を行い、
@@ -391,7 +392,7 @@ OTF は、MD 計算を実行しながら機械学習ポテンシャルの誤差�
 「FLARE」のボタンを押すと、以下のような画面が開きます。
 タブにより「機械学習（ML）および MD の設定」と「第一原理計算の設定」のメニューが切り替わります。</p>
 <section id="machine-learning-setting-otf-md">
-<h4><span class="section-number">8.4.2.1. </span>Machine Learning Setting（OTF 機械学習および MD 計算の設定）<a class="headerlink" href="#machine-learning-setting-otf-md" title="Link to this heading"></a></h4>
+<h4><span class="section-number">9.4.2.1. </span>Machine Learning Setting（OTF 機械学習および MD 計算の設定）<a class="headerlink" href="#machine-learning-setting-otf-md" title="Link to this heading"></a></h4>
 <img alt="../_images/screenshot_0161.png" src="../_images/screenshot_0161.png" />
 <p>ML および MD の設定メニューの内容は下記のようになります：</p>
 <ul class="simple">
@@ -431,7 +432,7 @@ OTF は、MD 計算を実行しながら機械学習ポテンシャルの誤差�
 </ul>
 </section>
 <section id="calculation-engine-setting">
-<h4><span class="section-number">8.4.2.2. </span>Calculation Engine Setting（第一原理計算部分の設定）<a class="headerlink" href="#calculation-engine-setting" title="Link to this heading"></a></h4>
+<h4><span class="section-number">9.4.2.2. </span>Calculation Engine Setting（第一原理計算部分の設定）<a class="headerlink" href="#calculation-engine-setting" title="Link to this heading"></a></h4>
 <img alt="../_images/screenshot_0162.png" src="../_images/screenshot_0162.png" />
 <p>第一原理計算設定タブのメニューは 8.1.1 で説明した「SCF 電子状態計算」の項目と同じですので、
 詳しくはそちらをご参照ください。</p>
@@ -443,7 +444,7 @@ OTF は、MD 計算を実行しながら機械学習ポテンシャルの誤差�
 </section>
 </section>
 <section id="quloud-mag">
-<h2><span class="section-number">8.5. </span>Quloud-Mag（第一原理磁性材料シミュレーション）<a class="headerlink" href="#quloud-mag" title="Link to this heading"></a></h2>
+<h2><span class="section-number">9.5. </span>Quloud-Mag（第一原理磁性材料シミュレーション）<a class="headerlink" href="#quloud-mag" title="Link to this heading"></a></h2>
 <p>Quloud-Mag は、下図のような Workflows の一群です。第一原理計算の SPRKKR で飽和磁気モーメントや、磁気交換相互作用定数といったパラメータを算出し、それらをよりマクロなシミュレーション、
 Heisenberg モデルによる Monte Carlo シミュレーション、
 LLG 方程式に基づく Micro-Magnetic シミュレーションへと繋いでいく手法です。</p>
@@ -452,7 +453,7 @@ LLG 方程式に基づく Micro-Magnetic シミュレーションへと繋いで
 <div class="line"><br /></div>
 </div>
 <section id="sprkkr-first-principles-scf-scf">
-<span id="sprkkr-scf"></span><h3><span class="section-number">8.5.1. </span>SPRKKR (First-Principles SCF)（第一原理 SCF 計算）<a class="headerlink" href="#sprkkr-first-principles-scf-scf" title="Link to this heading"></a></h3>
+<span id="sprkkr-scf"></span><h3><span class="section-number">9.5.1. </span>SPRKKR (First-Principles SCF)（第一原理 SCF 計算）<a class="headerlink" href="#sprkkr-first-principles-scf-scf" title="Link to this heading"></a></h3>
 <p>下図に SPRKKR による第一原理 SCF 計算の設定メニューを示します。</p>
 <img alt="../_images/screenshot_0163.png" src="../_images/screenshot_0163.png" />
 <p>この計算は、続く磁気交換相互作用パラメータの計算など、
@@ -476,7 +477,7 @@ LLG 方程式に基づく Micro-Magnetic シミュレーションへと繋いで
 </div>
 </section>
 <section id="sprkkr-exchange-coupling-parameters">
-<h3><span class="section-number">8.5.2. </span>SPRKKR (Exchange Coupling Parameters)（磁気交換相互作用の第一原理計算）<a class="headerlink" href="#sprkkr-exchange-coupling-parameters" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.5.2. </span>SPRKKR (Exchange Coupling Parameters)（磁気交換相互作用の第一原理計算）<a class="headerlink" href="#sprkkr-exchange-coupling-parameters" title="Link to this heading"></a></h3>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>本ジョブは、SPRKKR (First-Principles SCF) の計算結果を引き継いで作成されるため、SPRKKR (First-Principles SCF) が正常終了し、Property として登録されたものをベースにする必要があります（<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>の Select Property でSPRKKR (First-Principles SCF) が選択された状態でないと、Workflows 中の SPRKKR (Exchange Coupling Parameters) の選択肢がアクティブになりません）</p>
@@ -494,7 +495,7 @@ LLG 方程式に基づく Micro-Magnetic シミュレーションへと繋いで
 </div>
 </section>
 <section id="monte-carlo-quloud-mag">
-<h3><span class="section-number">8.5.3. </span>Monte Carlo (Quloud-Mag)<a class="headerlink" href="#monte-carlo-quloud-mag" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.5.3. </span>Monte Carlo (Quloud-Mag)<a class="headerlink" href="#monte-carlo-quloud-mag" title="Link to this heading"></a></h3>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>本ジョブは、SPRKKR (Exchange Coupling Parameters) の計算結果を引き継いで作成されるため、SPRKKR (Exchange Coupling Parameters) が正常終了し、Property として登録されたものをベースにする必要があります（<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>の Select Property でSPRKKR (Exchange Coupling Parameters) が選択された状態でないと、Workflows 中の Monte Carlo (Quloud-Mag) の選択肢がアクティブになりません）</p>
@@ -528,7 +529,7 @@ Jij を含む各パラメータが適切に設定された状態でメニュー�
 </div>
 </section>
 <section id="micro-magnetic-simulation-quloud-mag-llg">
-<h3><span class="section-number">8.5.4. </span>Micro-Magnetic Simulation (Quloud-Mag-LLG)<a class="headerlink" href="#micro-magnetic-simulation-quloud-mag-llg" title="Link to this heading"></a></h3>
+<h3><span class="section-number">9.5.4. </span>Micro-Magnetic Simulation (Quloud-Mag-LLG)<a class="headerlink" href="#micro-magnetic-simulation-quloud-mag-llg" title="Link to this heading"></a></h3>
 <p>下図に Quloud-Mag によるマイクロマグネティックシミュレーションの設定メニューを示します。</p>
 <img alt="../_images/screenshot_0164.png" src="../_images/screenshot_0164.png" />
 <p>各設定項目の内容は下記の通りです：</p>
@@ -557,7 +558,7 @@ Jij を含む各パラメータが適切に設定された状態でメニュー�
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">8.6. </span>入力ファイルの直接アップロードによる計算 Job の登録<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<h2><span class="section-number">9.6. </span>入力ファイルの直接アップロードによる計算 Job の登録<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>ユーザー自身で用意した入力ファイルを直接アップロードして Job を登録することも可能です。上述した方法とは異なり、操作はダッシュボード（トップ画面）で行います。</p>
 <img alt="../_images/screenshot_0234.png" src="../_images/screenshot_0234.png" />
 <p>まず、新規 Project（ここでは &quot;File_Upload&quot;）を作成し、Project を選択した状態で Materials タブに切り替え、右側にある「＋」アイコンをクリックします。</p>
@@ -599,8 +600,8 @@ Jij を含む各パラメータが適切に設定された状態でメニュー�
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modeling.html" class="btn btn-neutral float-left" title="7. Material のモデリング" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="runjob.html" class="btn btn-neutral float-right" title="9. 計算 Job の実行" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modeling.html" class="btn btn-neutral float-left" title="8. Material のモデリング" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="runjob.html" class="btn btn-neutral float-right" title="10. 計算 Job の実行" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

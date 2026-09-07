@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="article:modified_time" content="2026-09-08T00:17:23+09:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. はじめに</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
+
+  
+    <link rel="shortcut icon" href="../_static/Quloud_B.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=c033477b"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=91613774"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2. サインアップ" href="signup.html" />
+    <link rel="prev" title="Index" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quloud Ver.7.0 Manual
+          </a>
+              <div class="version">
+                2026.4.20
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. はじめに</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.1. 本書の構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.2. 動作環境</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.2.1. ブラウザ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.2.2. 表示言語</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.3. 本書の記法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">1.4. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">1.5. 利用できる計算エンジンと機能</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">8. Material のモデリング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculation.html">9. 計算 Job の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runjob.html">10. 計算 Job の実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="property.html">11. Property の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="header.html">14. ヘッダーメニュー（各種管理）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">15. 仕様</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">16. 変更履歴</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quloud Ver.7.0 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>はじめに</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">1. </span>はじめに<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
+<p>Quloud は、ブラウザから第一原理計算や分子動力学計算などの材料シミュレーションを実行し、
+その結果を蓄積・比較するためのプラットフォームです。計算対象の原子構造を Material として
+登録し、実行したい計算を選んで Job として実行し、得られた結果を Property として残していく、
+という流れで利用します。</p>
+<p>本書は Quloud の操作方法を説明します。計算手法そのものの解説や、計算エンジンごとの入力
+パラメータが持つ物理的な意味については、各計算エンジンの公式ドキュメントをご参照ください。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<section id="id2">
+<h2><span class="section-number">1.1. </span>本書の構成<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>以降の章は、おおむね実際の操作の順に並んでいます。</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="signup.html"><span class="doc">サインアップ</span></a> ・ <a class="reference internal" href="signin.html"><span class="doc">サインイン・サインアウト</span></a> ・ <a class="reference internal" href="invitation.html"><span class="doc">新規ユーザーの招待</span></a> — アカウントを用意します。</p></li>
+<li><p><a class="reference internal" href="dashboard.html"><span class="doc">ダッシュボード（トップ画面）</span></a> — Project・Material・Job・Property の一覧から目的のものを探します。</p></li>
+<li><p><a class="reference internal" href="jobs_and_models_atom.html"><span class="doc">Material の登録</span></a> ・ <a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> ・ <a class="reference internal" href="modeling.html"><span class="doc">Material のモデリング</span></a> — 計算対象の原子構造を用意します。</p></li>
+<li><p><a class="reference internal" href="calculation.html"><span class="doc">計算 Job の登録</span></a> ・ <a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> — 計算 Job を登録し、実行します。</p></li>
+<li><p><a class="reference internal" href="property.html"><span class="doc">Property の登録</span></a> ・ <a class="reference internal" href="visualization.html"><span class="doc">計算結果の可視化</span></a> ・ <a class="reference internal" href="files.html"><span class="doc">入出力ファイルとログ</span></a> — 計算結果を確認します。</p></li>
+<li><p><a class="reference internal" href="header.html"><span class="doc">ヘッダーメニュー（各種管理）</span></a> — テナント・ユーザー・利用状況を管理します。</p></li>
+<li><p><a class="reference internal" href="specifications.html"><span class="doc">仕様</span></a> — 現在の仕様と制限事項、計算エンジンごとの注意事項をまとめています。</p></li>
+<li><p><a class="reference internal" href="release_notes.html"><span class="doc">変更履歴</span></a> — バージョンごとの変更内容です。</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">1.2. </span>動作環境<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<section id="id4">
+<h3><span class="section-number">1.2.1. </span>ブラウザ<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Quloud はブラウザから利用します。モデリング画面、構造ビューア、ブリルアンゾーン表示、
+等値面表示、分子動力学のアニメーション表示は WebGL を使用しますので、WebGL が利用できる
+ブラウザをご使用ください。</p>
+<p>本書に掲載している画面は、ウィンドウ幅 1440 px の Chromium 系ブラウザで確認したものです。
+ウィンドウ幅が狭い場合は、一覧の列が省略されるなど、表示が本書と異なることがあります。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">1.2.2. </span>表示言語<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Quloud の画面は日本語と英語に対応しており、既定は日本語です。表示言語は、ヘッダーの
+「アカウント」から「プロフィール」を開き、「プロフィールを編集」の「表示言語（Language）」で
+切り替えます（<a class="reference internal" href="header.html"><span class="doc">ヘッダーメニュー（各種管理）</span></a> 参照）。</p>
+<p><strong>本書は日本語表示の画面で説明します。</strong> 英語表示に切り替えた場合、ボタン名や項目名は
+本書の記載と異なります。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">1.3. </span>本書の記法<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>画面上のボタン名・項目名・タブ名は「 」で囲みます（例：「ジョブ作成」）。</p></li>
+<li><p>ファイル名、内部的なキー、コード値は等幅で示します（例：<code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code>、<code class="docutils literal notranslate"><span class="pre">scf</span></code>）。</p></li>
+<li><p>特に注意していただきたい箇所は <strong>太字</strong> で示します。</p></li>
+<li><p>掲載している画面は説明のために用意したものです。テナント名、ユーザー名、ポイント残高、
+日時などは、実際の画面とは異なります。</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">1.4. </span>用語<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>本書では次の用語を使用します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>用語</p></th>
+<th class="head"><p>説明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>テナント（Tenant）</p></td>
+<td><p>契約の単位です。すべてのユーザーはいずれかのテナントに所属します。ポイントの残高、
+ストレージの容量、契約期間、利用できる計算エンジンは、テナントごとに決まります。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ロール</p></td>
+<td><p>テナント内でのユーザーの権限です。管理ユーザー（Owner）とメンバー（Member）の
+2 種類があります。ユーザーの招待や利用状況の確認は、管理ユーザーが行います。</p></td>
+</tr>
+<tr class="row-even"><td><p>Project（プロジェクト）</p></td>
+<td><p>Material と Job をまとめる単位です。同じテナントのユーザーを参加させて共有できます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Material（マテリアル）</p></td>
+<td><p>計算の対象となる原子構造です。「結晶」と「分子」の 2 種類があります。</p></td>
+</tr>
+<tr class="row-even"><td><p>Job（ジョブ）</p></td>
+<td><p>1 回の計算の実行単位です。計算に使う Material、入力パラメータ、計算リソースの
+指定からなります。</p></td>
+</tr>
+<tr class="row-odd"><td><p>計算エンジン</p></td>
+<td><p>計算を実行するソフトウェアです（Quantum ESPRESSO、OpenMX など）。画面上では
+「計算ソフト」と表示されます。</p></td>
+</tr>
+<tr class="row-even"><td><p>計算機能</p></td>
+<td><p>「ジョブ作成」で選ぶ計算の種類です（自己無撞着電子状態計算、構造最適化、状態密度
+計算など）。1 つ以上のステップからなるワークフローとして定義されており、各ステップで
+どの計算エンジンのどの機能を実行するかが決まっています。複数ステップの計算機能では、
+1 回の Job 登録で複数の計算が順に実行されます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Property（プロパティ）</p></td>
+<td><p>Job の計算結果のうち、Material に紐づけて残しておきたいものを選んで登録したものです。
+Material ごとにグループへ分けて整理できます。</p></td>
+</tr>
+<tr class="row-even"><td><p>ポイント</p></td>
+<td><p>計算の実行に消費される単位です。テナントごとに管理され、残高と有効期限はヘッダーの
+「利用情報」で確認できます。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">1.5. </span>利用できる計算エンジンと機能<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>Quloud で利用できる計算エンジンと機能の対応は次のとおりです。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 14.0%" />
+<col style="width: 28.0%" />
+<col style="width: 20.0%" />
+<col style="width: 16.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>計算エンジン</p></th>
+<th class="head"><p>エンジンコード</p></th>
+<th class="head"><p>機能</p></th>
+<th class="head"><p>機能コード</p></th>
+<th class="head"><p>区分</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ASE-MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">asemd</span></code></p></td>
+<td><p>格子定数最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>機械学習MD</p></td>
+</tr>
+<tr class="row-odd"><td><p>ASE-MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">asemd</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>機械学習MD</p></td>
+</tr>
+<tr class="row-even"><td><p>ASE-MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">asemd</span></code></p></td>
+<td><p>機械学習ポテンシャル MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml_md</span></code></p></td>
+<td><p>機械学習MD</p></td>
+</tr>
+<tr class="row-odd"><td><p>ASE-MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">asemd</span></code></p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neb</span></code></p></td>
+<td><p>機械学習MD</p></td>
+</tr>
+<tr class="row-even"><td><p>DFT-1/2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dft12</span></code></p></td>
+<td><p>DFT-1/2 擬ポテンシャル生成（UPF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dft12_upf</span></code></p></td>
+<td><p>第一原理計算（擬ポテンシャル）</p></td>
+</tr>
+<tr class="row-odd"><td><p>FLARE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">flare</span></code></p></td>
+<td><p>機械学習ポテンシャル MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml_md</span></code></p></td>
+<td><p>機械学習MD</p></td>
+</tr>
+<tr class="row-even"><td><p>GROMACS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gromacs</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>古典MD・分子力学</p></td>
+</tr>
+<tr class="row-odd"><td><p>GROMACS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gromacs</span></code></p></td>
+<td><p>古典分子動力学</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">classical_md</span></code></p></td>
+<td><p>古典MD・分子力学</p></td>
+</tr>
+<tr class="row-even"><td><p>HybMD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hybmd</span></code></p></td>
+<td><p>機械学習ポテンシャル MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml_md</span></code></p></td>
+<td><p>第一原理／機械学習ハイブリッドMD</p></td>
+</tr>
+<tr class="row-odd"><td><p>HybMD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hybmd</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>第一原理／機械学習ハイブリッドMD</p></td>
+</tr>
+<tr class="row-even"><td><p>LAMMPS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lammps</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>古典MD</p></td>
+</tr>
+<tr class="row-odd"><td><p>LAMMPS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lammps</span></code></p></td>
+<td><p>古典分子動力学</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">classical_md</span></code></p></td>
+<td><p>古典MD</p></td>
+</tr>
+<tr class="row-even"><td><p>Quloud-Mag</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mag</span></code></p></td>
+<td><p>モンテカルロ磁性計算</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">monte_carlo_mag</span></code></p></td>
+<td><p>磁性計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quloud-Mag</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mag</span></code></p></td>
+<td><p>LLG ダイナミクス</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">llg_dynamics</span></code></p></td>
+<td><p>磁性計算</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>格子定数最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>電子バンド構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">band_structure</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>状態密度計算（DOS）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dos</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>分子動力学</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">molecular_dynamics</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neb</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx</span></code></p></td>
+<td><p>交換結合パラメータ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">exchange_coupling</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Psi4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>量子化学計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Psi4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>量子化学計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Psi4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4</span></code></p></td>
+<td><p>分子振動解析</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code></p></td>
+<td><p>量子化学計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>格子定数最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>電子バンド構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">band_structure</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>状態密度計算（DOS）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dos</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>投影状態密度（PDOS）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">projected_dos</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neb</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>フォノン計算</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phonon</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>X線吸収スペクトル（XSpectra）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xspectra</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>X線吸収スペクトル用 SCF</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xas_scf</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>固定ポテンシャル電子状態計算</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nscf</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>固定ポテンシャル電子状態計算（バンド）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bands</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>力定数計算（q2r）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q2r</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>フォノンバンド分散（matdyn）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matdyn_disp</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qe</span></code></p></td>
+<td><p>フォノン状態密度（matdyn）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matdyn_dos</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qm_resp</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>高分子平衡化MD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_equilibration</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>溶解度パラメータ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_sp</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>ガラス転移温度</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_tg</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>熱伝導率</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_tc</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>ヤング率（機械特性）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_elong</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">radonpy</span></code></p></td>
+<td><p>複素誘電率</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_dielectric</span></code></p></td>
+<td><p>高分子物性計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft</span></code></p></td>
+<td><p>構造最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft</span></code></p></td>
+<td><p>格子定数最適化</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft</span></code></p></td>
+<td><p>電子バンド構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">band_structure</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft</span></code></p></td>
+<td><p>状態密度計算（DOS）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dos</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-even"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft</span></code></p></td>
+<td><p>分子動力学</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">molecular_dynamics</span></code></p></td>
+<td><p>第一原理計算</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPRKKR</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sprkkr</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>磁性計算</p></td>
+</tr>
+<tr class="row-even"><td><p>SPRKKR</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sprkkr</span></code></p></td>
+<td><p>交換結合パラメータ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">exchange_coupling</span></code></p></td>
+<td><p>磁性計算</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>この表は、計算エンジンごとにどの種類の計算ができるかを示したものです。
+実際に「ジョブ作成」で選ぶ単位はこの表の「機能」そのものではなく、<strong>計算機能</strong> です。
+1 つの計算機能は複数のステップからなることがあり、その場合は 1 回の Job 登録で
+複数の計算が順に実行されます。たとえば「フォノンバンド」は、構造最適化・フォノン計算・
+力定数計算・フォノンバンド分散の 4 ステップを順に実行します。選べる計算機能の一覧は
+<a class="reference internal" href="specifications.html"><span class="doc">仕様</span></a> の章に掲載しています。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>利用できる計算エンジンはテナントごとに異なります。上の表に挙げたもののうち、
+<strong>DFT-1/2 と HybMD は、テナントに割り当てられている場合にのみ選択できます。</strong>
+そのほかの計算エンジンは、すべてのテナントで選択できます。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><strong>Psi4 は分子専用です。</strong> 結晶の Material に対しては、Psi4 を使う計算機能を選択できません。</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Index" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="signup.html" class="btn btn-neutral float-right" title="2. サインアップ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Quemix Inc.
+      <span class="lastupdated">最終更新: 9月 08, 2026
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

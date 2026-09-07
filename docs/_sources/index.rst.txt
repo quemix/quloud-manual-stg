@@ -10,6 +10,7 @@ Index
   :maxdepth: 2
   :numbered:
 
+  source/introduction
   source/signup
   source/signin
   source/invitation
