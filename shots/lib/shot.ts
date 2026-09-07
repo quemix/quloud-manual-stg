@@ -38,6 +38,13 @@ export type ShotSpec = {
    * PNG が 2 枚できた。ここで URL を検査して落とす。
    */
   expectUrl: RegExp
+  /**
+   * 撮れない条件のとき、その理由を返す。返した場合はそのショットを飛ばす。
+   *
+   * 有効なトークンが要る画面のように、読み取りだけでは撮れないものがある。
+   * 黙って落とすのでも、間違った画面を撮るのでもなく、理由を出して飛ばす。
+   */
+  skipIf?: () => string | false
   /** ページ全体を撮る。既定はビューポートだけ。 */
   fullPage?: boolean
   /** 撮りたい状態まで画面を進める。 */
@@ -50,6 +57,9 @@ export function defineShots(specs: ShotSpec[]): void {
 
   for (const spec of specs) {
     test(spec.name, async ({ page }, testInfo) => {
+      const reason = spec.skipIf?.()
+      if (reason) test.skip(true, reason)
+
       await spec.prepare(page)
       await expect(page).toHaveURL(spec.expectUrl)
 

@@ -150,6 +150,26 @@ def check() -> int:
         if not row["caption"]:
             problems.append(f"caption が空: {pid}")
 
+    # 掲載箇所台帳と原稿の食い違いを見る。台帳だけ直して章を直し忘れる（逆も）と
+    # 台帳が監査の役に立たなくなるので、実ファイルに当たって確かめる。
+    for row in placements:
+        pid, chapter = row["placement_id"], row["章"]
+        rst = REPO / "source" / f"{chapter}.rst"
+        if not rst.exists():
+            problems.append(f"章の原稿が無い: {pid} -> source/{chapter}.rst")
+            continue
+        body = rst.read_text(encoding="utf-8")
+        ref = f"images/v70/{row['asset_id']}.png"
+        if ref not in body:
+            problems.append(f"原稿がこの画像を参照していない: {pid} -> {ref}（source/{chapter}.rst）")
+        # RST は行を折り返すことがあり、折り返し位置に空白が入る。日本語では
+        # 空白に意味が無いので、両側から空白をすべて落として比較する。
+        flat = "".join(body.split())
+        for field in ("alt", "caption"):
+            value = "".join(row[field].split())
+            if value and value not in flat:
+                problems.append(f"原稿の{field}が台帳と違う: {pid}（source/{chapter}.rst）")
+
     placed = {row["asset_id"] for row in placements}
     unplaced = sorted(asset_ids - placed)
 

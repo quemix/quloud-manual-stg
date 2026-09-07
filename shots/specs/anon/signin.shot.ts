@@ -30,4 +30,16 @@ defineShots([
       await settle(page)
     },
   },
+  {
+    name: 'signin_reset_password_sent',
+    chapter: 'signin',
+    feature: 'パスワード再設定申請',
+    state: '送信後',
+    expectUrl: /\/request_reset_password\/complete$/,
+    prepare: async (page) => {
+      // 静的なページなので直接開ける。実際に送信すると遷移してくる先。
+      await page.goto('/request_reset_password/complete')
+      await settle(page)
+    },
+  },
 ])

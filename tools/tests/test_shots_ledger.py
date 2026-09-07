@@ -124,9 +124,20 @@ class TestBuild(LedgerTestBase):
 
 
 class TestCheck(LedgerTestBase):
+    def write_chapter(self, name, body):
+        d = self.repo / "source"
+        d.mkdir(parents=True, exist_ok=True)
+        (d / f"{name}.rst").write_text(body, encoding="utf-8")
+
     def test_ok_when_consistent(self):
         self.add_sidecar("signin_form_initial")
         L.build("abc")
+        self.write_chapter("signin", (
+            ".. figure:: images/v70/signin_form_initial.png\n"
+            "   :alt: サインイン画面\n"
+            "\n"
+            "   サインイン画面\n"
+        ))
         self.write_placements([{
             "placement_id": "signin-1",
             "asset_id": "signin_form_initial",
@@ -157,6 +168,7 @@ class TestCheck(LedgerTestBase):
     def test_detects_missing_alt_and_caption(self):
         self.add_sidecar("shot_one")
         L.build("abc")
+        self.write_chapter("signin", ".. image:: images/v70/shot_one.png\n")
         self.write_placements([{
             "placement_id": "p1", "asset_id": "shot_one", "章": "signin",
             "節": "節", "alt": "", "caption": "",
@@ -166,6 +178,7 @@ class TestCheck(LedgerTestBase):
     def test_detects_duplicate_placement_id(self):
         self.add_sidecar("shot_one")
         L.build("abc")
+        self.write_chapter("signin", ".. image:: images/v70/shot_one.png\n   :alt: a\n\n   c\n")
         self.write_placements([
             {"placement_id": "p1", "asset_id": "shot_one", "章": "signin",
              "節": "節", "alt": "a", "caption": "c"},
@@ -183,3 +196,70 @@ class TestCheck(LedgerTestBase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCheckAgainstManuscript(LedgerTestBase):
+    """掲載箇所台帳と章の原稿の照合。"""
+
+    def setUp(self):
+        super().setUp()
+        self.chapters = self.repo / "source"
+        self.chapters.mkdir(parents=True, exist_ok=True)
+        self.add_sidecar("signin_form_initial")
+        L.build("abc")
+
+    def write_chapter(self, name, body):
+        (self.chapters / f"{name}.rst").write_text(body, encoding="utf-8")
+
+    def placement(self, **over):
+        row = {
+            "placement_id": "signin-01",
+            "asset_id": "signin_form_initial",
+            "章": "signin",
+            "節": "サインイン",
+            "alt": "サインイン画面。入力欄がある。",
+            "caption": "サインイン画面",
+        }
+        row.update(over)
+        return row
+
+    def test_ok_when_manuscript_matches(self):
+        self.write_chapter("signin", (
+            ".. figure:: images/v70/signin_form_initial.png\n"
+            "   :alt: サインイン画面。入力欄がある。\n"
+            "\n"
+            "   サインイン画面\n"
+        ))
+        self.write_placements([self.placement()])
+        self.assertEqual(L.check(), 0)
+
+    def test_ok_when_alt_is_wrapped_across_lines(self):
+        # RST は長い alt を折り返すので、改行をまたいでも一致とみなす。
+        self.write_chapter("signin", (
+            ".. figure:: images/v70/signin_form_initial.png\n"
+            "   :alt: サインイン画面。\n"
+            "      入力欄がある。\n"
+            "\n"
+            "   サインイン画面\n"
+        ))
+        self.write_placements([self.placement()])
+        self.assertEqual(L.check(), 0)
+
+    def test_detects_chapter_without_the_image(self):
+        self.write_chapter("signin", "サインイン\n=========\n")
+        self.write_placements([self.placement()])
+        self.assertEqual(L.check(), 1)
+
+    def test_detects_alt_drift(self):
+        self.write_chapter("signin", (
+            ".. figure:: images/v70/signin_form_initial.png\n"
+            "   :alt: 古い説明文\n"
+            "\n"
+            "   サインイン画面\n"
+        ))
+        self.write_placements([self.placement()])
+        self.assertEqual(L.check(), 1)
+
+    def test_detects_missing_chapter_file(self):
+        self.write_placements([self.placement(章="no_such_chapter")])
+        self.assertEqual(L.check(), 1)
