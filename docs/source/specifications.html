@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-09-08T00:17:23+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T06:50:44+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>15. 仕様</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -132,215 +132,268 @@
 </section>
 <section id="id3">
 <h2><span class="section-number">15.2. </span>「ジョブ作成」で選べる計算機能<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<p>「ジョブ作成」の選択ダイアログに表示される計算機能は次のとおりです。</p>
+<p>「ジョブ作成」では「計算ソフト」と「計算機能」の組み合わせを選びます。選べる組み合わせは
+次の 49 通りです。「実行されるステップ」は、その組み合わせを選んだときに順に実行される
+計算です。</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 40.0%" />
-<col style="width: 40.0%" />
 <col style="width: 20.0%" />
+<col style="width: 24.0%" />
+<col style="width: 16.0%" />
+<col style="width: 40.0%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>名称</p></th>
-<th class="head"><p>英語表記</p></th>
+<tr class="row-odd"><th class="head"><p>計算ソフト</p></th>
+<th class="head"><p>計算機能</p></th>
 <th class="head"><p>機能コード</p></th>
+<th class="head"><p>実行されるステップ</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>自己無撞着電子状態計算（QE）</p></td>
-<td><p>Self-consistent Electronic Structure Calculation (QE)</p></td>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-odd"><td><p>構造最適化（QE）</p></td>
-<td><p>Geometry Optimization (QE)</p></td>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>格子定数最適化（QE）</p></td>
-<td><p>Lattice Optimization (QE)</p></td>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p>格子定数最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>格子定数最適化</p></td>
 </tr>
-<tr class="row-odd"><td><p>固定ポテンシャル電子状態計算（QE）</p></td>
-<td><p>Fixed-Potential Electronic Structure (QE)</p></td>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p>固定ポテンシャル電子状態計算</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">nscf</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算</p></td>
 </tr>
-<tr class="row-even"><td><p>電子バンド</p></td>
-<td><p>Electronic Band Structure</p></td>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p>電子バンド構造</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">band_structure</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算（バンド） → 電子バンド構造</p></td>
 </tr>
-<tr class="row-odd"><td><p>NEB（QE）</p></td>
-<td><p>NEB (QE)</p></td>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">neb</span></code></p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
 </tr>
-<tr class="row-even"><td><p>DFT-1/2 擬ポテンシャル生成（QE）</p></td>
-<td><p>DFT-1/2 Pseudopotential Generation (QE)</p></td>
+<tr class="row-even"><td><p>DFT-1/2</p></td>
+<td><p>DFT-1/2 擬ポテンシャル生成（UPF）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">dft12_upf</span></code></p></td>
+<td><p>DFT-1/2 擬ポテンシャル生成（UPF）</p></td>
 </tr>
-<tr class="row-odd"><td><p>電子状態密度</p></td>
-<td><p>Electronic Density of States</p></td>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p>状態密度計算（DOS）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">dos</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算 → 状態密度計算（DOS）</p></td>
 </tr>
-<tr class="row-even"><td><p>投影状態密度</p></td>
-<td><p>Projected Density of States</p></td>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p>投影状態密度（PDOS）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">projected_dos</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF） → 固定ポテンシャル電子状態計算 → 投影状態密度（PDOS）</p></td>
 </tr>
-<tr class="row-odd"><td><p>フォノンバンド</p></td>
-<td><p>Phonon Band Structure</p></td>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p>フォノンバンド分散（matdyn）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">matdyn_disp</span></code></p></td>
+<td><p>構造最適化 → フォノン計算 → 力定数計算（q2r） → フォノンバンド分散（matdyn）</p></td>
 </tr>
-<tr class="row-even"><td><p>フォノン状態密度</p></td>
-<td><p>Phonon Density of States</p></td>
+<tr class="row-even"><td><p>Quantum ESPRESSO</p></td>
+<td><p>フォノン状態密度（matdyn）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">matdyn_dos</span></code></p></td>
+<td><p>構造最適化 → フォノン計算 → 力定数計算（q2r） → フォノン状態密度（matdyn）</p></td>
 </tr>
-<tr class="row-odd"><td><p>X線吸収スペクトル</p></td>
-<td><p>X-ray Absorption Spectrum</p></td>
+<tr class="row-odd"><td><p>Quantum ESPRESSO</p></td>
+<td><p>X線吸収スペクトル（XSpectra）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">xspectra</span></code></p></td>
+<td><p>X線吸収スペクトル用 SCF → X線吸収スペクトル（XSpectra）</p></td>
 </tr>
-<tr class="row-even"><td><p>自己無撞着電子状態計算（OpenMX）</p></td>
-<td><p>Self-consistent Electronic Structure Calculation (OpenMX)</p></td>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-odd"><td><p>構造最適化（OpenMX）</p></td>
-<td><p>Geometry Optimization (OpenMX)</p></td>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>格子定数最適化（OpenMX）</p></td>
-<td><p>Lattice Optimization (OpenMX)</p></td>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p>格子定数最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>格子定数最適化</p></td>
 </tr>
-<tr class="row-odd"><td><p>バンド計算（OpenMX）</p></td>
-<td><p>Band Structure (OpenMX)</p></td>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p>電子バンド構造</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">band_structure</span></code></p></td>
+<td><p>電子バンド構造</p></td>
 </tr>
-<tr class="row-even"><td><p>状態密度計算（OpenMX）</p></td>
-<td><p>Density of States (OpenMX)</p></td>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p>状態密度計算（DOS）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">dos</span></code></p></td>
+<td><p>状態密度計算（DOS）</p></td>
 </tr>
-<tr class="row-odd"><td><p>第一原理分子動力学（OpenMX）</p></td>
-<td><p>First-Principles MD (OpenMX)</p></td>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p>第一原理分子動力学</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">fp_md</span></code></p></td>
+<td><p>分子動力学</p></td>
 </tr>
-<tr class="row-even"><td><p>NEB（OpenMX）</p></td>
-<td><p>NEB (OpenMX)</p></td>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">neb</span></code></p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
 </tr>
-<tr class="row-odd"><td><p>交換結合定数（OpenMX）</p></td>
-<td><p>Exchange Coupling Constants</p></td>
+<tr class="row-odd"><td><p>OpenMX</p></td>
+<td><p>交換結合パラメータ</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">exchange_coupling</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF） → 交換結合パラメータ</p></td>
 </tr>
-<tr class="row-even"><td><p>自己無撞着電子状態計算（RSDFT）</p></td>
-<td><p>Self-consistent Electronic Structure Calculation (RSDFT)</p></td>
+<tr class="row-even"><td><p>RSDFT</p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-odd"><td><p>構造最適化（RSDFT）</p></td>
-<td><p>Geometry Optimization (RSDFT)</p></td>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>格子定数最適化（RSDFT）</p></td>
-<td><p>Lattice Optimization (RSDFT)</p></td>
+<tr class="row-even"><td><p>RSDFT</p></td>
+<td><p>格子定数最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>格子定数最適化</p></td>
 </tr>
-<tr class="row-odd"><td><p>バンド計算（RSDFT）</p></td>
-<td><p>Band Structure (RSDFT)</p></td>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p>電子バンド構造</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">band_structure</span></code></p></td>
+<td><p>電子バンド構造</p></td>
 </tr>
-<tr class="row-even"><td><p>状態密度計算（RSDFT）</p></td>
-<td><p>Density of States (RSDFT)</p></td>
+<tr class="row-even"><td><p>RSDFT</p></td>
+<td><p>状態密度計算（DOS）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">dos</span></code></p></td>
+<td><p>状態密度計算（DOS）</p></td>
 </tr>
-<tr class="row-odd"><td><p>第一原理分子動力学（RSDFT）</p></td>
-<td><p>First-Principles MD (RSDFT)</p></td>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p>第一原理分子動力学</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">fp_md</span></code></p></td>
+<td><p>分子動力学</p></td>
 </tr>
-<tr class="row-even"><td><p>構造最適化（ASE-MD）</p></td>
-<td><p>Geometry Optimization (ASE-MD)</p></td>
+<tr class="row-even"><td><p>ASE-MD</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-odd"><td><p>格子最適化（ASE-MD）</p></td>
-<td><p>Lattice Optimization (ASE-MD)</p></td>
+<tr class="row-odd"><td><p>ASE-MD</p></td>
+<td><p>格子定数最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">lattice_opt</span></code></p></td>
+<td><p>格子定数最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>機械学習ポテンシャル MD（ASE-MD）</p></td>
-<td><p>Machine-Learning Potential MD (ASE-MD)</p></td>
+<tr class="row-even"><td><p>ASE-MD</p></td>
+<td><p>機械学習ポテンシャル MD</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ml_md</span></code></p></td>
+<td><p>機械学習ポテンシャル MD</p></td>
 </tr>
-<tr class="row-odd"><td><p>NEB（ASE-MD）</p></td>
-<td><p>NEB (ASE-MD)</p></td>
+<tr class="row-odd"><td><p>ASE-MD</p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">neb</span></code></p></td>
+<td><p>NEB（Nudged Elastic Band）</p></td>
 </tr>
-<tr class="row-even"><td><p>古典分子動力学（LAMMPS）</p></td>
-<td><p>Classical MD (LAMMPS)</p></td>
+<tr class="row-even"><td><p>LAMMPS</p></td>
+<td><p>古典分子動力学</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">classical_md</span></code></p></td>
+<td><p>古典分子動力学</p></td>
 </tr>
-<tr class="row-odd"><td><p>構造最適化（LAMMPS）</p></td>
-<td><p>Geometry Optimization (LAMMPS)</p></td>
+<tr class="row-odd"><td><p>LAMMPS</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>On-the-fly 機械学習ポテンシャル生成（FLARE）</p></td>
-<td><p>On-the-fly Machine-Learning Potential Generation (FLARE)</p></td>
+<tr class="row-even"><td><p>FLARE + Quantum ESPRESSO</p></td>
+<td><p>On-the-fly 機械学習ポテンシャル生成</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ml_ff</span></code></p></td>
+<td><p>機械学習ポテンシャル MD → 自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-odd"><td><p>LLG ダイナミクス（Quloud-Mag）</p></td>
-<td><p>LLG Dynamics (Quloud-Mag)</p></td>
+<tr class="row-odd"><td><p>Quloud-Mag</p></td>
+<td><p>LLG ダイナミクス</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">llg_dynamics</span></code></p></td>
+<td><p>LLG ダイナミクス</p></td>
 </tr>
-<tr class="row-even"><td><p>モンテカルロ磁性計算（Quloud-Mag）</p></td>
-<td><p>Magnetic Monte Carlo (Quloud-Mag)</p></td>
+<tr class="row-even"><td><p>Quloud-Mag</p></td>
+<td><p>モンテカルロ磁性計算</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">monte_carlo_mag</span></code></p></td>
+<td><p>モンテカルロ磁性計算</p></td>
 </tr>
-<tr class="row-odd"><td><p>自己無撞着電子状態計算（SPRKKR）</p></td>
-<td><p>Self-consistent Electronic Structure Calculation (SPRKKR)</p></td>
+<tr class="row-odd"><td><p>SPRKKR</p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-even"><td><p>交換結合パラメータ（SPRKKR）</p></td>
-<td><p>Exchange Coupling Parameters (SPRKKR)</p></td>
+<tr class="row-even"><td><p>SPRKKR</p></td>
+<td><p>交換結合パラメータ</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">exchange_coupling</span></code></p></td>
+<td><p>交換結合パラメータ</p></td>
 </tr>
-<tr class="row-odd"><td><p>エネルギー最小化（GROMACS）</p></td>
-<td><p>Energy Minimization (GROMACS)</p></td>
+<tr class="row-odd"><td><p>GROMACS</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>古典分子動力学（GROMACS）</p></td>
-<td><p>Classical Molecular Dynamics (GROMACS)</p></td>
+<tr class="row-even"><td><p>GROMACS</p></td>
+<td><p>古典分子動力学</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">classical_md</span></code></p></td>
+<td><p>古典分子動力学</p></td>
 </tr>
 <tr class="row-odd"><td><p>HybMD</p></td>
-<td><p>HybMD</p></td>
+<td><p>機械学習ポテンシャル MD</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ml_md</span></code></p></td>
+<td><p>機械学習ポテンシャル MD → 自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-even"><td><p>高分子密度計算（RadonPy）</p></td>
-<td><p>Polymer Density Calculation (RadonPy)</p></td>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p>高分子密度</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">polymer_density</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷 → 高分子平衡化MD</p></td>
 </tr>
-<tr class="row-odd"><td><p>高分子溶解度パラメータ（RadonPy）</p></td>
-<td><p>Polymer Solubility Parameter (RadonPy)</p></td>
+<tr class="row-odd"><td><p>RadonPy</p></td>
+<td><p>溶解度パラメータ</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">polymer_sp</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷 → 高分子平衡化MD → 溶解度パラメータ</p></td>
 </tr>
-<tr class="row-even"><td><p>高分子ガラス転移温度（RadonPy）</p></td>
-<td><p>Polymer Glass Transition Temperature (RadonPy)</p></td>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p>ガラス転移温度</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">polymer_tg</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷 → 高分子平衡化MD → ガラス転移温度</p></td>
 </tr>
-<tr class="row-odd"><td><p>高分子熱伝導率（RadonPy）</p></td>
-<td><p>Polymer Thermal Conductivity (RadonPy)</p></td>
+<tr class="row-odd"><td><p>RadonPy</p></td>
+<td><p>熱伝導率</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">polymer_tc</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷 → 高分子平衡化MD → 熱伝導率</p></td>
 </tr>
-<tr class="row-even"><td><p>高分子ヤング率（RadonPy）</p></td>
-<td><p>Polymer Young's Modulus (RadonPy)</p></td>
+<tr class="row-even"><td><p>RadonPy</p></td>
+<td><p>ヤング率（機械特性）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">polymer_elong</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷 → 高分子平衡化MD → ヤング率（機械特性）</p></td>
 </tr>
-<tr class="row-odd"><td><p>高分子複素誘電率（RadonPy）</p></td>
-<td><p>Polymer Complex Dielectric Constant (RadonPy)</p></td>
+<tr class="row-odd"><td><p>RadonPy</p></td>
+<td><p>複素誘電率</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">polymer_dielectric</span></code></p></td>
+<td><p>QM構造最適化 / RESP電荷 → 高分子平衡化MD → 複素誘電率</p></td>
 </tr>
-<tr class="row-even"><td><p>単一点エネルギー計算（Psi4）</p></td>
-<td><p>Single-Point Energy Calculation (Psi4)</p></td>
+<tr class="row-even"><td><p>Psi4</p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">scf</span></code></p></td>
+<td><p>自己無撞着電子状態計算（SCF）</p></td>
 </tr>
-<tr class="row-odd"><td><p>構造最適化（Psi4）</p></td>
-<td><p>Geometry Optimization (Psi4)</p></td>
+<tr class="row-odd"><td><p>Psi4</p></td>
+<td><p>構造最適化</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">geometry_opt</span></code></p></td>
+<td><p>構造最適化</p></td>
 </tr>
-<tr class="row-even"><td><p>振動数解析（Psi4）</p></td>
-<td><p>Frequency Analysis (Psi4)</p></td>
+<tr class="row-even"><td><p>Psi4</p></td>
+<td><p>分子振動解析</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code></p></td>
+<td><p>構造最適化 → 分子振動解析</p></td>
 </tr>
 </tbody>
 </table>
