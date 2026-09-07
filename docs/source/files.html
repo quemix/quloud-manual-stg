@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-30T15:51:58+09:00" />
+    <meta property="article:modified_time" content="2026-03-30T15:53:32+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>12. 入出力ファイルとログ</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -38,7 +38,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Quloud Ver.6.1.2 Manual
+            Quloud Ver.7.0 Manual
           </a>
               <div class="version">
                 2026.4.20
@@ -204,7 +204,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="header.html">13. ヘッダーメニュー（各種管理）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="history.html">14. 仕様（変更履歴、注意事項）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">14. 仕様</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">15. 変更履歴</a></li>
 </ul>
 
         </div>
@@ -213,7 +214,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Quloud Ver.6.1.2 Manual</a>
+          <a href="../index.html">Quloud Ver.7.0 Manual</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -258,13 +259,13 @@
 </div>
 <p><strong>Single-Point SCF、Electron Band Structure、Electron DOS の場合</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">control</span>
- <span class="n">calculation</span> <span class="o">=</span> <span class="s1">&#39;scf&#39;</span>
- <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
+ <span class="n">calculation</span> <span class="o">=</span> <span class="s1">'scf'</span>
+ <span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
  <span class="n">tstress</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
  <span class="n">tprnfor</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
- <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+ <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">'./'</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'high'</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">system</span>
  <span class="n">nat</span> <span class="o">=</span> <span class="mi">5</span>
@@ -273,8 +274,8 @@
  <span class="n">ecutrho</span> <span class="o">=</span> <span class="mf">575.0</span>
  <span class="n">ibrav</span> <span class="o">=</span> <span class="mi">0</span>
  <span class="n">tot_charge</span> <span class="o">=</span> <span class="mi">0</span>
- <span class="n">occupations</span> <span class="o">=</span> <span class="s1">&#39;smearing&#39;</span>
- <span class="n">smearing</span> <span class="o">=</span> <span class="s1">&#39;gauss&#39;</span>
+ <span class="n">occupations</span> <span class="o">=</span> <span class="s1">'smearing'</span>
+ <span class="n">smearing</span> <span class="o">=</span> <span class="s1">'gauss'</span>
  <span class="n">degauss</span> <span class="o">=</span> <span class="mf">0.01</span>
  <span class="n">nspin</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">/</span>
@@ -354,13 +355,13 @@
 </div>
 <p><strong>Atomic Structure Opt. の場合</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">control</span>
- <span class="n">calculation</span> <span class="o">=</span> <span class="s1">&#39;relax&#39;</span>
- <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
+ <span class="n">calculation</span> <span class="o">=</span> <span class="s1">'relax'</span>
+ <span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
  <span class="n">tstress</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
  <span class="n">tprnfor</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
- <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+ <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">'./'</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'high'</span>
  <span class="n">etot_conv_thr</span> <span class="o">=</span> <span class="mf">0.00001</span>
  <span class="n">forc_conv_thr</span> <span class="o">=</span> <span class="mf">0.0001</span>
  <span class="n">nstep</span> <span class="o">=</span> <span class="mi">50</span>
@@ -372,8 +373,8 @@
  <span class="n">ecutrho</span> <span class="o">=</span> <span class="mf">575.0</span>
  <span class="n">ibrav</span> <span class="o">=</span> <span class="mi">0</span>
  <span class="n">tot_charge</span> <span class="o">=</span> <span class="mi">0</span>
- <span class="n">occupations</span> <span class="o">=</span> <span class="s1">&#39;smearing&#39;</span>
- <span class="n">smearing</span> <span class="o">=</span> <span class="s1">&#39;gauss&#39;</span>
+ <span class="n">occupations</span> <span class="o">=</span> <span class="s1">'smearing'</span>
+ <span class="n">smearing</span> <span class="o">=</span> <span class="s1">'gauss'</span>
  <span class="n">degauss</span> <span class="o">=</span> <span class="mf">0.01</span>
  <span class="n">nspin</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">/</span>
@@ -424,13 +425,13 @@
 </div>
 <p><strong>Lattice Opt. の場合</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">control</span>
- <span class="n">calculation</span> <span class="o">=</span> <span class="s1">&#39;vc-relax&#39;</span>
- <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
+ <span class="n">calculation</span> <span class="o">=</span> <span class="s1">'vc-relax'</span>
+ <span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
  <span class="n">tstress</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
  <span class="n">tprnfor</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
- <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+ <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">'./'</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'high'</span>
  <span class="n">etot_conv_thr</span> <span class="o">=</span> <span class="mf">0.00001</span>
  <span class="n">forc_conv_thr</span> <span class="o">=</span> <span class="mf">0.0001</span>
  <span class="n">nstep</span> <span class="o">=</span> <span class="mi">50</span>
@@ -442,8 +443,8 @@
  <span class="n">ecutrho</span> <span class="o">=</span> <span class="mf">575.0</span>
  <span class="n">ibrav</span> <span class="o">=</span> <span class="mi">0</span>
  <span class="n">tot_charge</span> <span class="o">=</span> <span class="mi">0</span>
- <span class="n">occupations</span> <span class="o">=</span> <span class="s1">&#39;smearing&#39;</span>
- <span class="n">smearing</span> <span class="o">=</span> <span class="s1">&#39;gauss&#39;</span>
+ <span class="n">occupations</span> <span class="o">=</span> <span class="s1">'smearing'</span>
+ <span class="n">smearing</span> <span class="o">=</span> <span class="s1">'gauss'</span>
  <span class="n">degauss</span> <span class="o">=</span> <span class="mf">0.01</span>
  <span class="n">nspin</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">/</span>
@@ -514,13 +515,13 @@
 </div>
 <p><strong>Electron Band Structure の場合</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&amp;control
- calculation = &#39;bands&#39;
- prefix = &#39;QuloudJob&#39;
+ calculation = 'bands'
+ prefix = 'QuloudJob'
  tstress = .true.
  tprnfor = .true.
- pseudo_dir = &#39;./&#39;
- outdir = &#39;./work&#39;
- verbosity = &#39;high&#39;
+ pseudo_dir = './'
+ outdir = './work'
+ verbosity = 'high'
 /
 &amp;system
  nat = 5
@@ -530,8 +531,8 @@
  ecutrho = 575.0
  ibrav = 0
  tot_charge = 0
- occupations = &#39;smearing&#39;
- smearing = &#39;gauss&#39;
+ occupations = 'smearing'
+ smearing = 'gauss'
  degauss = 0.01
  nspin = 1
 /
@@ -601,13 +602,13 @@ K_POINTS {crystal_b}
 </div>
 <p><strong>Electron DOS の場合</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">control</span>
- <span class="n">calculation</span> <span class="o">=</span> <span class="s1">&#39;nscf&#39;</span>
- <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
+ <span class="n">calculation</span> <span class="o">=</span> <span class="s1">'nscf'</span>
+ <span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
  <span class="n">tstress</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
  <span class="n">tprnfor</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
- <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+ <span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">'./'</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'high'</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">system</span>
  <span class="n">nat</span> <span class="o">=</span> <span class="mi">5</span>
@@ -616,7 +617,7 @@ K_POINTS {crystal_b}
  <span class="n">ecutrho</span> <span class="o">=</span> <span class="mf">575.0</span>
  <span class="n">ibrav</span> <span class="o">=</span> <span class="mi">0</span>
  <span class="n">tot_charge</span> <span class="o">=</span> <span class="mi">0</span>
- <span class="n">occupations</span> <span class="o">=</span> <span class="s1">&#39;tetrahedra&#39;</span>
+ <span class="n">occupations</span> <span class="o">=</span> <span class="s1">'tetrahedra'</span>
  <span class="n">nspin</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">electrons</span>
@@ -668,9 +669,9 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.3. </span>QuloudJob.bands.in<a class="headerlink" href="#quloudjob-bands-in" title="Link to this heading"></a></h4>
 <p>電子バンド計算（Electron Band Structure）に用いるファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">bands</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;QuloudJob&#39;</span>
- <span class="n">filband</span><span class="o">=</span><span class="s1">&#39;QuloudJob.bands&#39;</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">prefix</span><span class="o">=</span><span class="s1">'QuloudJob'</span>
+ <span class="n">filband</span><span class="o">=</span><span class="s1">'QuloudJob.bands'</span>
 <span class="o">/</span>
 </pre></div>
 </div>
@@ -694,9 +695,9 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.4. </span>QuloudJob.dos.in<a class="headerlink" href="#quloudjob-dos-in" title="Link to this heading"></a></h4>
 <p>電子状態密度計算（Electron DOS）に用いるファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">dos</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;QuloudJob&#39;</span>
- <span class="n">fildos</span><span class="o">=</span><span class="s1">&#39;QuloudJob.dos&#39;</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">prefix</span><span class="o">=</span><span class="s1">'QuloudJob'</span>
+ <span class="n">fildos</span><span class="o">=</span><span class="s1">'QuloudJob.dos'</span>
 <span class="o">/</span>
 </pre></div>
 </div>
@@ -723,12 +724,12 @@ K_POINTS {crystal_b}
 <span class="n">Si</span><span class="o">+</span><span class="n">H1</span>
 
 <span class="o">&amp;</span><span class="n">PATH</span>
-<span class="n">string_method</span> <span class="o">=</span> <span class="s1">&#39;neb&#39;</span>
-<span class="n">restart_mode</span> <span class="o">=</span> <span class="s1">&#39;from_scratch&#39;</span>
+<span class="n">string_method</span> <span class="o">=</span> <span class="s1">'neb'</span>
+<span class="n">restart_mode</span> <span class="o">=</span> <span class="s1">'from_scratch'</span>
 <span class="n">nstep_path</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">num_of_images</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">opt_scheme</span> <span class="o">=</span> <span class="s1">&#39;quick-min&#39;</span>
-<span class="n">CI_scheme</span> <span class="o">=</span> <span class="s1">&#39;no-CI&#39;</span>
+<span class="n">opt_scheme</span> <span class="o">=</span> <span class="s1">'quick-min'</span>
+<span class="n">CI_scheme</span> <span class="o">=</span> <span class="s1">'no-CI'</span>
 <span class="n">first_last_opt</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">minimum_image</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">temp_req</span> <span class="o">=</span> <span class="mi">0</span>
@@ -744,13 +745,13 @@ K_POINTS {crystal_b}
 
 <span class="n">BEGIN_ENGINE_INPUT</span>
 <span class="o">&amp;</span><span class="n">control</span>
-<span class="n">calculation</span> <span class="o">=</span> <span class="s1">&#39;scf&#39;</span>
-<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
+<span class="n">calculation</span> <span class="o">=</span> <span class="s1">'scf'</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
 <span class="n">tstress</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
 <span class="n">tprnfor</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
-<span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
-<span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+<span class="n">pseudo_dir</span> <span class="o">=</span> <span class="s1">'./'</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+<span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'high'</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">system</span>
 <span class="n">nat</span> <span class="o">=</span> <span class="mi">9</span>
@@ -759,8 +760,8 @@ K_POINTS {crystal_b}
 <span class="n">ecutrho</span> <span class="o">=</span> <span class="mf">221.0</span>
 <span class="n">ibrav</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">tot_charge</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">occupations</span> <span class="o">=</span> <span class="s1">&#39;smearing&#39;</span>
-<span class="n">smearing</span> <span class="o">=</span> <span class="s1">&#39;gauss&#39;</span>
+<span class="n">occupations</span> <span class="o">=</span> <span class="s1">'smearing'</span>
+<span class="n">smearing</span> <span class="o">=</span> <span class="s1">'gauss'</span>
 <span class="n">degauss</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">nspin</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">/</span>
@@ -806,9 +807,9 @@ K_POINTS {crystal_b}
 <span class="n">END</span>
 
 <span class="o">&amp;</span><span class="n">dos</span>
- <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
- <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;QuloudJob&#39;</span>
- <span class="n">fildos</span><span class="o">=</span><span class="s1">&#39;QuloudJob.dos&#39;</span>
+ <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+ <span class="n">prefix</span><span class="o">=</span><span class="s1">'QuloudJob'</span>
+ <span class="n">fildos</span><span class="o">=</span><span class="s1">'QuloudJob.dos'</span>
 <span class="o">/</span>
 </pre></div>
 </div>
@@ -848,17 +849,17 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.6. </span>ph.in<a class="headerlink" href="#ph-in" title="Link to this heading"></a></h4>
 <p>フォノン計算のメインとなる ph.x 用の入力ファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">inputph</span>
-<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
 <span class="n">niter_ph</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">tr2_ph</span> <span class="o">=</span> <span class="mf">1e-12</span>
 <span class="n">alpha_mix</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.7</span>
 <span class="n">nmix_ph</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span>
+<span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'default'</span>
 <span class="n">reduce_io</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">max_seconds</span> <span class="o">=</span> <span class="mi">10000000</span>
-<span class="n">dftd3_hess</span> <span class="o">=</span> <span class="s1">&#39;prefix.hess&#39;</span>
-<span class="n">fildyn</span> <span class="o">=</span> <span class="s1">&#39;matdyn&#39;</span>
+<span class="n">dftd3_hess</span> <span class="o">=</span> <span class="s1">'prefix.hess'</span>
+<span class="n">fildyn</span> <span class="o">=</span> <span class="s1">'matdyn'</span>
 <span class="n">epsil</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">lrpa</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">lnoloc</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
@@ -888,7 +889,7 @@ K_POINTS {crystal_b}
 <span class="n">nq1</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">nq2</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">nq3</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">diagonalization</span> <span class="o">=</span> <span class="s1">&#39;david&#39;</span>
+<span class="n">diagonalization</span> <span class="o">=</span> <span class="s1">'david'</span>
 <span class="n">read_dns_bare</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">ldvscf_interpolate</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">start_irr</span> <span class="o">=</span> <span class="mi">1</span>
@@ -908,9 +909,9 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.7. </span>q2r.in<a class="headerlink" href="#q2r-in" title="Link to this heading"></a></h4>
 <p>波数空間でのフォノンの情報を実空間の情報に変換する q2r.x 用の入力</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="nb">input</span>
-<span class="n">fildyn</span> <span class="o">=</span> <span class="s1">&#39;matdyn&#39;</span>
-<span class="n">flfrc</span> <span class="o">=</span> <span class="s1">&#39;matdyn.fc&#39;</span>
-<span class="n">zasr</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span>
+<span class="n">fildyn</span> <span class="o">=</span> <span class="s1">'matdyn'</span>
+<span class="n">flfrc</span> <span class="o">=</span> <span class="s1">'matdyn.fc'</span>
+<span class="n">zasr</span> <span class="o">=</span> <span class="s1">'simple'</span>
 <span class="o">/</span>
 </pre></div>
 </div>
@@ -923,14 +924,14 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.8. </span>matdyn_dos.in<a class="headerlink" href="#matdyn-dos-in" title="Link to this heading"></a></h4>
 <p>matdyn.x 用の入力で、フォノンDOSを描く場合の設定。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="nb">input</span>
-<span class="n">flfrc</span> <span class="o">=</span> <span class="s1">&#39;matdyn.fc&#39;</span>
-<span class="n">asr</span> <span class="o">=</span> <span class="s1">&#39;no&#39;</span>
+<span class="n">flfrc</span> <span class="o">=</span> <span class="s1">'matdyn.fc'</span>
+<span class="n">asr</span> <span class="o">=</span> <span class="s1">'no'</span>
 <span class="n">dos</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
-<span class="n">flfrq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">flfrq</span> <span class="o">=</span> <span class="s1">''</span>
 <span class="n">nk1</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">nk2</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">nk3</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">fldos</span> <span class="o">=</span> <span class="s1">&#39;matdyn.dos&#39;</span>
+<span class="n">fldos</span> <span class="o">=</span> <span class="s1">'matdyn.dos'</span>
 <span class="o">/</span>
 </pre></div>
 </div>
@@ -942,10 +943,10 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.9. </span>matdyn_disp.in<a class="headerlink" href="#matdyn-disp-in" title="Link to this heading"></a></h4>
 <p>matdyn.x 用の入力で、フォノンバンドを描く場合の設定。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="nb">input</span>
-<span class="n">flfrc</span> <span class="o">=</span> <span class="s1">&#39;matdyn.fc&#39;</span>
-<span class="n">asr</span> <span class="o">=</span> <span class="s1">&#39;no&#39;</span>
-<span class="n">flfrq</span> <span class="o">=</span> <span class="s1">&#39;matdyn.freq&#39;</span>
-<span class="n">flvec</span> <span class="o">=</span> <span class="s1">&#39;matdyn.modes&#39;</span>
+<span class="n">flfrc</span> <span class="o">=</span> <span class="s1">'matdyn.fc'</span>
+<span class="n">asr</span> <span class="o">=</span> <span class="s1">'no'</span>
+<span class="n">flfrq</span> <span class="o">=</span> <span class="s1">'matdyn.freq'</span>
+<span class="n">flvec</span> <span class="o">=</span> <span class="s1">'matdyn.modes'</span>
 <span class="n">q_in_band_form</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
 <span class="o">/</span>
 <span class="mi">2</span>
@@ -961,13 +962,13 @@ K_POINTS {crystal_b}
 <h4><span class="section-number">12.1.1.10. </span>xspectra.in<a class="headerlink" href="#xspectra-in" title="Link to this heading"></a></h4>
 <p>X線吸収計算を行う xspectra.x 用の入力</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">input_xspectra</span>
-<span class="n">calculation</span> <span class="o">=</span> <span class="s1">&#39;xanes_dipole&#39;</span>
-<span class="n">edge</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">calculation</span> <span class="o">=</span> <span class="s1">'xanes_dipole'</span>
+<span class="n">edge</span> <span class="o">=</span> <span class="s1">'K'</span>
 <span class="n">lplus</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">lminus</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
-<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;QuloudJob&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./work&#39;</span>
-<span class="n">verbosity</span> <span class="o">=</span> <span class="s1">&#39;high&#39;</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
+<span class="n">verbosity</span> <span class="o">=</span> <span class="s1">'high'</span>
 <span class="n">xiabs</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">xkvec</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">xkvec</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
@@ -977,14 +978,14 @@ K_POINTS {crystal_b}
 <span class="n">xepsilon</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">xcoordcrys</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
 <span class="n">xonly_plot</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
-<span class="n">x_save_file</span> <span class="o">=</span> <span class="s1">&#39;xanes.sav&#39;</span>
+<span class="n">x_save_file</span> <span class="o">=</span> <span class="s1">'xanes.sav'</span>
 <span class="n">xe0</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">xniter</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">xcheck_conv</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">xerror</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">show_status</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
 <span class="n">time_limit</span> <span class="o">=</span> <span class="mi">100000000</span>
-<span class="n">restart_mode</span> <span class="o">=</span> <span class="s1">&#39;from_scratch&#39;</span>
+<span class="n">restart_mode</span> <span class="o">=</span> <span class="s1">'from_scratch'</span>
 <span class="o">/</span>
 
 <span class="o">&amp;</span><span class="n">plot</span>
@@ -993,13 +994,13 @@ K_POINTS {crystal_b}
 <span class="n">xemin</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">cut_occ_states</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
 <span class="n">terminator</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
-<span class="n">gamma_mode</span> <span class="o">=</span> <span class="s1">&#39;constant&#39;</span>
+<span class="n">gamma_mode</span> <span class="o">=</span> <span class="s1">'constant'</span>
 <span class="n">xgamma</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">xanes_file</span> <span class="o">=</span> <span class="s1">&#39;xanes.dat&#39;</span>
+<span class="n">xanes_file</span> <span class="o">=</span> <span class="s1">'xanes.dat'</span>
 <span class="o">/</span>
 
 <span class="o">&amp;</span><span class="n">pseudos</span>
-<span class="n">filecore</span> <span class="o">=</span> <span class="s1">&#39;Core.wfc&#39;</span>
+<span class="n">filecore</span> <span class="o">=</span> <span class="s1">'Core.wfc'</span>
 <span class="o">/</span>
 
 <span class="o">&amp;</span><span class="n">cut_occ</span>
@@ -2380,7 +2381,7 @@ ijpairs.cellid&gt;
 <span class="c1">#m3 34.90030355804292 36</span>
 <span class="c1"># generated using pymatgen</span>
 <span class="n">data_BaTiO3</span>
-<span class="n">_symmetry_space_group_name_H</span><span class="o">-</span><span class="n">M</span>   <span class="s1">&#39;P 1&#39;</span>
+<span class="n">_symmetry_space_group_name_H</span><span class="o">-</span><span class="n">M</span>   <span class="s1">'P 1'</span>
 <span class="n">_cell_length_a</span>   <span class="mf">3.99037921</span>
 <span class="n">_cell_length_b</span>   <span class="mf">3.99037921</span>
 <span class="n">_cell_length_c</span>   <span class="mf">4.10265539</span>
@@ -2389,13 +2390,13 @@ ijpairs.cellid&gt;
 <span class="n">_cell_angle_gamma</span>   <span class="mf">90.00000000</span>
 <span class="n">_symmetry_Int_Tables_number</span>   <span class="mi">1</span>
 <span class="n">_chemical_formula_structural</span>   <span class="n">BaTiO3</span>
-<span class="n">_chemical_formula_sum</span>   <span class="s1">&#39;Ba1 Ti1 O3&#39;</span>
+<span class="n">_chemical_formula_sum</span>   <span class="s1">'Ba1 Ti1 O3'</span>
 <span class="n">_cell_volume</span>   <span class="mf">65.32709969</span>
 <span class="n">_cell_formula_units_Z</span>   <span class="mi">1</span>
 <span class="n">loop_</span>
  <span class="n">_symmetry_equiv_pos_site_id</span>
  <span class="n">_symmetry_equiv_pos_as_xyz</span>
-  <span class="mi">1</span>  <span class="s1">&#39;x, y, z&#39;</span>
+  <span class="mi">1</span>  <span class="s1">'x, y, z'</span>
 <span class="n">loop_</span>
  <span class="n">_atom_site_type_symbol</span>
  <span class="n">_atom_site_label</span>
@@ -2966,7 +2967,7 @@ ijpairs.cellid&gt;
 <div class="line"><br /></div>
 </div>
 <p><strong>OPT の場合</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;opt&quot;</span><span class="p">,</span><span class="s2">&quot;opt&quot;</span><span class="p">:{</span><span class="s2">&quot;fmax&quot;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span><span class="s2">&quot;ntime&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="s2">&quot;latopt&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">},</span><span class="s2">&quot;provider&quot;</span><span class="p">:</span><span class="s2">&quot;7net&quot;</span><span class="p">,</span><span class="s2">&quot;model_name&quot;</span><span class="p">:</span><span class="s2">&quot;7net-mf-ompa&quot;</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"opt"</span><span class="p">,</span><span class="s2">"opt"</span><span class="p">:{</span><span class="s2">"fmax"</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span><span class="s2">"ntime"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="s2">"latopt"</span><span class="p">:</span><span class="n">true</span><span class="p">},</span><span class="s2">"provider"</span><span class="p">:</span><span class="s2">"7net"</span><span class="p">,</span><span class="s2">"model_name"</span><span class="p">:</span><span class="s2">"7net-mf-ompa"</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>入力パラメータの詳細は以下の通りです。</p>
@@ -2983,7 +2984,7 @@ ijpairs.cellid&gt;
 <li><p>model_name：機械学習ポテンシャルの具体的な名前が表示されます。</p></li>
 </ul>
 <p><strong>MD の場合</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;md&quot;</span><span class="p">,</span><span class="s2">&quot;md&quot;</span><span class="p">:{</span><span class="s2">&quot;dtime&quot;</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="s2">&quot;ntime&quot;</span><span class="p">:</span><span class="mi">2000</span><span class="p">,</span><span class="s2">&quot;ensemble&quot;</span><span class="p">:</span><span class="s2">&quot;nvt&quot;</span><span class="p">,</span><span class="s2">&quot;temperature&quot;</span><span class="p">:</span><span class="mi">300</span><span class="p">},</span><span class="s2">&quot;provider&quot;</span><span class="p">:</span><span class="s2">&quot;7net&quot;</span><span class="p">,</span><span class="s2">&quot;model_name&quot;</span><span class="p">:</span><span class="s2">&quot;7net-mf-ompa&quot;</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"md"</span><span class="p">,</span><span class="s2">"md"</span><span class="p">:{</span><span class="s2">"dtime"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="s2">"ntime"</span><span class="p">:</span><span class="mi">2000</span><span class="p">,</span><span class="s2">"ensemble"</span><span class="p">:</span><span class="s2">"nvt"</span><span class="p">,</span><span class="s2">"temperature"</span><span class="p">:</span><span class="mi">300</span><span class="p">},</span><span class="s2">"provider"</span><span class="p">:</span><span class="s2">"7net"</span><span class="p">,</span><span class="s2">"model_name"</span><span class="p">:</span><span class="s2">"7net-mf-ompa"</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>入力パラメータの詳細は以下の通りです。</p>
@@ -3052,11 +3053,11 @@ ijpairs.cellid&gt;
 <section id="occupation-dat">
 <h4><span class="section-number">12.7.1.1. </span>occupation.dat<a class="headerlink" href="#occupation-dat" title="Link to this heading"></a></h4>
 <p>First-Principles SCF で使用するファイルです。モデルの各サイトを、どの原子がどの割合で占有しているかを指定しています。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Ba&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
-<span class="p">{</span><span class="s2">&quot;Ti&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
-<span class="p">{</span><span class="s2">&quot;O&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
-<span class="p">{</span><span class="s2">&quot;O&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
-<span class="p">{</span><span class="s2">&quot;O&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"Ba"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">"Ti"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">"O"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">"O"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">"O"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -3289,9 +3290,9 @@ ijpairs.cellid&gt;
 <p><strong>Exchange Coupling Parameters の場合</strong></p>
 <p>直前の SCF 計算で出力された「QuloudJob.pot_new」ファイルの中身をそのまま使用します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*******************************************************************************
-HEADER    &#39;SPR-KKR dataset created by KKRSCF    &#39;
+HEADER    'SPR-KKR dataset created by KKRSCF    '
 *******************************************************************************
-TITLE     &#39;DOS for SCF-start&#39;
+TITLE     'DOS for SCF-start'
 SYSTEM    System:
 PACKAGE   SPR-KKR
 FORMAT     9 (18.01.2019)
@@ -3304,8 +3305,8 @@ IREL               3
 NSPIN              1
 *******************************************************************************
 SCF-INFO
-INFO      &#39;SPR-KKR-ASA&#39;
-SCFSTATUS &#39;CONVERGED &#39;
+INFO      'SPR-KKR-ASA'
+SCFSTATUS 'CONVERGED '
 FULLPOT   F
 BREITINT  F
 NONMAG    F
@@ -3330,8 +3331,8 @@ EF          7.70078753718801E-01
 VMTZ       -7.41852774518500E-01
 *******************************************************************************
 LATTICE
-SYSDIM    &#39;3D        &#39;
-SYSTYPE   &#39;BULK                          &#39;
+SYSDIM    '3D        '
+SYSTYPE   'BULK                          '
 BRAVAIS            8     tetragonal  primitive      4/mmm  D_4h
 ALAT        7.54072384513352E+00
 A(1)        1.00000000000000E+00  0.00000000000000E+00  0.00000000000000E+00
@@ -4053,7 +4054,7 @@ TYPE               4
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, Quemix Inc.　Last updated on Apr. 20, 2026.
+    <p>&#169; Copyright 2026, Quemix Inc..
       <span class="lastupdated">最終更新: 3月 30, 2026
       </span></p>
   </div>

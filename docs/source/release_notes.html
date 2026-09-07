@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-20T19:19:20+09:00" />
+    <meta property="article:modified_time" content="2026-09-07T16:51:08+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>14. 仕様（変更履歴、注意事項）</title>
+  <title>15. 変更履歴</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="prev" title="13. ヘッダーメニュー（各種管理）" href="header.html" /> 
+    <link rel="prev" title="14. 仕様" href="specifications.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -36,7 +36,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Quloud Ver.6.1.2 Manual
+            Quloud Ver.7.0 Manual
           </a>
               <div class="version">
                 2026.4.20
@@ -63,24 +63,8 @@
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">11. 計算結果の可視化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="files.html">12. 入出力ファイルとログ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="header.html">13. ヘッダーメニュー（各種管理）</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">14. 仕様（変更履歴、注意事項）</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">14.1. 仕様変更履歴</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">14.2. 注意事項</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#job">14.2.1. 計算 Job 実行時の注意事項（全般）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">14.2.2. ソフトウェア別注意事項</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#quantum-espresso">14.2.2.1. Quantum ESPRESSO に関する注意事項</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#openmx">14.2.2.2. OpenMX に関する注意事項</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rsdft">14.2.2.3. RSDFT に関する注意事項</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lammps">14.2.2.4. LAMMPS に関する注意事項</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ase">14.2.2.5. ASE に関する注意事項</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#flare">14.2.2.6. FLARE に関する注意事項</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">14.2.3. モデリングに関する注意事項</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="specifications.html">14. 仕様</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">15. 変更履歴</a></li>
 </ul>
 
         </div>
@@ -89,7 +73,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Quloud Ver.6.1.2 Manual</a>
+          <a href="../index.html">Quloud Ver.7.0 Manual</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -97,9 +81,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">14. </span>仕様（変更履歴、注意事項）</li>
+      <li class="breadcrumb-item active"><span class="section-number">15. </span>変更履歴</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/source/history.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/source/release_notes.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,15 +92,26 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">14. </span>仕様（変更履歴、注意事項）<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<h1><span class="section-number">15. </span>変更履歴<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。
+Ver.7.0 の項には、本番稼働中の Ver.6.1.2 と比べて利用者から見える変化のみを記載しています。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id2">
-<h2><span class="section-number">14.1. </span>仕様変更履歴<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>Ver.7.0</strong></p>
 <div class="line-block">
 <div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Ver.7.0 の変更内容は整理中です。確定した項目から追記します。
+候補と採否の判定は <code class="docutils literal notranslate"><span class="pre">meta/changelog_candidates.csv</span></code> で管理しています。</p>
+</div>
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><strong>Ver.6.1.2（2026.4.20）</strong></p>
@@ -788,148 +783,19 @@
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="id3">
-<h2><span class="section-number">14.2. </span>注意事項<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-<section id="job">
-<h3><span class="section-number">14.2.1. </span>計算 Job 実行時の注意事項（全般）<a class="headerlink" href="#job" title="Link to this heading"></a></h3>
-<p>AWS の計算リソースの在庫切れにより、「Run」ボタンをクリックしても数時間 Status が「Preprared」のままになる場合がございます。</p>
-<p>Job が失敗しているにもかかわらず、Status が Succeeded になってしまう場合がありますのでご注意ください。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="id4">
-<h3><span class="section-number">14.2.2. </span>ソフトウェア別注意事項<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
-<p>以下、注意事項をソフトウェア毎に記載します。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-<section id="quantum-espresso">
-<h4><span class="section-number">14.2.2.1. </span>Quantum ESPRESSO に関する注意事項<a class="headerlink" href="#quantum-espresso" title="Link to this heading"></a></h4>
-<p>Electron Band Structure と Electron DOS では、MPI Process 数を増やし過ぎると、エラーが出てしまいますのでご注意ください。</p>
-<p>また、すべての Job につきまして、Thread 数を増やすと計算時間が長くなる場合がございますのでご注意ください。</p>
-<p>Electron Band Structure と Electron DOS では、計算結果の Total Energy Information の表で、Elapsed Time (s) と CPU Time (s) の表示が不正確になっておりますので、ご注意ください。</p>
-<p>Electron Band Structure と Electron DOS では、Exchange Correlation Functional の HSE06 は未対応となっております。詳しくは Quantum ESPRESSO の公式ドキュメント（<a class="reference external" href="https://www.quantum-espresso.org/Doc/pw_user_guide/node10.html">https://www.quantum-espresso.org/Doc/pw_user_guide/node10.html</a>）をご参照ください。</p>
-<p>Atomic Structure Opt. と Lattice Opt. で Exchange Correlation Functional の HSE06 を使用する場合、Pseudopotential Set で Ultrasoft(rrkjus) や Projector Augmented Wave(kjpaw) を使用すると、力の計算が実行できずにエラーが出てしまいますので、Norm-conserving(oncvpsp04) を使用してください。</p>
-<p><strong>Site property settings の spin 項目では、初期スピンは原則として元素ごとにしか設定できません。もし同じ元素で、原子ごとに異なる値を設定した場合には、その平均値が採用されるため、意図しない設定になってしまうおそれがありますのでご注意ください。</strong></p>
-<p><strong>X-Spectra では、Ver.6.1.1 以前の入力ファイルを読み込むと、吸収サイトの情報が正しく反映されませんので、計算を実行する場合には Ver.6.1.2 で新しく Job を作成してください。</strong></p>
-<p>X-Spectra では、Core.wfc ファイルが読み込まれず、エラーが出てしまう場合がありますのでご注意ください。</p>
-<p>Energy Barrier (NEB) では、Site property settings の constraints 項目で拘束条件を設定しても、その設定が「neb.in」ファイルには反映されませんので、NEB 計算で拘束条件を設定する場合には、「neb.in」ファイルの ATOMIC_POSITIONS セクションで、「QuloudJob.scf.in」ファイルと同様の拘束条件を設定してください。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="openmx">
-<h4><span class="section-number">14.2.2.2. </span>OpenMX に関する注意事項<a class="headerlink" href="#openmx" title="Link to this heading"></a></h4>
-<p>OpenMX では計算の際に擬原子基底関数を用いますが、対応している原子の種類が限定されているため、Job 登録・実行の際には  OpenMX Ver.3.9 ユーザーマニュアル（<a class="reference external" href="https://www.openmx-square.org/openmx_man3.9jp/openmx3.9_jp.pdf">https://www.openmx-square.org/openmx_man3.9jp/openmx3.9_jp.pdf</a>）の Table 1 と Table 2 をご参照ください。</p>
-<p><strong>Exchange Coupling Parameters では、MPI Process 数がデフォルトの 1 のままだとエラーが出てしまいますので、MPI Process 数を増やして実行してください。</strong></p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="rsdft">
-<h4><span class="section-number">14.2.2.3. </span>RSDFT に関する注意事項<a class="headerlink" href="#rsdft" title="Link to this heading"></a></h4>
-<p>モデルのサイズが大きい場合や、重い元素を含む場合には、メモリ不足によりエラーが出てしまいますので、Thread 数を増やして計算を実行してください。ただし、Thread 数を増やすと計算時間が長くなる場合がございますのでご注意ください。
-<strong>また、Thread 数を増やし過ぎた結果、エラーが出てしまう場合もございますので、ユーザー自身で適切な Thread 数を設定してください。</strong></p>
-<p><strong>入力ファイルの直接アップロードによる Job 実行に関しまして、初期スピン設定ファイル「fort.980」がアップロードできない状態となっておりますのでご注意ください。</strong></p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="lammps">
-<h4><span class="section-number">14.2.2.4. </span>LAMMPS に関する注意事項<a class="headerlink" href="#lammps" title="Link to this heading"></a></h4>
-<p>計算 Job 登録時に原子間ポテンシャルファイルをユーザー自身でアップロードする場合、アップロード可能なファイル形式（拡張子）が下記に限定されておりますのでご注意ください。</p>
-<ul class="simple">
-<li><p>'.eam'</p></li>
-<li><p>'.meam'</p></li>
-<li><p>'.tersoff'</p></li>
-<li><p>'.tersoff.mod'</p></li>
-<li><p>'.tersoff.modc'</p></li>
-<li><p>'.ann'</p></li>
-<li><p>'.flare'</p></li>
-</ul>
-<p>モデルのサイズが大きい場合、CHGNet のポテンシャルを利用するとメモリ不足によりエラーが出てしまいますので、Thread 数を増やして計算を実行してください。ただし、Thread 数を増やすと計算時間が長くなる場合がございますのでご注意ください。</p>
-<p>Molecular Dynamics では、下記の点にご注意ください。</p>
-<ul class="simple">
-<li><p>MD Steps を多くとり過ぎると、メモリ不足により Atomic Structure Trajectory のアニメーションが表示されなくなります。</p></li>
-<li><p>Ver.6.1 より、Mean-Squared Displacement (msd) のデータを出力するファイル名が変更となり、その影響で、Ver.6.0 以前での msd のデータがグラフ表示されなくなっております。</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="ase">
-<h4><span class="section-number">14.2.2.5. </span>ASE に関する注意事項<a class="headerlink" href="#ase" title="Link to this heading"></a></h4>
-<p><strong>機械学習ポテンシャルのプロバイダーで fairchem を指定した場合、MPI Process 数がデフォルトの 1 のままだとエラーが出てしまいますので、MPI Process 数を増やして実行してください。</strong></p>
-<p><strong>Energy Barrier (NEB) では、セルのデータが初期構造と終期構造で完全に一致していないとエラーが出てしまいますのでご注意ください。</strong></p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="flare">
-<h4><span class="section-number">14.2.2.6. </span>FLARE に関する注意事項<a class="headerlink" href="#flare" title="Link to this heading"></a></h4>
-<p><strong>On-the-Fly MD では、Site property settings の spin 項目での各原子の初期スピンの設定、および constraint 項目での各原子の拘束条件の設定が無効となりますので、ご注意ください。</strong></p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-</section>
-<section id="id5">
-<h3><span class="section-number">14.2.3. </span>モデリングに関する注意事項<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
-<p>モデリング機能に関して、下記の不具合がありますのでご注意ください。</p>
-<ul>
-<li><p>Supercell 項目</p>
-<ul class="simple">
-<li><p>Supercell の値を増やしてから 1×1×1 に戻しても、モデルのサイズが元に戻りません。</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</li>
-<li><p>Sueface 項目</p>
-<ul class="simple">
-<li><p>原子を追加 / 削除してからスラブモデルを生成すると、原子の個数がおかしくなります。</p></li>
-<li><p>原子を追加 / 削除してからスラブモデルを生成後、Undo ボタンで原子追加 / 削除前の状態に戻り、原子を追加 / 削除せずにスラブモデルを生成すると、以前追加 / 削除した原子が再度追加 / 削除されてしまいます。</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</li>
-<li><p>Packmol 項目</p>
-<ul class="simple">
-<li><p>バルク構造の原子数を増やしてから、Packmol でモデルを生成すると、バルク構造の原子数が元に戻ってしまいます。</p></li>
-<li><p>Packmol でモデルを生成後、Undo ボタンが効かなくなります。</p></li>
-</ul>
-</li>
-</ul>
-</section>
-</section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="header.html" class="btn btn-neutral float-left" title="13. ヘッダーメニュー（各種管理）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="specifications.html" class="btn btn-neutral float-left" title="14. 仕様" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, Quemix Inc.　Last updated on Apr. 20, 2026.
-      <span class="lastupdated">最終更新: 4月 20, 2026
+    <p>&#169; Copyright 2026, Quemix Inc..
+      <span class="lastupdated">最終更新: 9月 07, 2026
       </span></p>
   </div>
 

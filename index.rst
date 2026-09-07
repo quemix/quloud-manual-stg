@@ -23,7 +23,7 @@ Index
   source/visualization
   source/files
   source/header
-  source/history
+  source/specifications
   source/release_notes
 
 
