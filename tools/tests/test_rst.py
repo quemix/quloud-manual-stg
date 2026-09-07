@@ -58,6 +58,11 @@ class TestHeaderComment(unittest.TestCase):
         self.assertIn("dev_v700_ji", out)
         self.assertIn("2026-09-07T06:00:00Z", out)
         self.assertIn("2026-09-07T05:00:00Z", out)
+        # マスタ取得日時（dump 実行）とマスタ同期日時は読者が混同しうる別物なので、
+        # ラベル文言そのものと「取得日時の直後に同期日時が来る」順序を固定する。
+        lines = out.splitlines()
+        generated_idx = lines.index(".. マスタ取得日時（dump 実行）: 2026-09-07T06:00:00Z")
+        self.assertEqual(lines[generated_idx + 1], ".. マスタ同期日時: 2026-09-07T05:00:00Z")
         for line in out.splitlines():
             if line.strip():
                 self.assertTrue(line.startswith(".."), f"コメント行でない: {line!r}")
