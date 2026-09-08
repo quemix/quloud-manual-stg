@@ -329,26 +329,97 @@ class TestRenderParams(unittest.TestCase):
         self.assertLess(out.index("物理モデル"), out.index("実験パラメータ"))
 
 
-class TestRenderArtifacts(unittest.TestCase):
-    def test_lists_downloadable_files(self):
+def _artifact(**kw):
+    base = {
+        "artifact_key": "qe_scf_out", "artifact_role": "log", "artifact_type": "log",
+        "description": "SCF の標準出力", "downloadable": True,
+        "filename_pattern": "QuloudJob_SCF.log", "format": "text",
+        "generator_key": None, "is_multiple": False, "is_required": True,
+        "parser_name": None, "retention_class": "long",
+    }
+    base.update(kw)
+    return base
+
+
+class TestFormatFilenamePattern(unittest.TestCase):
+    def test_plain_name_is_literal(self):
+        self.assertEqual(g.format_filename_pattern("QuloudJob.scf.in"), "``QuloudJob.scf.in``")
+
+    def test_glob_is_literal(self):
+        self.assertEqual(g.format_filename_pattern("*.gro"), "``*.gro``")
+
+    def test_brace_list_becomes_extension_list(self):
+        out = g.format_filename_pattern("*.{mol2,xyz,sdf,pdb}")
+        self.assertIn("``.mol2``", out)
+        self.assertIn("``.pdb``", out)
+        self.assertNotIn("{", out)
+
+    def test_case_insensitive_class_is_lowercased(self):
+        self.assertEqual(g.format_filename_pattern(r"^.*\.[uU][pP][fF]$"), "``<名前>.upf``")
+
+    def test_digits_become_placeholder(self):
+        self.assertEqual(g.format_filename_pattern(r"^pw_[0-9]+\.in$"), "``pw_<番号>.in``")
+
+    def test_alternation_lists_both(self):
+        out = g.format_filename_pattern(r"^(QuloudJob\.neb\.in|neb\.in)$")
+        self.assertEqual(out, "``QuloudJob.neb.in`` または ``neb.in``")
+
+    def test_alternation_with_suffix(self):
+        out = g.format_filename_pattern(r"^(QuloudJob|matdyn)\.dyn[0-9]+$")
+        self.assertEqual(out, "``QuloudJob.dyn<番号>`` または ``matdyn.dyn<番号>``")
+
+    def test_negative_lookahead_becomes_exclusion(self):
+        # <名前> を二重に付けない（neg.end() 以降に .* が残っている）
+        out = g.format_filename_pattern(r"^(?!.*\.dft12\.).*\.[uU][pP][fF]$")
+        self.assertEqual(out, "``<名前>.upf``（``.dft12.`` を含むものを除く）")
+        self.assertNotIn("<名前><名前>", out)
+
+    def test_unparsable_is_emitted_verbatim(self):
+        # 推測で書き換えると存在しないファイル名を載せることになる
+        weird = r"^(a|b)(c|d)$"
+        self.assertEqual(g.format_filename_pattern(weird), f"``{weird}``")
+
+    def test_empty_is_hyphen(self):
+        self.assertEqual(g.format_filename_pattern(None), "-")
+
+
+class TestRenderArtifactsAll(unittest.TestCase):
+    def test_lists_files_with_role(self):
         d = _dump()
-        d["engine_capabilities"][0]["artifact_specs"] = [{
-            "artifact_key": "qe_scf_out", "artifact_role": "main_output",
-            "artifact_type": "log", "description": "SCF の標準出力",
-            "downloadable": True, "filename_pattern": "QuloudJob_SCF.log",
-            "format": "text", "generator_key": None, "is_multiple": False,
-            "is_required": True, "parser_name": None, "retention_class": "long",
-        }]
-        ec = d["engine_capabilities"][0]
-        out = g.render_artifacts(ec, d)
+        d["engine_capabilities"][0]["artifact_specs"] = [_artifact()]
+        out = g.render_artifacts_all(d)
         self.assertIn("QuloudJob_SCF.log", out)
         self.assertIn("SCF の標準出力", out)
+        self.assertIn("ログ", out)
 
-    def test_no_artifacts_emits_note(self):
-        ec = _dump()["engine_capabilities"][0]
-        out = g.render_artifacts(ec, _dump())
+    def test_system_roles_are_dropped(self):
+        # rsdft.atom / parameters.json などは Quloud が内部で受け渡すもので、
+        # 利用者が読むファイルではない。description もほぼ空。
+        d = _dump()
+        d["engine_capabilities"][0]["artifact_specs"] = [
+            _artifact(artifact_role="system_input", filename_pattern="parameters.json",
+                      description=""),
+            _artifact(artifact_role="system_output", filename_pattern="sysinfo.json.out.cif",
+                      description=""),
+        ]
+        out = g.render_artifacts_all(d)
+        self.assertNotIn("parameters.json", out)
         self.assertNotIn(".. list-table::", out)
-        self.assertIn("出力ファイルの登録はありません", out)
+        self.assertIn("入出力ファイルはありません", out)
+
+    def test_roles_are_ordered_input_first(self):
+        d = _dump()
+        d["engine_capabilities"][0]["artifact_specs"] = [
+            _artifact(artifact_role="log", filename_pattern="run.log"),
+            _artifact(artifact_role="input", filename_pattern="run.in"),
+        ]
+        out = g.render_artifacts_all(d)
+        self.assertLess(out.index("run.in"), out.index("run.log"))
+
+    def test_no_artifacts_emits_note_not_empty_table(self):
+        out = g.render_artifacts_all(_dump())
+        self.assertNotIn(".. list-table::", out)
+        self.assertIn("入出力ファイルはありません", out)
 
 
 class TestRenderResults(unittest.TestCase):
@@ -426,7 +497,9 @@ class TestGenerate(unittest.TestCase):
             self.assertIn("params_all.rst", names)
             self.assertIn("results_all.rst", names)
             self.assertIn("params/qe_scf.rst", names)
-            self.assertIn("artifacts/qe_scf.rst", names)
+            self.assertIn("artifacts_all.rst", names)
+            # artifacts/ の個別ファイルは artifacts_all.rst に畳んだ
+            self.assertNotIn("artifacts/qe_scf.rst", names)
             for p in written:
                 text = p.read_text(encoding="utf-8")
                 self.assertTrue(text.startswith(".. これは"), f"生成ヘッダが無い: {p}")

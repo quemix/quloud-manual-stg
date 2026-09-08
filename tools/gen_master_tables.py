@@ -386,23 +386,135 @@ def render_results_all(dump: dict) -> str:
     return "".join(out)
 
 
-def render_artifacts(ec: dict, dump: dict) -> str:
-    specs = ec.get("artifact_specs") or []
-    out = [rst.header_comment(dump, SCRIPT)]
+# 出力ファイルの役割。engine_capability_artifact_specs.artifact_role の値。
+ARTIFACT_ROLE_JA = {
+    "input": "入力",
+    "primary_output": "主な出力",
+    "aux_output": "補助出力",
+    "trajectory": "トラジェクトリ",
+    "structure": "構造",
+    "log": "ログ",
+}
+
+# Quloud が内部で受け渡すファイル。利用者が読むものではないので表に出さない。
+# rsdft.atom / parameters.json / sysinfo.json / QuloudJob.exit_status.json /
+# site_property_settings.b64 がこれにあたる（238 件）。description が空なのも
+# ほぼこの区分で、落とすと残りの description 充足率は 72% になる。
+ARTIFACT_SYSTEM_ROLES = {"system_input", "system_output", "system_aux"}
+
+_ANY = re.compile(r"^\^?\.\*")
+_NUM = re.compile(r"\[0-9\]\+")
+_CASE_CLASS = re.compile(r"\[([A-Za-z])([A-Za-z])\]")
+_BRACE_LIST = re.compile(r"^\*\.\{([A-Za-z0-9,]+)\}$")
+_ALT = re.compile(r"^\^\(([^()]+)\)\$$")
+_NEGLOOKAHEAD = re.compile(r"^\^\(\?!\.\*\\?\.(.+?)\\?\.\)")
+
+
+def _unescape(pattern: str) -> str:
+    """正規表現の断片をファイル名の見た目に戻す。"""
+    s = _CASE_CLASS.sub(lambda m: m.group(1).lower()
+                        if m.group(1).lower() == m.group(2).lower() else m.group(0), pattern)
+    s = _NUM.sub("<番号>", s)
+    s = _ANY.sub("<名前>", s)
+    s = s.replace("\\.", ".").replace("$", "").replace("^", "")
+    return s
+
+
+def format_filename_pattern(pattern) -> str:
+    r"""filename_pattern を読める形にする。解釈できないものは原文のまま出す。
+
+    マスタの 22 件が正規表現・glob で、素で出すと
+    ``^(?!.*\.dft12\.).*\.[uU][pP][fF]$`` のような文字列が「ファイル」列に並ぶ。
+    読者は画面やダウンロード一覧で対応するファイルを探せない。
+
+    **解釈できない式は書き換えずに原文を出す。** 推測で書き換えると、
+    存在しないファイル名を載せることになる（format_condition と同じ方針）。
+    """
+    if not pattern:
+        return "-"
+    s = str(pattern)
+
+    m = _BRACE_LIST.match(s)
+    if m:
+        exts = " / ".join(f"``.{e}``" for e in m.group(1).split(","))
+        return f"拡張子が {exts} のいずれか"
+
+    if not re.search(r"[\^\$\(\)\[\]\|\?\+\\]", s):
+        return f"``{s}``"
+
+    # 否定先読み：^(?!.*\.X\.).*\.ext$ → 「ext のファイル（X を除く）」
+    neg = _NEGLOOKAHEAD.match(s)
+    if neg:
+        # neg.end() 以降に .* が残っているので、<名前> を重ねて付けない。
+        rest = _unescape(s[neg.end():])
+        return f"``{rest}``（``.{neg.group(1)}.`` を含むものを除く）"
+
+    alt = _ALT.match(s)
+    if alt and "|" in alt.group(1) and "?" not in alt.group(1):
+        # ^(A|B)$ と ^(A|B)\.suffix$ の両方がある。前者だけをここで扱う。
+        parts = [f"``{_unescape(p)}``" for p in alt.group(1).split("|")]
+        return " または ".join(parts)
+
+    # ^(A|B)\.suffix$ の形。接頭辞だけが選択肢になっている。
+    # 接尾辞側に括弧や | が残っている式（^(a|b)(c|d)$ など）はここで扱わない。
+    # 無理に展開すると存在しないファイル名を作ってしまう。
+    m2 = re.match(r"^\^\(([^()]+)\)([^()|]*)\$$", s)
+    if m2 and "|" in m2.group(1) and "?" not in m2.group(1):
+        suffix = _unescape(m2.group(2))
+        parts = [f"``{_unescape(p)}{suffix}``" for p in m2.group(1).split("|")]
+        return " または ".join(parts)
+
+    if re.fullmatch(r"\^[^()|?]*\$", s):
+        return f"``{_unescape(s)}``"
+
+    return f"``{s}``"
+
+
+def _artifacts_body(ec: dict) -> str:
+    """1 つの engine × capability の入出力ファイルの表。"""
+    specs = [a for a in (ec.get("artifact_specs") or [])
+             if (a.get("artifact_role") or "") not in ARTIFACT_SYSTEM_ROLES]
     if not specs:
-        out.append("この計算には、出力ファイルの登録はありません。\n")
-        return "".join(out)
+        return "この計算には、Quloud が登録する入出力ファイルはありません。\n"
+
+    order = list(ARTIFACT_ROLE_JA)
+    def sort_key(a):
+        role = a.get("artifact_role") or ""
+        return (order.index(role) if role in order else len(order),
+                str(a.get("filename_pattern") or ""))
+
     rows = []
-    for a in sorted(specs, key=lambda x: (x.get("artifact_role") or "", x.get("artifact_key") or "")):
+    for a in sorted(specs, key=sort_key):
         rows.append([
-            f"``{a.get('filename_pattern')}``" if a.get("filename_pattern") else "-",
+            ARTIFACT_ROLE_JA.get(a.get("artifact_role"), rst.escape(a.get("artifact_role"))),
+            format_filename_pattern(a.get("filename_pattern")),
             rst.escape(a.get("description")),
             rst.escape(a.get("format")),
-            "○" if a.get("downloadable") else "×",
-            "必須" if a.get("is_required") else "任意",
         ])
-    out.append(rst.list_table(
-        ["ファイル", "内容", "形式", "ダウンロード", "出力"], rows, widths=[28, 34, 12, 12, 8]))
+    return rst.list_table(["役割", "ファイル", "内容", "形式"], rows, widths=[14, 34, 38, 14])
+
+
+def render_artifacts_all(dump: dict) -> str:
+    """全 engine x capability の入出力ファイルを 1 ファイルにまとめる。
+
+    params_all / results_all と同じ理由で束ねる。
+    """
+    engine_names = {e["code"]: e.get("name") or e["code"] for e in dump.get("engines", [])}
+    cap_names = {c["code"]: c.get("name_ja") or c["code"] for c in dump.get("capabilities", [])}
+
+    out = [rst.header_comment(dump, SCRIPT)]
+    for engine_code in dict.fromkeys(ec["engine"] for ec in dump["engine_capabilities"]):
+        out.append("\n")
+        out.append(rst.section(rst.escape(engine_names.get(engine_code, engine_code)), "#"))
+        out.append("\n")
+        for ec in dump["engine_capabilities"]:
+            if ec["engine"] != engine_code:
+                continue
+            cap = ec["capability"]
+            out.append(rst.section(rst.escape(cap_names.get(cap, cap)), "+"))
+            out.append("\n")
+            out.append(_artifacts_body(ec))
+            out.append("\n")
     return "".join(out)
 
 
@@ -415,7 +527,9 @@ def generate(dump: dict, out_dir: Path) -> list[Path]:
     マニュアルに載るので、params/ と artifacts/ は毎回作り直す。
     """
     out_dir.mkdir(parents=True, exist_ok=True)
-    for sub in ("params", "artifacts"):
+    # artifacts/ は artifacts_all.rst に畳んだので、残っていたら消す。
+    shutil.rmtree(out_dir / "artifacts", ignore_errors=True)
+    for sub in ("params",):
         shutil.rmtree(out_dir / sub, ignore_errors=True)
         (out_dir / sub).mkdir(parents=True)
 
@@ -430,10 +544,10 @@ def generate(dump: dict, out_dir: Path) -> list[Path]:
     write("calc_list.rst", render_calc_list(dump))
     write("params_all.rst", render_params_all(dump))
     write("results_all.rst", render_results_all(dump))
+    write("artifacts_all.rst", render_artifacts_all(dump))
     for ec in dump["engine_capabilities"]:
         slug = f"{ec['engine']}_{ec['capability']}"
         write(f"params/{slug}.rst", render_params(ec, dump))
-        write(f"artifacts/{slug}.rst", render_artifacts(ec, dump))
     return written
 
 
