@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-16T17:41:22+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T11:19:35+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. ダッシュボード（トップ画面）</title>
+  <title>5. ホーム画面</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -55,14 +55,16 @@
 <li class="toctree-l1"><a class="reference internal" href="signup.html">2. サインアップ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="signin.html">3. サインイン・サインアウト</a></li>
 <li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. ダッシュボード（トップ画面）</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#project">5.1. Project</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.1.1. Project の作成・共有</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">5.1.2. Project の削除</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. ホーム画面</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. プロジェクト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.2.1. プロジェクトを作る</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5.2.2. プロジェクトの操作</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#material">5.2. Material</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#job">5.3. Job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.3. マテリアル・ジョブ・プロパティ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">5.4. 検索と絞り込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">5.5. 注意事項</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
@@ -92,7 +94,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5. </span>ダッシュボード（トップ画面）</li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>ホーム画面</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/dashboard.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,103 +105,218 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">5. </span>ダッシュボード（トップ画面）<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>下図は Quloud のログイン直後の画面です。これから計算を始めていくにあたって重要な要素として、
-Project，Material，Job があります。</p>
-<img alt="../_images/screenshot_0001.png" src="../_images/screenshot_0001.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
+<h1><span class="section-number">5. </span>ホーム画面<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
 </div>
-<section id="project">
-<h2><span class="section-number">5.1. </span>Project<a class="headerlink" href="#project" title="Link to this heading"></a></h2>
-<p>Quloud では、材料のモデリングやシミュレーションは Project の中で行われます。そしてそれぞれの Project の中に、Material や Job が配置されます。
-Material はモデリングを行うための要素、Job はシミュレーションを行うための要素です。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="id2">
-<h3><span class="section-number">5.1.1. </span>Project の作成・共有<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
-<p>画面左下にある「New Project」をクリックすると、下図のようなメニューが開きます。</p>
-<img alt="../_images/screenshot_0181.png" src="../_images/screenshot_0181.png" />
-<p>管理ユーザー（Owner）の場合、作成した Project を Tenant 内のメンバーと共有することができます。
-「Name」に新しい Project の名前（ここでは &quot;Project_1&quot;）を入力し、Project を共有するメンバー（ここでは &quot;Marie Curie&quot;）にチェックを入れます。</p>
-<img alt="../_images/screenshot_0182.png" src="../_images/screenshot_0182.png" />
-<p>「Submit」をクリックすると、トップ画面左の Project 一覧に Project_1 が追加されていることが分かります。</p>
-<img alt="../_images/screenshot_0183.png" src="../_images/screenshot_0183.png" />
-<p>Project を共有した Marie Curie のアカウントからサインインすると、先ほど作成した Project_1 がここでも表示されています。</p>
-<img alt="../_images/screenshot_0002.png" src="../_images/screenshot_0002.png" />
-<p>Project が増えると、例えば下図のように、画面左上の All Projects の下に、ツリー上に Project の一覧が表示されます。
-Project 名をクリックすれば、その Project に切り替わるようになっています。
-Project を切り替えると、画面上部に選択中の Project の名前（ここでは &quot;Project_3&quot;）が表示され、
-その Project に属する情報（後述の Material および Job）だけが表示されるようになるので、データの整理等に利用できます。
-また Project の重要な機能として、ある Project に属する要素（例えば Material）を元にして、別の要素（例えば Job） を作成すると、
-作成された要素は自動的にその Project の所属として登録されるというものがあります。</p>
-<img alt="../_images/screenshot_0003.png" src="../_images/screenshot_0003.png" />
+<h2><span class="section-number">5.1. </span>概要<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>サインインすると開く画面です。テナントにあるものを 4 つのタブで一覧します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>タブ</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>プロジェクト</p></td>
+<td><p>計算の入れ物です。Material と Job はプロジェクトの中に置かれます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>マテリアル</p></td>
+<td><p>計算の対象となる原子構造です（<a class="reference internal" href="jobs_and_models_atom.html"><span class="doc">Material の登録</span></a> の章）。</p></td>
+</tr>
+<tr class="row-even"><td><p>ジョブ</p></td>
+<td><p>計算の実行単位です（<a class="reference internal" href="calculation.html"><span class="doc">計算 Job の登録</span></a> ・ <a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>プロパティ</p></td>
+<td><p>計算結果を Material にまとめたものです（<a class="reference internal" href="property.html"><span class="doc">Property</span></a> の章）。</p></td>
+</tr>
+</tbody>
+</table>
+<p>いずれのタブも同じ作りで、一覧の上に検索と絞り込み、各行の右端に「⋮」の
+メニューがあります。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>ヘッダーの左端にあるメニューからも、各タブに直接移動できます
+（<a class="reference internal" href="header.html"><span class="doc">ヘッダーメニュー（各種管理）</span></a> の章）。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id3">
-<h3><span class="section-number">5.1.2. </span>Project の削除<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
-<div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>Project を削除すると、所属する Material および Job も全て削除されてしまいますのでご注意ください。</p>
+<h2><span class="section-number">5.2. </span>プロジェクト<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<figure class="align-default" id="id9">
+<img alt="ホーム画面のプロジェクトのタブ。プロジェクト・マテリアル・ジョブ・プロパティの 4 つのタブが並び、右に検索アイコン、更新アイコン、「＋ 新規プロジェクト」ボタンがある。表には名前・説明・アクセス・マテリアル・ジョブ・更新日時・作成日時・作成者の列があり、1 件のプロジェクトが Private で表示されている。" src="../_images/dashboard_projects_tab.png" />
+<figcaption>
+<p><span class="caption-number">図 5.1 </span><span class="caption-text">ホーム画面（プロジェクトのタブ）</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>「アクセス」は、そのプロジェクトが自分だけのものか（<code class="docutils literal notranslate"><span class="pre">Private</span></code>）、
+テナントのメンバーと共有されているか（<code class="docutils literal notranslate"><span class="pre">Collabo</span></code>）を表します。
+「マテリアル」「ジョブ」の列はそのプロジェクトに属する件数です。</p>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<p>トップ画面左の Project 一覧で、削除する Project（ここでは &quot;Project_1&quot;）をクリックします。</p>
-<img alt="../_images/screenshot_0184.png" src="../_images/screenshot_0184.png" />
-<p>画面右上にゴミ箱のマークが現れるので、それをクリックすると、次のようなダイアログが出ます。</p>
-<img alt="../_images/screenshot_0185.png" src="../_images/screenshot_0185.png" />
-<p>警告メッセージを読み、削除に問題がなければチェックを入れます。すると、「Delete」ボタンがアクティブになります。</p>
-<img alt="../_images/screenshot_0186.png" src="../_images/screenshot_0186.png" />
-<p>「Delete」ボタンを押すと、Project_1 が（ここに所属する Material および Job 諸共）削除されます。</p>
-<img alt="../_images/screenshot_0186b.png" src="../_images/screenshot_0186b.png" />
+<section id="id4">
+<h3><span class="section-number">5.2.1. </span>プロジェクトを作る<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>右上の「＋ 新規プロジェクト」を押します。</p>
+<figure class="align-default" id="id10">
+<img alt="「プロジェクトを作成」ダイアログ。名前（必須）と説明の入力欄、その下に「ユーザー」の表があり、名前と権限の列に 4 人が並んでいる。先頭の Owner の行はチェック済みで変更できない状態。下部に「キャンセル」と緑色の「作成」ボタンがある。" src="../_images/dashboard_project_create.png" />
+<figcaption>
+<p><span class="caption-number">図 5.2 </span><span class="caption-text">「プロジェクトを作成」ダイアログ</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>名前を入れて「作成」を押します。「ユーザー」で選んだ人とプロジェクトを共有できます。
+自分は常に含まれます。共有すると、選んだ人のホーム画面にもこのプロジェクトが現れ、
+アクセスが <code class="docutils literal notranslate"><span class="pre">Collabo</span></code> になります。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">5.2.2. </span>プロジェクトの操作<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>各行の「⋮」から操作します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>動作</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>説明</p></td>
+<td><p>説明を表示します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>編集</p></td>
+<td><p>名前・説明・共有するメンバーを変更します。</p></td>
+</tr>
+<tr class="row-even"><td><p>削除</p></td>
+<td><p>プロジェクトを削除します。</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>「編集」「削除」が出るのは、自分が作成したプロジェクトか、管理ユーザー（Owner）の
+場合だけです。</strong></p>
+<p>名前を押すとプロジェクト詳細画面に移り、そのプロジェクトのマテリアル・ジョブ・
+プロパティが並びます（<a class="reference internal" href="jobs_and_models_atom.html"><span class="doc">Material の登録</span></a> の章）。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 </section>
-<section id="material">
-<h2><span class="section-number">5.2. </span>Material<a class="headerlink" href="#material" title="Link to this heading"></a></h2>
-<p>Project 名の下にある「Materials」および「Jobs」は、タブで切り替えられうようになっています。
-このうち左側にある「Materials」では、Quloud（そして選択された Project）に登録されている物質（具体的には原子座標）の一覧を表示するようになっています。
-右側にある「＋」アイコンをクリックすると、次のようなメニューが開きます。</p>
-<img alt="../_images/screenshot_0004.png" src="../_images/screenshot_0004.png" />
-<p>ここでは計算したい物質の原子座標ファイルを、いくつかの方法で登録できます。
-「Atomic Structures」の行には３つのボタンがあり、それぞれ</p>
+<section id="id6">
+<h2><span class="section-number">5.3. </span>マテリアル・ジョブ・プロパティ<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>いずれもテナント全体の一覧です。名前を押すとそれぞれの画面に移ります。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>タブ</p></th>
+<th class="head"><p>「⋮」からできること</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>マテリアル</p></td>
+<td><p>説明 / 編集 / 他のプロジェクトへ移動 / 削除</p></td>
+</tr>
+<tr class="row-odd"><td><p>ジョブ</p></td>
+<td><p>実行またはキャンセル / 説明 / 編集 / 削除（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）</p></td>
+</tr>
+<tr class="row-even"><td><p>プロパティ</p></td>
+<td><p>編集（グループ名の変更）/ 削除（<a class="reference internal" href="property.html"><span class="doc">Property</span></a> の章）</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-default" id="id11">
+<img alt="ホーム画面のジョブのタブを検索で絞り込んだ状態。検索欄に Al-fcc と入力されており、その下に「1 / 109 件」と表示されている。表には名前・説明・ソフトウェア / 計算種別・状態・マテリアル・プロジェクト・更新日時・作成日時・作成者の列があり、1 件のジョブが Succeeded で表示されている。" src="../_images/dashboard_jobs_tab.png" />
+<figcaption>
+<p><span class="caption-number">図 5.3 </span><span class="caption-text">ホーム画面（ジョブのタブ、検索で絞り込んだ状態）</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">5.4. </span>検索と絞り込み<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>タブの右にある虫眼鏡を押すと、検索欄と「フィルター」が現れます。</p>
+<figure class="align-default" id="id12">
+<img alt="ホーム画面のマテリアルのタブで「フィルター」を開いた状態。種別（結晶 8 件・分子 2 件）、プロジェクト（サンプルプロジェクト 10 件）、作成者（山田 太郎 10 件）の 3 つのまとまりにチェックボックスが並び、右下に「条件をクリア」と「10 件を表示」のボタンがある。その下に絞り込み後の一覧が表示されている。" src="../_images/dashboard_filter_panel.png" />
+<figcaption>
+<p><span class="caption-number">図 5.4 </span><span class="caption-text">フィルターのパネル（マテリアルのタブ）</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 <ul class="simple">
-<li><p>結晶構造データベース（外部サイト：Materials Project）で検索＆取得</p></li>
-<li><p>分子構造データベース（外部サイト：PubChem）で検索＆取得</p></li>
-<li><p>手持ちのファイルをアップロードする</p></li>
+<li><p><strong>検索欄</strong>は名前などの部分一致です。欄の下に「絞り込み後の件数 / 全体の件数」が
+表示されます</p></li>
+<li><p><strong>フィルター</strong>は、まとまりごとにチェックを入れて絞り込みます。各項目の右の数字は
+その条件に当てはまる件数です</p></li>
+<li><p>条件はまとまりの中では「いずれか」、まとまりの間では「すべて」で組み合わされます</p></li>
+<li><p>「条件をクリア」でフィルターを外します</p></li>
 </ul>
-<p>という登録方法に対応しています。データベース検索やファイルアップロードの方法については後述することにして、
-とにかく原子座標ファイルを登録したら、下記のように、最初の画面の「Materials」の欄に登録した情報が追加されていきます。</p>
-<img alt="../_images/screenshot_0005.png" src="../_images/screenshot_0005.png" />
-<p>登録した Material の名前（例えば &quot;Si&quot;）をクリックすると、
-次のような、その Material 専用のページに移動することができます。</p>
-<img alt="../_images/screenshot_0059.png" src="../_images/screenshot_0059.png" />
-<p>この画面から、Material のモデリングを行ったり、各種計算を行ったりすることができます。
-Quloud では、モデリングの結果も「Material」というデータとして登録されます。
-また、計算結果は「Job」というデータとして登録されます。</p>
-<p>具体的なモデリングの方法については後述することにして、例えば何らかのモデリングの結果を「Si conventional」という名前で保存したとすると、
-以下のように、最初の画面の「Materials」の欄にデータが追加される事になります。</p>
-<img alt="../_images/screenshot_0060.png" src="../_images/screenshot_0060.png" />
+<p>絞り込める項目はタブによって異なります。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>タブ</p></th>
+<th class="head"><p>絞り込める項目</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>プロジェクト</p></td>
+<td><p>アクセス、作成者</p></td>
+</tr>
+<tr class="row-odd"><td><p>マテリアル</p></td>
+<td><p>種別（結晶・分子）、プロジェクト、作成者</p></td>
+</tr>
+<tr class="row-even"><td><p>ジョブ</p></td>
+<td><p>状態、ソフトウェア、ソフトウェア / 計算種別、作成者</p></td>
+</tr>
+<tr class="row-odd"><td><p>プロパティ</p></td>
+<td><p>プロジェクト、作成者</p></td>
+</tr>
+</tbody>
+</table>
+<p>プロジェクト詳細画面のように 1 つのプロジェクトに絞られている画面では、
+「プロジェクト」のまとまりは表示されません。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>プロジェクト詳細画面の各一覧にも、同じ検索と絞り込みがあります。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="job">
-<h2><span class="section-number">5.3. </span>Job<a class="headerlink" href="#job" title="Link to this heading"></a></h2>
-<p>Project 名の下にある「Jobs」タブをクリックすると、次のような画面になります。</p>
-<img alt="../_images/screenshot_0061.png" src="../_images/screenshot_0061.png" />
-<p>Material 詳細画面から Job を作成すると、ここにそのデータが追加されていきます。</p>
-<p>具体的な計算設定の方法については後述することにして、
-例えば「Si Electron Band Structure」という名前の Job を作成すると、以下のように、最初の画面の「Jobs」の欄にデータが追加される事になります。</p>
-<img alt="../_images/screenshot_0062.png" src="../_images/screenshot_0062.png" />
+<section id="id8">
+<h2><span class="section-number">5.5. </span>注意事項<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>一覧は自動では更新されません。</strong> Job の状態などを見直すには、
+タブの右にある更新アイコンを押すか、画面を再読み込みしてください。</p></li>
+<li><p>テナントが利用制限中の場合は画面上部に警告が表示され、プロジェクト・
+マテリアル・ジョブの作成ができなくなります（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）。</p></li>
+</ul>
 </section>
 </section>
 
@@ -215,7 +332,7 @@ Quloud では、モデリングの結果も「Material」というデータと�
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 3月 16, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 
