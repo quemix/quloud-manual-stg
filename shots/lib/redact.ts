@@ -73,15 +73,27 @@ export async function redactPage(page: Page, rules: RedactionRules): Promise<voi
     }
 
     // 入力欄の値と、ツールチップ・代替テキストとして見える属性。
+    //
+    // 読み取り専用の v-text-field は値を input の value に持つ（プロフィール画面が
+    // そう）。テキストノードと同じく、部分一致で変わらなかったものには
+    // 全体一致の規則も当てる。ここを抜かすと、名（1 文字）のような
+    // replaceExact だけで消せる値が素のまま残る。
+    const applyOne = (s: string): string => {
+      const next = applyAll(s)
+      if (next !== s) return next
+      const trimmed = s.trim()
+      const hit = exact.find(([from]) => from === trimmed)
+      return hit ? s.replace(trimmed, hit[1]) : s
+    }
     for (const el of Array.from(document.querySelectorAll('input, textarea'))) {
       const f = el as HTMLInputElement | HTMLTextAreaElement
-      if (f.value) f.value = applyAll(f.value)
+      if (f.value) f.value = applyOne(f.value)
     }
     for (const attr of ['placeholder', 'title', 'alt', 'aria-label', 'value']) {
       for (const el of Array.from(document.querySelectorAll(`[${attr}]`))) {
         const v = el.getAttribute(attr)
         if (!v) continue
-        const next = applyAll(v)
+        const next = applyOne(v)
         if (next !== v) el.setAttribute(attr, next)
       }
     }
