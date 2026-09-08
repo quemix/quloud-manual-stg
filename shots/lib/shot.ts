@@ -65,6 +65,17 @@ export type ShotSpec = {
   skipIf?: () => string | false
   /** ページ全体を撮る。既定はビューポートだけ。 */
   fullPage?: boolean
+  /**
+   * この CSS セレクタに一致する要素だけを撮る（既定はビューポート全体）。
+   *
+   * 置換表は**書いてある文字列しか消せない**。画面の一部に、その章と関係の無い
+   * 一覧（プロジェクト詳細画面のジョブ一覧など）が写り込むと、内部のテスト名が
+   * そのまま公開画像に入る。実際に issue 番号を含むジョブ名が 2 件写っていた。
+   * 章に必要な範囲だけを撮れば、その一覧ごと写らない。
+   *
+   * 要素が 1 つに定まらない場合は撮影を失敗させる（別の場所を撮るより止める）。
+   */
+  clip?: string
   /** 撮りたい状態まで画面を進める。 */
   prepare: (page: Page) => Promise<void>
 }
@@ -90,12 +101,17 @@ export function defineShots(specs: ShotSpec[]): void {
 
       const file = path.join(IMAGE_DIR, `${spec.name}.png`)
       fs.mkdirSync(IMAGE_DIR, { recursive: true })
-      await page.screenshot({
-        path: file,
-        fullPage: spec.fullPage ?? false,
-        animations: 'disabled',
-        caret: 'hide',
-      })
+      const options = { path: file, animations: 'disabled' as const, caret: 'hide' as const }
+      if (spec.clip) {
+        const target = page.locator(spec.clip)
+        const count = await target.count()
+        if (count !== 1) {
+          throw new Error(`clip の要素が 1 つに定まらない（${count} 件）: ${spec.clip}`)
+        }
+        await target.screenshot(options)
+      } else {
+        await page.screenshot({ ...options, fullPage: spec.fullPage ?? false })
+      }
 
       const viewport = page.viewportSize()
       // 掲載画像の幅は章に書いてある値と一致していなければならない。
