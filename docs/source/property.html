@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-16T17:41:22+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T10:49:11+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11. Property の登録</title>
+  <title>11. Property</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -61,7 +61,20 @@
 <li class="toctree-l1"><a class="reference internal" href="modeling.html">8. Material のモデリング</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculation.html">9. 計算 Job の登録</a></li>
 <li class="toctree-l1"><a class="reference internal" href="runjob.html">10. 計算 Job の実行</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Property の登録</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Property</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">11.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">11.2. 前提</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">11.3. 操作手順</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">11.3.1. 1. 結果のカードから登録する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#material">11.3.2. 2. Material 詳細画面で確認する</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">11.4. グループの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">11.5. Property カードの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">11.6. プロパティの一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">11.7. 注意事項</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="header.html">14. ヘッダーメニュー（各種管理）</a></li>
@@ -83,7 +96,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">11. </span>Property の登録</li>
+      <li class="breadcrumb-item active"><span class="section-number">11. </span>Property</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/property.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,16 +107,212 @@
            <div itemprop="articleBody">
              
   <section id="property">
-<span id="property-section"></span><h1><span class="section-number">11. </span>Property の登録<a class="headerlink" href="#property" title="Link to this heading"></a></h1>
-<p><a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>にある Select Property より、初期構造（initial）の他に、その Material に対して実行されたジョブのうち、Status = Succeeded で終了したものも選べるようになります。Quloud では、これを（その Material の）Property と呼びます。</p>
-<img alt="../_images/screenshot_0229.png" src="../_images/screenshot_0229.png" />
-<p>左サイドメニューの Job をクリックすると、下図のような、その Material に関して作成・実行されたジョブの一覧が表示できます（もし直接一覧画面が表示されない場合は、画面上部に出る「一覧に戻る」をクリックしてください）。</p>
-<img alt="../_images/screenshot_0230.png" src="../_images/screenshot_0230.png" />
-<p>Succeeded で終了したジョブはデフォルトで、Property として登録されてしまうようになっています。もし Property として登録したくない（Select Property の選択肢に出さないようにしたい）場合は、ジョブ一覧の View 列のアイコンをクリックして下図のようにしてください。</p>
-<img alt="../_images/screenshot_0231.png" src="../_images/screenshot_0231.png" />
-<p>そうすると、Property 画面（<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>のトップ）の Select Property
-の選択肢から除外されるようになります（Succeeded 以外のジョブは、アイコンを切り替えても何も起こりません）。</p>
-<img alt="../_images/screenshot_0232.png" src="../_images/screenshot_0232.png" />
+<span id="property-section"></span><h1><span class="section-number">11. </span>Property<a class="headerlink" href="#property" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<section id="id1">
+<h2><span class="section-number">11.1. </span>概要<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Property は、<strong>計算結果のカードを Material に貼り付けたもの</strong>です。
+Job をまたいだ結果を 1 つの Material の画面に並べて比べられます。</p>
+<ul class="simple">
+<li><p>結果のカードは、それを出した Job の詳細画面にしかありません（<a class="reference internal" href="visualization.html"><span class="doc">計算結果の可視化</span></a> の章）</p></li>
+<li><p>Property に登録すると、Material 詳細画面の「プロパティ」に並びます</p></li>
+<li><p>Property は**グループ**にまとめます。グループが画面上の見出しになります</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Ver.6.1.2 では、Succeeded で終わった Job が自動的にその Material の Property になり、
+「Select Property」で切り替えて見る形でした。Ver.7.0 では自動登録はありません。
+<strong>見たい結果を選んで登録します。</strong></p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">11.2. </span>前提<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>登録したい結果のカードが Job 詳細画面の「Results」にあること
+（<a class="reference internal" href="visualization.html"><span class="doc">計算結果の可視化</span></a> の章）</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">11.3. </span>操作手順<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id4">
+<h3><span class="section-number">11.3.1. </span>1. 結果のカードから登録する<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Job 詳細画面の「Results」で、登録したいカードの右上にある「⋮」から
+「Propertyに登録」を選びます。</p>
+<figure class="align-default" id="id9">
+<img alt="「Propertyに登録」ダイアログ。「表示名」の入力欄にカードの名前 SCF が入っており、その下に「グループ」の選択欄がある。下部に「キャンセル」と、まだ押せない状態の「登録」ボタンが並ぶ。" src="../_images/property_pin_dialog.png" />
+<figcaption>
+<p><span class="caption-number">図 11.1 </span><span class="caption-text">「Propertyに登録」ダイアログ</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>表示名</p></td>
+<td><p>Material の画面に出す名前です。カードの名前が初期値として入ります。
+同じ計算を条件違いで並べるときは、ここで区別が付く名前にします。</p></td>
+</tr>
+<tr class="row-odd"><td><p>グループ</p></td>
+<td><p>登録先のグループです。既存のグループを選ぶか、
+「＋ 新規グループを作成」を選んで名前を入力します。</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>グループの指定は必須です。</strong> どちらも指定するまで「登録」は押せません。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="material">
+<h3><span class="section-number">11.3.2. </span>2. Material 詳細画面で確認する<a class="headerlink" href="#material" title="Link to this heading"></a></h3>
+<p>Material 詳細画面の「プロパティ」（左のメニューの一番上）を開くと、初期構造の下に
+グループごとの見出しとカードが並びます。</p>
+<figure class="align-default" id="id10">
+<img alt="Material 詳細画面のプロパティ。上部に初期構造の 3D ビューアと化学式・全電子数・価電子数・原子情報の表があり、その下に「振動解析」というグループの見出しと、「振動モード」「振動モード（再解析）」の 2 枚のカードが並んでいる。各カードの下に、結果を出したジョブへのリンクがある。" src="../_images/property_material_pane.png" />
+<figcaption>
+<p><span class="caption-number">図 11.2 </span><span class="caption-text">Material 詳細画面のプロパティ</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>グループの見出しは、左のメニューにも並びます。押すとその位置まで移動します</p></li>
+<li><p>各カードの下には、結果を出した Job へのリンクがあります</p></li>
+<li><p>結果のカードと同じ見た目で表示されます。バンド図や状態密度の図もそのまま並びます</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">11.4. </span>グループの操作<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>グループの見出しの右にあるアイコンで、名前の変更と削除ができます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>アイコン</p></th>
+<th class="head"><p>動作</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>鉛筆</p></td>
+<td><p>グループ名をその場で編集します。Enter で確定、Esc で取り消しです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ごみ箱</p></td>
+<td><p>グループを削除します。確認のダイアログが出ます。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><strong>グループを削除すると、その中の Property もすべて削除されます。</strong>
+計算結果そのもの（Job 詳細画面の「Results」のカード）は残ります。</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id6">
+<h2><span class="section-number">11.5. </span>Property カードの操作<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>各カードの右上の「⋮」からメニューが開きます。</p>
+<figure class="align-default" id="id11">
+<img alt="プロパティのカード「振動モード」の右上の「⋮」を押して開いたメニュー。「Propertyから削除」の 1 項目だけが表示されている。" src="../_images/property_card_menu.png" />
+<figcaption>
+<p><span class="caption-number">図 11.3 </span><span class="caption-text">Property カードのメニュー</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>動作</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Propertyから削除</p></td>
+<td><p>この Property を外します。計算結果そのものは残ります。</p></td>
+</tr>
+<tr class="row-odd"><td><p>モデリング</p></td>
+<td><p>最終構造の Property にだけ表示されます。その構造をモデラーで開きます
+（<a class="reference internal" href="modeling.html"><span class="doc">Material のモデリング</span></a> の章）。</p></td>
+</tr>
+<tr class="row-even"><td><p>ジョブ作成</p></td>
+<td><p>最終構造の Property にだけ表示されます。その構造を使って次の計算を
+登録します（<a class="reference internal" href="calculation.html"><span class="doc">計算 Job の登録</span></a> の章）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Materialとして保存</p></td>
+<td><p>最終構造の Property にだけ表示されます。その構造を新しい Material として
+登録します。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">11.6. </span>プロパティの一覧<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>ホーム画面の「プロパティ」タブに、テナント内のプロパティグループが一覧されます。</p>
+<figure class="align-default" id="id12">
+<img alt="ホーム画面の「プロパティ」タブ。名前・エントリ数・マテリアル・プロジェクト・更新日時・作成日時・作成者の列を持つ表に、「振動解析」のグループが 1 行表示されている。名前・マテリアル・プロジェクトはリンクになっている。" src="../_images/property_dashboard_list.png" />
+<figcaption>
+<p><span class="caption-number">図 11.4 </span><span class="caption-text">ホーム画面のプロパティ一覧</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>「名前」を押すと、その Material の画面のグループの位置に移動します</p></li>
+<li><p>「マテリアル」「プロジェクト」からもそれぞれの画面に移動できます</p></li>
+<li><p>右端の「⋮」から、グループ名の変更と削除ができます</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">11.7. </span>注意事項<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Job を削除すると、その Job から登録した Property も削除されます。</strong>
+グループは残りますが、中身は空になります。</p></li>
+<li><p><strong>Material を削除すると、その Material のグループと Property もすべて削除されます。</strong></p></li>
+<li><p>Ver.6.1.2 の「Select Property」で結果を切り替える方式は Ver.7.0 にはありません。</p></li>
+<li><p>結果のカードが作られない計算では、登録できる Property もありません
+（<a class="reference internal" href="visualization.html"><span class="doc">計算結果の可視化</span></a> の章）。</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -118,7 +327,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 3月 16, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 
