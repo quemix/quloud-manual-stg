@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-20T19:32:29+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T11:09:55+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. Material のモデリング</title>
+  <title>8. モデリング</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -58,23 +58,23 @@
 <li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Material のモデリング</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">8.1. 基本的な操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">8.2. モデリングのやり直しと中止</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">8.3. 操作パネル</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lattice-parameters">8.4. Lattice Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#supercell">8.5. Supercell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#atomic-coordinates">8.6. Atomic Coordinates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cell-transform">8.7. Cell Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#relative-atomic-position">8.8. Relative Atomic Position</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#surface">8.9. Surface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">8.10. フッターメニュー</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interface">8.11. Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-molecule">8.12. Add Molecule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#packmol">8.13. Packmol</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-cell">8.14. Add Cell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">8.15. パネル上部アイコン</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">8.16. モデルの保存</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. モデリング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.2. 前提</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.3. 操作手順</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.3.1. 1. モデラーを開く</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.3.2. 2. 構造を加工する</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">8.3.2.1. スーパーセルを作る</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">8.3.2.2. 表面（スラブ）を切り出す</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">8.3.2.3. 原子を個別に操作する</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">8.3.3. 3. 表示を調整する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">8.3.4. 4. 保存する</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">8.4. 原子ごとの拘束条件・初期スピン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">8.5. 注意事項</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="calculation.html">9. 計算 Job の登録</a></li>
@@ -101,7 +101,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">8. </span>Material のモデリング</li>
+      <li class="breadcrumb-item active"><span class="section-number">8. </span>モデリング</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/modeling.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,402 +111,237 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="material">
-<span id="modeling-section"></span><h1><span class="section-number">8. </span>Material のモデリング<a class="headerlink" href="#material" title="Link to this heading"></a></h1>
-<img alt="../_images/screenshot_0011.png" src="../_images/screenshot_0011.png" />
-<p>上図の<a class="reference internal" href="jobdetail.html#jobdetail-section"><span class="std std-ref">Material 詳細画面</span></a>の上部にある「Modeling」ボタンをクリックすると、
-下図のようなモデリング専用の画面がブラウザの別タブとして開きます。
-上図では initial（登録された Material）が選択されていますが、
-Select Property で、例えば原子構造最適化ジョブの結果などが選ばれていれば、その Property の構造を元にモデリングが開始されます。</p>
-<img alt="../_images/screenshot_0063b.png" src="../_images/screenshot_0063b.png" />
+  <section id="modeling-section">
+<span id="id1"></span><h1><span class="section-number">8. </span>モデリング<a class="headerlink" href="#modeling-section" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
-</div>
-<section id="id1">
-<h2><span class="section-number">8.1. </span>基本的な操作<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>モデリング画面では、以下のマウス操作で原子モデルの回転および拡大・縮小ができます。</p>
-<ul class="simple">
-<li><p>回転：　ドラッグ</p></li>
-<li><p>拡大・縮小：　マウスホイール</p></li>
-</ul>
-<p>原子がいない場所にマウスカーソルを持ってきて右クリックすると、原子を追加する「Add atom」メニューが現れます。</p>
-<img alt="../_images/screenshot_0087.png" src="../_images/screenshot_0087.png" />
-<p>「Add atom」をクリックすると、新しいウィンドウで元素周期表が現れます。ここで、どの元素の原子を追加するか選択します。</p>
-<img alt="../_images/screenshot_0088.png" src="../_images/screenshot_0088.png" />
-<p>例として「Zn」をクリックすると、本当に Zn 原子を追加するかどうかの確認画面が出ます。</p>
-<img alt="../_images/screenshot_0089.png" src="../_images/screenshot_0089.png" />
-<p>もう一度「Zn」をクリックすると、モデルに Zn 原子が追加されます。</p>
-<img alt="../_images/screenshot_0090.png" src="../_images/screenshot_0090.png" />
-<p>原子の上にマウスカーソルを合わせて右クリックを行った場合は下図のように、
-「Move」「Remove」「Substitute」というメニューが現れます。</p>
-<img alt="../_images/screenshot_0016.png" src="../_images/screenshot_0016.png" />
-<p>「移動 (Move)」を選択すると、選択した原子の上に赤、青、緑の３本の矢印が表示されます。</p>
-<img alt="../_images/screenshot_0017.png" src="../_images/screenshot_0017.png" />
-<p>いずれかの矢印をドラッグすると、その矢印の方向に原子を動かすことができます。</p>
-<img alt="../_images/screenshot_0091.png" src="../_images/screenshot_0091.png" />
-<p>また、原子をドラッグすると、方向に関係なく自由に原子を動かすことができます。</p>
-<img alt="../_images/screenshot_0092.png" src="../_images/screenshot_0092.png" />
-<p>「削除 (Remove)」を選択した場合は、その原子がモデルから消えます。</p>
-<img alt="../_images/screenshot_0093.png" src="../_images/screenshot_0093.png" />
-<p>「置換 (Substitute)」を選択した場合は、「Add atom」と同様に、新しいウィンドウで元素周期表が現れます。
-ここで、どの元素の原子で置換するか選択します。</p>
-<img alt="../_images/screenshot_0094.png" src="../_images/screenshot_0094.png" />
-<p>例として「Fe」をクリックすると、本当に Fe 原子で置換するかどうかの確認画面が出ます。</p>
-<img alt="../_images/screenshot_0095.png" src="../_images/screenshot_0095.png" />
-<p>もう一度「Fe」をクリックすると、 Fe 原子で置換されます。</p>
-<img alt="../_images/screenshot_0096.png" src="../_images/screenshot_0096.png" />
-<div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
 <section id="id2">
-<h2><span class="section-number">8.2. </span>モデリングのやり直しと中止<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>ブラウザのリロードを行うと、全ての操作はリセットされ、モデリング開始時点の状態に戻ります。
-また、モデリングのタブを閉じると、モデリングそのものを中止して、元の Quloud の利用に戻る事ができます。</p>
+<h2><span class="section-number">8.1. </span>概要<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>モデラーは、登録済みの Material の原子構造を加工して**別の Material を作る**画面です。
+スーパーセルの作成、表面（スラブ）の切り出し、原子の置換・削除、分子や結晶の追加などが
+行えます。</p>
+<p>モデラーは**別のタブで開きます。** 加工した結果は「保存」で Material として登録され、
+元の Material はそのまま残ります（上書きも選べます）。</p>
 <div class="line-block">
+<div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">8.3. </span>操作パネル<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<p>モデリングの主な操作は右側パネルのメニューから行います。
-また、もう1つの別の Material を組み合わせてモデリングを行う場合の補助的な役割を、
-フッターメニューが担います。</p>
-<img alt="../_images/screenshot_0063b.png" src="../_images/screenshot_0063b.png" />
-<p>Material が分子の場合は下図のように操作パネルの内容が少し異なります。</p>
-<img alt="../_images/screenshot_0063c.png" src="../_images/screenshot_0063c.png" />
-<p>まずは Material が結晶の場合のモデリングについて説明します。</p>
-</section>
-<section id="lattice-parameters">
-<h2><span class="section-number">8.4. </span>Lattice Parameters<a class="headerlink" href="#lattice-parameters" title="Link to this heading"></a></h2>
-<p>Lattice Parameters メニューを開くと、現在表示されている Material の格子の長さと角度の値を変更するフォームが現れます。
-設定したい値を入力し、最後に「Apply Cell Parameter Change」ボタンをクリックすると、例えば下図のような構造が得られます。</p>
-<img alt="../_images/screenshot_0197.png" src="../_images/screenshot_0197.png" />
-<p>通常は、上図のように、原子位置も格子のサイズ比例して変化しますが、
-「Fix atoms」というチェックボックスにチェックを入れて格子定数を変えると、
-原子位置は固定したまま、格子のサイズだけを変えることができます。</p>
-<img alt="../_images/screenshot_0198.png" src="../_images/screenshot_0198.png" />
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Fix atoms を利用すれば、表面スラブモデル等で真空領域のサイズを調整することができます。</p>
-</div>
-</section>
-<section id="supercell">
-<h2><span class="section-number">8.5. </span>Supercell<a class="headerlink" href="#supercell" title="Link to this heading"></a></h2>
-<p>Supercell メニューを開くと、3つの整数値を入力するフォームが現れます。
-値を設定し、「Apply Supercell」ボタンをクリックすると、下図のようなスーパーセルが作られます。</p>
-<img alt="../_images/screenshot_0199.png" src="../_images/screenshot_0199.png" />
-</section>
-<section id="atomic-coordinates">
-<h2><span class="section-number">8.6. </span>Atomic Coordinates<a class="headerlink" href="#atomic-coordinates" title="Link to this heading"></a></h2>
-<p>Atomic Coordinates メニューを開くと、個々の原子の座標を入力できるフォームが現れます。
-値を設定し、「Apply Coordinates Change」ボタンをクリックすると、設定した座標に対応した位置に原子が移動します。</p>
-<img alt="../_images/screenshot_0200.png" src="../_images/screenshot_0200.png" />
-<p>ただし、原子数が多い Material（&gt;100原子）では、このメニューは利用不可になります（下図）。</p>
-<img alt="../_images/screenshot_0201.png" src="../_images/screenshot_0201.png" />
-</section>
-<section id="cell-transform">
-<h2><span class="section-number">8.7. </span>Cell Transform<a class="headerlink" href="#cell-transform" title="Link to this heading"></a></h2>
-<p>Cell Transform メニューを開くと、「Primitive」「Conventional」のボタンがあります。
-クリックすると（系の対称性が上手く読み取れれば）、
-その系の最小単位胞（Primitive Cell）あるいは慣用単位胞（Conventional Cell）を作る事ができます
-（両者が同じになることもあります）。
-下図は、bcc 構造の Fe の単位胞（Primitive でも Conventional でもない）です。</p>
-<img alt="../_images/screenshot_0203.png" src="../_images/screenshot_0203.png" />
-<p>これを Primitive Cell に変換すると下図のようになり、</p>
-<img alt="../_images/screenshot_0204.png" src="../_images/screenshot_0204.png" />
-<p>Conventional Cell に変換すると下図のようになります。</p>
-<img alt="../_images/screenshot_0205.png" src="../_images/screenshot_0205.png" />
-</section>
-<section id="relative-atomic-position">
-<h2><span class="section-number">8.8. </span>Relative Atomic Position<a class="headerlink" href="#relative-atomic-position" title="Link to this heading"></a></h2>
-<p>Relative Atomic Positoin のメニューを開くと、3つの数字を入力するフォームが現れます。
-この数字に応じて、系内の原子全体が（対応する格子ベクトルの方向に）平行移動します。
-取り得る範囲は -1 ～ +1 です（格子ベクトルの長さ分だけ ± 方向に移動できる）。</p>
-<img alt="../_images/screenshot_0206.png" src="../_images/screenshot_0206.png" />
-</section>
-<section id="surface">
-<h2><span class="section-number">8.9. </span>Surface<a class="headerlink" href="#surface" title="Link to this heading"></a></h2>
-<p>Surface メニューには、表面スラブと呼ばれる下図のような原子構造を作成するための設定フォームがあります。</p>
-<img alt="../_images/screenshot_0018.png" src="../_images/screenshot_0018.png" />
-<p>設定パラメータは以下の通りです。</p>
+<h2><span class="section-number">8.2. </span>前提<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Miller index：真空領域に露出する表面のミラー指数を指定します。例えば、Si のコンベンショナルセルで表面スラブモデルを作成する際、ミラー指数を (001) とし、「Generate Slab」を押すと、スラブモデルの側面図は次のようになります。</p></li>
+<li><p>加工したい Material が登録されていること（<a class="reference internal" href="jobs_and_models_atom.html"><span class="doc">Material の登録</span></a> の章）</p></li>
+<li><p>テナントが利用制限中でないこと（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）</p></li>
 </ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0100.png" src="../_images/screenshot_0100.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>上面図は次のようになります。</p>
-<img alt="../_images/screenshot_0101.png" src="../_images/screenshot_0101.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>一方で、ミラー指数を (111) とし、「Generate Slab」を押すと、真空領域に露出する表面が変わり、側面図は次のようになります。</p>
-<img alt="../_images/screenshot_0102.png" src="../_images/screenshot_0102.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>上面図は次のようになります。</p>
-<img alt="../_images/screenshot_0103.png" src="../_images/screenshot_0103.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><p>slab size：スラブ層の厚さを指定します。元になるバルク構造のユニットセルを単位とします。例えば、スラブ層厚さを３とし、「Generate Slab」を押すと、次のようになります。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0104.png" src="../_images/screenshot_0104.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><p>vacuum size：真空層の厚さを指定します。単位はスラブサイズと同じです。例えば、真空層厚さを３とし、「Generate Slab」を押すと、次のようになります。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0105.png" src="../_images/screenshot_0105.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><p>orthogonal c slab：表面に垂直な軸を c 軸とするセルを取ります。</p></li>
-</ul>
-<blockquote>
-<div><div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>この機能は、格子ベクトル a3 が表面に対して厳密に垂直になるように強制的にセルを取り直すため、Material 本来の構造からズレが生じる場合があります。</p>
-</div>
-<p>例として、Si の Primitive セルをバルク構造とするスラブモデルでは、下図のように、格子ベクトル a3 は表面に対して垂直にはなりません。</p>
-<img alt="../_images/screenshot_0106.png" src="../_images/screenshot_0106.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<blockquote>
-<div><p>ここで「orthogonal c slab」にチェックを入れ、「Generate Slab」すると、表面に垂直になるように、格子ベクトル a3 が取り直されます。</p>
-<img alt="../_images/screenshot_0107.png" src="../_images/screenshot_0107.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><p>center slab：スラブ領域をセルの中央に配置します。デフォルトでチェックが入っているので、チェックを外し、「Generate Slab」を押すと、次のようになります。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0109.png" src="../_images/screenshot_0109.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div></blockquote>
-<ul class="simple">
-<li><p>pseudo H：終端用の擬水素原子を、表面の上部または下部に追加します。Z=1 以外の電荷を設定したり、表面原子との結合距離を設定することが可能です。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0111.png" src="../_images/screenshot_0111.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<img alt="../_images/screenshot_0112.png" src="../_images/screenshot_0112.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><p>flip upside down：スラブモデルの上下を反転させます。例として、以下のようなモデルを作成します。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0113.png" src="../_images/screenshot_0113.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>ここで「flip upside down」にチェックを入れ、「Generate Slab」を押すと、次のようになります。</p>
-<img alt="../_images/screenshot_0114.png" src="../_images/screenshot_0114.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ul class="simple">
-<li><p>primitive：スラブモデルを primitive セルに変換します。例として、以下のようなモデルを作成します。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0113.png" src="../_images/screenshot_0113.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>上面図は以下の通りです。</p>
-<img alt="../_images/screenshot_0116.png" src="../_images/screenshot_0116.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>ここで「primitive」にチェックを入れ、「Generate Slab」を押すと、側面図は次のようになります。</p>
-<img alt="../_images/screenshot_0117.png" src="../_images/screenshot_0117.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>上面図を見ると、モデルが primitive セルに変換されていることが分かります。</p>
-<img alt="../_images/screenshot_0118.png" src="../_images/screenshot_0118.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</div></blockquote>
-<ul class="simple">
-<li><p>lll_reduce：「orthogonal c slab」とは異なり、原子構造は変化させずに、ベクトル a3 を表面になるべく垂直にとる機能です。例として、以下のようなモデルを作成します。</p></li>
-</ul>
-<blockquote>
-<div><img alt="../_images/screenshot_0119.png" src="../_images/screenshot_0119.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>ここで「lll_reduce」にチェックを入れ、「Generate Slab」を押すと、ベクトル a3 が垂直に近づいています。</p>
-<img alt="../_images/screenshot_0120.png" src="../_images/screenshot_0120.png" />
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>これらのパラメータの詳細については pymatgen（<a class="reference external" href="https://pymatgen.org">https://pymatgen.org</a>）の SlabGenerator に関するドキュメントをご参照ください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">8.10. </span>フッターメニュー<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>フッターメニューにある「Add Crystal」ボタンをクリックすると、Quloud に登録されている（同じ Project 内にある）
-別の Material（結晶）の一覧が表示されます。</p>
-<img alt="../_images/screenshot_0207.png" src="../_images/screenshot_0207.png" />
-<p>この中から、現在モデリングを行っている Material と組み合わせて界面モデルを作るためのペアとなる相手を選びます。
-候補が多数ある場合は、上部の Serach を使って検索することもできます。
-相手が見つかったら「Add」ボタンをクリックします。すると、下図のように、フッターメニュー内にその結晶が登録されます。
-同様にして複数の結晶を登録することも可能ですが、モデリングを行うペアとして選択できるのは一つだけです。</p>
-<img alt="../_images/screenshot_0208.png" src="../_images/screenshot_0208.png" />
-<p>フッターメニューにある「Add Molecule」ボタンをクリックすると、Quloud に登録されている（同じ Project 内にある）
-Material（分子）の一覧が表示されます。</p>
-<img alt="../_images/screenshot_0209.png" src="../_images/screenshot_0209.png" />
-<p>この中から、現在モデリングを行っている Material（結晶） と組み合わせて、結晶中への分子の挿入や、
-表面上の分子吸着モデル、スラブモデルの真空領域の一部を分子集団で充填する、固液界面や固気界面のモデル作ることができます。
-相手が見つかったら「Add」ボタンをクリックします。すると、下図のように、フッターメニュー内にその分子が登録されます。
-同様にして複数の分子を登録することも可能ですが、モデリングを行うペアとして選択できるのは一種類だけです。</p>
-<img alt="../_images/screenshot_0210.png" src="../_images/screenshot_0210.png" />
+<h2><span class="section-number">8.3. </span>操作手順<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="interface">
-<h2><span class="section-number">8.11. </span>Interface<a class="headerlink" href="#interface" title="Link to this heading"></a></h2>
-<p>「Add Crystal」でフッターに登録された結晶の一つが選択状態になると、右サイドパネルに Interface というメニューが現れます。</p>
-<img alt="../_images/screenshot_0211.png" src="../_images/screenshot_0211.png" />
-<p>Interface メニュ－では、現在モデリング中の結晶が基板（Substrate）、フッターで選択された結晶をフィルム（Film）として、
-それぞれの Material の結晶面方位やスラブの厚さ等が設定できます。
-フィルム側と基板側の格子定数をなるべく歪なくマッチさせるように界面を作るため、
-探索範囲を面積で制限したり、歪の許容範囲等を指定する必要もあります。設定メニューでは</p>
-<ul class="simple">
-<li><p>フィルムのミラー指数、および膜厚の指定（Film Miller &amp; Thickness）</p></li>
-<li><p>基板のミラー指数、および膜厚の指定（Substrate Miller &amp; Thickness）</p></li>
-<li><p>フィルム、基板間の初期ギャップ（Gap between substrate &amp; film）</p></li>
-<li><p>真空領域のサイズ（Vacuun over film）</p></li>
-<li><p>界面構造の候補を探索する面積の範囲（Max size in lateral direction）</p></li>
-<li><p>界面構造の候補を探索する際に、フィルムと基板の面積のずれをどこまで許容するかの範囲（Max area ratio tolerance）</p></li>
-<li><p>界面構造の候補を探索する際に、フィルムと基板の格子ベクトル長さのずれをどこまで許容するかの範囲（Max length tolerance）</p></li>
-<li><p>界面構造の候補を探索する際に、フィルムと基板の格子ベクトル間角度のずれをどこまで許容するかの範囲（Max angle tolerance）</p></li>
-</ul>
-<p>といった設定が可能です。設定後「Submit」ボタンを押すと界面構造の最初の候補と、
-候補の切り替え、および界面モデルを確定するための小パネルが表示されます。</p>
-<img alt="../_images/screenshot_0212.png" src="../_images/screenshot_0212.png" />
-<p>最初の方の候補がより原子数の少ないモデルになっています。
-「Confirm Selection」で界面モデルを確定させたら、その後は通常のモデリング画面に戻ります。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="add-molecule">
-<h2><span class="section-number">8.12. </span>Add Molecule<a class="headerlink" href="#add-molecule" title="Link to this heading"></a></h2>
-<p>フッターの「Add Molecule」ボタンをクリックして登録された分子の一つが選択状態になると、
-右サイドパネルに Add Molecule および Packmol というメニューが現れます。
-ここでは、バルクやスラブといった周期構造に孤立分子を挿入したモデルを作成するための Add Molecule について説明します。</p>
-<img alt="../_images/screenshot_0213.png" src="../_images/screenshot_0213.png" />
-<p>Add Molecule メニュー内の「Add Molecule」ボタンをクリックすると、下図のような画面になります。</p>
-<img alt="../_images/screenshot_0214.png" src="../_images/screenshot_0214.png" />
-<p>追加した分子には赤、青、緑の３本の矢印が表示されており、
-いずれかの矢印をドラッグすると、その矢印の方向に分子を平行移動させることができます。
-また小さな四角の部分をドラッグすると、2次元的平行移動させることもできます。</p>
-<img alt="../_images/screenshot_0215.png" src="../_images/screenshot_0215.png" />
-<p>Add Molecule を押した直後は Translate モードですが、画面上部の小パネルで、Rotate モードに切り替えることができ、
-今度は分子を回転させることができるようになります。</p>
-<img alt="../_images/screenshot_0216.png" src="../_images/screenshot_0216.png" />
-<p>位置と回転が決まったら、最後に小パネル内の「Set Position」をクリックします。
-そうすると通常のモデリング画面に戻ります。</p>
-<img alt="../_images/screenshot_0217.png" src="../_images/screenshot_0217.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="packmol">
-<h2><span class="section-number">8.13. </span>Packmol<a class="headerlink" href="#packmol" title="Link to this heading"></a></h2>
-<p>ここでは、フッターの「Add Molecule」ボタンをクリックして登録された分子の一つが選択状態になったときに現れる
-Packmol というメニューについて説明します。Packmol は、<a class="reference external" href="https://m3g.github.io/packmol/">https://m3g.github.io/packmol/</a> で保守されているソフトウェアで、
-指定した密度で分子をある領域に詰め込む（Packing）モデリングを行うものです。
-Quloudでは、下図のように真空領域を持つモデルの、真空領域部分に分子を詰め込むのに利用します。</p>
-<img alt="../_images/screenshot_0218.png" src="../_images/screenshot_0218.png" />
-<p>Packmol メニューでは、</p>
-<ul class="simple">
-<li><p>分子および結晶間の距離ある一定以上に保つパラメータ（Tolerance (Å)）</p></li>
-<li><p>詰め込む分子の個数（Molecule Count）</p></li>
-</ul>
-<p>が設定できます。設定後に「Generate」ボタンをクリックすると、下図のようなモデルが作れます。</p>
-<img alt="../_images/screenshot_0219.png" src="../_images/screenshot_0219.png" />
-<div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>真空領域のサイズに比べて分子の個数が多すぎると、一定距離をあける条件を満たせなくなり、モデリングが上手くいかないことがあります。</p>
-</div>
-<p>ちなみに作られたモデルは周期境界条件のため、実際には下図のような状況になっていることに気を付ける必要があります。</p>
-<img alt="../_images/screenshot_0220.png" src="../_images/screenshot_0220.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="add-cell">
-<h2><span class="section-number">8.14. </span>Add Cell<a class="headerlink" href="#add-cell" title="Link to this heading"></a></h2>
-<p>これは、モデリングを開始した Material が Molecule の場合にだけ現れるメニューです。
-通常、孤立分子の原子座標データ（例えば xyz 形式）は、ユニットセルの情報を持たないため、
-これにユニットセルの情報を追加してスーパーセルモデルを作成し、周期境界条件が課されるタイプの計算ソフトで扱えるようにするための機能です。</p>
-<img alt="../_images/screenshot_0063c.png" src="../_images/screenshot_0063c.png" />
-<p>Add Cell メニュー内にある「Add Cell」ボタンをクリックすると、下図のようになります。</p>
-<img alt="../_images/screenshot_0221.png" src="../_images/screenshot_0221.png" />
-<p>上図の右側操作パネルの内容からもわかるように、Add Cellで作られた分子のスーパーセルモデルは、
-以降、結晶（周期系）として扱われることになります。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
 <section id="id5">
-<h2><span class="section-number">8.15. </span>パネル上部アイコン<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>モデリング画面右側の操作パネル上部に「Save」「Undo」「Redo」「Settings」の4つのアイコンがあります。
-このうち、Undo / Redo については、モデリングの操作を一つ前に戻す、あるいは進める、
-というもので、改めてご説明する必要もないと思われます。
-Settings は、原子のサイズや、元素名のラベルを表示させるなど、表示に関する設定をまとめたもので、
-例えば下図のような見た目に変えることができます。</p>
-<img alt="../_images/screenshot_0222.png" src="../_images/screenshot_0222.png" />
+<h3><span class="section-number">8.3.1. </span>1. モデラーを開く<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Material 詳細画面の「プロパティ」で、「Initial Structure」の右にある「モデリング」を
+押します（<a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> の章）。<strong>別のタブでモデラーが開きます。</strong></p>
+<figure class="align-default" id="id14">
+<img alt="モデラーの初期表示。左の黒い領域に結晶の単位格子と 2 個の原子が 3D で描かれ、a1・a2・a3 の軸が色付きで表示されている。左上に「原子数 = 2（周期像を含めると 2）」とある。右のパネルの上部に保存・元に戻す・やり直す・設定のアイコンが並び、その下に格子パラメータ・スーパーセル・原子座標・セル変換・相対原子位置・表面のアコーディオンと、「ビューをリセット」「マークをリセット」のボタンがある。画面下部に「分子を追加」「結晶を追加」がある。" src="../_images/modeling_modeler_initial.png" />
+<figcaption>
+<p><span class="caption-number">図 8.1 </span><span class="caption-text">モデラー（結晶を開いた状態）</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>左の領域</strong>が 3D ビューです。ドラッグで回転、マウスホイールで拡大・縮小します</p></li>
+<li><p><strong>右のパネル</strong>が操作パネルです。見出しを押すと開きます</p></li>
+<li><p><strong>下部</strong>に「分子を追加」「結晶を追加」があります（結晶を開いたときのみ両方）</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="id6">
-<h2><span class="section-number">8.16. </span>モデルの保存<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<p>操作パネル上部の4つのアイコンのうち、一番左にあるのが「Save」で、こちらから
-作成したモデルを Material として保存（Quloudに登録）する事ができます。
-クリックすると、次のようなメニューが開きます。</p>
-<img alt="../_images/screenshot_0097.png" src="../_images/screenshot_0097.png" />
-<p>保存するモデルの名前は必須入力となっています。デフォルトでは、モデルは新規の Material として保存されますが、
-「Overwrite」にチェックを入れると、モデリングを開始したときの Material に上書き保存されます。</p>
-<div class="admonition warning">
-<p class="admonition-title">警告</p>
-<p>すでにその Material で Job 作成を行っている場合、または Interface, Add Molecule, Add Cell のモデリングを行った場合には、
-Overwrite はできないようになっています。</p>
+<h3><span class="section-number">8.3.2. </span>2. 構造を加工する<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>右のパネルの各項目で構造を変えます。項目は開いた構造の種類によって変わります。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>できること</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>格子パラメータ</p></td>
+<td><p>格子定数と角度を変えます。「原子を固定」を選ぶと、セルを変えても原子の
+絶対座標を保ちます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>スーパーセル</p></td>
+<td><p>a・b・c 方向の繰り返し数を指定してセルを拡張します。</p></td>
+</tr>
+<tr class="row-even"><td><p>原子座標</p></td>
+<td><p>原子ごとの座標を数値で編集します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>スピン</p></td>
+<td><p>元素ごと・原子ごとの初期スピンを指定します。</p></td>
+</tr>
+<tr class="row-even"><td><p>拘束条件</p></td>
+<td><p>元素ごと・原子ごとに、動かさない方向（x / y / z）を指定します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>セル変換</p></td>
+<td><p>プリミティブセルと慣用セルを切り替えます。</p></td>
+</tr>
+<tr class="row-even"><td><p>相対原子位置</p></td>
+<td><p>セル内の原子全体を a1 / a2 / a3 方向にずらします。</p></td>
+</tr>
+<tr class="row-odd"><td><p>表面</p></td>
+<td><p>Miller 指数とスラブ・真空のサイズを指定してスラブを切り出します。</p></td>
+</tr>
+<tr class="row-even"><td><p>分子を追加 / 界面 / セルを追加 / Packmol</p></td>
+<td><p>別の構造を組み合わせます。開いた構造や追加した内容によって現れます。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<p>最後に「Save」をクリックします。確認ダイアログが出るので「OK」とすると保存が完了し、新しい Material 詳細画面に移ります。</p>
-<img alt="../_images/screenshot_0099.png" src="../_images/screenshot_0099.png" />
+<section id="id7">
+<h4><span class="section-number">8.3.2.1. </span>スーパーセルを作る<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<figure class="align-default" id="id15">
+<img alt="モデラーの「スーパーセル」を開いた状態。a・b・c の 3 つの数値入力欄にいずれも 1 が入り、「現在のセルをそのまま複製する（手動編集を含む）」のチェックボックスと「スーパーセルを適用」ボタンが並んでいる。" src="../_images/modeling_supercell_panel.png" />
+<figcaption>
+<p><span class="caption-number">図 8.2 </span><span class="caption-text">スーパーセル</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>a・b・c に繰り返し数を入れて「スーパーセルを適用」を押します。</p>
+<p>「現在のセルをそのまま複製する（手動編集を含む）」を選ぶと、この画面で行った
+原子の追加・削除・置換を含めた**いまのセル**をそのまま繰り返します。
+選ばない場合は、もとの Material のセルを繰り返します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id8">
+<h4><span class="section-number">8.3.2.2. </span>表面（スラブ）を切り出す<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<figure class="align-default" id="id16">
+<img alt="モデラーの「表面」を開いた状態。Miller index の 3 つの入力欄（0, 0, 1）、スラブサイズと真空サイズのスライダー、Orthogonal c slab・スラブを中央に・Pseudo H（上部）・Pseudo H（下部）・上下反転・プリミティブ・LLL reduce のチェックボックス、「スラブを生成」ボタンが並んでいる。" src="../_images/modeling_surface_panel.png" />
+<figcaption>
+<p><span class="caption-number">図 8.3 </span><span class="caption-text">表面（スラブ生成）</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Miller 指数とスラブサイズ・真空サイズを指定して「スラブを生成」を押します。
+条件に合う候補が複数見つかった場合は「スラブ候補」のツールバーが現れ、
+「前へ」「次へ」で切り替えてから「選択を確定」を押します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id9">
+<h4><span class="section-number">8.3.2.3. </span>原子を個別に操作する<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<p>3D ビューで原子を右クリックすると、「移動」「削除」「置換」のメニューが出ます。
+複数の原子にまとめて適用することもできます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id10">
+<h3><span class="section-number">8.3.3. </span>3. 表示を調整する<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>右上の歯車から表示の設定を変えられます。構造そのものは変わりません。</p>
+<figure class="align-default" id="id17">
+<img alt="モデラーの設定メニュー。原子球と結合太さのスライダー、原子ラベルを表示・軸を表示・距離を表示・角度を表示・原子数を表示のチェックボックスが並んでいる。" src="../_images/modeling_view_settings.png" />
+<figcaption>
+<p><span class="caption-number">図 8.4 </span><span class="caption-text">表示設定</span><a class="headerlink" href="#id17" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>「ビューをリセット」で視点を、「マークをリセット」で選択した原子のマークを戻します。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id11">
+<h3><span class="section-number">8.3.4. </span>4. 保存する<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>左上の保存アイコンを押すと「モデルを保存」ダイアログが開きます。</p>
+<figure class="align-default" id="id18">
+<img alt="「モデルを保存」ダイアログ。名前（必須、もとのマテリアル名が入っている）、説明、上書きのチェックボックスが縦に並び、下部に「キャンセル」と緑色の「保存」ボタンがある。" src="../_images/modeling_save_dialog.png" />
+<figcaption>
+<p><span class="caption-number">図 8.5 </span><span class="caption-text">「モデルを保存」ダイアログ</span><a class="headerlink" href="#id18" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>名前</p></td>
+<td><p>必須です。もとの Material の名前が初期値として入ります。
+新しい Material として保存する場合は変えてください。</p></td>
+</tr>
+<tr class="row-odd"><td><p>説明</p></td>
+<td><p>任意です。</p></td>
+</tr>
+<tr class="row-even"><td><p>上書き</p></td>
+<td><p>チェックを入れるともとの Material を書き換えます。入れない場合は
+<strong>新しい Material</strong> として登録されます。</p></td>
+</tr>
+</tbody>
+</table>
+<p>「保存」を押すと確認のメッセージが出ます。「OK」で保存され、
+<strong>モデラーのタブは閉じ、元のタブが保存先の Material 詳細画面に切り替わります。</strong></p>
+<p>新しい Material として保存した場合、その Material 詳細画面の「マテリアル」に
+もとの Material が「作成元マテリアル」として記録されます（<a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> の章）。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2><span class="section-number">8.4. </span>原子ごとの拘束条件・初期スピン<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>同じモデラーは、計算 Job の入力を指定する画面としても使われます。
+「ジョブ作成」フォームの「拘束条件を設定」「初期スピンを設定」を押すと、
+モデラーが別のタブで開きます（<a class="reference internal" href="calculation.html"><span class="doc">計算 Job の登録</span></a> の章）。</p>
+<figure class="align-default" id="id19">
+<img alt="サイトプロパティ設定の画面。右のパネルに「スピン」と「拘束条件」だけが表示され、それぞれ元素ごとの表と原子ごとの表に分かれている。スピンは数値入力、拘束条件は固定・x・y・z のチェックボックスになっている。左上のアイコンは保存と設定の 2 つだけで、元に戻す・やり直すは無い。" src="../_images/modeling_site_property.png" />
+<figcaption>
+<p><span class="caption-number">図 8.6 </span><span class="caption-text">サイトプロパティ設定</span><a class="headerlink" href="#id19" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>表示されるのは「スピン」と「拘束条件」だけです。構造は変えられません</p></li>
+<li><p>保存アイコンは「保存して戻る」です。<strong>Material は作られません。</strong>
+指定した内容がジョブ作成フォームに戻り、その Job の入力になります</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id13">
+<h2><span class="section-number">8.5. </span>注意事項<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>モデラーは別のタブで開きます。</strong> ブラウザがポップアップをブロックしている場合は
+開きません。ブロックを解除してください。</p></li>
+<li><p>保存するまで加工の結果は残りません。タブを閉じると失われます。</p></li>
+<li><p>「元に戻す」「やり直す」で操作をたどれますが、保存後は戻せません。</p></li>
+<li><p>原子数が多い構造では、原子ごとの表が出ずに元素ごとの表だけになります。</p></li>
+</ul>
 </section>
 </section>
 
@@ -522,7 +357,7 @@ Overwrite はできないようになっています。</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 4月 20, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 
