@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-16T17:41:22+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T11:04:10+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>7. Material 詳細画面</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -58,10 +58,21 @@
 <li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jobs_and_models_atom.html">6. Material の登録</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">7. Material 詳細画面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#property">7.1. Property</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#job">7.2. Job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file">7.3. File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#delete">7.4. Delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">7.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.2. プロパティ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">7.2.1. 名前と説明を変える</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">7.2.2. 初期構造を見る</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#property">7.2.3. 登録した Property</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">7.3. ジョブ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">7.4. マテリアル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">7.5. ファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">7.6. Material の移動と削除</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">7.6.1. 他のプロジェクトへ移動する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">7.6.2. 削除する</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modeling.html">8. Material のモデリング</a></li>
@@ -101,98 +112,278 @@
              
   <section id="material">
 <span id="jobdetail-section"></span><h1><span class="section-number">7. </span>Material 詳細画面<a class="headerlink" href="#material" title="Link to this heading"></a></h1>
-<p>ダッシュボードの Material 一覧から項目名をクリックすることで、下図のような Material 詳細画面に遷移します。</p>
-<img alt="../_images/screenshot_0011.png" src="../_images/screenshot_0011.png" />
-<p>ここでは Material の詳細な情報や、その Material に対する計算結果（「Property」と呼ぶ）などを確認することができます。
-Material から別の Material を作る「モデリング」や、Property を作るための「計算ジョブの作成」などは、
-この画面の上部にある「Modeling」および「Create Job」ボタンから行うことができます。
-これらについては改めて<a class="reference internal" href="modeling.html#modeling-section"><span class="std std-ref">Material のモデリング</span></a>および<a class="reference internal" href="calculation.html#job-section"><span class="std std-ref">計算 Job の登録</span></a>で説明します。</p>
-<p>Material 詳細画面の左サイドメニューは「Property」「Job」「File」「Delete」の４つのパートに分かれています。
-以下で順に説明します。</p>
-<img alt="../_images/screenshot_0058.png" src="../_images/screenshot_0058.png" />
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
+<section id="id1">
+<h2><span class="section-number">7.1. </span>概要<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Material 詳細画面は、1 つの Material に関わるものをすべてまとめた画面です。
+プロジェクトのマテリアル一覧、またはホーム画面の「マテリアル」タブから
+名前を押すと開きます。</p>
+<p>画面は左のメニューで 4 つに切り替わります。</p>
+<figure class="align-default" id="id11">
+<img alt="Material 詳細画面の左のメニューを展開した状態。上から「プロパティ」「ジョブ」「マテリアル」「ファイル」の 4 項目が並び、いちばん下に「削除」がある。プロパティが選択されている。" src="../_images/jobdetail_rail_expanded.png" />
+<figcaption>
+<p><span class="caption-number">図 7.1 </span><span class="caption-text">左のメニュー（ホバーで展開した状態）</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>メニュー</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>プロパティ</p></td>
+<td><p>初期構造と、登録した Property が並びます。既定で開くペインです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ジョブ</p></td>
+<td><p>この Material から作られた Job の一覧と、Job の詳細です。</p></td>
+</tr>
+<tr class="row-even"><td><p>マテリアル</p></td>
+<td><p>この Material の作成元と、この Material から作られた Material です。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ファイル</p></td>
+<td><p>入出力ファイルの一覧です。</p></td>
+</tr>
+<tr class="row-even"><td><p>削除</p></td>
+<td><p>Material を削除します。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>左のメニューはアイコンだけの状態で表示されており、<strong>マウスを乗せると項目名が
+現れます。</strong></p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">7.2. </span>プロパティ<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>既定で開くペインです。Material の名前・説明と、初期構造が並びます。</p>
+<figure class="align-default" id="id12">
+<img alt="Material 詳細画面のプロパティのペイン。上部にパンくずと「マテリアル名 Si2」の行、その下に説明の欄がある。「Initial Structure」の見出しの右に「モデリング」「ジョブ作成」のボタンがあり、その下に原子構造の 3D ビューアと、格子定数・角度・体積・空間群・対称操作数・原子サイト数を並べた「結晶構造」の表が並んでいる。" src="../_images/jobdetail_property_pane.png" />
+<figcaption>
+<p><span class="caption-number">図 7.2 </span><span class="caption-text">プロパティのペイン</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id3">
+<h3><span class="section-number">7.2.1. </span>名前と説明を変える<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>「マテリアル名」の行と「説明」の枠にある鉛筆のアイコンを押すと、その場で編集できます。
+Enter で確定、Esc で取り消しです。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="section-number">7.2.2. </span>初期構造を見る<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>「Initial Structure」には、登録した原子構造が 3D で表示されます。</p>
+<ul class="simple">
+<li><p>ドラッグで向きを変えられます。マウスホイールで拡大・縮小できます</p></li>
+<li><p>右上の拡大アイコンで画面いっぱいに表示できます</p></li>
+<li><p>右側には構造から計算された情報が並びます。結晶では「結晶構造」（格子定数・
+空間群など）、分子では「分子構造」が表示され、いずれにも「化学構造」と
+「原子情報」が付きます</p></li>
+</ul>
+<p>見出しの右にある 2 つのボタンから、次の操作に進みます。</p>
+<ul class="simple">
+<li><p><strong>モデリング</strong> — 構造を加工して別の Material を作ります（<a class="reference internal" href="modeling.html"><span class="doc">Material のモデリング</span></a> の章）</p></li>
+<li><p><strong>ジョブ作成</strong> — この構造で計算 Job を登録します（<a class="reference internal" href="calculation.html"><span class="doc">計算 Job の登録</span></a> の章）</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
 <section id="property">
-<h2><span class="section-number">7.1. </span>Property<a class="headerlink" href="#property" title="Link to this heading"></a></h2>
-<p>左サイドメニューの「Property」を選択すると、 Material 詳細画面のトップページに戻ります。
-画面構成は、上部にある「Structure」と、スクロールしていった下部にある「Properties」からなっています。</p>
-<img alt="../_images/screenshot_0011b.png" src="../_images/screenshot_0011b.png" />
-<p>Property 画面の上部、「Structure」の直上にある「Select Property」メニューで、initialn の原子構造（登録した Material）や、
-その他の Property（計算の結果得られた構造や物性値）を切り替えて表示させる事ができます。</p>
-<p>「Structure」にある原子構造の可視化部分は、ドラッグすれば向きを変えることもできます。
-また、マウスホイールやタッチパッドで拡大・縮小もできます。
-右上の拡大アイコンをクリックすれば、原子構造を画面一杯に表示させることもできます。</p>
-<img alt="../_images/screenshot_0136.png" src="../_images/screenshot_0136.png" />
-<p>「Properties」では、initial が選択されている状態では、下図のようにブリルアン・ゾーンの可視化が表示されます。</p>
-<img alt="../_images/screenshot_0057.png" src="../_images/screenshot_0057.png" />
-<p>計算ジョブの結果が Property として登録されていれば、「Select Property」メニューで、initial 以外の Property を選択することもできます。</p>
-<img alt="../_images/screenshot_0057b.png" src="../_images/screenshot_0057b.png" />
-<p>このとき、Properties の内容は、計算ジョブの種類により様々に変わります。例えば、電子バンド構造計算結果の場合は下図のようになります。</p>
-<img alt="../_images/screenshot_0057c.png" src="../_images/screenshot_0057c.png" />
+<h3><span class="section-number">7.2.3. </span>登録した Property<a class="headerlink" href="#property" title="Link to this heading"></a></h3>
+<p>初期構造の下に、Property として登録した結果がグループごとに並びます。
+登録の方法と操作は <a class="reference internal" href="property.html"><span class="doc">Property</span></a> の章で説明します。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="job">
-<h2><span class="section-number">7.2. </span>Job<a class="headerlink" href="#job" title="Link to this heading"></a></h2>
-<p>左サイドメニューの「Job」を選択すると、 下図のような、その Material から作られた Job の一覧が表示されます。
-（Material の Property を元に作られた Job も、この一覧に追加されていきます）</p>
-<img alt="../_images/screenshot_0065.png" src="../_images/screenshot_0065.png" />
-<p>一覧にある Job 名（Name）をクリックすると、その Job の詳細な設定（入力パラメータや計算リソースなど）を確認・編集するための画面が表示されます。
-例として、「Si Electron Band Structure (Quantum ESPRESSO)」を選択すると、下図のような画面に遷移します。</p>
-<img alt="../_images/screenshot_0067.png" src="../_images/screenshot_0067.png" />
-<p>画面右上には Job の進行状況（Status）に応じて、いくつかのボタンが現れます。
-Job 実行前（Status = Registered）であれば、上図のように「Edit Job」「Copy Job」「Delete Job」と、実際にジョブを走らせるための「Run Job」ボタンが現れます。
-実行中（Status = Running, Submitted）であれば、下図のように「Copy Job」と「Cancel Job」が現れます。</p>
-<img alt="../_images/screenshot_0071.png" src="../_images/screenshot_0071.png" />
-<p>そして実行後（Status = Succeeded，他）の画面では、下図のように「Copy Job」と「Delete Job」ボタンが現れます。</p>
-<img alt="../_images/screenshot_0072.png" src="../_images/screenshot_0072.png" />
-<p>Job 詳細画面は、さらに「Settings」「Computation」というパートに分かれており、
-さらに実行中、または実行済みの Job の場合は、「Log」というパートも現れます。</p>
-<img alt="../_images/screenshot_0072.png" src="../_images/screenshot_0072.png" />
-<p>「Settings」では、Job 作成時に設定した計算条件が表示されます。</p>
-<img alt="../_images/screenshot_0068.png" src="../_images/screenshot_0068.png" />
-<p>「Computation」では、計算リソースや計算時間などの設定が表示されます。</p>
-<img alt="../_images/screenshot_0069.png" src="../_images/screenshot_0069.png" />
-<p>「Log」では、計算のログファイルの確認およびダウンロードが可能です。
-また Job の種類によっては、計算の収束状況が確認できるグラフが表示されます。</p>
-<img alt="../_images/screenshot_0074.png" src="../_images/screenshot_0074.png" />
+</section>
+<section id="id5">
+<h2><span class="section-number">7.3. </span>ジョブ<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>この Material から作られた Job の一覧です。</p>
+<figure class="align-default" id="id13">
+<img alt="Material 詳細画面のジョブのペイン。「ジョブ一覧」の見出しの下に、名前・説明・ソフトウェア / 計算種別・状態・更新日時・作成日時・作成者の列を持つ表があり、1 件のジョブが Succeeded で表示されている。各行の右端に「⋮」がある。" src="../_images/jobdetail_job_pane.png" />
+<figcaption>
+<p><span class="caption-number">図 7.3 </span><span class="caption-text">ジョブのペイン（ジョブ一覧）</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>名前を押すと、その Job の詳細に移ります。詳細画面の中身は次の章で説明します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>節</p></th>
+<th class="head"><p>説明している章</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ジョブ概要・計算リソース</p></td>
+<td><p><a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章</p></td>
+</tr>
+<tr class="row-odd"><td><p>Results</p></td>
+<td><p><a class="reference internal" href="visualization.html"><span class="doc">計算結果の可視化</span></a> の章</p></td>
+</tr>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><a class="reference internal" href="calculation.html"><span class="doc">計算 Job の登録</span></a> の章</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ・ファイル</p></td>
+<td><p><a class="reference internal" href="files.html"><span class="doc">入出力ファイルとログ</span></a> の章</p></td>
+</tr>
+</tbody>
+</table>
+<p>各行の右端の「⋮」から、その Job に対する操作ができます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>動作</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>実行</p></td>
+<td><p>Status が「Registered」の Job にだけ出ます（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>キャンセル</p></td>
+<td><p>Status が「Submitted」「Prepared」「Running」の Job にだけ出ます。</p></td>
+</tr>
+<tr class="row-even"><td><p>説明</p></td>
+<td><p>Job の説明を編集します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>編集</p></td>
+<td><p>ジョブ名を編集します。</p></td>
+</tr>
+<tr class="row-even"><td><p>削除</p></td>
+<td><p>Job を削除します。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Ver.6.1.2 以前に作成した Job と、Ver.7.0 で作成した Job とでは、Job 詳細画面の
+「入力」の表示が異なります。詳しくは <a class="reference internal" href="specifications.html"><span class="doc">仕様</span></a> の章をご参照ください。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="file">
-<h2><span class="section-number">7.3. </span>File<a class="headerlink" href="#file" title="Link to this heading"></a></h2>
-<p>左サイドメニューの「File」を選択すると、initial の Material と、
-そこから作られた Job に関連するファイル（Input Files／Output Files）の一覧が表示されます。
-ここでは、ファイル内容の確認・編集およびダウンロードが可能です。</p>
-<img alt="../_images/screenshot_0070.png" src="../_images/screenshot_0070.png" />
-<p>Job 実行前の状態（Status = Registered）であれば、
-「Edit」ボタンをクリックすると、そのファイルの内容を確認することができ、さらに編集も可能です（ただしテキストファイルに限ります）。</p>
-<img alt="../_images/screenshot_0137.png" src="../_images/screenshot_0137.png" />
-<p>このファイルを直接編集する機能を用いれば、Quloud の GUI で提供していない、各計算ソフトの詳細な設定を記述して、計算を実行するといった事も可能です。</p>
-<p>Job 実行後の状態（Status = Succeeded, 他）では、ファイル内容の確認だけができるようになっています。</p>
+<section id="id6">
+<h2><span class="section-number">7.4. </span>マテリアル<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>この Material が何から作られたか、この Material から何が作られたかを表示します。</p>
+<figure class="align-default" id="id14">
+<img alt="Material 詳細画面のマテリアルのペイン。「作成元マテリアル」の見出しの下に、マテリアル名・作成元ジョブ・解析結果の列を持つ表があり、マテリアル名に Si2 のリンクが 1 件表示されている。作成元ジョブと解析結果は「-」になっている。" src="../_images/jobdetail_material_relations.png" />
+<figcaption>
+<p><span class="caption-number">図 7.4 </span><span class="caption-text">マテリアルのペイン（作成元マテリアル）</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>節</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>作成元マテリアル</p></td>
+<td><p>この Material のもとになった Material です。モデリングで作った場合は
+もとの Material が、計算結果から保存した場合はその Job と結果も並びます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>派生マテリアル</p></td>
+<td><p>この Material から作られた Material です。</p></td>
+</tr>
+</tbody>
+</table>
+<p>該当するものが無い節は表示されません。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="delete">
-<h2><span class="section-number">7.4. </span>Delete<a class="headerlink" href="#delete" title="Link to this heading"></a></h2>
+<section id="id7">
+<h2><span class="section-number">7.5. </span>ファイル<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>Material と Job の入出力ファイルの一覧です。</p>
+<figure class="align-default" id="id15">
+<img alt="Material 詳細画面のファイルのペイン。上部に「ジョブを選択」の選択欄があり initial が選ばれている。その下の「ファイル」の表に、種別・名前・表示・ダウンロードの列があり、rsdft.in、sysinfo.json、al_fcc.cif、rsdft.atom の 4 件が Input として並んでいる。右上に「一括ダウンロード」がある。" src="../_images/jobdetail_file_pane.png" />
+<figcaption>
+<p><span class="caption-number">図 7.5 </span><span class="caption-text">ファイルのペイン</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>上部の「ジョブを選択」で、Material 自身（<code class="docutils literal notranslate"><span class="pre">initial</span></code>）とこの Material の
+Job を切り替えます</p></li>
+<li><p>Job を選ぶと「入力ファイル」「出力ファイル」の切り替えが現れます</p></li>
+<li><p>「表示」でファイルの中身を確認できます。「ダウンロード」で 1 件ずつ、
+「一括ダウンロード」で ZIP にまとめて取得できます</p></li>
+</ul>
+<p>ファイルの中身については <a class="reference internal" href="files.html"><span class="doc">入出力ファイルとログ</span></a> の章で説明します。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><strong>ファイルを編集できるのは、Status が「Registered」の Job の入力ファイルだけです。</strong>
+Material 自身のファイルは Ver.7.0 では編集できません（閲覧のみ）。
+実行前の Job の入力ファイルを直接書き換えれば、画面に用意されていない
+細かい設定でも計算できます。</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">7.6. </span>Material の移動と削除<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id9">
+<h3><span class="section-number">7.6.1. </span>他のプロジェクトへ移動する<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>「マテリアル名」の行の右端にある「⋮」から「他のプロジェクトへ移動」を選び、
+移動先のプロジェクトを指定します。<strong>その Material を使っている Job も一緒に
+移動します。</strong></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id10">
+<h3><span class="section-number">7.6.2. </span>削除する<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>左のメニューのいちばん下にある「削除」、または「マテリアル名」の行の「⋮」から
+「削除」を選びます。</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>Material を削除すると、所属する Job も全て削除されてしまいますのでご注意ください。</p>
+<p><strong>Material を削除すると、その Material を使っている Job もすべて削除されます。</strong>
+削除ダイアログに対象の Job が一覧されるので、確認のチェックを入れてから
+「削除」を押します。</p>
 </div>
-<p>左サイドメニューの「Delete」を選択すると、Material の削除を行うことができます。</p>
-<img alt="../_images/screenshot_0075.png" src="../_images/screenshot_0075.png" />
-<p>関連する Job が存在する場合には、
-「配下の Job も一緒に削除されることを確認しました」にチェックを入れると、「Delete」ボタンがアクティブになります。</p>
-<img alt="../_images/screenshot_0076.png" src="../_images/screenshot_0076.png" />
-<p>「Delete」ボタンをクリックすると、Material が削除され、TOP 画面に戻ります。</p>
+<p>参加していないプロジェクトの Job がその Material を使っている場合は削除できません。
+そのプロジェクトのメンバーに依頼してください。</p>
+</section>
 </section>
 </section>
 
@@ -208,7 +399,7 @@ Job 実行前（Status = Registered）であれば、上図のように「Edit J
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 3月 16, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 
