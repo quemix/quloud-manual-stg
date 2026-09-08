@@ -21,6 +21,18 @@ def _param(**kw):
     return base
 
 
+def _prop(**kw):
+    base = {
+        "key": "total_energy", "label": "全エネルギー", "label_ja": "全エネルギー",
+        "label_en": "Total Energy", "input_type": "number", "value_type": "scalar",
+        "unit": "Ry", "is_metric": False, "sort_order": 10, "mapping_type": "canonical",
+        "result_group_key": "scf", "result_group_label_ja": "SCF",
+        "result_group_sort_order": 10,
+    }
+    base.update(kw)
+    return base
+
+
 def _dump(**kw):
     base = {
         "source_commit": "abc1234", "source_branch": "dev_v700_ji",
@@ -62,7 +74,7 @@ def _dump(**kw):
             "ui_group_label_ja": "第一原理計算", "legacy_rsdft_job_type": 2,
             "legacy_software_code": "qe",
             "parameters": [_param()], "physical_model_parameters": [],
-            "artifact_specs": [], "property_mappings": [],
+            "artifact_specs": [], "property_mappings": [], "result_groups": [],
         }],
     }
     base.update(kw)
@@ -339,6 +351,70 @@ class TestRenderArtifacts(unittest.TestCase):
         self.assertIn("出力ファイルの登録はありません", out)
 
 
+class TestRenderResults(unittest.TestCase):
+    def test_groups_become_separate_tables(self):
+        # 1 結果グループ = 結果画面のカード 1 枚。カードをまたいで 1 つの表に
+        # まとめると、読者が画面のどのカードの値かを追えない。
+        d = _dump()
+        d["engine_capabilities"][0]["property_mappings"] = [
+            _prop(),
+            _prop(key="band_gap", label_ja="バンドギャップ", unit="eV",
+                  result_group_key="electronic_structure",
+                  result_group_label_ja="電子構造", result_group_sort_order=15),
+        ]
+        out = g.render_results_all(d)
+        self.assertIn("SCF", out)
+        self.assertIn("電子構造", out)
+        self.assertEqual(out.count(".. list-table::"), 2)
+        # sort_order の小さいグループが先。
+        self.assertLess(out.index("全エネルギー"), out.index("バンドギャップ"))
+
+    def test_no_description_column(self):
+        # engine_capability_property_mappings と canonical の description は
+        # 246 件すべて空。列を出しても "-" が並ぶだけになる。
+        d = _dump()
+        d["engine_capabilities"][0]["property_mappings"] = [_prop()]
+        out = g.render_results_all(d)
+        self.assertNotIn("説明", out)
+        self.assertIn("項目名", out)
+        self.assertIn("単位", out)
+
+    def test_input_type_is_japanese(self):
+        d = _dump()
+        d["engine_capabilities"][0]["property_mappings"] = [
+            _prop(input_type="scientific")
+        ]
+        out = g.render_results_all(d)
+        self.assertIn("数値（指数表記）", out)
+
+    def test_falls_back_to_english_label_then_key(self):
+        d = _dump()
+        d["engine_capabilities"][0]["property_mappings"] = [
+            _prop(label_ja=None, label_en="Total Energy"),
+            _prop(key="only_key", label_ja=None, label_en=None),
+        ]
+        out = g.render_results_all(d)
+        self.assertIn("Total Energy", out)
+        self.assertIn("only_key", out)
+
+    def test_no_mappings_emits_note_not_empty_table(self):
+        # 55 engine_capability のうち 29 件は property mapping を持たない。
+        # 空の list-table は Sphinx がエラーにする。
+        out = g.render_results_all(_dump())
+        self.assertNotIn(".. list-table::", out)
+        self.assertIn("数値の一覧として表示される結果の登録はありません", out)
+
+    def test_headings_are_overlined(self):
+        # 章へ include するので、下線だけの見出しは既存の階層と衝突して
+        # Title level inconsistent で落ちる（CLAUDE.md §3）。
+        d = _dump()
+        d["engine_capabilities"][0]["property_mappings"] = [_prop()]
+        out = g.render_results_all(d)
+        self.assertIn("~~~\nSCF\n~~~", out)                       # 結果グループ
+        self.assertIn("################\nQuantum ESPRESSO\n################", out)  # 計算ソフト
+        self.assertIn("++++++++++++\n電子状態 SCF\n++++++++++++", out)          # 機能
+
+
 class TestGenerate(unittest.TestCase):
     def test_writes_expected_files(self):
         with tempfile.TemporaryDirectory() as td:
@@ -347,6 +423,8 @@ class TestGenerate(unittest.TestCase):
             names = {p.relative_to(out_dir).as_posix() for p in written}
             self.assertIn("engine_matrix.rst", names)
             self.assertIn("calc_list.rst", names)
+            self.assertIn("params_all.rst", names)
+            self.assertIn("results_all.rst", names)
             self.assertIn("params/qe_scf.rst", names)
             self.assertIn("artifacts/qe_scf.rst", names)
             for p in written:

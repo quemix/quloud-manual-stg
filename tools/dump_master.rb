@@ -6,10 +6,15 @@
 # 重要: パラメータの解決は API::CapabilitiesController の payload builder を
 # そのまま呼ぶ。ここで独自に再実装すると canonical フォールバックの扱いが
 # API とずれる。キーは必ず mapping.key（capability_parameter.key ではない）。
+#
+# 計算結果のプロパティも同じ理由で API::ParsedResultsController の
+# property_mapping_metadata をそのまま呼ぶ。label / unit / input_type は
+# canonical（capability_properties）へのフォールバックがある。
 require 'json'
 
 ActiveRecord::Base.logger = nil
 ctrl = API::CapabilitiesController.new
+pctrl = API::ParsedResultsController.new
 
 engine_capabilities = EngineCapability
                       .includes(:simulation_engine, :capability)
@@ -70,8 +75,26 @@ data = {
       artifact_specs: ec.engine_capability_artifact_specs.map { |a|
         a.as_json(except: %w[id engine_capability_id created_at updated_at])
       },
-      property_mappings: ec.engine_capability_property_mappings.map { |p|
-        p.as_json(except: %w[id engine_capability_id created_at updated_at])
+      # 結果表示グループ。1 グループ = 結果画面のカード 1 枚
+      # （CreateJobPropertiesService が group ごとに ParsedResult を作る）。
+      result_groups: ec.engine_capability_result_groups.order(:sort_order).map { |g|
+        { key: g.key, label_ja: g.resolved_label_ja, label_en: g.resolved_label_en,
+          sort_order: g.sort_order }
+      },
+      # visible な mapping だけを落とす。CreateJobPropertiesService#property_mappings が
+      # .visible で絞っており、visible=false の定義は ParsedResult にならない
+      # ＝画面には一生出ない。
+      property_mappings: ec.engine_capability_property_mappings
+                           .visible
+                           .includes(:capability_property, :engine_capability_result_group)
+                           .map { |p|
+        pctrl.send(:property_mapping_metadata, p).merge(
+          'key' => p.key,
+          'mapping_type' => p.mapping_type,
+          'result_group_key' => p.resolved_result_group_key,
+          'result_group_label_ja' => p.resolved_result_group_label_ja,
+          'result_group_sort_order' => p.resolved_result_group_sort_order
+        )
       }
     }
   }
@@ -81,6 +104,14 @@ raise 'engine_capabilities が空。マスタが DB に入っていない可能�
 
 param_total = data[:engine_capabilities].sum { |ec| ec[:parameters].size + ec[:physical_model_parameters].size }
 raise "パラメータが0件。mapping の取得が壊れている可能性がある（ec=#{data[:engine_capabilities].size}）" if param_total.zero?
+
+prop_total = data[:engine_capabilities].sum { |ec| ec[:property_mappings].size }
+raise "プロパティが0件。property mapping の取得が壊れている可能性がある" if prop_total.zero?
+
+# canonical mapping は label_ja を自分では持たず capability_properties から引く。
+# resolved を通していないと、ここで大量に欠ける。
+missing = data[:engine_capabilities].sum { |ec| ec[:property_mappings].count { |p| p['label_ja'].blank? } }
+raise "label_ja が空のプロパティが #{missing} 件。canonical フォールバックが効いていない" if missing.positive?
 
 File.write('/app/tmp_master_dump.json', JSON.pretty_generate(data))
 warn "wrote /app/tmp_master_dump.json  ec=#{data[:engine_capabilities].size}"

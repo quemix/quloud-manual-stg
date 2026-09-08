@@ -2,399 +2,276 @@
 計算結果の可視化
 =============================================
 
-計算結果は\ :ref:`jobdetail-section`\ から確認できます。
+.. note::
 
-.. image:: images/screenshot_0192.png
-
-画面左上の Select Property タブから、この Material の :ref:`Property<property-section>` として\
-登録されているもを一つ選択します（ここでは rdf を選択）。
-
-.. image:: images/screenshot_0193.png
-
-構造が変わる計算（原子構造最適化やMD計算など）による Property の場合は、\
-Structure パートに、その最終構造が表示されます。
-
-.. image:: images/screenshot_0194.png
-
-下にスクロールしていくと Properties パートがあり、Property として登録された計算結果が確認できます。\
-複数の結果を持つ場合はタブで切り替えられるようになっています。
-
-.. image:: images/screenshot_0195.png
-
-Property がどのような計算から得られたものであるかによって、Properties に表示される内容が変わります。\
-以下に、各 Job で取得できる計算結果をソフトウェアごとにまとめます。
+   本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。
 
 |
 |
 
-------------------------------------------------------------------------
-Quantum ESPRESSO
-------------------------------------------------------------------------
+------------------------------
+概要
+------------------------------
 
--   Single-Point SCF
+計算が正常に終わると、出力ファイルから値や図が取り出され、Job 詳細画面の
+「Results」にカードとして並びます。1 枚のカードが 1 つのまとまり
+（SCF、電子構造、バンド構造など）に対応します。
 
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
+カードは自動では作られません。**「結果を解析」を押した時点で作られます。**
 
-    |
+.. note::
 
--   Atomic Structure Opt.
-
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Lattice Opt.
-
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Electron Band Structure
-
-    -   Electron Band
-    -   Effective Mass
-    -   Effective Mass (Table)
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Electron DOS
-
-    -   Electron Density Of States
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Energy Barrier (NEB)
-
-    -   Energy Barrier
-    -   Atomic Structure Trajectory
-    -   Brillouin Zone
-
-    |
-
--   Phonon (DOS)
-
-    -   Phonon DOS
-
-    |
-
--   Phonon (Band)
-
-    -   Phonon Band
-
-    |
-
--   X-Spectra
-
-    -   Spectrum
-    -   Total Energy Information
-    -   Brillouin Zone
+   Ver.6.1.2 では、計算結果は Material 詳細画面の「Select Property」から
+   Property を選んで見る形でした。Ver.7.0 では、結果はまず Job 詳細画面の
+   「Results」に現れ、そこから必要なものを Property として登録します
+   （:doc:`property` の章）。
 
 |
 |
 
-------------------------------------------------------------------------
-OpenMX
-------------------------------------------------------------------------
+------------------------------
+前提
+------------------------------
 
--   Single-Point SCF
+-   Job の Status が「Succeeded」であること（:doc:`runjob` の章）。
+    それ以外の Status では「Results」に理由が表示され、カードは作られません
 
-    -   Total Electron Density
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-    |
-
--   Atomic Structure Opt.
-
-    -   Total Electron Density
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Lattice Opt.
-
-    -   Total Electron Density
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Electron Band Structure
-
-    -   Electron Band
-    -   Effective Mass
-    -   Effective Mass (Table)
-    -   Total Electron Density
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Electron DOS
-
-    -   Electron Density Of States
-    -   Total Electron Density
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Energy Barrier (NEB)
-
-    -   Energy Barrier
-    -   Atomic Structure Trajectory
-    -   Brillouin Zone
-
-    |
-
--   Molecular Dynamics
-
-    -   Time Evolution Data (MD)
-
-        -   Temperature
-        -   DFT Energy
-        -   Total Energy (DFT + Ions)
-
-        |
-
-    -   Atomic Structure Trajectory
-    -   Brillouin Zone
-
-    |
-
--   Exchange Coupling Parameters
-
-    -   Exchange Coupling Parameters
-    -   Total Electron Density
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
+   * - Status
+     - 「Results」の表示
+   * - Registered
+     - ジョブはまだ実行されていません。
+   * - Submitted / Prepared / Running
+     - ジョブを実行中です。完了後に「結果を解析」を実行してください。
+   * - Cancelled
+     - ジョブはキャンセルされました。
+   * - Failed
+     - ジョブが失敗しました。
 
 |
 |
 
-------------------------------------------------------------------------
-RSDFT
-------------------------------------------------------------------------
+------------------------------
+操作手順
+------------------------------
 
--   Single-Point SCF
+|
 
-    -   Total Electron Density\ :sup:`※1`
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-    -   Kohn-Sham Orbitals\ :sup:`※2`
+##############################################
+1. 「結果を解析」を押す
+##############################################
 
-    |
+Job 詳細画面の左のメニューで「結果」を選ぶと「Results」に移動します。
+右上の「結果を解析」を押すと、出力ファイルの解析が始まります。
 
--   Atomic Structure Opt.
+解析がまだのときは「「結果を解析」を実行してください。」と表示されます。
 
-    -   Total Electron Density\ :sup:`※1`
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-    -   Kohn-Sham Orbitals\ :sup:`※2`
+**何度押してもカードは増えません。** 同じまとまりのカードは作り直されます。
+削除したカードも、押し直すと元に戻ります。
 
-    |
+|
 
--   Lattice Opt.
+##############################################
+2. ステップを切り替える
+##############################################
 
-    -   Total Electron Density\ :sup:`※1`
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-    -   Kohn-Sham Orbitals\ :sup:`※2`
+複数ステップの計算機能では、ステップごとにタブが分かれます。
+結果はそのステップで実行された計算のものだけが表示されます。
 
-    |
+.. figure:: images/v70/visualization_results_step1.png
+   :alt: Job 詳細画面の「Results」。右上に「結果を解析」ボタン、その下に「ステップ 1：自己無撞着電子状態計算（SCF）」「ステップ 2：固定ポテンシャル電子状態計算（バンド）」「ステップ 3：電子バンド構造」のタブが並ぶ。ステップ 1 が選択され、SCF・構造最適化・電子構造・応力・圧力の 4 枚のカードに数値が表で並んでいる。各カードの下に source と parsed の行がある。
 
--   Electron Band Structure
+   「Results」（ステップ 1）
 
-    -   Electron Band
-    -   Total Electron Density\ :sup:`※1`
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-    -   Kohn-Sham Orbitals\ :sup:`※2`
+入力項目が無いステップと同じように、**結果が無いステップもあります。**
+その場合は「このステップの結果はありません」と表示されます。
 
-    |
+|
 
--   Electron DOS
+##############################################
+3. カードを読む
+##############################################
 
-    -   Electron Density Of States
-    -   Total Electron Density\ :sup:`※1`
-    -   Kohn-Sham Levels
-    -   Brillouin Zone
-    -   Total Energy Information
-    -   Kohn-Sham Orbitals\ :sup:`※2`
-
-    |
-
--   Molecular Dynamics
-
-    -   Time Evolution Data (MD)
-
-        -   Temperature
-        -   DFT Energy
-        -   Kinetic Energy (Ions)
-        -   Fictitious Kinetic Energy (Electrons)（Car-Parrinello MD のみ）
-        -   Total Energy (DFT + Ions)
-
-        |
-
-    -   Atomic Structure Trajectory
-    -   Brillouin Zone
-
-    |
-
-**※1 Total Electron Density は、I/O Control が 2, 3 の場合にのみ表示されます。I/O Control が 0, 1 の場合には表示されませんのでご注意ください。**
-
-**※2 Kohn-Sham Orbitals は、I/O Control が 1, 3 の場合にのみ表示されます。I/O Control が 0, 2 の場合には表示されませんのでご注意ください。**
+各カードの下部には、どのファイルから取り出したか（``source``）と、
+いつ解析したか（``parsed``）が表示されます。値が計算し直されたかどうかは
+``parsed`` の日時で判断できます。
 
 |
 |
 
-------------------------------------------------------------------------
-LAMMPS
-------------------------------------------------------------------------
+------------------------------
+結果カードの種類
+------------------------------
 
--   Atomic Structure Opt.
+|
 
-    -   Optimized Atomic Structure
+##############################################
+数値の一覧
+##############################################
 
-    |
+出力ファイルから取り出した数値を表で並べたカードです。上の図の
+「SCF」「電子構造」「応力・圧力」がこれにあたります。
 
--   Molecular Dynamics
+どの計算機能でどの数値が取り出されるかは、この章の「計算機能ごとに取り出される数値」に
+一覧があります。
 
-    -   Time Evolution Data (MD)
+|
 
-        -   Temperature
-        -   Total Energy
-        -   Pressure
-        -   Volume
-        -   Density
-        -   Uncertainty（FLARE ポテンシャル使用時のみ）
-        -   Mean-Squared Displacement（Job 登録時に compute 選択欄で選択した場合のみ）\ :sup:`※1`
-        -   Radial Distribution Function（Job 登録時に compute 選択欄で選択した場合のみ）
+##############################################
+構造
+##############################################
 
-        |
+構造が変わる計算（構造最適化・格子定数最適化）では、最終構造のカードが加わります。
 
-    -   Atomic Structure Trajectory
+.. figure:: images/v70/visualization_results_structure.png
+   :alt: 格子定数最適化の Job の「Results」。化学構造（元素種数・化学式・原子サイト数・全電子数・価電子数）、結晶構造（格子定数 a1 a2 a3、角度、体積、空間群、空間群番号、対称操作数、原子サイト数）、最終構造（原子と結合を描いた 3D ビューア）の 3 枚が上段に並び、下段に SCF・構造最適化・格子最適化のカードが続いている。
 
-**※1 Mean-Squared Displacement については、Ver.6.0 以前でのデータはグラフ表示されませんのでご注意ください。**
+   構造のカード（格子定数最適化）
+
+-   **化学構造** — 元素種数、化学式、原子サイト数、全電子数、価電子数
+-   **結晶構造** — 格子定数、角度、体積、空間群、対称操作数
+-   **最終構造** — 計算後の構造を 3D で表示します
+
+これらは計算機能から自動的に作られるもので、後述の「計算機能ごとに取り出される数値」の
+表には含まれません。
+
+|
+
+##############################################
+図・グラフ
+##############################################
+
+計算機能によっては、数値の表ではなく図が表示されます。
+
+.. figure:: images/v70/visualization_results_band.png
+   :alt: 「Results」のステップ 3（電子バンド構造）。左に「バンド構造」のカードがあり、横軸が k 点、縦軸が Energy (eV) のバンド図が描かれている。フェルミ準位が赤い破線で示され、凡例に Up & Down Spin とある。図の下に Min (eV) と Max (eV) の入力欄と「適用」ボタンがある。右に「Bands」のカードがあり Bands計算時間が表示されている。
+
+   バンド図（電子バンド構造）
+
+バンド図と状態密度の図には、表示するエネルギー範囲を変える「Min (eV)」「Max (eV)」と
+「適用」があります。
+
+図が表示される計算機能は次のとおりです。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 22 48
+
+   * - 計算機能
+     - 計算ソフト
+     - 表示されるもの
+   * - 電子バンド構造
+     - すべて
+     - バンド図
+   * - 状態密度計算（DOS）
+     - すべて
+     - 状態密度曲線
+   * - 投影状態密度（PDOS）
+     - Quantum ESPRESSO
+     - 軌道ごとの部分状態密度曲線
+   * - フォノンバンド分散（matdyn）
+     - Quantum ESPRESSO
+     - フォノンバンド図
+   * - フォノン状態密度（matdyn）
+     - Quantum ESPRESSO
+     - フォノン状態密度曲線
+   * - X線吸収スペクトル（XSpectra）
+     - Quantum ESPRESSO
+     - 吸収スペクトル
+   * - NEB（Nudged Elastic Band）
+     - すべて
+     - 原子構造トラジェクトリ（ビューア）
+   * - 古典分子動力学 / 機械学習ポテンシャル MD / 分子動力学
+     - すべて
+     - 時間発展データ（グラフ）と原子構造トラジェクトリ（ビューア）
+   * - 高分子平衡化MD
+     - RadonPy
+     - 密度の時間発展とトラジェクトリ
+   * - DFT-1/2 擬ポテンシャル生成（UPF）
+     - DFT-1/2
+     - 擬ポテンシャルの補正量のグラフ
+   * - 分子振動解析
+     - Psi4
+     - 熱力学量と振動モードの一覧
+   * - 自己無撞着電子状態計算（SCF）
+     - Psi4
+     - 軌道エネルギー、HOMO-LUMO ギャップ、双極子モーメント
 
 |
 |
 
-------------------------------------------------------------------------
-FLARE
-------------------------------------------------------------------------
+------------------------------
+カードからできること
+------------------------------
 
--   On-the-Fly MD
+各カードの右上にある「⋮」からメニューが開きます。
 
-    -   Time Evolution Data (MD)
+.. figure:: images/v70/visualization_card_menu.png
+   :alt: 「SCF」カードの右上の「⋮」を押して開いたメニュー。「Propertyに登録」と赤い文字の「削除」の 2 項目が表示されている。
 
-        -   Temperature
-        -   Potential Energy
-        -   Pressure
-        -   Volume
-        -   Density
-        -   Standard Deviation
+   結果カードのメニュー
 
-        |
+.. list-table::
+   :header-rows: 1
+   :widths: 28 72
 
-    -   Atomic Structure Trajectory
-
-|
-|
-
-------------------------------------------------------------------------
-ASE
-------------------------------------------------------------------------
-
--   Atomic Structure Opt.
-
-    -   Optimized Atomic Structure
-
-    |
-
--   Lattice Opt.
-
-    -   Optimized Atomic Structure
-
-    |
-
--   Energy Barrier (NEB)
-
-    -   Energy Barrier
-    -   Atomic Structure Trajectory
-
-    |
-
--   Molecular Dynamics
-
-    -   Time Evolution Data (MD)
-
-        -   Temperature
-        -   Total Energy
-        -   Potential Energy
-        -   Kinetic Energy
-
-        |
-
-    -   Atomic Structure Trajectory
+   * - 項目
+     - 動作
+   * - Propertyに登録
+     - このカードを Property として登録します。Material 単位で結果を並べて
+       比べられるようになります（:doc:`property` の章）。
+   * - Materialとして保存
+     - 最終構造のカードにだけ表示されます。計算後の構造を新しい Material として
+       登録し、続きの計算に使えるようにします。
+   * - 削除
+     - このカードを消します。確認のダイアログが出ます。出力ファイルは消えません。
+       「結果を解析」を押し直せば元に戻ります。
 
 |
 |
 
-------------------------------------------------------------------------
-SPRKKR
-------------------------------------------------------------------------
+------------------------------
+注意事項
+------------------------------
 
--   First-Principles SCF
-
-    -   Brillouin Zone
-    -   Total Energy Information
-
-    |
-
--   Exchange Coupling Parameters
-
-    -   Brillouin Zone
-    -   Curie Temperature
-    -   Exchange Coupling Parameters
+-   **カードが 1 枚も出ないことがあります。** 計算は正常に終わっていても、
+    結果を取り出す定義がその計算機能に無い場合や、対象の出力ファイルがその Job に
+    無い場合です。「結果を解析」を押したときに理由が表示されます。
+-   Ver.6.1.2 以前に作成した Job では、この方式の結果表示は行われません。
+    出力ファイルは :doc:`files` の章の方法で確認できます。
+-   出力ファイルそのものは、左のメニューの「ファイル」からダウンロードできます
+    （:doc:`files` の章）。
 
 |
 |
 
-------------------------------------------------------------------------
-Quloud-Mag
-------------------------------------------------------------------------
+------------------------------
+計算機能ごとに取り出される数値
+------------------------------
 
--   Monte Carlo
+以下は、**数値の一覧のカードに表示される項目**\ を計算ソフト・計算機能ごとにまとめた
+ものです。見出しの単位（「SCF」「電子構造」など）がカード 1 枚に対応します。
 
-    -   Magnetization
-    -   Magnetic Susceptibility
+図・グラフのカードと構造のカードは、この表には含まれません。前の節をご覧ください。
 
-    |
+列の意味は次のとおりです。
 
--   Micro-Magnetic Simulation
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
 
-    -   Magnetic Field & Magnetization
+   * - 列
+     - 意味
+   * - 項目名
+     - カードに表示される項目名です。
+   * - キー
+     - 内部で使われる識別子です。
+   * - 型
+     - 値の種類です。
+   * - 単位
+     - 値の単位です。単位が無い項目は ``-`` です。
+
+.. include:: _generated/results_all.rst

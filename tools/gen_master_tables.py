@@ -316,6 +316,76 @@ def render_params_all(dump: dict) -> str:
     return "".join(out)
 
 
+# 計算結果の一覧。列に「説明」は出さない。engine_capability_property_mappings と
+# canonical（capability_properties）の description は 246 件すべて空で、
+# 出しても "-" が並ぶだけになる（artifacts の description と同じ状態）。
+RESULT_HEADERS = ["項目名", "キー", "型", "単位"]
+RESULT_WIDTHS = [34, 30, 18, 18]
+
+
+def _results_body(ec: dict) -> str:
+    """1 つの engine × capability の結果を、結果グループごとの表で返す。
+
+    グループ分けは画面と同じ単位にする。CreateJobPropertiesService は
+    engine_capability_result_group ごとに ParsedResult を 1 件作り、
+    parsed-result-summary.vue はそれをカード 1 枚として描く。
+    つまり **1 グループ = 結果画面のカード 1 枚**。
+    """
+    mappings = ec.get("property_mappings") or []
+    if not mappings:
+        return "この計算には、数値の一覧として表示される結果の登録はありません。\n"
+
+    out = []
+    groups = sorted(
+        {(m.get("result_group_sort_order") or 0,
+          m.get("result_group_key") or "",
+          m.get("result_group_label_ja") or m.get("result_group_key") or "その他")
+         for m in mappings}
+    )
+    for _order, key, label in groups:
+        items = [m for m in mappings if (m.get("result_group_key") or "") == key]
+        rows = []
+        for m in sorted(items, key=lambda x: x.get("sort_order") or 0):
+            rows.append([
+                rst.escape(m.get("label_ja") or m.get("label_en") or m.get("key")),
+                f"``{m['key']}``",
+                INPUT_TYPE_JA.get(m.get("input_type"), rst.escape(m.get("input_type"))),
+                rst.escape(m.get("unit")),
+            ])
+        out.append(rst.section(rst.escape(label), "~"))
+        out.append("\n")
+        out.append(rst.list_table(RESULT_HEADERS, rows, widths=RESULT_WIDTHS))
+        out.append("\n")
+    return "".join(out)
+
+
+def render_results_all(dump: dict) -> str:
+    """全 engine x capability の計算結果を、見出し付きで 1 ファイルにまとめる。
+
+    params_all.rst と同じ理由で束ねる。章側で個別ファイルを並べると、
+    マスタに機能が増えたときに漏れる（CLAUDE.md §3）。
+    見出しは 小節（####）= 計算ソフト、小々節（++++）= 機能、
+    その下の「~」が結果グループ（＝結果画面のカード）。
+    """
+    engine_names = {e["code"]: e.get("name") or e["code"] for e in dump.get("engines", [])}
+    cap_names = {c["code"]: c.get("name_ja") or c["code"] for c in dump.get("capabilities", [])}
+
+    out = [rst.header_comment(dump, SCRIPT)]
+    for engine_code in dict.fromkeys(ec["engine"] for ec in dump["engine_capabilities"]):
+        out.append("\n")
+        out.append(rst.section(rst.escape(engine_names.get(engine_code, engine_code)), "#"))
+        out.append("\n")
+        for ec in dump["engine_capabilities"]:
+            if ec["engine"] != engine_code:
+                continue
+            cap = ec["capability"]
+            out.append(rst.section(rst.escape(cap_names.get(cap, cap)), "+"))
+            out.append("\n")
+            out.append(_results_body(ec))
+            out.append("\n")
+    return "".join(out)
+
+
 def render_artifacts(ec: dict, dump: dict) -> str:
     specs = ec.get("artifact_specs") or []
     out = [rst.header_comment(dump, SCRIPT)]
@@ -359,6 +429,7 @@ def generate(dump: dict, out_dir: Path) -> list[Path]:
     write("engine_matrix.rst", render_engine_matrix(dump))
     write("calc_list.rst", render_calc_list(dump))
     write("params_all.rst", render_params_all(dump))
+    write("results_all.rst", render_results_all(dump))
     for ec in dump["engine_capabilities"]:
         slug = f"{ec['engine']}_{ec['capability']}"
         write(f"params/{slug}.rst", render_params(ec, dump))
