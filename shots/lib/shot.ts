@@ -7,7 +7,9 @@
  * shots/.out/<name>.json を落として、撮影後に tools/shots_ledger.py が
  * まとめて CSV にする。
  */
+import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { test, expect } from '@playwright/test'
 import type { Page } from '@playwright/test'
@@ -17,6 +19,22 @@ import { SHOT_VIEWPORT } from './viewport'
 const REPO_DIR = path.resolve(__dirname, '..', '..')
 const IMAGE_DIR = path.join(REPO_DIR, 'source', 'images', 'v70')
 const OUT_DIR = path.join(REPO_DIR, 'shots', '.out')
+
+/**
+ * 撮影時に動いていたアプリのコミット。
+ *
+ * 台帳側で撮り直しのたびに現在の HEAD を書くと、**撮り直していない画像の
+ * 参照コミットまで今日の値に書き換わる**（shots/.out/*.json は消えないので、
+ * 部分実行でも全件が取り込み直される）。撮影の事実は撮影時に記録する。
+ */
+const CODE_DIR = process.env.QULOUD_CODE_DIR ?? path.join(os.homedir(), 'v6.0')
+const CODE_COMMIT = (() => {
+  try {
+    return execFileSync('git', ['-C', CODE_DIR, 'rev-parse', 'HEAD'], { encoding: 'utf-8' }).trim()
+  } catch {
+    return ''
+  }
+})()
 
 export type ShotSpec = {
   /** ファイル名（拡張子なし）。<章>_<機能>_<状態> の形にする。 */
@@ -104,6 +122,7 @@ export function defineShots(specs: ShotSpec[]): void {
           // 日本時間の午前 9 時前が前日になる（実際に 09-08 01:10 の撮影が
           // 09-07 と記録された）。sv-SE は YYYY-MM-DD 形式で返る。
           captured_on: new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' }),
+          code_commit: CODE_COMMIT,
           viewport: viewport ? `${viewport.width}x${viewport.height}` : '',
           project: testInfo.project.name,
         }, null, 2) + '\n',

@@ -54,6 +54,14 @@ class LedgerTestBase(unittest.TestCase):
             "viewport": "1440x900",
         }), encoding="utf-8")
 
+    def add_sidecar_with_commit(self, asset_id, commit):
+        """撮影時のコミットを記録した新しい形式の記録。"""
+        self.add_sidecar(asset_id)
+        path = self.out / f"{asset_id}.json"
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        rec["code_commit"] = commit
+        path.write_text(json.dumps(rec), encoding="utf-8")
+
     def add_legacy_sidecar(self, asset_id):
         """captured_on が無い古い形式の記録。UTC の ISO から日付を切り出す。"""
         rel = f"source/images/v70/{asset_id}.png"
@@ -105,10 +113,26 @@ class TestBuild(LedgerTestBase):
     def test_recapture_updates_row(self):
         self.add_sidecar("a_one")
         L.build("old")
-        L.build("new")
+        self.add_sidecar_with_commit("a_one", "new")
+        L.build("ignored")
         rows = self.read_assets()
         self.assertEqual(len(rows), 1)
+        # 撮影記録のコミットを採る。build 時点の HEAD ではない。
         self.assertEqual(rows[0]["参照コミット"], "new")
+
+    def test_rebuild_keeps_commit_of_untouched_row(self):
+        # shots/.out/*.json は消えないので、部分実行でも全件が取り込み直される。
+        # 撮り直していない画像の参照コミットまで今日の値に化けてはいけない
+        # （実際に 18 件が別のコミットに書き換わった）。
+        self.add_sidecar("a_one")
+        L.build("old")
+        L.build("today")
+        self.assertEqual(self.read_assets()[0]["参照コミット"], "old")
+
+    def test_sidecar_commit_wins_over_argument(self):
+        self.add_sidecar_with_commit("a_one", "captured")
+        L.build("today")
+        self.assertEqual(self.read_assets()[0]["参照コミット"], "captured")
 
     def test_falls_back_to_captured_at_when_no_captured_on(self):
         self.add_legacy_sidecar("legacy_one")

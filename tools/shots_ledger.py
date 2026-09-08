@@ -80,6 +80,12 @@ def build(commit: str) -> int:
 
     再撮影した画像は行を差し替える。撮り直していない行はそのまま残す
     （撮影ハーネスを部分的に走らせても台帳が消えないようにする）。
+
+    参照コミットは**撮影記録に入っているものを使う**。shots/.out/ の記録は
+    消えないので、部分実行でも全件が取り込み直される。ここで現在の HEAD を
+    書くと、撮り直していない画像の参照コミットまで今日の値に化ける
+    （実際に 18 件が別のコミットに書き換わった）。記録に無い古い撮影は、
+    台帳に既にある値を残す。
     """
     sidecars = sorted(OUT_DIR.glob("*.json"))
     if not sidecars:
@@ -105,7 +111,9 @@ def build(commit: str) -> int:
             # captured_on は撮影側が JST で作った日付。無い古い記録だけ
             # captured_at（UTC の ISO）から切り出す。
             "撮影日": rec.get("captured_on") or rec.get("captured_at", "")[:10],
-            "参照コミット": commit,
+            "参照コミット": (rec.get("code_commit")
+                        or (rows[asset_id]["参照コミット"] if asset_id in rows else "")
+                        or commit),
             "ビューポート": rec.get("viewport", ""),
         }
 
