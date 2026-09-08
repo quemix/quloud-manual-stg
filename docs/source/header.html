@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-16T17:41:22+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T11:26:21+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>14. ヘッダーメニュー（各種管理）</title>
+  <title>14. ヘッダーメニュー</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/my_theme.css?v=58559228" />
 
@@ -64,13 +64,25 @@
 <li class="toctree-l1"><a class="reference internal" href="property.html">11. Property</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="files.html">13. 入出力ファイルとログ</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">14. ヘッダーメニュー（各種管理）</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#tenant">14.1. Tenant 管理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">14.2. ポイント・ストレージの利用状況確認</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">14.3. ポイント、有効期限、ストレージの表示</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">14.4. ユーザー管理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">14.5. お問い合わせ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">14.6. 利用規約</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">14. ヘッダーメニュー</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">14.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">14.2. メニュー</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">14.3. お知らせ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">14.4. ヘルプ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">14.4.1. お問い合わせ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">14.5. 利用情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">14.6. 設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">14.6.1. 利用状況</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">14.6.2. 注文履歴</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">14.7. アカウント</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">14.7.1. プロフィール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">14.8. 注意事項</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="specifications.html">15. 仕様</a></li>
@@ -91,7 +103,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">14. </span>ヘッダーメニュー（各種管理）</li>
+      <li class="breadcrumb-item active"><span class="section-number">14. </span>ヘッダーメニュー</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/header.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,108 +114,328 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">14. </span>ヘッダーメニュー（各種管理）<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>下図のように、Quloud の画面右上には常時４つのアイコンが表示されており、それぞれ</p>
-<ul class="simple">
-<li><p>「ｉ」：            お知らせ</p></li>
-<li><p>「？」：    このドキュメント、お問い合わせ、利用規約</p></li>
-<li><p>ボード：ポイント、有効期限、ストレージ</p></li>
-<li><p>歯車：     メンバー一覧、招待、計算ポイント＆ストレージ</p></li>
-<li><p>ユーザー：   ユーザー情報、サインアウト</p></li>
-</ul>
-<p>という機能に対応しています。</p>
-<img alt="../_images/screenshot_0019.png" src="../_images/screenshot_0019.png" />
+<h1><span class="section-number">14. </span>ヘッダーメニュー<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="tenant">
-<h2><span class="section-number">14.1. </span>Tenant 管理<a class="headerlink" href="#tenant" title="Link to this heading"></a></h2>
-<p>ヘッダー部の歯車のアイコンをクリックすると、</p>
-<ul class="simple">
-<li><p>Tenant メンバー一覧（Users）</p></li>
-<li><p>Tenant への招待（Invitation）</p></li>
-<li><p>ポイント・ストレージの利用状況確認（Usage Status）</p></li>
-</ul>
-<p>という機能が選択できます。</p>
-<img alt="../_images/screenshot_0129.png" src="../_images/screenshot_0129.png" />
-<p>それぞれの機能を以下に説明します。</p>
-<p>「Users」をクリックすると、Tenant メンバーの一覧画面が表示されます。</p>
-<img alt="../_images/screenshot_0022.png" src="../_images/screenshot_0022.png" />
-<p>「Show User」ボタンで各メンバーの詳細情報を確認できます。</p>
-<img alt="../_images/screenshot_0130.png" src="../_images/screenshot_0130.png" />
-<p>管理ユーザー（Owner）は「Edit User」ボタンでメンバーの権限（Owner/Member）を変更することが可能です。</p>
-<img alt="../_images/screenshot_0131.png" src="../_images/screenshot_0131.png" />
-<p>また、管理ユーザーは「Delete User」ボタンでメンバーを Tenant から削除することも可能です。</p>
-<img alt="../_images/screenshot_0132.png" src="../_images/screenshot_0132.png" />
-<p>Tenant からメンバーを外す際に、そのメンバーに属している Job 等を他のメンバーに引き継ぐか、
-あるいは Quloud 上から完全に削除するかを選ぶ必要があります。
-他のメンバーに引き継ぐ場合、「Please select user」で移管先のメンバーを指定します。</p>
-<img alt="../_images/screenshot_0133.png" src="../_images/screenshot_0133.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
 <section id="id2">
-<h2><span class="section-number">14.2. </span>ポイント・ストレージの利用状況確認<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>歯車のアイコンをクリックし、「Usage Status」をクリックすると、下図のような画面が表示されます。
-この画面では、現在の（Tenant 全体の）保有計算ポイントと、各ユーザーのポイント・ストレージ利用状況を確認することができます。</p>
-<img alt="../_images/screenshot_0020.png" src="../_images/screenshot_0020.png" />
-<p>ポイントをクリックすると、そのユーザーのポイント消費の履歴を確認することができます。</p>
-<img alt="../_images/screenshot_0038.png" src="../_images/screenshot_0038.png" />
+<h2><span class="section-number">14.1. </span>概要<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>画面の上端は全画面で共通です。左端のロゴを押すとホーム画面に戻ります。
+右端には 6 つのアイコンが並びます。</p>
+<figure class="align-default" id="id14">
+<img alt="画面上端のヘッダー。左に Quloud のロゴと version 7.0.0 の表示、右に横三本線・丸に i・丸に疑問符・ボード・歯車・アカウントのアバターの 6 つのアイコンが並んでいる。" src="../_images/header_icons.png" />
+<figcaption>
+<p><span class="caption-number">図 14.1 </span><span class="caption-text">ヘッダー</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>アイコン</p></th>
+<th class="head"><p>名前</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>横三本線</p></td>
+<td><p>メニュー</p></td>
+<td><p>ホーム画面の各タブへ直接移動します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>丸に <code class="docutils literal notranslate"><span class="pre">i</span></code></p></td>
+<td><p>お知らせ</p></td>
+<td><p>運営からのお知らせを表示します。未読があるとバッジが付きます。</p></td>
+</tr>
+<tr class="row-even"><td><p>丸に <code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+<td><p>ヘルプ</p></td>
+<td><p>マニュアル・サンプル・技術ノート・お問い合わせ・利用規約</p></td>
+</tr>
+<tr class="row-odd"><td><p>ボード</p></td>
+<td><p>利用情報</p></td>
+<td><p>ポイント残高・有効期限・ストレージ使用量</p></td>
+</tr>
+<tr class="row-even"><td><p>歯車</p></td>
+<td><p>設定</p></td>
+<td><p>ユーザー・招待・利用状況・注文履歴</p></td>
+</tr>
+<tr class="row-odd"><td><p>アバター</p></td>
+<td><p>アカウント</p></td>
+<td><p>プロフィール・サインアウト</p></td>
+</tr>
+</tbody>
+</table>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">14.3. </span>ポイント、有効期限、ストレージの表示<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<p>ボードアイコンをクリックすると、Tenant の保有ポイント数、有効期限、ストレージ利用状況が確認できます。</p>
-<img alt="../_images/screenshot_0233.png" src="../_images/screenshot_0233.png" />
+<h2><span class="section-number">14.2. </span>メニュー<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>横三本線のアイコンから、ホーム画面の「プロジェクト」「マテリアル」「ジョブ」
+「プロパティ」の各タブへ直接移動できます（<a class="reference internal" href="dashboard.html"><span class="doc">ホーム画面</span></a> の章）。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id4">
-<h2><span class="section-number">14.4. </span>ユーザー管理<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>ヘッダー部のユーザーのアイコンをクリックし、「Profile」をクリックします。</p>
-<img alt="../_images/screenshot_0134.png" src="../_images/screenshot_0134.png" />
-<p>すると、下図のような画面が表示されます。</p>
-<img alt="../_images/screenshot_0023.png" src="../_images/screenshot_0023.png" />
-<p>ここで、ユーザー情報の確認や編集、パスワードの変更が行えます。</p>
-<p>右の鉛筆のマークをクリックすると、ユーザー情報の編集画面に移ります。</p>
-<img alt="../_images/screenshot_0024.png" src="../_images/screenshot_0024.png" />
-<p>情報を編集し、「Submit」をクリックすると、変更した内容が反映されます。</p>
-<p>また、右の鍵のマークをクリックすると、パスワード変更画面に移ります。</p>
-<img alt="../_images/screenshot_0025.png" src="../_images/screenshot_0025.png" />
-<p>現在のパスワードと、新しいパスワード（２か所）を入力し、「Submit」をクリックすると、パスワード変更が反映されます。</p>
+<h2><span class="section-number">14.3. </span>お知らせ<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>丸に <code class="docutils literal notranslate"><span class="pre">i</span></code> のアイコンを押すと、運営からのお知らせの一覧が開きます。
+未読のお知らせがあると、アイコンに件数のバッジが付きます。</p>
+<figure class="align-default" id="id15">
+<img alt="「お知らせ」の画面。日付と内容の列を持つ表があり、「データはありません。」と表示されている。" src="../_images/header_notices.png" />
+<figcaption>
+<p><span class="caption-number">図 14.2 </span><span class="caption-text">お知らせ</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>重要なお知らせは、ホーム画面を開いたときにダイアログでも表示されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">14.5. </span>お問い合わせ<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>ヘッダー部の「？」のアイコンをクリックし、「Inquiry」をクリックします。</p>
-<img alt="../_images/screenshot_0135.png" src="../_images/screenshot_0135.png" />
-<p>すると、下図のような画面が表示されます。</p>
-<img alt="../_images/screenshot_0026.png" src="../_images/screenshot_0026.png" />
-<p>お問い合わせのカテゴリを選択し、タイトル・内容を記入後、「確認」ボタンを押すと、お問い合わせ内容の確認画面に移ります。</p>
-<img alt="../_images/screenshot_0027.png" src="../_images/screenshot_0027.png" />
-<p>内容を確認後、「送信」ボタンを押すと、お問い合わせ完了画面が表示され、入力したメールアドレスに確認メールが送信されます。</p>
+<h2><span class="section-number">14.4. </span>ヘルプ<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>丸に <code class="docutils literal notranslate"><span class="pre">?</span></code> のアイコンを押すと、次の項目が並びます。</p>
+<figure class="align-default" id="id16">
+<img alt="ヘルプのメニュー。マニュアル、サンプル、技術ノート、お問い合わせ、利用規約の 5 項目がアイコン付きで並んでいる。" src="../_images/header_help_menu.png" />
+<figcaption>
+<p><span class="caption-number">図 14.3 </span><span class="caption-text">ヘルプのメニュー</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>マニュアル</p></td>
+<td><p>本書を別のタブで開きます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>サンプル</p></td>
+<td><p>計算例を集めたサイトを別のタブで開きます。</p></td>
+</tr>
+<tr class="row-even"><td><p>技術ノート</p></td>
+<td><p>技術的な解説を集めたサイトを別のタブで開きます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>お問い合わせ</p></td>
+<td><p>問い合わせフォームを別のタブで開きます。</p></td>
+</tr>
+<tr class="row-even"><td><p>利用規約</p></td>
+<td><p>利用規約の PDF を別のタブで開きます。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id6">
+<h3><span class="section-number">14.4.1. </span>お問い合わせ<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<figure class="align-default" id="id17">
+<img alt="「お問い合わせ」フォーム。お名前、お名前（カナ）、メールアドレスにサインイン中のユーザーの情報が入っており、カテゴリの選択欄、タイトル、内容の入力欄が並ぶ。下部に「確認」ボタンがある。" src="../_images/header_inquiry_form.png" />
+<figcaption>
+<p><span class="caption-number">図 14.4 </span><span class="caption-text">お問い合わせフォーム</span><a class="headerlink" href="#id17" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>お名前・メールアドレスにはサインイン中のユーザーの情報が入ります。
+カテゴリを選び、タイトルと内容を入力して「確認」を押します。
+確認画面で内容を見直してから送信します。送信すると、入力した内容が
+メールでも届きます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="id6">
-<h2><span class="section-number">14.6. </span>利用規約<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<p>ヘッダー部の「？」のアイコンをクリックし、「Terms of service」をクリックします。</p>
-<img alt="../_images/screenshot_0166.png" src="../_images/screenshot_0166.png" />
-<p>すると、利用規約が確認できます。</p>
-<img alt="../_images/screenshot_0167.png" src="../_images/screenshot_0167.png" />
+</section>
+<section id="id7">
+<h2><span class="section-number">14.5. </span>利用情報<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>ボードのアイコンを押すと、テナントの利用状況の要約が表示されます。</p>
+<figure class="align-default" id="id18">
+<img alt="「利用情報」ダイアログ。ポイント、有効期限、ストレージ（使用中 / 合計）の 3 行が並び、下部に「閉じる」ボタンがある。" src="../_images/header_information_dialog.png" />
+<figcaption>
+<p><span class="caption-number">図 14.5 </span><span class="caption-text">「利用情報」ダイアログ</span><a class="headerlink" href="#id18" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>ポイント</strong> — テナントに残っているポイントです。0 以下になると赤く表示され、
+Job を実行できなくなります（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）</p></li>
+<li><p><strong>有効期限</strong> — 契約の終了日です</p></li>
+<li><p><strong>ストレージ</strong> — 使用中の容量と上限です</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">14.6. </span>設定<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>歯車のアイコンを押すと、テナントの管理に関する項目が並びます。</p>
+<figure class="align-default" id="id19">
+<img alt="設定のメニュー。ユーザー、招待、利用状況、注文履歴の 4 項目がアイコン付きで並んでいる。" src="../_images/header_settings_menu.png" />
+<figcaption>
+<p><span class="caption-number">図 14.6 </span><span class="caption-text">設定のメニュー</span><a class="headerlink" href="#id19" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ユーザー</p></td>
+<td><p>テナントに所属するユーザーの一覧です（<a class="reference internal" href="invitation.html"><span class="doc">新規ユーザーの招待</span></a> の章）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>招待</p></td>
+<td><p>新しいユーザーを招待します（<a class="reference internal" href="invitation.html"><span class="doc">新規ユーザーの招待</span></a> の章）。</p></td>
+</tr>
+<tr class="row-even"><td><p>利用状況</p></td>
+<td><p>ポイントとストレージの使用状況です。</p></td>
+</tr>
+<tr class="row-odd"><td><p>注文履歴</p></td>
+<td><p>契約とポイント購入の履歴です。<strong>管理ユーザー（Owner）にだけ表示されます。</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id9">
+<h3><span class="section-number">14.6.1. </span>利用状況<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<figure class="align-default" id="id20">
+<img alt="「利用状況」の画面上部。左に「ポイント残高」のカード、右に「ストレージ」のカードが並び、それぞれ数値と使用率が表示されている。" src="../_images/header_usage_status.png" />
+<figcaption>
+<p><span class="caption-number">図 14.7 </span><span class="caption-text">利用状況（ポイント残高とストレージ）</span><a class="headerlink" href="#id20" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>上部にポイント残高とストレージの使用量が並び、その下が「ポイント」と
+「ストレージ」の 2 つのタブに分かれます。</p>
+<p><strong>ポイントのタブ</strong>には、ポイントの増減の履歴が日時の新しい順に並びます。
+「ユーザー」と「種別」で絞り込めます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>種別</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>契約付与</p></td>
+<td><p>契約により付与されたポイントです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>購入</p></td>
+<td><p>追加で購入したポイントです。</p></td>
+</tr>
+<tr class="row-even"><td><p>繰越</p></td>
+<td><p>前の契約期間から繰り越されたポイントです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>補填・手動調整</p></td>
+<td><p>運営による調整です。</p></td>
+</tr>
+<tr class="row-even"><td><p>ジョブ使用</p></td>
+<td><p>Job の実行で消費したポイントです。ジョブ名から Job に移動できます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>失効</p></td>
+<td><p>有効期限を過ぎて失効したポイントです。</p></td>
+</tr>
+<tr class="row-even"><td><p>トライアル終了</p></td>
+<td><p>トライアル終了に伴う調整です。</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>ストレージのタブ</strong>には、Material・Job ごとの使用容量と最終利用日時が並びます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id10">
+<h3><span class="section-number">14.6.2. </span>注文履歴<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<figure class="align-default" id="id21">
+<img alt="「注文履歴」の画面。日付・種別・詳細の列を持つ表があり、種別が「契約」の行に契約期間（開始日 〜 終了日）が並んでいる。" src="../_images/header_orders.png" />
+<figcaption>
+<p><span class="caption-number">図 14.8 </span><span class="caption-text">注文履歴</span><a class="headerlink" href="#id21" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>契約とポイント購入の履歴です。管理ユーザー（Owner）にだけ表示されます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">14.7. </span>アカウント<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<p>右端のアバターを押すと、「プロフィール」と「サインアウト」が並びます。
+サインアウトについては <a class="reference internal" href="signin.html"><span class="doc">サインイン・サインアウト</span></a> の章をご参照ください。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id12">
+<h3><span class="section-number">14.7.1. </span>プロフィール<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<figure class="align-default" id="id22">
+<img alt="「プロフィール」の画面。テナント、メールアドレス、ロール、姓、名、姓（カタカナまたは英字）、名（カタカナまたは英字）、役職が縦に並んでいる。右上に鍵のアイコンと鉛筆のアイコンがある。" src="../_images/header_profile.png" />
+<figcaption>
+<p><span class="caption-number">図 14.9 </span><span class="caption-text">プロフィール</span><a class="headerlink" href="#id22" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>サインイン中のユーザーの情報です。右上のアイコンから変更できます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>アイコン</p></th>
+<th class="head"><p>動作</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>鉛筆</p></td>
+<td><p>姓・名・カナ・役職・表示言語を変更します。</p></td>
+</tr>
+<tr class="row-odd"><td><p>鍵</p></td>
+<td><p>パスワードを変更します。</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>テナント・メールアドレス・ロールは変更できません。</strong> 変更が必要な場合は
+管理ユーザー（Owner）または運営にお問い合わせください。</p>
+<p>表示言語は「日本語」と「英語」から選べます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id13">
+<h2><span class="section-number">14.8. </span>注意事項<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>「注文履歴」は管理ユーザー（Owner）にだけ表示されます。メンバーの画面には
+項目自体が現れません。</p></li>
+<li><p>ポイント残高が 0 以下、ストレージが上限超過、契約期間外のいずれかに
+当てはまると、画面上部に警告が表示され、プロジェクト・マテリアル・ジョブの
+作成と実行ができなくなります（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）。</p></li>
+</ul>
 </section>
 </section>
 
@@ -219,7 +451,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 3月 16, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 
