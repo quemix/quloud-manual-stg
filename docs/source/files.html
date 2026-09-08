@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-09-08T00:17:23+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T11:33:08+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>13. 入出力ファイルとログ</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -65,141 +65,239 @@
 <li class="toctree-l1"><a class="reference internal" href="property.html">11. Property</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">12. 計算結果の可視化</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">13. 入出力ファイルとログ</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#quantum-espresso">13.1. Quantum ESPRESSO</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">13.1.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-scf-in">13.1.1.1. QuloudJob.scf.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-nscf-in">13.1.1.2. QuloudJob.nscf.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands-in">13.1.1.3. QuloudJob.bands.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-in">13.1.1.4. QuloudJob.dos.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#neb-in">13.1.1.5. neb.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ph-in">13.1.1.6. ph.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#q2r-in">13.1.1.7. q2r.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#matdyn-dos-in">13.1.1.8. matdyn_dos.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#matdyn-disp-in">13.1.1.9. matdyn_disp.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xspectra-in">13.1.1.10. xspectra.in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">13.1. ファイルの見かた</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quantum-espresso">13.2. Quantum ESPRESSO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">13.2.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-scf-in">13.2.1.1. QuloudJob.scf.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-nscf-in">13.2.1.2. QuloudJob.nscf.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands-in">13.2.1.3. QuloudJob.bands.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-in">13.2.1.4. QuloudJob.dos.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neb-in">13.2.1.5. neb.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ph-in">13.2.1.6. ph.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#q2r-in">13.2.1.7. q2r.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matdyn-dos-in">13.2.1.8. matdyn_dos.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matdyn-disp-in">13.2.1.9. matdyn_disp.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xspectra-in">13.2.1.10. xspectra.in</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">13.1.2. 出力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-scf-out">13.1.2.1. QuloudJob.scf.out</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-nscf-out">13.1.2.2. QuloudJob.nscf.out</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands-out">13.1.2.3. QuloudJob.bands.out</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands">13.1.2.4. QuloudJob.bands</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands-gnu">13.1.2.5. QuloudJob.bands.gnu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-out">13.1.2.6. QuloudJob.dos.out</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos">13.1.2.7. QuloudJob.dos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dat">13.1.2.8. QuloudJob.dat</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-axsf">13.1.2.9. QuloudJob.axsf</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#matdyn-freq-gp">13.1.2.10. matdyn.freq.gp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#matdyn-dos">13.1.2.11. matdyn.dos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xanes-dat">13.1.2.12. xanes.dat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">13.2.2. 出力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-scf-out">13.2.2.1. QuloudJob.scf.out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-nscf-out">13.2.2.2. QuloudJob.nscf.out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands-out">13.2.2.3. QuloudJob.bands.out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands">13.2.2.4. QuloudJob.bands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bands-gnu">13.2.2.5. QuloudJob.bands.gnu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-out">13.2.2.6. QuloudJob.dos.out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos">13.2.2.7. QuloudJob.dos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dat">13.2.2.8. QuloudJob.dat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-axsf">13.2.2.9. QuloudJob.axsf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matdyn-freq-gp">13.2.2.10. matdyn.freq.gp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matdyn-dos">13.2.2.11. matdyn.dos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xanes-dat">13.2.2.12. xanes.dat</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">13.1.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">13.2.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#openmx">13.2. OpenMX</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">13.2.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#openmx-in">13.2.1.1. openmx.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#jx-config">13.2.1.2. jx.config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openmx">13.3. OpenMX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">13.3.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openmx-in">13.3.1.1. openmx.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jx-config">13.3.1.2. jx.config</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">13.2.2. 出力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-out">13.2.2.1. QuloudJob.out</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-xyz">13.2.2.2. QuloudJob.xyz</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bulk-xyz">13.2.2.3. QuloudJob.bulk.xyz</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-md">13.2.2.4. QuloudJob.md</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-md2">13.2.2.5. QuloudJob.md2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-cif">13.2.2.6. QuloudJob.cif</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-ene">13.2.2.7. QuloudJob.ene</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-tden-cube">13.2.2.8. QuloudJob.tden.cube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-sden-cube">13.2.2.9. QuloudJob.sden.cube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dden-cube">13.2.2.10. QuloudJob.dden.cube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-v0-cube">13.2.2.11. QuloudJob.v0.cube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-v1-cube">13.2.2.12. QuloudJob.v1.cube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-vhart-cube">13.2.2.13. QuloudJob.vhart.cube</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-band">13.2.2.14. QuloudJob.Band</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-val">13.2.2.15. QuloudJob.Dos.val</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-vec">13.2.2.16. QuloudJob.Dos.vec</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#jx-log">13.2.2.17. jx.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">13.3.2. 出力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-out">13.3.2.1. QuloudJob.out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-xyz">13.3.2.2. QuloudJob.xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-bulk-xyz">13.3.2.3. QuloudJob.bulk.xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-md">13.3.2.4. QuloudJob.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-md2">13.3.2.5. QuloudJob.md2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-cif">13.3.2.6. QuloudJob.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-ene">13.3.2.7. QuloudJob.ene</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-tden-cube">13.3.2.8. QuloudJob.tden.cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-sden-cube">13.3.2.9. QuloudJob.sden.cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dden-cube">13.3.2.10. QuloudJob.dden.cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-v0-cube">13.3.2.11. QuloudJob.v0.cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-v1-cube">13.3.2.12. QuloudJob.v1.cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-vhart-cube">13.3.2.13. QuloudJob.vhart.cube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-band">13.3.2.14. QuloudJob.Band</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-val">13.3.2.15. QuloudJob.Dos.val</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-dos-vec">13.3.2.16. QuloudJob.Dos.vec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jx-log">13.3.2.17. jx.log</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">13.2.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">13.3.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#rsdft">13.3. RSDFT</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">13.3.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#rsdft-in">13.3.1.1. rsdft.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rsdft-atom">13.3.1.2. rsdft.atom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsdft">13.4. RSDFT</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">13.4.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rsdft-in">13.4.1.1. rsdft.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rsdft-atom">13.4.1.2. rsdft.atom</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">13.3.2. 出力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#scfconv-csv">13.3.2.1. scfconv.csv</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#optconv-csv">13.3.2.2. optconv.csv</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#band-json">13.3.2.3. band.json</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dos-json">13.3.2.4. dos.json</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#info-dat">13.3.2.5. info.dat</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#trajectory-cif">13.3.2.6. TRAJECTORY.cif</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rsdft-atom-out-cif">13.3.2.7. rsdft.atom.out.cif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">13.4.2. 出力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scfconv-csv">13.4.2.1. scfconv.csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optconv-csv">13.4.2.2. optconv.csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#band-json">13.4.2.3. band.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dos-json">13.4.2.4. dos.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#info-dat">13.4.2.5. info.dat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trajectory-cif">13.4.2.6. TRAJECTORY.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rsdft-atom-out-cif">13.4.2.7. rsdft.atom.out.cif</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">13.3.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">13.4.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#lammps">13.4. LAMMPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">13.4.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-lmp">13.4.1.1. QuloudJob.lmp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#in-quloudjob">13.4.1.2. in.QuloudJob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lammps">13.5. LAMMPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">13.5.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-lmp">13.5.1.1. QuloudJob.lmp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#in-quloudjob">13.5.1.2. in.QuloudJob</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">13.4.2. 出力ファイル</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">13.4.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">13.5.2. 出力ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">13.5.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#flare">13.5. FLARE</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">13.5.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-yaml">13.5.1.1. QuloudJob.yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flare">13.6. FLARE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">13.6.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-yaml">13.6.1.1. QuloudJob.yaml</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">13.5.2. 出力ファイル</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">13.5.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">13.6.2. 出力ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">13.6.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ase">13.6. ASE</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id17">13.6.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#ase-in">13.6.1.1. ase.in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ase">13.7. ASE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">13.7.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ase-in">13.7.1.1. ase.in</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">13.6.2. 出力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#neb-summary-json">13.6.2.1. neb_summary.json</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-traj">13.6.2.2. QuloudJob.traj</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">13.7.2. 出力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#neb-summary-json">13.7.2.1. neb_summary.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-traj">13.7.2.2. QuloudJob.traj</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">13.6.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">13.7.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sprkkr">13.7. SPRKKR</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id20">13.7.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#occupation-dat">13.7.1.1. occupation.dat</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-pot">13.7.1.2. QuloudJob.pot</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-scf-inp">13.7.1.3. QuloudJob_SCF.inp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quloudjob-jxc-inp">13.7.1.4. QuloudJob_JXC.inp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sprkkr">13.8. SPRKKR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">13.8.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#occupation-dat">13.8.1.1. occupation.dat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-pot">13.8.1.2. QuloudJob.pot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-scf-inp">13.8.1.3. QuloudJob_SCF.inp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quloudjob-jxc-inp">13.8.1.4. QuloudJob_JXC.inp</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">13.7.2. 出力ファイル</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">13.7.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">13.8.2. 出力ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">13.8.3. ログ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#quloud-mag">13.8. Quloud-Mag</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id23">13.8.1. 入力ファイル</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#control-in">13.8.1.1. control.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#heis-in">13.8.1.2. heis.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#omp-in">13.8.1.3. omp.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#boundary-in">13.8.1.4. boundary.in</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#structure-in">13.8.1.5. structure.in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quloud-mag">13.9. Quloud-Mag</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id24">13.9.1. 入力ファイル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#control-in">13.9.1.1. control.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#heis-in">13.9.1.2. heis.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#omp-in">13.9.1.3. omp.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boundary-in">13.9.1.4. boundary.in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure-in">13.9.1.5. structure.in</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id24">13.8.2. 出力ファイル</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id25">13.8.3. ログ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">13.9.2. 出力ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">13.9.3. ログ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quloud">13.10. Quloud が登録する入出力ファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ase-md">13.10.1. ASE-MD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">13.10.1.1. 格子定数最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">13.10.1.2. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#md">13.10.1.3. 機械学習ポテンシャル MD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neb-nudged-elastic-band">13.10.1.4. NEB（Nudged Elastic Band）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dft-1-2">13.10.2. DFT-1/2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dft-1-2-upf">13.10.2.1. DFT-1/2 擬ポテンシャル生成（UPF）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">13.10.3. FLARE</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id30">13.10.3.1. 機械学習ポテンシャル MD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gromacs">13.10.4. GROMACS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id31">13.10.4.1. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">13.10.4.2. 古典分子動力学</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hybmd">13.10.5. HybMD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id33">13.10.5.1. 機械学習ポテンシャル MD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scf">13.10.5.2. 自己無撞着電子状態計算（SCF）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">13.10.6. LAMMPS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id35">13.10.6.1. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">13.10.6.2. 古典分子動力学</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">13.10.7. Quloud-Mag</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id38">13.10.7.1. モンテカルロ磁性計算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#llg">13.10.7.2. LLG ダイナミクス</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">13.10.8. OpenMX</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id40">13.10.8.1. 自己無撞着電子状態計算（SCF）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41">13.10.8.2. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id42">13.10.8.3. 格子定数最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id43">13.10.8.4. 電子バンド構造</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dos">13.10.8.5. 状態密度計算（DOS）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id44">13.10.8.6. 分子動力学</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45">13.10.8.7. NEB（Nudged Elastic Band）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id46">13.10.8.8. 交換結合パラメータ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#psi4">13.10.9. Psi4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id47">13.10.9.1. 自己無撞着電子状態計算（SCF）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id48">13.10.9.2. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id49">13.10.9.3. 分子振動解析</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">13.10.10. Quantum ESPRESSO</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id51">13.10.10.1. 自己無撞着電子状態計算（SCF）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id52">13.10.10.2. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id53">13.10.10.3. 格子定数最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id54">13.10.10.4. 電子バンド構造</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id55">13.10.10.5. 状態密度計算（DOS）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pdos">13.10.10.6. 投影状態密度（PDOS）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id56">13.10.10.7. NEB（Nudged Elastic Band）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id57">13.10.10.8. フォノン計算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#x-xspectra">13.10.10.9. X線吸収スペクトル（XSpectra）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#x-scf">13.10.10.10. X線吸収スペクトル用 SCF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id58">13.10.10.11. 固定ポテンシャル電子状態計算</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id59">13.10.10.12. 固定ポテンシャル電子状態計算（バンド）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#q2r">13.10.10.13. 力定数計算（q2r）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matdyn">13.10.10.14. フォノンバンド分散（matdyn）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id60">13.10.10.15. フォノン状態密度（matdyn）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#radonpy">13.10.11. RadonPy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qm-resp">13.10.11.1. QM構造最適化 / RESP電荷</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id61">13.10.11.2. 高分子平衡化MD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id62">13.10.11.3. 溶解度パラメータ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id63">13.10.11.4. ガラス転移温度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id64">13.10.11.5. 熱伝導率</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id65">13.10.11.6. ヤング率（機械特性）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id66">13.10.11.7. 複素誘電率</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id67">13.10.12. RSDFT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id68">13.10.12.1. 自己無撞着電子状態計算（SCF）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id69">13.10.12.2. 構造最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id70">13.10.12.3. 格子定数最適化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id71">13.10.12.4. 電子バンド構造</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id72">13.10.12.5. 状態密度計算（DOS）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id73">13.10.12.6. 分子動力学</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id74">13.10.13. SPRKKR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id75">13.10.13.1. 自己無撞着電子状態計算（SCF）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id76">13.10.13.2. 交換結合パラメータ</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -235,25 +333,72 @@
              
   <section id="id1">
 <h1><span class="section-number">13. </span>入出力ファイルとログ<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>ここでは、Job の入出力ファイルと計算ログについて、ソフトウェアごとに説明します。入出力ファイルの確認方法は ７章３節、計算ログの確認方法は７章２節をご参照ください。</p>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
 </div>
-<section id="quantum-espresso">
-<h2><span class="section-number">13.1. </span>Quantum ESPRESSO<a class="headerlink" href="#quantum-espresso" title="Link to this heading"></a></h2>
+<p>ここでは、Job の入出力ファイルと計算ログについて、ソフトウェアごとに説明します。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="id2">
-<h3><span class="section-number">13.1.1. </span>入力ファイル<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h2><span class="section-number">13.1. </span>ファイルの見かた<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>ファイルは 2 つの場所から確認できます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>場所</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Material 詳細画面の「ファイル」</p></td>
+<td><p>Material 自身のファイルと、その Material の Job のファイルを
+まとめて見られます。上部の「ジョブを選択」で切り替えます
+（<a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> の章）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Job 詳細画面の「ファイル」</p></td>
+<td><p>その Job のファイルだけを見られます。</p></td>
+</tr>
+</tbody>
+</table>
+<p>いずれも「表示」でファイルの中身を確認でき、「ダウンロード」で 1 件ずつ、
+「一括ダウンロード」で ZIP にまとめて取得できます。</p>
+<p>計算ログは Job 詳細画面の「ログ」に表示されます（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><strong>ファイルを編集できるのは、Status が「Registered」の Job の入力ファイルだけです。</strong>
+実行前の Job の入力ファイルを直接書き換えれば、画面に用意されていない細かい
+設定でも計算できます。Material 自身のファイルは Ver.7.0 では編集できません。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><strong>Job の実行中は、出力ファイルの途中経過が表示されません。</strong> 計算の完了時に
+まとめて現れます（<a class="reference internal" href="specifications.html"><span class="doc">仕様</span></a> の章）。</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="quantum-espresso">
+<h2><span class="section-number">13.2. </span>Quantum ESPRESSO<a class="headerlink" href="#quantum-espresso" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<section id="id3">
+<h3><span class="section-number">13.2.1. </span>入力ファイル<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="quloudjob-scf-in">
-<h4><span class="section-number">13.1.1.1. </span>QuloudJob.scf.in<a class="headerlink" href="#quloudjob-scf-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.1. </span>QuloudJob.scf.in<a class="headerlink" href="#quloudjob-scf-in" title="Link to this heading"></a></h4>
 <p>SCF 計算を行うためのファイルです。例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -509,7 +654,7 @@
 </div>
 </section>
 <section id="quloudjob-nscf-in">
-<h4><span class="section-number">13.1.1.2. </span>QuloudJob.nscf.in<a class="headerlink" href="#quloudjob-nscf-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.2. </span>QuloudJob.nscf.in<a class="headerlink" href="#quloudjob-nscf-in" title="Link to this heading"></a></h4>
 <p>SCF 計算により求められたポテンシャルを用いて、電子バンド計算や電子状態密度計算を行うためのファイルです。例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -667,7 +812,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-bands-in">
-<h4><span class="section-number">13.1.1.3. </span>QuloudJob.bands.in<a class="headerlink" href="#quloudjob-bands-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.3. </span>QuloudJob.bands.in<a class="headerlink" href="#quloudjob-bands-in" title="Link to this heading"></a></h4>
 <p>電子バンド計算（Electron Band Structure）に用いるファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">bands</span>
  <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
@@ -693,7 +838,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-dos-in">
-<h4><span class="section-number">13.1.1.4. </span>QuloudJob.dos.in<a class="headerlink" href="#quloudjob-dos-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.4. </span>QuloudJob.dos.in<a class="headerlink" href="#quloudjob-dos-in" title="Link to this heading"></a></h4>
 <p>電子状態密度計算（Electron DOS）に用いるファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">dos</span>
  <span class="n">outdir</span> <span class="o">=</span> <span class="s1">'./work'</span>
@@ -718,7 +863,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="neb-in">
-<h4><span class="section-number">13.1.1.5. </span>neb.in<a class="headerlink" href="#neb-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.5. </span>neb.in<a class="headerlink" href="#neb-in" title="Link to this heading"></a></h4>
 <p>NEB法によるエネルギー障壁計算の入力ファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BEGIN</span>
 <span class="n">BEGIN_PATH_INPUT</span>
@@ -847,7 +992,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="ph-in">
-<h4><span class="section-number">13.1.1.6. </span>ph.in<a class="headerlink" href="#ph-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.6. </span>ph.in<a class="headerlink" href="#ph-in" title="Link to this heading"></a></h4>
 <p>フォノン計算のメインとなる ph.x 用の入力ファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">inputph</span>
 <span class="n">prefix</span> <span class="o">=</span> <span class="s1">'QuloudJob'</span>
@@ -907,7 +1052,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="q2r-in">
-<h4><span class="section-number">13.1.1.7. </span>q2r.in<a class="headerlink" href="#q2r-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.7. </span>q2r.in<a class="headerlink" href="#q2r-in" title="Link to this heading"></a></h4>
 <p>波数空間でのフォノンの情報を実空間の情報に変換する q2r.x 用の入力</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="nb">input</span>
 <span class="n">fildyn</span> <span class="o">=</span> <span class="s1">'matdyn'</span>
@@ -922,7 +1067,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="matdyn-dos-in">
-<h4><span class="section-number">13.1.1.8. </span>matdyn_dos.in<a class="headerlink" href="#matdyn-dos-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.8. </span>matdyn_dos.in<a class="headerlink" href="#matdyn-dos-in" title="Link to this heading"></a></h4>
 <p>matdyn.x 用の入力で、フォノンDOSを描く場合の設定。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="nb">input</span>
 <span class="n">flfrc</span> <span class="o">=</span> <span class="s1">'matdyn.fc'</span>
@@ -941,7 +1086,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="matdyn-disp-in">
-<h4><span class="section-number">13.1.1.9. </span>matdyn_disp.in<a class="headerlink" href="#matdyn-disp-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.9. </span>matdyn_disp.in<a class="headerlink" href="#matdyn-disp-in" title="Link to this heading"></a></h4>
 <p>matdyn.x 用の入力で、フォノンバンドを描く場合の設定。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="nb">input</span>
 <span class="n">flfrc</span> <span class="o">=</span> <span class="s1">'matdyn.fc'</span>
@@ -960,7 +1105,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="xspectra-in">
-<h4><span class="section-number">13.1.1.10. </span>xspectra.in<a class="headerlink" href="#xspectra-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.1.10. </span>xspectra.in<a class="headerlink" href="#xspectra-in" title="Link to this heading"></a></h4>
 <p>X線吸収計算を行う xspectra.x 用の入力</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">input_xspectra</span>
 <span class="n">calculation</span> <span class="o">=</span> <span class="s1">'xanes_dipole'</span>
@@ -1025,14 +1170,14 @@ K_POINTS {crystal_b}
 </div>
 </section>
 </section>
-<section id="id3">
-<h3><span class="section-number">13.1.2. </span>出力ファイル<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="id4">
+<h3><span class="section-number">13.2.2. </span>出力ファイル<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="quloudjob-scf-out">
-<h4><span class="section-number">13.1.2.1. </span>QuloudJob.scf.out<a class="headerlink" href="#quloudjob-scf-out" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.1. </span>QuloudJob.scf.out<a class="headerlink" href="#quloudjob-scf-out" title="Link to this heading"></a></h4>
 <p>以下の内容が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1066,7 +1211,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-nscf-out">
-<h4><span class="section-number">13.1.2.2. </span>QuloudJob.nscf.out<a class="headerlink" href="#quloudjob-nscf-out" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.2. </span>QuloudJob.nscf.out<a class="headerlink" href="#quloudjob-nscf-out" title="Link to this heading"></a></h4>
 <p>以下の内容が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1090,7 +1235,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-bands-out">
-<h4><span class="section-number">13.1.2.3. </span>QuloudJob.bands.out<a class="headerlink" href="#quloudjob-bands-out" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.3. </span>QuloudJob.bands.out<a class="headerlink" href="#quloudjob-bands-out" title="Link to this heading"></a></h4>
 <p>Electron Band Structure の Job が完了したかどうかが確認できます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1098,7 +1243,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-bands">
-<h4><span class="section-number">13.1.2.4. </span>QuloudJob.bands<a class="headerlink" href="#quloudjob-bands" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.4. </span>QuloudJob.bands<a class="headerlink" href="#quloudjob-bands" title="Link to this heading"></a></h4>
 <p>Electron Band Structure での、電子バンド計算結果のデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1106,7 +1251,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-bands-gnu">
-<h4><span class="section-number">13.1.2.5. </span>QuloudJob.bands.gnu<a class="headerlink" href="#quloudjob-bands-gnu" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.5. </span>QuloudJob.bands.gnu<a class="headerlink" href="#quloudjob-bands-gnu" title="Link to this heading"></a></h4>
 <p>Electron Band Structure での、電子バンド図描画用のデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1114,7 +1259,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-dos-out">
-<h4><span class="section-number">13.1.2.6. </span>QuloudJob.dos.out<a class="headerlink" href="#quloudjob-dos-out" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.6. </span>QuloudJob.dos.out<a class="headerlink" href="#quloudjob-dos-out" title="Link to this heading"></a></h4>
 <p>Electron DOS の Job が完了したかどうかが確認できます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1122,7 +1267,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-dos">
-<h4><span class="section-number">13.1.2.7. </span>QuloudJob.dos<a class="headerlink" href="#quloudjob-dos" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.7. </span>QuloudJob.dos<a class="headerlink" href="#quloudjob-dos" title="Link to this heading"></a></h4>
 <p>Electron DOS での、電子状態密度計算結果のデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1130,7 +1275,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-dat">
-<h4><span class="section-number">13.1.2.8. </span>QuloudJob.dat<a class="headerlink" href="#quloudjob-dat" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.8. </span>QuloudJob.dat<a class="headerlink" href="#quloudjob-dat" title="Link to this heading"></a></h4>
 <p>NEB 計算のとき、エネルギープロファイルのデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1138,7 +1283,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="quloudjob-axsf">
-<h4><span class="section-number">13.1.2.9. </span>QuloudJob.axsf<a class="headerlink" href="#quloudjob-axsf" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.9. </span>QuloudJob.axsf<a class="headerlink" href="#quloudjob-axsf" title="Link to this heading"></a></h4>
 <p>NEB 計算のとき、構造変化のトラジェクトリーデータが出力されます（XCrysden 形式）</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1146,7 +1291,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="matdyn-freq-gp">
-<h4><span class="section-number">13.1.2.10. </span>matdyn.freq.gp<a class="headerlink" href="#matdyn-freq-gp" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.10. </span>matdyn.freq.gp<a class="headerlink" href="#matdyn-freq-gp" title="Link to this heading"></a></h4>
 <p>フォノンバンド計算結果のプロット用のデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1154,7 +1299,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="matdyn-dos">
-<h4><span class="section-number">13.1.2.11. </span>matdyn.dos<a class="headerlink" href="#matdyn-dos" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.11. </span>matdyn.dos<a class="headerlink" href="#matdyn-dos" title="Link to this heading"></a></h4>
 <p>フォノンDOS計算結果のプロット用データが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1162,7 +1307,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="xanes-dat">
-<h4><span class="section-number">13.1.2.12. </span>xanes.dat<a class="headerlink" href="#xanes-dat" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.2.2.12. </span>xanes.dat<a class="headerlink" href="#xanes-dat" title="Link to this heading"></a></h4>
 <p>X-Spectra の計算結果のデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1170,8 +1315,8 @@ K_POINTS {crystal_b}
 </div>
 </section>
 </section>
-<section id="id4">
-<h3><span class="section-number">13.1.3. </span>ログ<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<section id="id5">
+<h3><span class="section-number">13.2.3. </span>ログ<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <p>Quantum ESPRESSO では、ログにはほぼ何も出力されませんので、動作状況の確認では出力ファイルをご覧ください。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1180,19 +1325,19 @@ K_POINTS {crystal_b}
 </section>
 </section>
 <section id="openmx">
-<h2><span class="section-number">13.2. </span>OpenMX<a class="headerlink" href="#openmx" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.3. </span>OpenMX<a class="headerlink" href="#openmx" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id5">
-<h3><span class="section-number">13.2.1. </span>入力ファイル<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<section id="id6">
+<h3><span class="section-number">13.3.1. </span>入力ファイル<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="openmx-in">
-<h4><span class="section-number">13.2.1.1. </span>openmx.in<a class="headerlink" href="#openmx-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.1.1. </span>openmx.in<a class="headerlink" href="#openmx-in" title="Link to this heading"></a></h4>
 <p>例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -1986,7 +2131,7 @@ K_POINTS {crystal_b}
 </div>
 </section>
 <section id="jx-config">
-<h4><span class="section-number">13.2.1.2. </span>jx.config<a class="headerlink" href="#jx-config" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.1.2. </span>jx.config<a class="headerlink" href="#jx-config" title="Link to this heading"></a></h4>
 <p>Exchange Coupling Parameters で、交換結合パラメータを計算するための設定ファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Flag.PeriodicSum off
 Num.Poles 60
@@ -2020,14 +2165,14 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id6">
-<h3><span class="section-number">13.2.2. </span>出力ファイル<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<section id="id7">
+<h3><span class="section-number">13.3.2. </span>出力ファイル<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="quloudjob-out">
-<h4><span class="section-number">13.2.2.1. </span>QuloudJob.out<a class="headerlink" href="#quloudjob-out" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.1. </span>QuloudJob.out<a class="headerlink" href="#quloudjob-out" title="Link to this heading"></a></h4>
 <p>SCF 計算の履歴、構造最適化の履歴、Mulliken 電荷、全エネルギー、および双極子モーメントが保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2035,7 +2180,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-xyz">
-<h4><span class="section-number">13.2.2.2. </span>QuloudJob.xyz<a class="headerlink" href="#quloudjob-xyz" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.2. </span>QuloudJob.xyz<a class="headerlink" href="#quloudjob-xyz" title="Link to this heading"></a></h4>
 <p>MD または構造最適化により得られた最終的な幾何学的構造が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2043,7 +2188,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-bulk-xyz">
-<h4><span class="section-number">13.2.2.3. </span>QuloudJob.bulk.xyz<a class="headerlink" href="#quloudjob-bulk-xyz" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.3. </span>QuloudJob.bulk.xyz<a class="headerlink" href="#quloudjob-bulk-xyz" title="Link to this heading"></a></h4>
 <p>scf.EigenvalueSolver=Band の場合、コピーされたセルの原子を含む原子座標が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2051,7 +2196,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-md">
-<h4><span class="section-number">13.2.2.4. </span>QuloudJob.md<a class="headerlink" href="#quloudjob-md" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.4. </span>QuloudJob.md<a class="headerlink" href="#quloudjob-md" title="Link to this heading"></a></h4>
 <p>各 MD ステップごとの原子座標が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2059,7 +2204,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-md2">
-<h4><span class="section-number">13.2.2.5. </span>QuloudJob.md2<a class="headerlink" href="#quloudjob-md2" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.5. </span>QuloudJob.md2<a class="headerlink" href="#quloudjob-md2" title="Link to this heading"></a></h4>
 <p>最終 MD ステップにおける原子座標が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2067,7 +2212,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-cif">
-<h4><span class="section-number">13.2.2.6. </span>QuloudJob.cif<a class="headerlink" href="#quloudjob-cif" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.6. </span>QuloudJob.cif<a class="headerlink" href="#quloudjob-cif" title="Link to this heading"></a></h4>
 <p>cif 形式の初期原子座標が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2075,7 +2220,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-ene">
-<h4><span class="section-number">13.2.2.7. </span>QuloudJob.ene<a class="headerlink" href="#quloudjob-ene" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.7. </span>QuloudJob.ene<a class="headerlink" href="#quloudjob-ene" title="Link to this heading"></a></h4>
 <p>MD ステップごとの計算値が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2083,7 +2228,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-tden-cube">
-<h4><span class="section-number">13.2.2.8. </span>QuloudJob.tden.cube<a class="headerlink" href="#quloudjob-tden-cube" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.8. </span>QuloudJob.tden.cube<a class="headerlink" href="#quloudjob-tden-cube" title="Link to this heading"></a></h4>
 <p>Gaussian cube 形式で全電子密度が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2091,7 +2236,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-sden-cube">
-<h4><span class="section-number">13.2.2.9. </span>QuloudJob.sden.cube<a class="headerlink" href="#quloudjob-sden-cube" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.9. </span>QuloudJob.sden.cube<a class="headerlink" href="#quloudjob-sden-cube" title="Link to this heading"></a></h4>
 <p>LSDA-CA、LSDA-PW、GGA-PBE を使用したスピン分極計算が実行された場合に、スピン電子密度が Gaussian cube 形式で保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2099,7 +2244,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-dden-cube">
-<h4><span class="section-number">13.2.2.10. </span>QuloudJob.dden.cube<a class="headerlink" href="#quloudjob-dden-cube" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.10. </span>QuloudJob.dden.cube<a class="headerlink" href="#quloudjob-dden-cube" title="Link to this heading"></a></h4>
 <p>構成原子の孤立原子状態の電子密度の重ね合わせを基準として計算された差電子密度が Gaussian cube 形式で保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2107,7 +2252,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-v0-cube">
-<h4><span class="section-number">13.2.2.11. </span>QuloudJob.v0.cube<a class="headerlink" href="#quloudjob-v0-cube" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.11. </span>QuloudJob.v0.cube<a class="headerlink" href="#quloudjob-v0-cube" title="Link to this heading"></a></h4>
 <p>アップスピンの非局所ポテンシャルを除く Kohn-Sham ポテンシャルが Gaussian cube 形式で保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2115,7 +2260,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-v1-cube">
-<h4><span class="section-number">13.2.2.12. </span>QuloudJob.v1.cube<a class="headerlink" href="#quloudjob-v1-cube" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.12. </span>QuloudJob.v1.cube<a class="headerlink" href="#quloudjob-v1-cube" title="Link to this heading"></a></h4>
 <p>スピン分極計算における、ダウンスピンの非局所ポテンシャルを除く Kohn-Sham ポテンシャルが Gaussian cube 形式で保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2123,7 +2268,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-vhart-cube">
-<h4><span class="section-number">13.2.2.13. </span>QuloudJob.vhart.cube<a class="headerlink" href="#quloudjob-vhart-cube" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.13. </span>QuloudJob.vhart.cube<a class="headerlink" href="#quloudjob-vhart-cube" title="Link to this heading"></a></h4>
 <p>差電子密度から生じる差電子 Hartree ポテンシャルが Gaussian cube 形式で保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2131,7 +2276,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-band">
-<h4><span class="section-number">13.2.2.14. </span>QuloudJob.Band<a class="headerlink" href="#quloudjob-band" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.14. </span>QuloudJob.Band<a class="headerlink" href="#quloudjob-band" title="Link to this heading"></a></h4>
 <p>Electron Band Structure で、Band.Nkpath が 0 以上で、かつ scf.EigenvalueSolver=Band の場合、バンド分散のデータファイルが生成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2139,7 +2284,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-dos-val">
-<h4><span class="section-number">13.2.2.15. </span>QuloudJob.Dos.val<a class="headerlink" href="#quloudjob-dos-val" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.15. </span>QuloudJob.Dos.val<a class="headerlink" href="#quloudjob-dos-val" title="Link to this heading"></a></h4>
 <p>Electron DOS で、Dos.fileout=ON の場合、状態密度を計算するための固有値のデータファイルが生成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2147,7 +2292,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-dos-vec">
-<h4><span class="section-number">13.2.2.16. </span>QuloudJob.Dos.vec<a class="headerlink" href="#quloudjob-dos-vec" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.16. </span>QuloudJob.Dos.vec<a class="headerlink" href="#quloudjob-dos-vec" title="Link to this heading"></a></h4>
 <p>Electron DOS で、Dos.fileout=ON の場合、状態密度を計算するための固有ベクトルのデータファイルが生成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2155,7 +2300,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="jx-log">
-<h4><span class="section-number">13.2.2.17. </span>jx.log<a class="headerlink" href="#jx-log" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.3.2.17. </span>jx.log<a class="headerlink" href="#jx-log" title="Link to this heading"></a></h4>
 <p>Exchange Coupling Parameters で、交換結合パラメータの計算結果が保存されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2163,8 +2308,8 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id7">
-<h3><span class="section-number">13.2.3. </span>ログ<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="id8">
+<h3><span class="section-number">13.3.3. </span>ログ<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <p>SCF 計算、構造最適化、MD の計算過程が出力されます。交換結合パラメータ計算についてはほぼ何も出力されません。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2173,19 +2318,19 @@ ijpairs.cellid&gt;
 </section>
 </section>
 <section id="rsdft">
-<h2><span class="section-number">13.3. </span>RSDFT<a class="headerlink" href="#rsdft" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.4. </span>RSDFT<a class="headerlink" href="#rsdft" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id8">
-<h3><span class="section-number">13.3.1. </span>入力ファイル<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<section id="id9">
+<h3><span class="section-number">13.4.1. </span>入力ファイル<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="rsdft-in">
-<h4><span class="section-number">13.3.1.1. </span>rsdft.in<a class="headerlink" href="#rsdft-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.1.1. </span>rsdft.in<a class="headerlink" href="#rsdft-in" title="Link to this heading"></a></h4>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -2369,7 +2514,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="rsdft-atom">
-<h4><span class="section-number">13.3.1.2. </span>rsdft.atom<a class="headerlink" href="#rsdft-atom" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.1.2. </span>rsdft.atom<a class="headerlink" href="#rsdft-atom" title="Link to this heading"></a></h4>
 <p>モデルの原子構造の情報を入力するためのファイルで、CIF 形式で記述されています。例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#kpts  4 4 4</span>
 <span class="c1">#ecut 200.00000000000003 212.80243269568317</span>
@@ -2419,14 +2564,14 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id9">
-<h3><span class="section-number">13.3.2. </span>出力ファイル<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<section id="id10">
+<h3><span class="section-number">13.4.2. </span>出力ファイル<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="scfconv-csv">
-<h4><span class="section-number">13.3.2.1. </span>scfconv.csv<a class="headerlink" href="#scfconv-csv" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.1. </span>scfconv.csv<a class="headerlink" href="#scfconv-csv" title="Link to this heading"></a></h4>
 <p>SCF 計算の履歴が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2434,7 +2579,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="optconv-csv">
-<h4><span class="section-number">13.3.2.2. </span>optconv.csv<a class="headerlink" href="#optconv-csv" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.2. </span>optconv.csv<a class="headerlink" href="#optconv-csv" title="Link to this heading"></a></h4>
 <p>構造最適化の履歴が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2442,7 +2587,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="band-json">
-<h4><span class="section-number">13.3.2.3. </span>band.json<a class="headerlink" href="#band-json" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.3. </span>band.json<a class="headerlink" href="#band-json" title="Link to this heading"></a></h4>
 <p>Electron Band Structure での、電子バンド図描画用のデータが出力されます。エネルギーの値は、ファイル内の &quot;Band #1&quot; などにハートリー原子単位で記載されています。なお、電子バンド図の縦軸では、これらのエネルギーの値を、ファイル３行目のフェルミエネルギー &quot;efermi&quot; で差し引いた値が表示されています。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2450,7 +2595,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="dos-json">
-<h4><span class="section-number">13.3.2.4. </span>dos.json<a class="headerlink" href="#dos-json" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.4. </span>dos.json<a class="headerlink" href="#dos-json" title="Link to this heading"></a></h4>
 <p>Electron DOS での、電子状態密度計算結果のデータが出力されます。電子状態密度曲線の横軸のエネルギーの値は、ファイル内の &quot;x&quot; にハートリー原子単位で記載されています。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2458,7 +2603,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="info-dat">
-<h4><span class="section-number">13.3.2.5. </span>info.dat<a class="headerlink" href="#info-dat" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.5. </span>info.dat<a class="headerlink" href="#info-dat" title="Link to this heading"></a></h4>
 <p>First-Principles MD での、各ステップにおけるデータが出力されます。出力される項目は下記の通りです。</p>
 <ul>
 <li><p>Born-Oppenheimer MD</p>
@@ -2497,7 +2642,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="trajectory-cif">
-<h4><span class="section-number">13.3.2.6. </span>TRAJECTORY.cif<a class="headerlink" href="#trajectory-cif" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.6. </span>TRAJECTORY.cif<a class="headerlink" href="#trajectory-cif" title="Link to this heading"></a></h4>
 <p>First-Principles MD での、各ステップにおける Material の構造が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2505,7 +2650,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="rsdft-atom-out-cif">
-<h4><span class="section-number">13.3.2.7. </span>rsdft.atom.out.cif<a class="headerlink" href="#rsdft-atom-out-cif" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.4.2.7. </span>rsdft.atom.out.cif<a class="headerlink" href="#rsdft-atom-out-cif" title="Link to this heading"></a></h4>
 <p>構造最適化により得られた最終的な Material の構造が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2513,8 +2658,8 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id10">
-<h3><span class="section-number">13.3.3. </span>ログ<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<section id="id11">
+<h3><span class="section-number">13.4.3. </span>ログ<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
 <p>SCF 計算、構造最適化、電子バンド計算、電子状態密度計算、MD の計算過程が出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2523,19 +2668,19 @@ ijpairs.cellid&gt;
 </section>
 </section>
 <section id="lammps">
-<h2><span class="section-number">13.4. </span>LAMMPS<a class="headerlink" href="#lammps" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.5. </span>LAMMPS<a class="headerlink" href="#lammps" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id11">
-<h3><span class="section-number">13.4.1. </span>入力ファイル<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<section id="id12">
+<h3><span class="section-number">13.5.1. </span>入力ファイル<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="quloudjob-lmp">
-<h4><span class="section-number">13.4.1.1. </span>QuloudJob.lmp<a class="headerlink" href="#quloudjob-lmp" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.5.1.1. </span>QuloudJob.lmp<a class="headerlink" href="#quloudjob-lmp" title="Link to this heading"></a></h4>
 <p>原子構造の情報を入力するためのファイルです。例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">pymatgen</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">lammps</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">LammpsData</span>
 
@@ -2598,7 +2743,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="in-quloudjob">
-<h4><span class="section-number">13.4.1.2. </span>in.QuloudJob<a class="headerlink" href="#in-quloudjob" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.5.1.2. </span>in.QuloudJob<a class="headerlink" href="#in-quloudjob" title="Link to this heading"></a></h4>
 <p>構造最適化計算や MD シミュレーションの設定を行うためのファイルです。例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -2702,15 +2847,15 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id12">
-<h3><span class="section-number">13.4.2. </span>出力ファイル<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<section id="id13">
+<h3><span class="section-number">13.5.2. </span>出力ファイル<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="id13">
-<h3><span class="section-number">13.4.3. </span>ログ<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<section id="id14">
+<h3><span class="section-number">13.5.3. </span>ログ<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -2718,19 +2863,19 @@ ijpairs.cellid&gt;
 </section>
 </section>
 <section id="flare">
-<h2><span class="section-number">13.5. </span>FLARE<a class="headerlink" href="#flare" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.6. </span>FLARE<a class="headerlink" href="#flare" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id14">
-<h3><span class="section-number">13.5.1. </span>入力ファイル<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<section id="id15">
+<h3><span class="section-number">13.6.1. </span>入力ファイル<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="quloudjob-yaml">
-<h4><span class="section-number">13.5.1.1. </span>QuloudJob.yaml<a class="headerlink" href="#quloudjob-yaml" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.6.1.1. </span>QuloudJob.yaml<a class="headerlink" href="#quloudjob-yaml" title="Link to this heading"></a></h4>
 <p>On-The-Fly 機械学習、MD 計算、第一原理計算の設定が、この一つのファイルにまとめられます。例えば Material を BaTiO3 として Job を登録すると、以下のようなファイルが作成されます。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dft_calc</span><span class="p">:</span>
   <span class="n">kwargs</span><span class="p">:</span>
@@ -2935,15 +3080,15 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id15">
-<h3><span class="section-number">13.5.2. </span>出力ファイル<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<section id="id16">
+<h3><span class="section-number">13.6.2. </span>出力ファイル<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="id16">
-<h3><span class="section-number">13.5.3. </span>ログ<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<section id="id17">
+<h3><span class="section-number">13.6.3. </span>ログ<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -2951,19 +3096,19 @@ ijpairs.cellid&gt;
 </section>
 </section>
 <section id="ase">
-<h2><span class="section-number">13.6. </span>ASE<a class="headerlink" href="#ase" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.7. </span>ASE<a class="headerlink" href="#ase" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id17">
-<h3><span class="section-number">13.6.1. </span>入力ファイル<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<section id="id18">
+<h3><span class="section-number">13.7.1. </span>入力ファイル<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="ase-in">
-<h4><span class="section-number">13.6.1.1. </span>ase.in<a class="headerlink" href="#ase-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.7.1.1. </span>ase.in<a class="headerlink" href="#ase-in" title="Link to this heading"></a></h4>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -3008,14 +3153,14 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id18">
-<h3><span class="section-number">13.6.2. </span>出力ファイル<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<section id="id19">
+<h3><span class="section-number">13.7.2. </span>出力ファイル<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="neb-summary-json">
-<h4><span class="section-number">13.6.2.1. </span>neb_summary.json<a class="headerlink" href="#neb-summary-json" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.7.2.1. </span>neb_summary.json<a class="headerlink" href="#neb-summary-json" title="Link to this heading"></a></h4>
 <p>NEB 計算でのエネルギープロファイルのデータが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -3023,7 +3168,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-traj">
-<h4><span class="section-number">13.6.2.2. </span>QuloudJob.traj<a class="headerlink" href="#quloudjob-traj" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.7.2.2. </span>QuloudJob.traj<a class="headerlink" href="#quloudjob-traj" title="Link to this heading"></a></h4>
 <p>NEB 計算での構造変化のトラジェクトリーが出力されます。</p>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -3031,8 +3176,8 @@ ijpairs.cellid&gt;
 </div>
 </section>
 </section>
-<section id="id19">
-<h3><span class="section-number">13.6.3. </span>ログ<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<section id="id20">
+<h3><span class="section-number">13.7.3. </span>ログ<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -3040,19 +3185,19 @@ ijpairs.cellid&gt;
 </section>
 </section>
 <section id="sprkkr">
-<h2><span class="section-number">13.7. </span>SPRKKR<a class="headerlink" href="#sprkkr" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.8. </span>SPRKKR<a class="headerlink" href="#sprkkr" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id20">
-<h3><span class="section-number">13.7.1. </span>入力ファイル<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<section id="id21">
+<h3><span class="section-number">13.8.1. </span>入力ファイル<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="occupation-dat">
-<h4><span class="section-number">13.7.1.1. </span>occupation.dat<a class="headerlink" href="#occupation-dat" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.8.1.1. </span>occupation.dat<a class="headerlink" href="#occupation-dat" title="Link to this heading"></a></h4>
 <p>First-Principles SCF で使用するファイルです。モデルの各サイトを、どの原子がどの割合で占有しているかを指定しています。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"Ba"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">"Ti"</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
@@ -3067,7 +3212,7 @@ ijpairs.cellid&gt;
 </div>
 </section>
 <section id="quloudjob-pot">
-<h4><span class="section-number">13.7.1.2. </span>QuloudJob.pot<a class="headerlink" href="#quloudjob-pot" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.8.1.2. </span>QuloudJob.pot<a class="headerlink" href="#quloudjob-pot" title="Link to this heading"></a></h4>
 <p>直前の SCF 計算で出力されたポテンシャルデータを保存し、次の計算の入力として使用するためのファイルです。使用手順は下記の通りです。</p>
 <blockquote>
 <div><p>１．ダミーのポテンシャルファイル「QuloudJob.pot」を用意して First-Principles SCF の計算を実行する</p>
@@ -3661,7 +3806,7 @@ TYPE               4
 </div>
 </section>
 <section id="quloudjob-scf-inp">
-<h4><span class="section-number">13.7.1.3. </span>QuloudJob_SCF.inp<a class="headerlink" href="#quloudjob-scf-inp" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.8.1.3. </span>QuloudJob_SCF.inp<a class="headerlink" href="#quloudjob-scf-inp" title="Link to this heading"></a></h4>
 <p>First-Principles SCF 用の入力ファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONTROL</span>
     <span class="n">DATASET</span><span class="o">=</span><span class="n">QuloudJob</span>
@@ -3755,7 +3900,7 @@ TYPE               4
 </div>
 </section>
 <section id="quloudjob-jxc-inp">
-<h4><span class="section-number">13.7.1.4. </span>QuloudJob_JXC.inp<a class="headerlink" href="#quloudjob-jxc-inp" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.8.1.4. </span>QuloudJob_JXC.inp<a class="headerlink" href="#quloudjob-jxc-inp" title="Link to this heading"></a></h4>
 <p>Exchange Coupling Parameters 用の入力ファイルです。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONTROL</span>
     <span class="n">DATASET</span><span class="o">=</span><span class="n">QuloudJob</span>
@@ -3818,15 +3963,15 @@ TYPE               4
 </div>
 </section>
 </section>
-<section id="id21">
-<h3><span class="section-number">13.7.2. </span>出力ファイル<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<section id="id22">
+<h3><span class="section-number">13.8.2. </span>出力ファイル<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="id22">
-<h3><span class="section-number">13.7.3. </span>ログ<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<section id="id23">
+<h3><span class="section-number">13.8.3. </span>ログ<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -3834,19 +3979,19 @@ TYPE               4
 </section>
 </section>
 <section id="quloud-mag">
-<h2><span class="section-number">13.8. </span>Quloud-Mag<a class="headerlink" href="#quloud-mag" title="Link to this heading"></a></h2>
+<h2><span class="section-number">13.9. </span>Quloud-Mag<a class="headerlink" href="#quloud-mag" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="id23">
-<h3><span class="section-number">13.8.1. </span>入力ファイル<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<section id="id24">
+<h3><span class="section-number">13.9.1. </span>入力ファイル<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="control-in">
-<h4><span class="section-number">13.8.1.1. </span>control.in<a class="headerlink" href="#control-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.9.1.1. </span>control.in<a class="headerlink" href="#control-in" title="Link to this heading"></a></h4>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -3872,7 +4017,7 @@ TYPE               4
 </div>
 </section>
 <section id="heis-in">
-<h4><span class="section-number">13.8.1.2. </span>heis.in<a class="headerlink" href="#heis-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.9.1.2. </span>heis.in<a class="headerlink" href="#heis-in" title="Link to this heading"></a></h4>
 <p>Monte Carlo (Quloud-Mag)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">3.990377622196221</span> <span class="mf">3.990377622196221</span> <span class="mf">4.102653757520632</span> <span class="mi">90</span> <span class="mi">90</span> <span class="mi">90</span>
 <span class="mi">10</span> <span class="mi">10</span> <span class="mi">10</span>
@@ -3970,7 +4115,7 @@ TYPE               4
 </div>
 </section>
 <section id="omp-in">
-<h4><span class="section-number">13.8.1.3. </span>omp.in<a class="headerlink" href="#omp-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.9.1.3. </span>omp.in<a class="headerlink" href="#omp-in" title="Link to this heading"></a></h4>
 <p>Monte Carlo (Quloud-Mag)、Micro-Magnetic Simulation (Quloud-Mag-LLG)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
 <span class="mi">0</span>
@@ -3984,7 +4129,7 @@ TYPE               4
 </div>
 </section>
 <section id="boundary-in">
-<h4><span class="section-number">13.8.1.4. </span>boundary.in<a class="headerlink" href="#boundary-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.9.1.4. </span>boundary.in<a class="headerlink" href="#boundary-in" title="Link to this heading"></a></h4>
 <p>Monte Carlo (Quloud-Mag)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
 </pre></div>
@@ -3996,7 +4141,7 @@ TYPE               4
 </div>
 </section>
 <section id="structure-in">
-<h4><span class="section-number">13.8.1.5. </span>structure.in<a class="headerlink" href="#structure-in" title="Link to this heading"></a></h4>
+<h4><span class="section-number">13.9.1.5. </span>structure.in<a class="headerlink" href="#structure-in" title="Link to this heading"></a></h4>
 <p>Micro-Magnetic Simulation (Quloud-Mag-LLG)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">50</span> <span class="mi">50</span> <span class="mi">50</span> <span class="mf">10E-9</span> <span class="mf">10E-9</span> <span class="mf">10E-9</span>
 <span class="mi">1</span>
@@ -4030,16 +4175,2665 @@ TYPE               4
 </div>
 </section>
 </section>
-<section id="id24">
-<h3><span class="section-number">13.8.2. </span>出力ファイル<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<section id="id25">
+<h3><span class="section-number">13.9.2. </span>出力ファイル<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="id25">
-<h3><span class="section-number">13.8.3. </span>ログ<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<section id="id26">
+<h3><span class="section-number">13.9.3. </span>ログ<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
 <p>Quloud-Mag では、ログにはほぼ何も出力されませんので、動作状況の確認では出力ファイルをご覧ください。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="quloud">
+<h2><span class="section-number">13.10. </span>Quloud が登録する入出力ファイル<a class="headerlink" href="#quloud" title="Link to this heading"></a></h2>
+<p>計算ソフトと計算機能の組み合わせごとに、Quloud が扱うファイルの一覧です。
+上のソフトウェア別の節で説明していないもの（Psi4・HybMD・GROMACS・RadonPy・
+DFT-1/2）もここに含まれます。</p>
+<p>「役割」の意味は次のとおりです。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p>計算ソフトに渡す入力ファイルです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p>その計算の主たる結果が入るファイルです。</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p>主な出力を補う値やデータが入るファイルです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p>時間発展や経路の構造が入るファイルです。</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p>原子構造が入るファイルです。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p>計算ソフトの実行ログです。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Quloud が内部で受け渡すファイル（<code class="docutils literal notranslate"><span class="pre">rsdft.atom</span></code>、<code class="docutils literal notranslate"><span class="pre">parameters.json</span></code>、
+<code class="docutils literal notranslate"><span class="pre">sysinfo.json</span></code> など）はこの表に含めていません。利用者が読むものではないためです。</p>
+<p>「内容」が <code class="docutils literal notranslate"><span class="pre">-</span></code> の行は、マスタに説明が登録されていないものです。
+ファイル名と役割から判断してください。</p>
+</div>
+<section id="ase-md">
+<h3><span class="section-number">13.10.1. </span>ASE-MD<a class="headerlink" href="#ase-md" title="Link to this heading"></a></h3>
+<section id="id27">
+<h4><span class="section-number">13.10.1.1. </span>格子定数最適化<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ase.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.traj</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>traj</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id28">
+<h4><span class="section-number">13.10.1.2. </span>構造最適化<a class="headerlink" href="#id28" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ase.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.traj</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>traj</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="md">
+<h4><span class="section-number">13.10.1.3. </span>機械学習ポテンシャル MD<a class="headerlink" href="#md" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ase.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">asemd.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.md</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>ext_xyz</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.traj</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>traj</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.xyz</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>xyz</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="neb-nudged-elastic-band">
+<h4><span class="section-number">13.10.1.4. </span>NEB（Nudged Elastic Band）<a class="headerlink" href="#neb-nudged-elastic-band" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ase.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="dft-1-2">
+<h3><span class="section-number">13.10.2. </span>DFT-1/2<a class="headerlink" href="#dft-1-2" title="Link to this heading"></a></h3>
+<section id="dft-1-2-upf">
+<h4><span class="section-number">13.10.2.1. </span>DFT-1/2 擬ポテンシャル生成（UPF）<a class="headerlink" href="#dft-1-2-upf" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.upf``（</span></code>.dft12.`` を含むものを除く）</p></td>
+<td><p>ベース UPF 擬ポテンシャル</p></td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dft12.json</span></code></p></td>
+<td><p>DFT-1/2 パッチャー設定</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.dft12.upf</span></code></p></td>
+<td><p>DFT-1/2 パッチ済み UPF 擬ポテンシャル</p></td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.deltaV.dat</span></code></p></td>
+<td><p>PP_LOCAL 補正量 ΔV(r)</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.summary.csv</span></code></p></td>
+<td><p>パッチ処理サマリ（パラメータ・来歴ハッシュ）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.theta.dat</span></code></p></td>
+<td><p>カットオフ関数 θ(r)</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.vks_neutral.dat</span></code></p></td>
+<td><p>中性配置の全電子 KS ポテンシャル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.vks_stripped.dat</span></code></p></td>
+<td><p>剥ぎ取り配置の全電子 KS ポテンシャル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.vloc.dat</span></code></p></td>
+<td><p>パッチ前後の局所ポテンシャル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.vse.dat</span></code></p></td>
+<td><p>自己エネルギーポテンシャル V_S(r)</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dft12.err</span></code></p></td>
+<td><p>パッチャー実行エラーログ</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dft12.out</span></code></p></td>
+<td><p>パッチャー実行ログ（結果 JSON）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.exit_status.json</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>json</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id29">
+<h3><span class="section-number">13.10.3. </span>FLARE<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<section id="id30">
+<h4><span class="section-number">13.10.3.1. </span>機械学習ポテンシャル MD<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
+<p>この計算には、Quloud が登録する入出力ファイルはありません。</p>
+</section>
+</section>
+<section id="gromacs">
+<h3><span class="section-number">13.10.4. </span>GROMACS<a class="headerlink" href="#gromacs" title="Link to this heading"></a></h3>
+<section id="id31">
+<h4><span class="section-number">13.10.4.1. </span>構造最適化<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.gro</span></code></p></td>
+<td><p>初期構造ファイル（GROMACSフォーマット）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.itp</span></code></p></td>
+<td><p>トポロジーインクルードファイル（力場定義・分子定義）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.top</span></code></p></td>
+<td><p>トポロジーファイル（力場情報を含む）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">em.mdp</span></code></p></td>
+<td><p>エネルギー最小化パラメータファイル（自動生成）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">em.gro</span></code></p></td>
+<td><p>最小化後の最終構造</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">em.edr</span></code></p></td>
+<td><p>エネルギーデータ（バイナリ）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">em.trr</span></code></p></td>
+<td><p>全フレームトラジェクトリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">em.log</span></code></p></td>
+<td><p>エネルギー最小化ログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id32">
+<h4><span class="section-number">13.10.4.2. </span>古典分子動力学<a class="headerlink" href="#id32" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.gro</span></code></p></td>
+<td><p>初期構造ファイル（GROMACSフォーマット）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.itp</span></code></p></td>
+<td><p>トポロジーインクルードファイル（力場定義・分子定義）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.top</span></code></p></td>
+<td><p>トポロジーファイル（力場情報を含む）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nvt.mdp</span></code></p></td>
+<td><p>MDパラメータファイル（自動生成）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nvt.gro</span></code></p></td>
+<td><p>MD後の最終構造</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nvt.edr</span></code></p></td>
+<td><p>エネルギーデータ（バイナリ）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nvt.xtc</span></code></p></td>
+<td><p>圧縮トラジェクトリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nvt.log</span></code></p></td>
+<td><p>MDログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="hybmd">
+<h3><span class="section-number">13.10.5. </span>HybMD<a class="headerlink" href="#hybmd" title="Link to this heading"></a></h3>
+<section id="id33">
+<h4><span class="section-number">13.10.5.1. </span>機械学習ポテンシャル MD<a class="headerlink" href="#id33" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">md.ini</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">md.log</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">md.traj</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>traj</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scf">
+<h4><span class="section-number">13.10.5.2. </span>自己無撞着電子状態計算（SCF）<a class="headerlink" href="#scf" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scf.ini</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id34">
+<h3><span class="section-number">13.10.6. </span>LAMMPS<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<section id="id35">
+<h4><span class="section-number">13.10.6.1. </span>構造最適化<a class="headerlink" href="#id35" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.lmp</span></code></p></td>
+<td><p>初期構造（LAMMPS data 形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in.QuloudJob</span></code></p></td>
+<td><p>LAMMPS入力スクリプト（Quloudが生成）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log.lammps</span></code></p></td>
+<td><p>LAMMPS標準ログ（thermo 出力の時系列を含む）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.lammpstrj</span></code></p></td>
+<td><p>原子構造トラジェクトリ（dump 出力）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out.lmp</span></code></p></td>
+<td><p>最終構造（write_data 出力。rsdft.atom.out.cif への変換元）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id36">
+<h4><span class="section-number">13.10.6.2. </span>古典分子動力学<a class="headerlink" href="#id36" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.lmp</span></code></p></td>
+<td><p>初期構造（LAMMPS data 形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in.QuloudJob</span></code></p></td>
+<td><p>LAMMPS入力スクリプト（Quloudが生成）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log.lammps</span></code></p></td>
+<td><p>LAMMPS標準ログ（thermo 出力の時系列を含む）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.lammpstrj</span></code></p></td>
+<td><p>原子構造トラジェクトリ（dump 出力）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out.lmp</span></code></p></td>
+<td><p>最終構造（write_data 出力。rsdft.atom.out.cif への変換元）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id37">
+<h3><span class="section-number">13.10.7. </span>Quloud-Mag<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<section id="id38">
+<h4><span class="section-number">13.10.7.1. </span>モンテカルロ磁性計算<a class="headerlink" href="#id38" title="Link to this heading"></a></h4>
+<p>この計算には、Quloud が登録する入出力ファイルはありません。</p>
+</section>
+<section id="llg">
+<h4><span class="section-number">13.10.7.2. </span>LLG ダイナミクス<a class="headerlink" href="#llg" title="Link to this heading"></a></h4>
+<p>この計算には、Quloud が登録する入出力ファイルはありません。</p>
+</section>
+</section>
+<section id="id39">
+<h3><span class="section-number">13.10.8. </span>OpenMX<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<section id="id40">
+<h4><span class="section-number">13.10.8.1. </span>自己無撞着電子状態計算（SCF）<a class="headerlink" href="#id40" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx.in</span></code></p></td>
+<td><p>OpenMX入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>OpenMX標準出力（SCF収束履歴・全エネルギー・固有値等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>OpenMX標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id41">
+<h4><span class="section-number">13.10.8.2. </span>構造最適化<a class="headerlink" href="#id41" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx.in</span></code></p></td>
+<td><p>OpenMX入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>OpenMX標準出力（SCF収束履歴・全エネルギー・固有値等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>OpenMX標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id42">
+<h4><span class="section-number">13.10.8.3. </span>格子定数最適化<a class="headerlink" href="#id42" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx.in</span></code></p></td>
+<td><p>OpenMX入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>OpenMX標準出力（SCF収束履歴・全エネルギー・固有値等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>OpenMX標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id43">
+<h4><span class="section-number">13.10.8.4. </span>電子バンド構造<a class="headerlink" href="#id43" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx.in</span></code></p></td>
+<td><p>OpenMX入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>OpenMX標準出力（SCF収束履歴・全エネルギー・固有値等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>OpenMX標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dos">
+<h4><span class="section-number">13.10.8.5. </span>状態密度計算（DOS）<a class="headerlink" href="#dos" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx.in</span></code></p></td>
+<td><p>OpenMX入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>OpenMX標準出力（SCF収束履歴・全エネルギー・固有値等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>OpenMX標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id44">
+<h4><span class="section-number">13.10.8.6. </span>分子動力学<a class="headerlink" href="#id44" title="Link to this heading"></a></h4>
+<p>この計算には、Quloud が登録する入出力ファイルはありません。</p>
+</section>
+<section id="id45">
+<h4><span class="section-number">13.10.8.7. </span>NEB（Nudged Elastic Band）<a class="headerlink" href="#id45" title="Link to this heading"></a></h4>
+<p>この計算には、Quloud が登録する入出力ファイルはありません。</p>
+</section>
+<section id="id46">
+<h4><span class="section-number">13.10.8.8. </span>交換結合パラメータ<a class="headerlink" href="#id46" title="Link to this heading"></a></h4>
+<p>この計算には、Quloud が登録する入出力ファイルはありません。</p>
+</section>
+</section>
+<section id="psi4">
+<h3><span class="section-number">13.10.9. </span>Psi4<a class="headerlink" href="#psi4" title="Link to this heading"></a></h3>
+<section id="id47">
+<h4><span class="section-number">13.10.9.1. </span>自己無撞着電子状態計算（SCF）<a class="headerlink" href="#id47" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4_input.in</span></code></p></td>
+<td><p>Psi4 入力スクリプト（Python形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4.out</span></code></p></td>
+<td><p>Psi4 計算ログ（エネルギー等を含む）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id48">
+<h4><span class="section-number">13.10.9.2. </span>構造最適化<a class="headerlink" href="#id48" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4_input.in</span></code></p></td>
+<td><p>Psi4 入力スクリプト（Python形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4.out</span></code></p></td>
+<td><p>Psi4 計算ログ（最終エネルギー・最適化構造を含む）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id49">
+<h4><span class="section-number">13.10.9.3. </span>分子振動解析<a class="headerlink" href="#id49" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4_input.in</span></code></p></td>
+<td><p>Psi4 入力スクリプト（Python形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4.out</span></code></p></td>
+<td><p>Psi4 計算ログ（振動数・熱化学データを含む）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id50">
+<h3><span class="section-number">13.10.10. </span>Quantum ESPRESSO<a class="headerlink" href="#id50" title="Link to this heading"></a></h3>
+<section id="id51">
+<h4><span class="section-number">13.10.10.1. </span>自己無撞着電子状態計算（SCF）<a class="headerlink" href="#id51" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.upf</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">work</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>dir</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id52">
+<h4><span class="section-number">13.10.10.2. </span>構造最適化<a class="headerlink" href="#id52" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.upf</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">work</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>dir</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id53">
+<h4><span class="section-number">13.10.10.3. </span>格子定数最適化<a class="headerlink" href="#id53" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.upf</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">work</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>dir</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id54">
+<h4><span class="section-number">13.10.10.4. </span>電子バンド構造<a class="headerlink" href="#id54" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands.gnu</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands.rap</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2.gnu</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2.rap</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">band.json</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id55">
+<h4><span class="section-number">13.10.10.5. </span>状態密度計算（DOS）<a class="headerlink" href="#id55" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dos.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dos</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dos.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dos.json</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pdos">
+<h4><span class="section-number">13.10.10.6. </span>投影状態密度（PDOS）<a class="headerlink" href="#pdos" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pdos.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pdos.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pdos.pdos_atm#*</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pdos.pdos_tot</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">atomic_proj.xml</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>xml</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pdos.json</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id56">
+<h4><span class="section-number">13.10.10.7. </span>NEB（Nudged Elastic Band）<a class="headerlink" href="#id56" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+<td><p>NEB では neb.x に直接渡さないが、擬ポテンシャル選択の記録として生成される</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.neb.in</span></code> または <code class="docutils literal notranslate"><span class="pre">neb.in</span></code></p></td>
+<td><p>neb.x 入力（旧名 neb.in にも対応）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.upf</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dat</span></code></p></td>
+<td><p>経路のエネルギープロファイル（反応座標／エネルギー[eV]／誤差[eV/A]）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neb.out</span></code></p></td>
+<td><p>neb.x 標準出力（活性化エネルギー・イメージ別エネルギー・収束状況）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">work</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>dir</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.int</span></code></p></td>
+<td><p>経路エネルギーの内挿曲線</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.path</span></code></p></td>
+<td><p>経路最適化の再開情報</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pw_&lt;番号&gt;.in</span></code></p></td>
+<td><p>neb.x が生成するイメージ別 pw.x 入力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neb.dat</span></code></p></td>
+<td><p>neb.x が入力から切り出す &amp;PATH ネームリスト（入力ではなく生成物）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.axsf</span></code></p></td>
+<td><p>全イメージのアニメーション構造（XCrySDen AXSF）</p></td>
+<td><p>axsf</p></td>
+</tr>
+<tr class="row-odd"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.crd</span></code></p></td>
+<td><p>全イメージの原子座標（ATOMIC_POSITIONS 形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.xyz</span></code></p></td>
+<td><p>全イメージの構造（XYZ）</p></td>
+<td><p>xyz</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neb.err</span></code></p></td>
+<td><p>neb.x 標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id57">
+<h4><span class="section-number">13.10.10.8. </span>フォノン計算<a class="headerlink" href="#id57" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.ph.in</span></code> または <code class="docutils literal notranslate"><span class="pre">ph.in</span></code></p></td>
+<td><p>ph.x 入力（DFPT。旧名 ph.in にも対応）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ph.out</span></code></p></td>
+<td><p>ph.x 標準出力（各 q 点の振動数・計算時間）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dyn&lt;番号&gt;</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.dyn&lt;番号&gt;</span></code></p></td>
+<td><p>動力学行列（fildyn。dyn0 は q 点グリッド情報、dyn1 以降が各 q 点）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ph.err</span></code></p></td>
+<td><p>ph.x 標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x-xspectra">
+<h4><span class="section-number">13.10.10.9. </span>X線吸収スペクトル（XSpectra）<a class="headerlink" href="#x-xspectra" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.xspectra.in</span></code> または <code class="docutils literal notranslate"><span class="pre">xspectra.in</span></code></p></td>
+<td><p>xspectra.x 入力（旧名 xspectra.in にも対応）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xanes.dat</span></code></p></td>
+<td><p>XANES スペクトル（エネルギー vs 吸収強度）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xspectra.out</span></code></p></td>
+<td><p>xspectra.x 標準出力（収束状況・計算時間）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Core.wfc</span></code></p></td>
+<td><p>コア波動関数（filecore。upf2plotcore.sh が生成する固定名。#1194）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xanes.sav</span></code></p></td>
+<td><p>xspectra.x の再開用データ（Lanczos 係数）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xspectra.err</span></code></p></td>
+<td><p>xspectra.x 標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x-scf">
+<h4><span class="section-number">13.10.10.10. </span>X線吸収スペクトル用 SCF<a class="headerlink" href="#x-scf" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;名前&gt;.upf</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>upf</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">work</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>dir</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.err</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id58">
+<h4><span class="section-number">13.10.10.11. </span>固定ポテンシャル電子状態計算<a class="headerlink" href="#id58" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id59">
+<h4><span class="section-number">13.10.10.12. </span>固定ポテンシャル電子状態計算（バンド）<a class="headerlink" href="#id59" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.in</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.out</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="q2r">
+<h4><span class="section-number">13.10.10.13. </span>力定数計算（q2r）<a class="headerlink" href="#q2r" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.q2r.in</span></code> または <code class="docutils literal notranslate"><span class="pre">q2r.in</span></code></p></td>
+<td><p>q2r.x 入力（旧名 q2r.in にも対応）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.fc</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.fc</span></code></p></td>
+<td><p>実空間力定数（flfrc。matdyn.x の入力になる）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q2r.out</span></code></p></td>
+<td><p>q2r.x 標準出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matdyn">
+<h4><span class="section-number">13.10.10.14. </span>フォノンバンド分散（matdyn）<a class="headerlink" href="#matdyn" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.matdyn.in</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn_disp.in</span></code></p></td>
+<td><p>matdyn.x 入力（分散曲線。旧名 matdyn_disp.in にも対応）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.freq</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.freq</span></code></p></td>
+<td><p>フォノン振動数（flfrq）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matdyn_disp.out</span></code></p></td>
+<td><p>matdyn.x 標準出力（分散曲線）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.freq.gp</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.freq.gp</span></code></p></td>
+<td><p>フォノン振動数（gnuplot 形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matdyn.modes</span></code></p></td>
+<td><p>フォノン固有ベクトル（flvec）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id60">
+<h4><span class="section-number">13.10.10.15. </span>フォノン状態密度（matdyn）<a class="headerlink" href="#id60" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.matdyn.in</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn_dos.in</span></code></p></td>
+<td><p>matdyn.x 入力（フォノンDOS。旧名 matdyn_dos.in にも対応）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.dos</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.dos</span></code></p></td>
+<td><p>フォノン状態密度（fldos）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matdyn_dos.out</span></code></p></td>
+<td><p>matdyn.x 標準出力（フォノンDOS）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.freq.gp</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.freq.gp</span></code></p></td>
+<td><p>フォノン振動数（gnuplot 形式）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.freq</span></code> または <code class="docutils literal notranslate"><span class="pre">matdyn.freq</span></code></p></td>
+<td><p>フォノン振動数（flfrq）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matdyn.modes</span></code></p></td>
+<td><p>フォノン固有ベクトル（flvec）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="radonpy">
+<h3><span class="section-number">13.10.11. </span>RadonPy<a class="headerlink" href="#radonpy" title="Link to this heading"></a></h3>
+<section id="qm-resp">
+<h4><span class="section-number">13.10.11.1. </span>QM構造最適化 / RESP電荷<a class="headerlink" href="#qm-resp" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p>拡張子が <code class="docutils literal notranslate"><span class="pre">.mol2</span></code> / <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> / <code class="docutils literal notranslate"><span class="pre">.sdf</span></code> / <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> のいずれか</p></td>
+<td><p>3次元構造ファイル（mol2/xyz/sdf/pdb。SMILES入力時は不要）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">monomer.pickle</span></code></p></td>
+<td><p>RESP電荷付きモノマーオブジェクト（次ステップへの引き継ぎファイル）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qm_result.json</span></code></p></td>
+<td><p>QM計算結果（HOMO/LUMO/双極子/偏極率等）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">psi4.log</span></code></p></td>
+<td><p>Psi4計算ログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id61">
+<h4><span class="section-number">13.10.11.2. </span>高分子平衡化MD<a class="headerlink" href="#id61" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">monomer.pickle</span></code></p></td>
+<td><p>QMステップから引き継いだモノマーオブジェクト</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eq_result.json</span></code></p></td>
+<td><p>平衡化MD結果（密度・エネルギー・Rg等）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">polymer_cell.lammps</span></code></p></td>
+<td><p>LAMMPSデータファイル（高分子非晶セル）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eq.xtc</span></code></p></td>
+<td><p>平衡化MDトラジェクトリ（XTC形式）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eq.log</span></code></p></td>
+<td><p>LAMMPS平衡化MDログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id62">
+<h4><span class="section-number">13.10.11.3. </span>溶解度パラメータ<a class="headerlink" href="#id62" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp_result.json</span></code></p></td>
+<td><p>溶解度パラメータ計算結果（SP_total/SP_vdw/SP_ele/CED）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp.log</span></code></p></td>
+<td><p>LAMMPS rerunログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id63">
+<h4><span class="section-number">13.10.11.4. </span>ガラス転移温度<a class="headerlink" href="#id63" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tg_result.json</span></code></p></td>
+<td><p>ガラス転移温度計算結果（Tg/熱膨張係数）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tg.log</span></code></p></td>
+<td><p>LAMMPS冷却MDログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id64">
+<h4><span class="section-number">13.10.11.5. </span>熱伝導率<a class="headerlink" href="#id64" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tc_result.json</span></code></p></td>
+<td><p>熱伝導率計算結果（κ/熱拡散率等）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tc.log</span></code></p></td>
+<td><p>LAMMPS NEMD計算ログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id65">
+<h4><span class="section-number">13.10.11.6. </span>ヤング率（機械特性）<a class="headerlink" href="#id65" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">elong_result.json</span></code></p></td>
+<td><p>ヤング率・応力ひずみ計算結果</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">elong.log</span></code></p></td>
+<td><p>LAMMPS変形MDログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id66">
+<h4><span class="section-number">13.10.11.7. </span>複素誘電率<a class="headerlink" href="#id66" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dielectric_result.json</span></code></p></td>
+<td><p>複素誘電率計算結果（ε'/ε''/tan δ）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dielectric.log</span></code></p></td>
+<td><p>LAMMPS電場印加MDログ</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id67">
+<h3><span class="section-number">13.10.12. </span>RSDFT<a class="headerlink" href="#id67" title="Link to this heading"></a></h3>
+<section id="id68">
+<h4><span class="section-number">13.10.12.1. </span>自己無撞着電子状態計算（SCF）<a class="headerlink" href="#id68" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code></p></td>
+<td><p>RSDFT入力ファイル（XCTYPE/NGRID/KGRID/ECUT等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json</span></code></p></td>
+<td><p>RSDFT計算結果本体（全エネルギー内訳・efermi・egap・スピン等のスカラー値）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cif_*.dat</span></code></p></td>
+<td><p>対称解析・CIF生成用の中間ファイル（原子基底/対称操作/対称記述）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eigenvalues.json</span></code></p></td>
+<td><p>k点・スピンごとの固有値（バンドエネルギー）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scfconv.csv</span></code></p></td>
+<td><p>SCF収束履歴（CSV）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vrho.dat1</span></code></p></td>
+<td><p>電荷密度バイナリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>RSDFT標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>RSDFT標準出力（SCF収束履歴等）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id69">
+<h4><span class="section-number">13.10.12.2. </span>構造最適化<a class="headerlink" href="#id69" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code></p></td>
+<td><p>RSDFT入力ファイル（XCTYPE/NGRID/KGRID/ECUT等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json</span></code></p></td>
+<td><p>RSDFT計算結果本体（全エネルギー内訳・efermi・egap・スピン等のスカラー値）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cif_*.dat</span></code></p></td>
+<td><p>対称解析・CIF生成用の中間ファイル（原子基底/対称操作/対称記述）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eigenvalues.json</span></code></p></td>
+<td><p>k点・スピンごとの固有値（バンドエネルギー）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">linmin_ef.dat</span></code></p></td>
+<td><p>直線探索・フェルミエネルギー探索の内部状態（バイナリ）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">optconv.csv</span></code></p></td>
+<td><p>原子位置最適化の収束履歴（イテレーションごとの最大力）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scfconv.csv</span></code></p></td>
+<td><p>SCF収束履歴（CSV）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vrho.dat1</span></code></p></td>
+<td><p>電荷密度バイナリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wopt.dat</span></code></p></td>
+<td><p>原子位置最適化の内部状態（バイナリ、リスタート用）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>RSDFT標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>RSDFT標準出力（SCF収束履歴等）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id70">
+<h4><span class="section-number">13.10.12.3. </span>格子定数最適化<a class="headerlink" href="#id70" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code></p></td>
+<td><p>RSDFT入力ファイル（XCTYPE/NGRID/KGRID/ECUT等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json</span></code></p></td>
+<td><p>RSDFT計算結果本体（全エネルギー内訳・efermi・egap・スピン等のスカラー値）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cif_*.dat</span></code></p></td>
+<td><p>対称解析・CIF生成用の中間ファイル（原子基底/対称操作/対称記述）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eigenvalues.json</span></code></p></td>
+<td><p>k点・スピンごとの固有値（バンドエネルギー）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">linmin_ef.dat</span></code></p></td>
+<td><p>直線探索・フェルミエネルギー探索の内部状態（バイナリ）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">optconv.csv</span></code></p></td>
+<td><p>原子位置最適化の収束履歴（イテレーションごとの最大力）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">optlat.restart</span></code></p></td>
+<td><p>格子探索の状態（探索点ごとのスケールとエネルギー）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json_min</span></code></p></td>
+<td><p>最小エネルギー点での計算結果（rsdft.json と同形式）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scfconv.csv</span></code></p></td>
+<td><p>SCF収束履歴（CSV）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ve.dat</span></code></p></td>
+<td><p>体積-エネルギー曲線（1行 = 体積 / 全エネルギー / a1 / a2 / a3 / Ecut / Ngrid×3 / 原子数）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vrho.dat1</span></code></p></td>
+<td><p>電荷密度バイナリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wopt.dat</span></code></p></td>
+<td><p>原子位置最適化の内部状態（バイナリ、リスタート用）</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>RSDFT標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>RSDFT標準出力（SCF収束履歴等）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id71">
+<h4><span class="section-number">13.10.12.4. </span>電子バンド構造<a class="headerlink" href="#id71" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code></p></td>
+<td><p>RSDFT入力ファイル（XCTYPE/NGRID/KGRID/ECUT等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">band.json</span></code></p></td>
+<td><p>バンド構造データ（rsdft.xが直接出力。変換スクリプト不要）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json</span></code></p></td>
+<td><p>RSDFT計算結果本体（全エネルギー内訳・efermi・egap・スピン等のスカラー値）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cif_*.dat</span></code></p></td>
+<td><p>対称解析・CIF生成用の中間ファイル（原子基底/対称操作/対称記述）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eigenvalues.json</span></code></p></td>
+<td><p>k点・スピンごとの固有値（バンドエネルギー）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scfconv.csv</span></code></p></td>
+<td><p>SCF収束履歴（CSV）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vrho.dat1</span></code></p></td>
+<td><p>電荷密度バイナリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>RSDFT標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>RSDFT標準出力（SCF収束履歴等）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id72">
+<h4><span class="section-number">13.10.12.5. </span>状態密度計算（DOS）<a class="headerlink" href="#id72" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code></p></td>
+<td><p>RSDFT入力ファイル（XCTYPE/NGRID/KGRID/ECUT等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dos.json</span></code></p></td>
+<td><p>状態密度データ（rsdft.xが直接出力）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json</span></code></p></td>
+<td><p>RSDFT計算結果本体（全エネルギー内訳・efermi・egap・スピン等のスカラー値）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cif_*.dat</span></code></p></td>
+<td><p>対称解析・CIF生成用の中間ファイル（原子基底/対称操作/対称記述）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eigenvalues.json</span></code></p></td>
+<td><p>k点・スピンごとの固有値（バンドエネルギー）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scfconv.csv</span></code></p></td>
+<td><p>SCF収束履歴（CSV）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vrho.dat1</span></code></p></td>
+<td><p>電荷密度バイナリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>RSDFT標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>RSDFT標準出力（SCF収束履歴等）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id73">
+<h4><span class="section-number">13.10.12.6. </span>分子動力学<a class="headerlink" href="#id73" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code></p></td>
+<td><p>RSDFT入力ファイル（XCTYPE/NGRID/KGRID/ECUT等）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.json</span></code></p></td>
+<td><p>RSDFT計算結果本体（全エネルギー内訳・efermi・egap・スピン等のスカラー値）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cif_*.dat</span></code></p></td>
+<td><p>対称解析・CIF生成用の中間ファイル（原子基底/対称操作/対称記述）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eigenvalues.json</span></code></p></td>
+<td><p>k点・スピンごとの固有値（バンドエネルギー）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">etot.json</span></code></p></td>
+<td><p>MD時系列（全エネルギー Etot / DFTエネルギー Edft）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fke.json</span></code></p></td>
+<td><p>MD時系列（架空運動エネルギー FKE）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">scfconv.csv</span></code></p></td>
+<td><p>SCF収束履歴（CSV）</p></td>
+<td><p>csv</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">temp.json</span></code></p></td>
+<td><p>MD時系列（イオン温度 Temperature）</p></td>
+<td><p>json</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vrho.dat1</span></code></p></td>
+<td><p>電荷密度バイナリ</p></td>
+<td><p>binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>トラジェクトリ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TRAJECTORY.cif</span></code></p></td>
+<td><p>MDトラジェクトリ（#RS-CPMD_STEP-&gt; 区切りの複数フレームCIF）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.err</span></code></p></td>
+<td><p>RSDFT標準エラー出力</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.out</span></code></p></td>
+<td><p>RSDFT標準出力（SCF収束履歴等）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id74">
+<h3><span class="section-number">13.10.13. </span>SPRKKR<a class="headerlink" href="#id74" title="Link to this heading"></a></h3>
+<section id="id75">
+<h4><span class="section-number">13.10.13.1. </span>自己無撞着電子状態計算（SCF）<a class="headerlink" href="#id75" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pot</span></code></p></td>
+<td><p>SPR-KKR ポテンシャルファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob_SCF.inp</span></code></p></td>
+<td><p>SPR-KKR SCF 入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">occupation.dat</span></code></p></td>
+<td><p>サイト占有率（kkr_occupancy 由来）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob_SCF.log</span></code></p></td>
+<td><p>SCF 反復表（kkrscfMPI 自身が書く。結果抽出の一次ソース）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pot_new</span></code></p></td>
+<td><p>収束後ポテンシャル（交換結合パラメータ計算の入力になる）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob_SCF*.dos</span></code></p></td>
+<td><p>SCF 開始時の状態密度</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.atom</span></code></p></td>
+<td><p>原子構造ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">buildbot.log</span></code></p></td>
+<td><p>ビルドボットログ</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sprkkr_scf.exec.log</span></code></p></td>
+<td><p>kkrscfMPI の標準出力</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id76">
+<h4><span class="section-number">13.10.13.2. </span>交換結合パラメータ<a class="headerlink" href="#id76" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 34.0%" />
+<col style="width: 38.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>役割</p></th>
+<th class="head"><p>ファイル</p></th>
+<th class="head"><p>内容</p></th>
+<th class="head"><p>形式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.pot</span></code></p></td>
+<td><p>SPR-KKR ポテンシャルファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>入力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob_JXC.inp</span></code></p></td>
+<td><p>SPR-KKR JXC 入力ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>主な出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob_JXC_J_ij.dat</span></code></p></td>
+<td><p>交換結合パラメータ J_ij データファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>補助出力</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob_JXC_Jij_*.agr</span></code></p></td>
+<td><p>J_ij グラフファイル（元素名がファイル名に入る）</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>構造</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.atom</span></code></p></td>
+<td><p>原子構造ファイル</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">buildbot.log</span></code></p></td>
+<td><p>ビルドボットログ</p></td>
+<td><p>text</p></td>
+</tr>
+<tr class="row-even"><td><p>ログ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sprkkr_jxc.exec.log</span></code></p></td>
+<td><p>kkrgenMPI の標準出力（キュリー温度の抽出元）</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 </section>
 </section>
