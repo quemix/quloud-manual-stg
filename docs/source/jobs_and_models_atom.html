@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-03-17T19:58:16+09:00" />
+    <meta property="article:modified_time" content="2026-09-08T10:58:35+09:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. Material の登録</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
@@ -57,12 +57,25 @@
 <li class="toctree-l1"><a class="reference internal" href="invitation.html">4. 新規ユーザーの招待</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dashboard.html">5. ダッシュボード（トップ画面）</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">6. Material の登録</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">6.1. 外部データベースからの登録</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#materials-project">6.1.1. 結晶構造（データベース：Materials Project）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pubchem">6.1.2. 分子構造（データベース：PubChem）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">6.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">6.2. 前提</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">6.3. 操作手順</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">6.3.1. 1. 「新規マテリアル」を押す</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">6.3.2. 2. 名前と原子構造を指定する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">6.3.3. 3. 「作成」を押す</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">6.2. ファイルアップロードによる登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">6.4. 結晶データベースから登録する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">6.5. 分子データベースから登録する</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pubchem">6.5.1. PubChem で検索する</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">6.5.2. ポリマープリセットから選ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">6.6. ファイルから登録する</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#job">6.6.1. 入力ファイルから Job ごと作る</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">6.7. 注意事項</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jobdetail.html">7. Material 詳細画面</a></li>
@@ -103,91 +116,327 @@
              
   <section id="material">
 <span id="material-create"></span><h1><span class="section-number">6. </span>Material の登録<a class="headerlink" href="#material" title="Link to this heading"></a></h1>
-<p>Mateiral（原子座標の情報） を Quloud に登録する方法として、外部データベースから登録する方法と、ファイルをアップロードして登録する方法の２種類があります。さらに登録した Material をモデリングによって改変することで、新たな Material を作成・登録する事もできますが、こちらについては「<a class="reference internal" href="modeling.html#modeling-section"><span class="std std-ref">Material のモデリング</span></a>」の章で改めてご説明することにして、ここでは「データベースからの登録」と「ファイルアップロードによる登録」の2つの方法についてご説明します。</p>
-<p>まずはトップ画面で Project を選択し、Material 一覧の右上にある「＋」アイコンをクリックします。</p>
-<img alt="../_images/screenshot_0003.png" src="../_images/screenshot_0003.png" />
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>本章は Quloud Ver.7.0 を対象としています。記載内容の確認日は 2026 年 9 月 8 日です。</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <section id="id1">
-<h2><span class="section-number">6.1. </span>外部データベースからの登録<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>結晶構造（下図 Search in Crystal DB）と分子構造（下図 Search in Molecule DB）では、使用するデータベースが異なります。
-以下、それぞれの場合での Material 登録方法を説明します。</p>
-<img alt="../_images/screenshot_0004.png" src="../_images/screenshot_0004.png" />
+<h2><span class="section-number">6.1. </span>概要<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Material は計算の対象となる原子構造です。原子構造の指定には 3 つの方法があります。</p>
+<ol class="arabic simple">
+<li><p><strong>結晶データベースから選ぶ</strong> — Materials Project を検索します</p></li>
+<li><p><strong>分子データベースから選ぶ</strong> — PubChem を検索するか、ポリマープリセットから選びます</p></li>
+<li><p><strong>ファイルをアップロードする</strong> — 手元の構造ファイルを読み込みます</p></li>
+</ol>
+<p>登録した Material をモデラーで加工して別の Material にすることもできます
+（<a class="reference internal" href="modeling.html"><span class="doc">Material のモデリング</span></a> の章）。</p>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<section id="materials-project">
-<h3><span class="section-number">6.1.1. </span>結晶構造（データベース：Materials Project）<a class="headerlink" href="#materials-project" title="Link to this heading"></a></h3>
-<p>「Search in Crystal DB」のボタンをクリックすると、下図のようなデータベース検索のウィンドウが現れます。</p>
-<img alt="../_images/screenshot_0006.png" src="../_images/screenshot_0006.png" />
-<p>ここでは、含まれる元素や化学式など、結晶構造を検索する方法を選択し（Search Type）、
-それらをさらに格子の型や対称性（Crystal System，Spacegroup Symbol）等で絞り込むといったことができます。</p>
-<p>Search Type では、</p>
-<ul class="simple">
-<li><p>Material IDs（Materials Project で、物質ごとに割り振られている文字列）</p></li>
-<li><p>Formula（組成式）</p></li>
-<li><p>Chemsys（指定した元素から成る物質がヒットする）</p></li>
-<li><p>Elements（指定した元素を含む物質がヒットする）</p></li>
-</ul>
-<p>の中から検索方法を選択できます。以下では、Search Type を Formula としています。</p>
-<p>Queryに検索文字列を入力すると「Search」ボタンがアクティブになり、これをクリックすると、条件に合致する物質の結晶構造が一覧で表示されます（下図）。</p>
-<img alt="../_images/screenshot_0007.png" src="../_images/screenshot_0007.png" />
-<p>登録したい結晶構造にチェックを入れると、ウィンドウの下部にある「Select」ボタンがアクティブになるので、これをクリックします。</p>
-<img alt="../_images/screenshot_0008.png" src="../_images/screenshot_0008.png" />
-<p>すると、検索ウィンドウが閉じて、結晶構造（ここでは &quot;mp-149&quot; ）が表示された状態で一つ前のウィンドウ（下図）に戻ります。</p>
-<img alt="../_images/screenshot_0051.png" src="../_images/screenshot_0051.png" />
-<p>検索で見つけた構造に名前を付け（ここでは &quot;Si&quot; ）、「Create」をクリックすれば、Quloud 上に Material として登録されます。
-登録が完了するとトップ画面に戻ります。</p>
-<img alt="../_images/screenshot_0003b.png" src="../_images/screenshot_0003b.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="pubchem">
-<h3><span class="section-number">6.1.2. </span>分子構造（データベース：PubChem）<a class="headerlink" href="#pubchem" title="Link to this heading"></a></h3>
-<p>「Search in Molecule DB」をクリックすると、分子の名前や化学式で分子の座標データを検索するモードとなります。
-（現在、分子構造をそのまま計算できるソフトは搭載されておらず、
-結晶や表面といった周期系と組み合わせたモデルを作成する目的でのみ利用できます。）</p>
-<img alt="../_images/screenshot_0052.png" src="../_images/screenshot_0052.png" />
-<p>検索方法（Search Type）を選択し、それに応じた分子の名前や化学式を Query 欄に入力すると、「Search」ボタンがアクティブになるので、これをクリックします。
-そうすると、条件に合致する物質の分子構造が表示されます。</p>
-<img alt="../_images/screenshot_0009.png" src="../_images/screenshot_0009.png" />
-<p>登録したい分子構造にチェックを入れ、ウィンドウの下部にある「Select」をクリックすると、検索ウィンドウが閉じて、
-分子構造（ここでは &quot;6325&quot; ）が表示された状態で一つ前のウィンドウ（下図）に戻ります。</p>
-<img alt="../_images/screenshot_0053.png" src="../_images/screenshot_0053.png" />
-<p>検索で見つけた構造に名前を付け（ここでは &quot;Ethylene Molecule&quot; ）、「Create」をクリックすれば、Quloud 上に Material として登録されます。
-登録が完了するとトップ画面に戻ります。</p>
-<img alt="../_images/screenshot_0005.png" src="../_images/screenshot_0005.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
 </section>
 <section id="id2">
-<h2><span class="section-number">6.2. </span>ファイルアップロードによる登録<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>「File Upload」のボタンをクリックすると、下図のようなファイルを選択するウィンドウが現れます。</p>
-<img alt="../_images/screenshot_0010.png" src="../_images/screenshot_0010.png" />
-<p>複数のファイルをアップロードする事も可能です。アップロード可能な結晶構造や分子構造のフォーマットは、現在</p>
+<h2><span class="section-number">6.2. </span>前提<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>CIF</p></li>
-<li><p>XYZ</p></li>
-<li><p>POSCAR（VASP 形式）</p></li>
-<li><p>OpenMX 入力ファイル</p></li>
-<li><p>Quantum ESPRESSO 入力ファイル</p></li>
+<li><p>登録先のプロジェクトに参加していること</p></li>
+<li><p>テナントが利用制限中でないこと（<a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章）</p></li>
 </ul>
-<p>となっています。
-例として、OpenMX のウェブサイト（<a class="reference external" href="https://www.openmx-square.org/openmx_man3.9jp/node20.html">https://www.openmx-square.org/openmx_man3.9jp/node20.html</a>）に載っているメタン分子の構造ファイル「Methane.dat」をアップロードしてみます。</p>
-<img alt="../_images/screenshot_0054.png" src="../_images/screenshot_0054.png" />
-<p>「Upload」をクリックすると、ウィンドウが閉じ、入力ファイル「Methane.dat」が表示された状態で一つ前のウィンドウ（下図）に戻ります。</p>
-<img alt="../_images/screenshot_0055.png" src="../_images/screenshot_0055.png" />
-<p>アップロードした物質に名前（ここでは &quot;Methane (OpenMX)&quot; とする）を付け、「Create」をクリックすれば、メタン分子の構造が Quloud に登録されます。
-登録が完了すると、トップ画面に戻ります。</p>
-<img alt="../_images/screenshot_0056.png" src="../_images/screenshot_0056.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.3. </span>操作手順<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="id4">
+<h3><span class="section-number">6.3.1. </span>1. 「新規マテリアル」を押す<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Material はプロジェクトごとに登録します。ホーム画面の「プロジェクト」から
+プロジェクトを開き、「マテリアル」の右上にある「＋ 新規マテリアル」を押します。</p>
+<figure class="align-default" id="id12">
+<img alt="プロジェクト詳細画面のマテリアルの列。見出しの右に検索アイコン、拡大アイコン、「＋ 新規マテリアル」ボタンが並ぶ。その下に名前・ジョブ・更新日時の列を持つ一覧があり、各行の名前の左に CRY または MOL のラベルが付いている。" src="../_images/jobs_and_models_atom_project_materials.png" />
+<figcaption>
+<p><span class="caption-number">図 6.1 </span><span class="caption-text">プロジェクト詳細画面のマテリアル一覧</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>一覧の名前の左にあるラベルは構造の種類です。<code class="docutils literal notranslate"><span class="pre">CRY</span></code> が結晶、<code class="docutils literal notranslate"><span class="pre">MOL</span></code> が分子です。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">6.3.2. </span>2. 名前と原子構造を指定する<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>「マテリアルを作成」ダイアログが開きます。</p>
+<figure class="align-default" id="id13">
+<img alt="「マテリアルを作成」ダイアログ。名前（必須）、説明、ソフトウェアの選択欄が縦に並び、「原子構造」の行に「Crystal DBで検索」「Molecule DBで検索」「ファイルアップロード」の 3 つのボタンが横に並んでいる。下部の「作成」ボタンは押せない状態。" src="../_images/jobs_and_models_atom_create_dialog.png" />
+<figcaption>
+<p><span class="caption-number">図 6.2 </span><span class="caption-text">「マテリアルを作成」ダイアログ</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>名前</p></td>
+<td><p>必須です。一覧に表示される名前です。</p></td>
+</tr>
+<tr class="row-odd"><td><p>説明</p></td>
+<td><p>任意です。Material 詳細画面に表示されます。</p></td>
+</tr>
+<tr class="row-even"><td><p>ソフトウェア</p></td>
+<td><p>既定は「なし」です。「なし」以外を選ぶと、<strong>Material と同時に計算 Job も
+作られます</strong>（この章の「入力ファイルから Job ごと作る」）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>原子構造</p></td>
+<td><p>3 つのボタンのどれかで指定します。指定するとダイアログの下に
+選んだ構造やファイルの名前が並びます。</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>原子構造を 1 つ以上指定するまで「作成」は押せません。</strong></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id6">
+<h3><span class="section-number">6.3.3. </span>3. 「作成」を押す<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>Material が登録され、プロジェクトのマテリアル一覧に追加されます。
+一覧の名前を押すと Material 詳細画面に移ります（<a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> の章）。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">6.4. </span>結晶データベースから登録する<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>「Crystal DBで検索」を押すと、Materials Project の検索ダイアログが開きます。</p>
+<figure class="align-default" id="id14">
+<img alt="「結晶を検索」ダイアログ。検索タイプ（既定は化学式）とクエリの必須項目、結晶系・空間群記号・サイト数の絞り込み項目が縦に並び、その下に幅いっぱいの「検索」ボタンがある。下部に「キャンセル」と、まだ押せない「選択」ボタンがある。" src="../_images/jobs_and_models_atom_crystal_search.png" />
+<figcaption>
+<p><span class="caption-number">図 6.3 </span><span class="caption-text">「結晶を検索」ダイアログ</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>「検索タイプ」で検索の仕方を選び、「クエリ」に検索語を入れて「検索」を押します。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>検索タイプ</p></th>
+<th class="head"><p>クエリに入れるもの</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>マテリアルID</p></td>
+<td><p>Materials Project の ID（<code class="docutils literal notranslate"><span class="pre">mp-149</span></code> など）</p></td>
+</tr>
+<tr class="row-odd"><td><p>化学式</p></td>
+<td><p>化学式（<code class="docutils literal notranslate"><span class="pre">Fe2O3</span></code>、<code class="docutils literal notranslate"><span class="pre">ABO3</span></code> など）</p></td>
+</tr>
+<tr class="row-even"><td><p>元素系</p></td>
+<td><p>元素の組み合わせ（<code class="docutils literal notranslate"><span class="pre">Li-Fe-O</span></code> など）</p></td>
+</tr>
+<tr class="row-odd"><td><p>元素</p></td>
+<td><p>含まれる元素</p></td>
+</tr>
+</tbody>
+</table>
+<p>「結晶系」「空間群記号」「サイト数」は任意の絞り込みです。サイト数は <code class="docutils literal notranslate"><span class="pre">5</span></code> のような
+値のほか <code class="docutils literal notranslate"><span class="pre">5-20</span></code> の範囲でも指定できます。</p>
+<p>検索結果の表から 1 件を選び、「選択」を押すと「マテリアルを作成」ダイアログに戻ります。
+表の「マテリアルID」は Materials Project のページへのリンクです。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">6.5. </span>分子データベースから登録する<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>「Molecule DBで検索」を押すと、次の 2 つから選ぶメニューが開きます。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PubChemで検索</p></td>
+<td><p>PubChem を検索して分子構造を取り込みます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ポリマープリセットから選択</p></td>
+<td><p>あらかじめ用意されたポリマーの繰り返し単位から選びます。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="pubchem">
+<h3><span class="section-number">6.5.1. </span>PubChem で検索する<a class="headerlink" href="#pubchem" title="Link to this heading"></a></h3>
+<figure class="align-default" id="id15">
+<img alt="「分子を検索」ダイアログ。検索タイプ（既定は名前）とクエリの入力欄が縦に並び、クエリには「例: aspirin」のプレースホルダが表示されている。その下に幅いっぱいの「検索」ボタン、下部に「キャンセル」と押せない状態の「選択」ボタンがある。" src="../_images/jobs_and_models_atom_molecule_search.png" />
+<figcaption>
+<p><span class="caption-number">図 6.4 </span><span class="caption-text">「分子を検索」ダイアログ</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>検索タイプは「名前」「化学式」「CID」「SMILES」「InChI」「InChIKey」から選べます。
+入力例はクエリ欄に表示されます。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>3D 構造データを持たない分子は登録できません。検索結果に
+「3D構造データがありません」と表示されます。</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id9">
+<h3><span class="section-number">6.5.2. </span>ポリマープリセットから選ぶ<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<figure class="align-default" id="id16">
+<img alt="「ポリマープリセットを選択」ダイアログ。名称・SMILES・原子数の列を持つ表に、ポリエチレン (PE)、ポリプロピレン (PP)、ポリスチレン (PS)、ポリ塩化ビニル (PVC)、ポリアクリロニトリル (PAN)、ポリメチルメタクリレート (PMMA)、ポリビニルアルコール (PVA)、ポリエチレンオキシド / ポリエチレングリコール (PEO / PEG)、ポリエチレンテレフタレート (PET)、ビスフェノールAポリカーボネート (BPA-PC) が並び、全 13 件と表示されている。" src="../_images/jobs_and_models_atom_polymer_preset.png" />
+<figcaption>
+<p><span class="caption-number">図 6.5 </span><span class="caption-text">「ポリマープリセットを選択」ダイアログ</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>繰り返し単位の SMILES と原子数が一覧されます。1 件を選んで「選択」を押します。
+高分子の計算（RadonPy）で使います。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id10">
+<h2><span class="section-number">6.6. </span>ファイルから登録する<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>「ファイルアップロード」を押すと、ファイルを受け取るダイアログが開きます。</p>
+<figure class="align-default" id="id17">
+<img alt="「ファイルをアップロード」ダイアログ。「アップロードするファイルをドラッグ＆ドロップしてください。」と書かれた領域があり、下部に「キャンセル」と緑色の「アップロード」ボタンが並ぶ。" src="../_images/jobs_and_models_atom_file_upload.png" />
+<figcaption>
+<p><span class="caption-number">図 6.6 </span><span class="caption-text">「ファイルをアップロード」ダイアログ</span><a class="headerlink" href="#id17" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>領域にファイルをドラッグ＆ドロップするか、領域を押してファイルを選び、
+「アップロード」を押します。複数のファイルをまとめて指定できます。</p>
+<p>読み込める構造ファイルの形式は次のとおりです。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>形式</p></th>
+<th class="head"><p>ファイル</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CIF</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.cif</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>XYZ</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.xyz</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>VASP</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.vasp</span></code>、<code class="docutils literal notranslate"><span class="pre">POSCAR</span></code>、<code class="docutils literal notranslate"><span class="pre">CONTCAR</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>XSF</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.xsf</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>LAMMPS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.lmp</span></code>、<code class="docutils literal notranslate"><span class="pre">.data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>計算ソフトの入力ファイル</p></td>
+<td><p>Quantum ESPRESSO、OpenMX、RSDFT の入力ファイル</p></td>
+</tr>
+</tbody>
+</table>
+<p>上記以外でも、構造として解釈できる形式であれば読み込めることがあります。
+解釈できない場合は登録時にエラーになります。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="job">
+<h3><span class="section-number">6.6.1. </span>入力ファイルから Job ごと作る<a class="headerlink" href="#job" title="Link to this heading"></a></h3>
+<p>「ソフトウェア」で「なし」以外を選ぶと、<strong>アップロードした入力ファイルをそのまま使う
+計算 Job が、Material と同時に作られます。</strong> 計算条件を画面で組み立てるのではなく、
+手元で用意した入力ファイルで計算したい場合に使います。</p>
+<p>選べるソフトウェアは次のとおりです。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ソフトウェア</p></th>
+<th class="head"><p>主な入力ファイル</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FLARE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.yaml</span></code>、<code class="docutils literal notranslate"><span class="pre">rsdft.atom</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>LAMMPS / LAMMPS+CHGNet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">in.QuloudJob</span></code>、<code class="docutils literal notranslate"><span class="pre">QuloudJob.lmp</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>OpenMX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openmx.in</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO (PW)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO (DOS)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code>、<code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.in</span></code>、<code class="docutils literal notranslate"><span class="pre">QuloudJob.dos.in</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum ESPRESSO (BAND)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">QuloudJob.scf.in</span></code>、<code class="docutils literal notranslate"><span class="pre">QuloudJob.nscf.in</span></code>、<code class="docutils literal notranslate"><span class="pre">QuloudJob.bands.in</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum ESPRESSO (BAND with spin)</p></td>
+<td><p>上記に <code class="docutils literal notranslate"><span class="pre">QuloudJob.bands2.in</span></code> を加えたもの</p></td>
+</tr>
+<tr class="row-odd"><td><p>RSDFT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rsdft.in</span></code>、<code class="docutils literal notranslate"><span class="pre">rsdft.atom</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>ファイル名は決まっています。</strong> 「作成」を押した時点で内容が検査され、
+必要なファイルが足りない場合や中身が想定と違う場合はエラーが表示されます。
+擬ポテンシャルファイル（<code class="docutils literal notranslate"><span class="pre">.upf</span></code> など）も一緒にアップロードできます。</p>
+<p>作られた Job は Status が「Registered」なので、実行は <a class="reference internal" href="runjob.html"><span class="doc">計算 Job の実行</span></a> の章の手順で行います。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">6.7. </span>注意事項<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>同じ Material を複数のプロジェクトから使うことはできません。</strong> Material は
+1 つのプロジェクトに属します。別のプロジェクトで使いたい場合は、Material 詳細画面の
+「他のプロジェクトへ移動」で移します（<a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> の章）。</p></li>
+<li><p>Material の削除は、その Material を使っている Job がある場合に制限されます
+（<a class="reference internal" href="jobdetail.html"><span class="doc">Material 詳細画面</span></a> の章）。</p></li>
+<li><p>外部データベースの検索は、Materials Project と PubChem に問い合わせます。
+応答が無い場合は時間をおいてやり直してください。</p></li>
+</ul>
 </section>
 </section>
 
@@ -203,7 +452,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Quemix Inc.
-      <span class="lastupdated">最終更新: 3月 17, 2026
+      <span class="lastupdated">最終更新: 9月 08, 2026
       </span></p>
   </div>
 
