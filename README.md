@@ -39,10 +39,40 @@ git clone git@github.com:quemix/quloud-manual-meta.git meta
 ## セットアップ
 
 ```bash
+git clone git@github.com:quemix/quloud-manual-stg.git
+cd quloud-manual-stg
+git clone git@github.com:quemix/quloud-manual-meta.git meta   # 非公開。上の「meta/ について」参照
 make venv        # python3.13 の .venv を作り requirements.txt を導入する
 ```
 
 `python3`（3.14）では `ensurepip` が無く venv を作れない。必ず `python3.13` を使う。
+
+## 編集の流れ
+
+**編集を始める前に `CLAUDE.md` を読むこと。** 公開・非公開リポジトリの使い分け、
+`make publish` の手順、踏みやすい罠（強調記法・見出しレベル・章番号のずれ等）を
+まとめた恒久ルール集で、公開事故を防ぐために必読としている。
+
+具体的な作業手順（章を書く、生成表を繋ぐ、マスタデータを取り直す、画面キャプチャを撮る、
+変更履歴を編集する、公開する）は **`.claude/skills/quloud-manual-chapter/SKILL.md`** に
+まとめている。Claude Code から作業する場合はこの Skill がそのまま使える
+（`quloud-manual-chapter` として呼び出す）。手動で作業する場合も同じ手順に沿えばよい。
+
+大まかな流れは次のとおり。
+
+1. `source/*.rst` に章の原稿を書く／直す。章冒頭には対象バージョンと確認日を書く
+   （参照元のコミット SHA は書かない。`CLAUDE.md` §1）
+2. マスタデータ由来の表が必要なら `make dump && make generate && make checkgen` で
+   生成物を作り直し、章から束ねたファイル（`_generated/*_all.rst`）を
+   `.. include::` で繋ぐ
+3. 画面キャプチャが必要なら `shots/`（独立した Playwright プロジェクト、
+   `shots/README.md` 参照）で撮る。ローカル開発 DB とその中の実データへの
+   禁止事項は `CLAUDE.md` §6 にまとまっている
+4. 変更履歴（`source/release_notes.rst`）を足すときの掲載基準・書き方は
+   `CLAUDE.md` §5
+5. `make test && make checkgen && make strict` がすべて警告ゼロで通ることを確認する
+6. `git commit`（原稿）→ `make publish` → `git commit`（`docs/`）の順序を守る。
+   崩すと公開物が壊れる（`CLAUDE.md` §2）
 
 ## ビルド
 
