@@ -26,6 +26,9 @@ venv:
 # 実体は非公開リポジトリ meta/ 側にあるため、meta/ を clone していない環境では
 # リンク先が無く CLAUDE.md / .claude/ は使えない。
 claude-link:
+	@test -d meta/claude || { echo "meta/ が無い。先に meta を clone する（README 参照）"; exit 1; }
+	@test ! -e .claude   -o -L .claude   || { echo ".claude が実ディレクトリとして存在する。退避してから実行する"; exit 1; }
+	@test ! -e CLAUDE.md -o -L CLAUDE.md || { echo "CLAUDE.md が実ファイルとして存在する。退避してから実行する"; exit 1; }
 	ln -sfn meta/claude/CLAUDE.md CLAUDE.md
 	ln -sfn meta/claude/dotclaude .claude
 

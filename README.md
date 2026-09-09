@@ -22,7 +22,7 @@ Quloud **Ver.7.0** のオンラインマニュアルの原稿とビルド環境�
 | `docs/` | 公開物（GitHub Pages）。`make publish` の出力のみ |
 | `tools/` | 生成スクリプト |
 | `meta/` | **このリポジトリには入っていない**（下記） |
-| `CLAUDE.md`, `.claude/` | **このリポジトリには入っていない**（`meta/claude/` へのシンボリックリンク。下記） |
+| `CLAUDE.md`, `.claude/` | **このリポジトリには入っていない**。clone 直後は無く、`make claude-link` で `meta/claude/` へのシンボリックリンクとして作られる（下記） |
 
 ## meta/ について
 
@@ -47,7 +47,9 @@ Claude Code 用の作業ルール（`CLAUDE.md`）と Skill（`.claude/`）の�
 make claude-link   # meta/claude/{CLAUDE.md,dotclaude} へのシンボリックリンクを張る
 ```
 
-`meta/` を clone していない状態では `CLAUDE.md` と `.claude/` は存在しない（symlink 切れ）。
+`git clone` した直後は `CLAUDE.md` と `.claude/` が一切存在しない
+（symlink 自体が git 追跡されていないため）。`make claude-link` で初めて symlink が
+作られる。`meta/` を clone していない状態で実行するとリンク切れの symlink になる。
 
 ## セットアップ
 
@@ -65,7 +67,9 @@ make venv        # python3.13 の .venv を作り requirements.txt を導入す�
 
 **編集を始める前に `CLAUDE.md` を読むこと。** 公開・非公開リポジトリの使い分け、
 `make publish` の手順、踏みやすい罠（強調記法・見出しレベル・章番号のずれ等）を
-まとめた恒久ルール集で、公開事故を防ぐために必読としている。
+まとめた恒久ルール集で、公開事故を防ぐために必読としている。手元に無ければ、上の
+「CLAUDE.md / .claude について」のとおり `meta` を clone して `make claude-link` を
+実行すれば読めるようになる。
 
 具体的な作業手順（章を書く、生成表を繋ぐ、マスタデータを取り直す、画面キャプチャを撮る、
 変更履歴を編集する、公開する）は **`.claude/skills/quloud-manual-chapter/SKILL.md`** に

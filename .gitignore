@@ -19,8 +19,8 @@ meta/
 # Claude Code 用の設定（CLAUDE.md / .claude/）。実体は meta/claude/ にあり、
 # ここにはシンボリックリンクとして置く。meta/ が無い環境では存在しない
 # （symlink 切れ）。`make claude-link` で張り直せる。
-CLAUDE.md
-.claude
+/CLAUDE.md
+/.claude
 
 # 撮影ハーネスの作業物。node_modules と資格情報つきの storageState、
 # 撮影記録の中間ファイルは公開リポジトリに入れない。
