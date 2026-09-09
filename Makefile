@@ -13,7 +13,7 @@ BUILDDIR    = _build/html
 PUBLISHDIR  = docs
 
 .PHONY: venv html strict dump generate checkgen test release-notes \
-        shots-install shots shots-ledger shots-check publish clean help
+        shots-install shots shots-ledger shots-check publish clean help claude-link
 
 .DEFAULT_GOAL := help
 
@@ -21,6 +21,13 @@ venv:
 	python3.13 -m venv $(VENV)
 	$(VENV)/bin/pip install --upgrade pip
 	$(VENV)/bin/pip install -r requirements.txt
+
+# meta/claude/ にある CLAUDE.md と .claude/ の実体へシンボリックリンクを張る。
+# 実体は非公開リポジトリ meta/ 側にあるため、meta/ を clone していない環境では
+# リンク先が無く CLAUDE.md / .claude/ は使えない。
+claude-link:
+	ln -sfn meta/claude/CLAUDE.md CLAUDE.md
+	ln -sfn meta/claude/dotclaude .claude
 
 html:
 	@$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS)
@@ -93,6 +100,7 @@ clean:
 
 help:
 	@echo "venv          : .venv を作り requirements.txt を導入する"
+	@echo "claude-link   : CLAUDE.md / .claude/ を meta/claude/ へのシンボリックリンクとして張る"
 	@echo "html          : _build/html にビルドする"
 	@echo "strict        : 警告をエラーとしてビルドする"
 	@echo "dump          : ~/v6.0 のマスタデータを meta/master_dump.json に落とす"

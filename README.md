@@ -22,6 +22,7 @@ Quloud **Ver.7.0** のオンラインマニュアルの原稿とビルド環境�
 | `docs/` | 公開物（GitHub Pages）。`make publish` の出力のみ |
 | `tools/` | 生成スクリプト |
 | `meta/` | **このリポジトリには入っていない**（下記） |
+| `CLAUDE.md`, `.claude/` | **このリポジトリには入っていない**（`meta/claude/` へのシンボリックリンク。下記） |
 
 ## meta/ について
 
@@ -36,12 +37,25 @@ git clone git@github.com:quemix/quloud-manual-meta.git meta
 `meta/` は `.gitignore` 済み。`tools/` の既定パスはすべて `meta/` を指すので、
 上記のとおりクローンすれば `make dump` / `make generate` / `make release-notes` が動く。
 
+## CLAUDE.md / .claude について
+
+Claude Code 用の作業ルール（`CLAUDE.md`）と Skill（`.claude/`）の実体も、`meta/` と同じ理由で
+非公開リポジトリ側（`meta/claude/`）に置いている。このリポジトリにはそこへの
+シンボリックリンクとして置くだけで、内容そのものは含まれない。
+
+```bash
+make claude-link   # meta/claude/{CLAUDE.md,dotclaude} へのシンボリックリンクを張る
+```
+
+`meta/` を clone していない状態では `CLAUDE.md` と `.claude/` は存在しない（symlink 切れ）。
+
 ## セットアップ
 
 ```bash
 git clone git@github.com:quemix/quloud-manual-stg.git
 cd quloud-manual-stg
 git clone git@github.com:quemix/quloud-manual-meta.git meta   # 非公開。上の「meta/ について」参照
+make claude-link # CLAUDE.md / .claude/ のシンボリックリンクを張る。上の「CLAUDE.md / .claude について」参照
 make venv        # python3.13 の .venv を作り requirements.txt を導入する
 ```
 
