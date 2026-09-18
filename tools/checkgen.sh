@@ -33,6 +33,23 @@ EOF
 
 ln -s "$GENERATED_DIR" "$SCRATCH/_generated"
 
+# 生成ファイルの中には、本文の章を :doc:`specifications` のように参照する
+# ものがある（本文へ .. include:: された状態では章本文と同じ文書なので解決
+# できる）。ここでは各生成ファイルを本文から切り離して単独の文書として
+# 検査するため、参照先の章がスクラッチ環境に無いと "unknown document" に
+# なってしまう。実際の本文は使わず、章タイトルだけの空文書を用意して
+# 参照が解決できるようにする。
+SOURCE_DIR="$MANUAL_DIR/source"
+CHAPTER_TOCTREE=""
+while IFS= read -r chapter; do
+    name="$(basename "$chapter" .rst)"
+    {
+        echo "$name"
+        printf '=%.0s' $(seq 1 ${#name})
+    } > "$SCRATCH/$name.rst"
+    CHAPTER_TOCTREE="$CHAPTER_TOCTREE   $name"$'\n'
+done < <(cd "$SOURCE_DIR" && find . -maxdepth 1 -name '*.rst' | sed 's|^\./||' | sort)
+
 COUNT=0
 {
     echo "checkgen"
@@ -40,6 +57,7 @@ COUNT=0
     echo
     echo ".. toctree::"
     echo
+    printf '%s' "$CHAPTER_TOCTREE"
     while IFS= read -r rel; do
         COUNT=$((COUNT + 1))
         doc="$(printf 'doc_%04d' "$COUNT")"
